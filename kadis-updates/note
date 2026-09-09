@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Team | Kadis Digitals</title>
+    <meta name="description"
+        content="Join the Kadis Digitals professional team of ICT engineers and installers. Apply now with your area of expertise.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0B0C0F;
+            --bg-elevated: #141519;
+            --bg-card: #1A1B20;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.14);
+            --text: #F5F5F5;
+            --text-muted: #A2A3AA;
+            --accent: #D9772E;
+            --accent-dark: #B85E1F;
+            --accent-soft: rgba(217, 119, 46, 0.12);
+            --success: #4CAF7D;
+            --font-heading: 'Sora', sans-serif;
+            --font-body: 'Manrope', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ---------- HEADER ---------- */
+        header.site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 12, 15, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav.main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav.main-nav a {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: color .2s ease;
+        }
+
+        nav.main-nav a:hover {
+            color: var(--text);
+            border-bottom: 3px solid var(--accent);
+        }
+
+        nav.main-nav a.active,
+        nav.main-nav a.nav-cta {
+            color: var(--accent);
+        }
+
+        .nav-cta {
+            border: 1px solid var(--accent);
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-weight: 600 !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent);
+            color: #0B0C0F !important;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        /* ---------- HERO ---------- */
+        .page-hero {
+            padding: 72px 0 48px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+            background:
+                radial-gradient(circle at 20% 20%, var(--accent-soft), transparent 60%),
+                var(--bg);
+        }
+
+        .eyebrow {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: inline-block;
+            margin-bottom: 16px;
+            border: 1px solid var(--border-strong);
+            padding: 6px 14px;
+            border-radius: 999px;
+        }
+
+        .page-hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 5vw, 2.9rem);
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .page-hero p {
+            color: var(--text-muted);
+            max-width: 620px;
+            margin: 0 auto;
+            font-size: 1.02rem;
+        }
+
+        /* ---------- FORM SECTION ---------- */
+        .form-section {
+            padding: 56px 0 96px;
+        }
+
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+        }
+
+        fieldset {
+            border: none;
+            margin-bottom: 32px;
+        }
+
+        fieldset:last-of-type {
+            margin-bottom: 0;
+        }
+
+        legend {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            width: 100%;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field-row .field {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        label .req {
+            color: var(--accent);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-strong);
+            color: var(--text);
+            padding: 13px 14px;
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        .helper-text {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 18px;
+            display: block;
+        }
+
+        /* Services checklist */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px 24px;
+            max-height: 420px;
+            overflow-y: auto;
+            padding: 18px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-strong);
+            border-radius: 8px;
+        }
+
+        .services-grid::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .services-grid::-webkit-scrollbar-thumb {
+            background: var(--border-strong);
+            border-radius: 8px;
+        }
+
+        .services-grid::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 9px 6px;
+            border-radius: 6px;
+            transition: background .15s ease;
+        }
+
+        .service-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .service-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--accent);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .service-item label {
+            margin: 0;
+            font-weight: 500;
+            color: var(--text);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .selected-count {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-top: 10px;
+            display: block;
+        }
+
+        /* Submit */
+        .submit-row {
+            margin-top: 36px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        button.submit-btn {
+            background: var(--accent);
+            color: #0B0C0F;
+            border: none;
+            padding: 15px 34px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.98rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background .2s ease, transform .15s ease;
+        }
+
+        button.submit-btn:hover {
+            background: var(--accent-dark);
+            transform: translateY(-1px);
+        }
+
+        .privacy-note {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 720px) {
+            .field-row {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-height: 340px;
+            }
+
+            .form-card {
+                padding: 26px 20px;
+            }
+
+            nav.main-nav ul {
+                display: none;
+            }
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer.site-footer {
+            border-top: 1px solid var(--border);
+            padding: 56px 0 28px;
+            background: var(--bg-elevated);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px 40px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-size: 0.92rem;
+            margin-bottom: 16px;
+            color: var(--text);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col a {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            transition: color .2s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 24px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 780px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ---------- FOOTER (matches main site) ---------- */
+        :root {
+            --site-bg-2: #131519;
+            --site-bg-3: #1A1D22;
+            --site-line: rgba(255, 255, 255, 0.07);
+            --site-line-bright: rgba(255, 255, 255, 0.13);
+            --site-ink: #EDEEEC;
+            --site-ink-dim: #9A9FA8;
+            --site-ink-dimmer: #5C616A;
+            --site-amber: #D9772E;
+            --site-amber-soft: #E8A15E;
+        }
+
+        footer.site-footer {
+            border-top: 1px solid var(--site-line);
+            background: var(--site-bg-2);
+            padding: 0;
+        }
+
+        .foot-promo {
+            background: linear-gradient(115deg, rgba(217, 119, 46, 0.10), rgba(169, 184, 76, 0.04));
+            border-bottom: 1px solid var(--site-line);
+            padding: 22px 0;
+        }
+
+        .foot-promo .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .foot-promo p {
+            font-size: 13.5px;
+            color: var(--site-ink);
+            max-width: 760px;
+            line-height: 1.7;
+        }
+
+        .foot-promo p b {
+            color: var(--site-ink);
+        }
+
+        .foot-promo .btn-primary {
+            background: var(--site-amber);
+            color: #0B0C0F;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 11px 22px;
+            border-radius: 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            box-shadow: 0 8px 22px rgba(217, 119, 46, 0.22);
+            transition: transform .25s, background .25s;
+        }
+
+        .foot-promo .btn-primary:hover {
+            transform: translateY(-2px);
+            background: var(--site-amber-soft);
+        }
+
+        .foot-contact {
+            padding: 26px 0;
+            border-bottom: 1px solid var(--site-line);
+            font-size: 13px;
+            color: var(--site-ink-dim);
+            line-height: 1.9;
+        }
+
+        .foot-contact .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .foot-contact strong {
+            color: var(--site-ink);
+            font-weight: 700;
+        }
+
+        .foot-contact a {
+            color: var(--site-amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-contact .fc-block {
+            max-width: 520px;
+        }
+
+        .foot-main {
+            padding: 56px 0 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.3fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 0;
+        }
+
+        .foot-col h5 {
+            font-size: 13px;
+            color: var(--site-ink);
+            margin-bottom: 18px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-col a {
+            display: block;
+            font-size: 13.5px;
+            color: #a79d9d;
+            margin-bottom: 12px;
+            transition: color .2s;
+        }
+
+        .foot-col a:hover {
+            color: var(--site-amber-soft);
+        }
+
+        .foot-col p {
+            color: var(--site-ink-dim);
+            font-size: 13.5px;
+            line-height: 1.7;
+            max-width: 280px;
+        }
+
+        .foot-col img {
+            height: 38px;
+            width: auto;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        .foot-topics {
+            padding: 30px 0;
+            border-top: 1px solid var(--site-line);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .foot-topics h5 {
+            font-size: 13px;
+            color: var(--site-ink);
+            margin-bottom: 16px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-topics-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .foot-topics-row a {
+            font-size: 12.5px;
+            color: #d7d5d5;
+            background: var(--site-bg-3);
+            border: 1px solid var(--site-line-bright);
+            border-radius: 100px;
+            padding: 7px 14px;
+            transition: border-color .2s, color .2s;
+            white-space: nowrap;
+        }
+
+        .foot-topics-row a:hover {
+            border-color: var(--site-amber);
+            color: var(--site-amber-soft);
+        }
+
+        .foot-links-line {
+            padding: 20px 24px;
+            border-top: 1px solid var(--site-line);
+            border-bottom: 1px solid var(--site-line);
+            font-size: 13px;
+            color: var(--site-ink-dim);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 0;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .foot-links-line a {
+            color: var(--site-amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-links-line .sep {
+            color: var(--site-ink-dimmer);
+            margin: 0 10px;
+        }
+
+        .foot-bank {
+            padding: 16px 24px;
+            font-size: 12.5px;
+            color: #dad9d9;
+            border-bottom: 1px solid var(--site-line);
+            text-align: center;
+        }
+
+        .foot-bank strong {
+            color: var(--site-amber-soft);
+        }
+
+        .foot-bottom {
+            padding: 22px 24px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            color: #dad9d9;
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-row a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            border: 1px solid var(--site-line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: var(--site-ink-dim);
+            transition: all .2s;
+        }
+
+        .social-row a:hover {
+            border-color: var(--site-amber);
+            color: var(--site-amber-soft);
+            transform: translateY(-2px);
+        }
+
+        .wa-float {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 70;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C4A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+            font-size: 26px;
+            color: #fff;
+            transition: transform .25s;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.08);
+        }
+
+        @media (max-width: 900px) {
+            .foot-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 780px) {
+            .foot-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Success state */
+        #successMessage {
+            display: none;
+            background: rgba(76, 175, 125, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 0.92rem;
+            margin-bottom: 28px;
+            font-family: var(--font-mono);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="nav-inner">
+            <a href="index.html" class="logo">KADIS<span>.</span>DIGITALS</a>
+            <nav class="main-nav">
+                <ul>
+                    <a href="index.html#solutions">Solutions</a>
+                    <a href="installation.html">ICT Engineering</a>
+                    <a href="rental.html">Equipment Rentals</a>
+                    <a href="projects.html">Projects</a>
+                    <a href="eventmedia.html">Media & Events</a>
+                    <a href="staffing.html">Trainning</a>
+                    <a href="Allcategory.html">Store</a>
+                    <a href="join.html">Join our Team</a>
+                    <a href="blog.html">Blog</a>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <span class="eyebrow">Careers at Kadis Digitals</span>
+            <h1>Join Our Team</h1>
+            <p>Join our professional team of ICT engineers and installers. Tell us your core strengths below and our
+                team will reach out when a matching project comes up.</p>
+        </div>
+    </section>
+
+    <section class="form-section">
+        <div class="container">
+            <div class="form-card">
+
+                <div id="successMessage">✔ Thank you — your application has been submitted successfully. Our team will
+                    review it and get back to you.</div>
+
+                <form id="joinForm" action="https://formsubmit.co/kadisdigitals@gmail.com" method="POST">
+
+                    <!-- FormSubmit configuration -->
+                    <input type="hidden" name="_subject" value="New Join Our Team Application — Kadis Digitals">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://kadisdigitals.com/join.html?submitted=true">
+                    <input type="text" name="_honey" style="display:none">
+
+                    <fieldset>
+                        <legend>Personal Details</legend>
+
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="fullName">Full Name <span class="req">*</span></label>
+                                <input type="text" id="fullName" name="Full Name" placeholder="e.g. John Doe" required>
+                            </div>
+                            <div class="field">
+                                <label for="phone">Phone Number <span class="req">*</span></label>
+                                <input type="tel" id="phone" name="Phone Number" placeholder="e.g. 080 000 0000"
+                                    required>
+                            </div>
+                        </div>
+
+                        <div class="field-row">
+                            <div class="field">
+                                <label for="email">Email Address <span class="req">*</span></label>
+                                <input type="email" id="email" name="Email Address" placeholder="e.g. you@example.com"
+                                    required>
+                            </div>
+                            <div class="field">
+                                <label for="location">Location within Abuja <span class="req">*</span></label>
+                                <input type="text" id="location" name="Location within Abuja"
+                                    placeholder="e.g. Gwarinpa, Lugbe, Wuse, Kubwa..." required>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="experience">Years of Experience <span class="req">*</span></label>
+                            <select id="experience" name="Years of Experience" required>
+                                <option value="" disabled selected>Select years of experience</option>
+                                <option value="Apprentice / Less than 1 year">Apprentice / Less than 1 year</option>
+                                <option value="1 - 2 years">1 - 2 years</option>
+                                <option value="3 - 5 years">3 - 5 years</option>
+                                <option value="6 - 10 years">6 - 10 years</option>
+                                <option value="10+ years">10+ years</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Area(s) of Expertise</legend>
+                        <span class="helper-text">Join our Professional Team of ICT Engineers and Installers: select
+                            area(s) of your expertise — your core strengths. You may select more than one.</span>
+
+                        <div class="services-grid" id="servicesGrid">
+                            <div class="service-item"><input type="checkbox" id="s1" name="Areas of Expertise"
+                                    value="Apprentice/A Learner/Trainee"><label for="s1">Apprentice/A
+                                    Learner/Trainee</label></div>
+                            <div class="service-item"><input type="checkbox" id="s2" name="Areas of Expertise"
+                                    value="CCTV Camera Installation"><label for="s2">CCTV Camera Installation</label>
+                            </div>
+                            <div class="service-item"><input type="checkbox" id="s3" name="Areas of Expertise"
+                                    value="Security Camera Installation"><label for="s3">Security Camera
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s4" name="Areas of Expertise"
+                                    value="IP Camera Installation"><label for="s4">IP Camera Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s5" name="Areas of Expertise"
+                                    value="PTZ Camera Installation"><label for="s5">PTZ Camera Installation</label>
+                            </div>
+                            <div class="service-item"><input type="checkbox" id="s6" name="Areas of Expertise"
+                                    value="Wireless CCTV Camera Installation"><label for="s6">Wireless CCTV Camera
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s7" name="Areas of Expertise"
+                                    value="Access Control System Installation"><label for="s7">Access Control System
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s8" name="Areas of Expertise"
+                                    value="Biometric Access Control Installation"><label for="s8">Biometric Access
+                                    Control Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s9" name="Areas of Expertise"
+                                    value="Time Attendance System Installation"><label for="s9">Time Attendance System
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s10" name="Areas of Expertise"
+                                    value="Biometric Fingerprint System Installation"><label for="s10">Biometric
+                                    Fingerprint System Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s11" name="Areas of Expertise"
+                                    value="Card Reader Access Control Installation"><label for="s11">Card Reader Access
+                                    Control Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s12" name="Areas of Expertise"
+                                    value="Smart Door Lock Installation"><label for="s12">Smart Door Lock
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s13" name="Areas of Expertise"
+                                    value="Video Door Phone Installation"><label for="s13">Video Door Phone
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s14" name="Areas of Expertise"
+                                    value="PABX System Installation"><label for="s14">PABX System Installation</label>
+                            </div>
+                            <div class="service-item"><input type="checkbox" id="s15" name="Areas of Expertise"
+                                    value="Intercom System Installation"><label for="s15">Intercom System
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s16" name="Areas of Expertise"
+                                    value="Automatic Gate Installation"><label for="s16">Automatic Gate
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s17" name="Areas of Expertise"
+                                    value="Electronic Gate Installation"><label for="s17">Electronic Gate
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s18" name="Areas of Expertise"
+                                    value="Electric Gate Installation"><label for="s18">Electric Gate
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s19" name="Areas of Expertise"
+                                    value="Electric Fence Installation"><label for="s19">Electric Fence
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s20" name="Areas of Expertise"
+                                    value="Burglary Alarm System Installation"><label for="s20">Burglary Alarm System
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s21" name="Areas of Expertise"
+                                    value="Security Alarm System Installation"><label for="s21">Security Alarm System
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s22" name="Areas of Expertise"
+                                    value="Fire Alarm System Installation"><label for="s22">Fire Alarm System
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s23" name="Areas of Expertise"
+                                    value="Smoke Detector Installation"><label for="s23">Smoke Detector
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s24" name="Areas of Expertise"
+                                    value="Perimeter Intrusion Alarm System Installation"><label for="s24">Perimeter
+                                    Intrusion Alarm System Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s25" name="Areas of Expertise"
+                                    value="DSTV Installation"><label for="s25">DSTV Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s26" name="Areas of Expertise"
+                                    value="GOtv Installation"><label for="s26">GOtv Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s27" name="Areas of Expertise"
+                                    value="Free-to-Air Satellite Installation"><label for="s27">Free-to-Air Satellite
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s28" name="Areas of Expertise"
+                                    value="SLTV Installation"><label for="s28">SLTV Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s29" name="Areas of Expertise"
+                                    value="StarTimes Installation"><label for="s29">StarTimes Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s30" name="Areas of Expertise"
+                                    value="Satellite TV System Installation"><label for="s30">Satellite TV System
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s31" name="Areas of Expertise"
+                                    value="Starlink Installation"><label for="s31">Starlink Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s32" name="Areas of Expertise"
+                                    value="Solar Panel Installation"><label for="s32">Solar Panel Installation</label>
+                            </div>
+                            <div class="service-item"><input type="checkbox" id="s33" name="Areas of Expertise"
+                                    value="Solar Inverter Installation"><label for="s33">Solar Inverter
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s34" name="Areas of Expertise"
+                                    value="Inverter System Installation"><label for="s34">Inverter System
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s35" name="Areas of Expertise"
+                                    value="ICT Network Installation"><label for="s35">ICT Network Installation</label>
+                            </div>
+                            <div class="service-item"><input type="checkbox" id="s36" name="Areas of Expertise"
+                                    value="Computer Network Installation"><label for="s36">Computer Network
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s37" name="Areas of Expertise"
+                                    value="Wi-Fi/Internet Network Installation"><label for="s37">Wi-Fi/Internet Network
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s38" name="Areas of Expertise"
+                                    value="Structured Cabling Installation"><label for="s38">Structured Cabling
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s39" name="Areas of Expertise"
+                                    value="Electrical Wiring Installation"><label for="s39">Electrical Wiring
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s40" name="Areas of Expertise"
+                                    value="Street Light Installation"><label for="s40">Street Light Installation</label>
+                            </div>
+                            <div class="service-item"><input type="checkbox" id="s41" name="Areas of Expertise"
+                                    value="Street Light Pole Installation"><label for="s41">Street Light Pole
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s42" name="Areas of Expertise"
+                                    value="Air Conditioner Installation"><label for="s42">Air Conditioner
+                                    Installation</label></div>
+                            <div class="service-item"><input type="checkbox" id="s43" name="Areas of Expertise"
+                                    value="Air Conditioner Maintenance/Servicing"><label for="s43">Air Conditioner
+                                    Maintenance/Servicing</label></div>
+                            <div class="service-item"><input type="checkbox" id="s44" name="Areas of Expertise"
+                                    value="Rope Light Installation & Design"><label for="s44">Rope Light Installation
+                                    &amp; Design</label></div>
+                            <div class="service-item"><input type="checkbox" id="s45" name="Areas of Expertise"
+                                    value="Automobile/Car Tracker Installation"><label for="s45">Automobile/Car Tracker
+                                    Installation</label></div>
+                        </div>
+                        <span class="selected-count" id="selectedCount">0 area(s) selected</span>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Additional Information</legend>
+                        <div class="field">
+                            <label for="comments">Comments or Additional Information</label>
+                            <textarea id="comments" name="Comments or Additional Information"
+                                placeholder="Certifications, tools you own, availability, referral, or anything else you'd like us to know..."></textarea>
+                        </div>
+                    </fieldset>
+
+                    <div class="submit-row">
+                        <button type="submit" class="submit-btn">Submit Application</button>
+                        <span class="privacy-note">Your details are sent securely to our recruitment team and used only
+                            for hiring purposes.</span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="foot-promo">
+            <div class="wrap">
+                <p><b>Shop & order now</b> — or place your order via phone call or WhatsApp message. We also do
+                    door-step
+                    delivery within Abuja and 4 surrounding states.</p>
+                <a class="btn-primary" href="https://wa.me/2348061379390">Order on WhatsApp →</a>
+            </div>
+        </div>
+
+        <div class="foot-contact" id="contact">
+            <div class="wrap">
+                <div class="fc-block">
+                    <strong>Office / Shop Address:</strong> Head of Service, Block B, 8th Floor (Rm 301), Federal
+                    Secretariat,
+                    CBD/Maitama, Abuja, Nigeria.
+                    — or
+                    Apo Urban Market, Apo, opposite Apo Shoprite, after NNPC/Dankogi Junction, Shop F1119, Abuja.
+                </div>
+                <div class="fc-block">
+                    <strong>WhatsApp / Hotline:</strong> <a href="tel:08061379390">0806 137 9390</a>, <a
+                        href="tel:08024207231">0802 420 7231</a><br>
+                    <strong>E-mail:</strong> <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="foot-main">
+            <div class="foot-grid">
+                <div class="foot-col">
+                    <a href="index.html" style="display:inline-block;">
+                        <img src="images/KADISS.png" alt="Kadis">
+                    </a>
+                    <p>Abuja's No. 1 ICT Ecosystem — gadgets, security, smart home, satellite & digital solutions,
+                        delivered
+                        door-step.</p>
+                </div>
+                <div class="foot-col">
+                    <h5>Shop</h5>
+                    <a href="security.html">Security Systems</a>
+                    <a href="category.html?cat=cctv-camera">CCTV Cameras</a>
+                    <a href="smart.html">Smart Home</a>
+                    <a href="wifi.html">Wifi / Mifi / Routers</a>
+                    <a href="satellite.html">Starlink</a>
+                    <a href="gadgets.html">Phone Accessories</a>
+                    <a href="ps.html">Games & Consoles</a>
+                    <a href="solar.html">Solar & Batteries</a>
+                    <a href="cables.html">Cables, Wires & Adapters</a>
+                    <a href="ict_tools.html">ICT Engineering Tools</a>
+                    <a href="electronic_converter.html">Electronic Converters & OTG</a>
+                    <a href="ringlights.html">Ring lights</a>
+                    <a href="satellite.html">Tv Decoders & Satellite Accessories</a>
+                </div>
+                <div class="foot-col">
+                    <h5>Services</h5>
+                    <a href="installation.html">ICT Installations & Engineering</a>
+                    <a href="techforce.html">TechForce</a>
+                    <a href="dts.html">Digital Transformation (KDTS)</a>
+                    <a href="rental.html">Equipment Rentals</a>
+                    <a href="security.html">Security Systems</a>
+                    <a href="skillab.html">Tech SkillLab</a>
+                    <a href="satelliteinstall.html">Satellite Solutions</a>
+                    <a href="smartiot.html">Smart Home & IoT</a>
+                    <a href="eventmedia.html">Event Media</a>
+                    <a href="delivery.html">Delivery</a>
+                    <a href="installation.html">Starlink Installations</a>
+                    <a href="installation.html">AC & Freezer installation</a>
+                    <a href="satelliteinstall.html">Satellite Installation</a>
+                    <a href="source.html">Request Equipment</a>
+                    <a href="join.html" style="color:var(--site-amber-soft);">Join Our Team</a>
+                </div>
+                <div class="foot-col">
+                    <h5>Contact</h5>
+                    <a href="tel:08024207231">0802 420 7231</a>
+                    <a href="#">Head of Service, Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama, Abuja,
+                        Nigeria.</a>
+                    <a href="#">KADIS SHOP : Apo Urban Market, Apo, opposite Apo Shoprite, after NNPC/Dankogi Junction,
+                        Shop F1119, Abuja.</a>
+                    <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="foot-topics">
+                <h5>Blog Categories</h5>
+                <div class="foot-topics-row">
+                    <a href="blog.html#post-cctv-and-security-gadgets-solution">CCTV & Security</a>
+                    <a href="blog.html#post-electric-fence-solutions">Electric Fencing</a>
+                    <a href="blog.html#post-security-and-surveillance-system-solutions">Surveillance Systems</a>
+                    <a href="blog.html#post-access-control-system">Access Control</a>
+                    <a href="blog.html#post-biometric-devices-and-access-control-system-solutions">Biometric Devices</a>
+                    <a href="blog.html#post-automatic-or-electronic-gate-solutions">Automated Gates</a>
+                    <a href="blog.html#post-smart-door-locks">Smart Door Locks</a>
+                    <a href="blog.html#post-smart-homes-and-automated-house">Smart Homes</a>
+                    <a href="blog.html#post-smart-switches-hotels-commercial-buildings">Smart Switches</a>
+                    <a href="blog.html#post-smart-lighting-for-estates">Smart Lighting</a>
+                    <a href="blog.html#post-smart-curtains-luxury-apartments">Smart Curtains</a>
+                    <a href="blog.html#post-dstv-free-to-air-sltv-starlink-freetv-gotv-and-startimes-solutions">DSTV,
+                        GOtv &
+                        Starlink</a>
+                    <a href="blog.html#post-starlink-satellite-network-and-installation">Starlink Installation</a>
+                    <a href="blog.html#post-satellite-systems-remote-areas">Satellite for Remote Areas</a>
+                    <a href="blog.html#post-ict-networking-and-troubleshooting">Networking & Troubleshooting</a>
+                    <a href="blog.html#post-network-booster-and-installation">Network Boosters</a>
+                    <a href="blog.html#post-network-jammer-and-installation">Network Jammers</a>
+                    <a href="blog.html#post-pabx-and-intercom-system-solutions">PABX & Intercom</a>
+                    <a href="blog.html#post-solar-and-inverter-system">Solar & Inverters</a>
+                    <a href="blog.html#post-mobile-phone-updates-and-solutions">Mobile Phone Solutions</a>
+                    <a href="blog.html#post-phone-repairs-and-solution-tips">Phone Repairs</a>
+                    <a href="blog.html#post-phone-accessories-support-and-solutions">Phone Accessories</a>
+                    <a href="blog.html#post-computer-gadgets-and-accessories-solutions">Computer Accessories</a>
+                    <a href="blog.html#post-computer-repairs-and-solution-tips">Computer Repairs</a>
+                    <a href="blog.html#post-playstation-ps-games-consoles-and-accessories-solutions">PlayStation &
+                        Consoles</a>
+                    <a href="blog.html#post-drones-and-installation">Drones</a>
+                    <a href="blog.html#post-ict-engineering-tools">ICT Engineering Tools</a>
+                    <a href="blog.html#post-kadis-techforce">KADIS TechForce</a>
+                    <a href="blog.html#post-digital-transformation-kdts">Digital Transformation</a>
+                    <a href="blog.html#post-kadis-equipment-rentals-expansion">Equipment Rentals</a>
+                    <a href="blog.html#post-time-attendance-system">Time Attendance Systems</a>
+                    <a href="blog.html#post-ac-fridge-and-tv-installation-and-maintenance">AC, Fridge & TV Install</a>
+                    <a href="blog.html#post-ac-tv-and-refrigerator-sales-and-delivery">AC, TV & Fridge Sales</a>
+                    <a href="blog.html#post-fire-alarm-and-smoke-detectors">Fire Alarms & Smoke Detectors</a>
+                    <a href="blog.html#post-fire-extinguisher-sales-installation-training-and-certification">Fire
+                        Extinguishers</a>
+                    <a href="blog.html#post-fire-safety-technology-guide">Fire Safety Technology</a>
+                    <a href="blog.html#post-smoke-extractors">Smoke Extractors</a>
+                    <a href="blog.html#post-street-lights-and-poles">Street Lights & Poles</a>
+                    <a href="blog.html#post-rope-lights-and-designs">Rope Lights</a>
+                </div>
+            </div>
+
+            <div class="foot-topics">
+                <h5>Tips, Skills, Solutions & Updates</h5>
+                <div class="foot-topics-row">
+                    <a href="tips.html#post-smart-door-lock-installation-in-abuja">Smart Door Lock Install</a>
+                    <a href="tips.html#post-smart-locks-for-schools-and-offices">Locks for Schools & Offices</a>
+                    <a href="tips.html#post-how-smart-locks-work-with-cctv-systems">Smart Locks & CCTV</a>
+                    <a href="tips.html#post-future-of-smart-lock-technology">Future of Smart Locks</a>
+                    <a href="tips.html#post-smart-secure-schools-abuja">Smart & Secure Schools</a>
+                    <a href="tips.html#post-from-manual-records-to-smart-schools">School Management Systems</a>
+                    <a href="tips.html#post-transforming-school-management-abuja">School ERP Systems</a>
+                    <a href="tips.html#post-smart-lock-installation-mistakes-to-avoid">Lock Install Mistakes</a>
+                    <a href="tips.html#post-how-to-secure-your-property-with-smart-locks">Secure Your Property</a>
+                    <a href="tips.html#post-smart-access-using-rfid-and-biometrics">RFID & Biometric Access</a>
+                    <a href="tips.html#post-best-smart-lock-brands-in-nigeria">Best Smart Lock Brands</a>
+                    <a href="tips.html#post-smart-locks-for-gates-and-main-doors">Locks for Gates & Doors</a>
+                    <a href="tips.html#post-voice-controlled-smart-locks-explained">Voice-Controlled Locks</a>
+                    <a href="tips.html#post-smart-lock-security-features-to-know">Smart Lock Features</a>
+                    <a href="tips.html#post-keyless-entry-systems-explained">Keyless Entry Systems</a>
+                    <a href="tips.html#post-smart-lock-maintenance-tips">Smart Lock Maintenance</a>
+                    <a href="tips.html#post-why-renting-event-ict-equipment-in-abuja-saves-money">Why Rent Event & ICT
+                        Gear</a>
+                    <a href="tips.html#post-abuja-equipment-rentals">Abuja Equipment Rentals</a>
+                    <a href="tips.html#post-smart-locks-with-mobile-app-control">App-Controlled Locks</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="foot-links-line">
+            Trusted Equipment Rentals for ICT, Events & Security — <a href="rental.html">Click here to rent now</a>
+            <span class="sep">|</span>
+            <a href="index.html#faqs">Frequently Asked Questions</a>
+            <span class="sep">|</span>
+            <a href="index.html#about">About Kadis</a>
+        </div>
+
+        <div class="foot-bank">
+            <strong>NB:</strong> All payments should be made to this bank account only: E-Franky Global Services Limited
+            —
+            GTBank: 0424528897.
+        </div>
+
+        <div class="foot-bottom">
+            <span>© 2020–<span id="year"></span> KADIS.COM.NG · All Rights Reserved</span>
+            <div class="social-row">
+                <a href="https://web.facebook.com/kadisdigitals" aria-label="Facebook">f</a>
+                <a href="https://www.instagram.com/kadisdigitals" aria-label="Instagram">ig</a>
+                <a href="https://www.youtube.com/@kadisdigitals" aria-label="YouTube">yt</a>
+                <a href="https://www.tiktok.com/@kadisdigitals" aria-label="TikTok">tt</a>
+            </div>
+            <span>Powered by E-Franky Global Services Limited</span>
+        </div>
+    </footer>
+
+    <a class="wa-float" href="https://wa.me/2348061379390" aria-label="Chat on WhatsApp">💬</a>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Live count of selected services
+        const checkboxes = document.querySelectorAll('input[name="Areas of Expertise"]');
+        const countLabel = document.getElementById('selectedCount');
+        function updateCount() {
+            const n = document.querySelectorAll('input[name="Areas of Expertise"]:checked').length;
+            countLabel.textContent = n + ' area(s) selected';
+        }
+        checkboxes.forEach(cb => cb.addEventListener('change', updateCount));
+
+        // Show success banner if redirected back with ?submitted=true
+        if (window.location.search.includes('submitted=true')) {
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('joinForm').reset();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Require at least one service selected before submit
+        document.getElementById('joinForm').addEventListener('submit', function (e) {
+            const anyChecked = document.querySelectorAll('input[name="Areas of Expertise"]:checked').length > 0;
+            if (!anyChecked) {
+                e.preventDefault();
+                alert('Please select at least one area of expertise.');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

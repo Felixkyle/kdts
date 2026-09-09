@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KADIS Admin — Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --bg: #0B0C0F;
+            --bg-2: #131519;
+            --bg-3: #1A1D22;
+            --bg-4: #20232A;
+            --ink: #EDEEEC;
+            --ink-dim: #9A9FA8;
+            --ink-dimmer: #5C616A;
+            --line: rgba(255, 255, 255, 0.07);
+            --line-bright: rgba(255, 255, 255, 0.13);
+            --amber: #D9772E;
+            --amber-soft: #E8A15E;
+            --moss: #A9B84C;
+            --danger: #E05252;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Manrope', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+        }
+
+        .wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            border-bottom: 1px solid var(--line);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            background: rgba(11, 12, 15, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        header .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Sora';
+            font-weight: 800;
+            font-size: 18px;
+        }
+
+        .brand .tag {
+            font-family: 'Space Mono';
+            font-size: 11px;
+            color: var(--amber-soft);
+            background: rgba(217, 119, 46, 0.1);
+            border: 1px solid rgba(217, 119, 46, 0.25);
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+
+        .user-chip {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        main {
+            padding: 44px 0 80px;
+        }
+
+        /* ---------- Login screen ---------- */
+        #loginView {
+            max-width: 380px;
+            margin: 100px auto 0;
+        }
+
+        #loginView h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        #loginView p {
+            color: var(--ink-dim);
+            font-size: 13.5px;
+            margin-bottom: 28px;
+        }
+
+        .field {
+            margin-bottom: 16px;
+        }
+
+        .field label {
+            display: block;
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            margin-bottom: 7px;
+            font-weight: 600;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+            width: 100%;
+            background: var(--bg-2);
+            border: 1px solid var(--line-bright);
+            border-radius: 10px;
+            padding: 12px 14px;
+            color: var(--ink);
+            font-size: 14px;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+            border-color: var(--amber);
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 90px;
+            line-height: 1.6;
+        }
+
+        .field .hint {
+            font-size: 11.5px;
+            color: var(--ink-dimmer);
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        .btn {
+            background: var(--amber);
+            color: #0B0C0F;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 12px 22px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all .2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background: var(--amber-soft);
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid var(--line-bright);
+            color: var(--ink);
+            font-weight: 700;
+            font-size: 13px;
+            padding: 10px 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--amber);
+        }
+
+        .btn-danger {
+            background: transparent;
+            border: 1px solid rgba(224, 82, 82, 0.4);
+            color: var(--danger);
+            font-weight: 700;
+            font-size: 12.5px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all .2s;
+        }
+
+        .btn-danger:hover {
+            background: rgba(224, 82, 82, 0.1);
+        }
+
+        .msg {
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 18px;
+            display: none;
+        }
+
+        .msg.error {
+            background: rgba(224, 82, 82, 0.1);
+            border: 1px solid rgba(224, 82, 82, 0.3);
+            color: #F29B9B;
+            display: block;
+        }
+
+        .msg.ok {
+            background: rgba(169, 184, 76, 0.1);
+            border: 1px solid rgba(169, 184, 76, 0.3);
+            color: var(--moss);
+            display: block;
+        }
+
+        /* ---------- Admin dashboard ---------- */
+        #appView {
+            display: none;
+        }
+
+        .panel {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 28px;
+        }
+
+        .panel h3 {
+            font-size: 17px;
+            margin-bottom: 20px;
+        }
+
+        .row2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .row3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 14px;
+        }
+
+        @media(max-width:640px) {
+
+            .row2,
+            .row3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .body-block {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 10px;
+            background: var(--bg-3);
+        }
+
+        .body-block-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .body-block-head select {
+            width: auto;
+            padding: 7px 10px;
+            font-size: 12.5px;
+        }
+
+        .remove-block {
+            background: none;
+            border: none;
+            color: var(--ink-dimmer);
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .remove-block:hover {
+            color: var(--danger);
+        }
+
+        .add-block-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .post-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            background: var(--bg-3);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+
+        .post-row-main {
+            min-width: 0;
+        }
+
+        .post-row-main .cat {
+            font-family: 'Space Mono';
+            font-size: 10.5px;
+            color: var(--amber-soft);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+        }
+
+        .post-row-main h4 {
+            font-size: 14.5px;
+            margin: 4px 0 2px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .post-row-main .slug {
+            font-family: 'Space Mono';
+            font-size: 11px;
+            color: var(--ink-dimmer);
+        }
+
+        .post-row-actions {
+            display: flex;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .status-pill {
+            font-family: 'Space Mono';
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 100px;
+            text-transform: uppercase;
+        }
+
+        .status-pill.pub {
+            background: rgba(169, 184, 76, 0.15);
+            color: var(--moss);
+        }
+
+        .status-pill.draft {
+            background: rgba(154, 159, 168, 0.15);
+            color: var(--ink-dim);
+        }
+
+        .empty-note {
+            color: var(--ink-dimmer);
+            font-size: 13.5px;
+            text-align: center;
+            padding: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="wrap">
+            <div class="brand">KADIS <span class="tag">ADMIN · BLOG</span></div>
+            <div class="user-chip" id="userChip" style="display:none;">
+                <span id="userEmail"></span>
+                <button class="btn-ghost" onclick="logout()">Log out</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="wrap">
+
+        <!-- LOGIN -->
+        <div id="loginView">
+            <h2>Sign in</h2>
+            <p>Log in with your Kadis admin account to post to the blog.</p>
+            <div class="msg" id="loginMsg"></div>
+            <div class="field">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="you@kadis.com.ng" autocomplete="username">
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password">
+            </div>
+            <button class="btn" id="loginBtn" onclick="login()">Sign in →</button>
+        </div>
+
+        <!-- ADMIN DASHBOARD -->
+        <div id="appView">
+
+            <div class="msg" id="formMsg"></div>
+
+            <div class="panel">
+                <h3 id="formTitle">Write a new post</h3>
+
+                <input type="hidden" id="editId">
+
+                <div class="row2">
+                    <div class="field">
+                        <label>Title</label>
+                        <input type="text" id="fTitle"
+                            placeholder="e.g. Smart Switches for Hotels and Commercial Buildings">
+                    </div>
+                    <div class="field">
+                        <label>Category</label>
+                        <input type="text" id="fCat" placeholder="e.g. Smart Home">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Cover image</label>
+                    <input type="file" id="fImageFile" accept="image/*" onchange="handleImageSelect(event)">
+                    <input type="hidden" id="fImgUrl">
+                    <div id="imagePreviewWrap" style="display:none; margin-top:10px;">
+                        <img id="imagePreview" src=""
+                            style="max-width:220px; border-radius:10px; border:1px solid var(--line-bright); display:block;">
+                        <button type="button" class="btn-ghost" style="margin-top:8px;" onclick="clearImage()">Remove
+                            image</button>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Slug (used in the URL, auto-fills from title — edit if you like)</label>
+                    <input type="text" id="fSlug" placeholder="smart-switches-hotels-commercial-buildings">
+                    <div class="hint">Only lowercase letters, numbers and hyphens. Must be unique.</div>
+                </div>
+
+                <div class="field">
+                    <label>Dek (one-line summary shown in the index list)</label>
+                    <textarea id="fDek" style="min-height:60px;"
+                        placeholder="A short, one or two sentence summary readers see before opening the post."></textarea>
+                </div>
+
+                <div class="row3">
+                    <div class="field">
+                        <label>Icon</label>
+                        <select id="fIcon">
+                            <option value="switches">Switches</option>
+                            <option value="network">Network</option>
+                            <option value="crate">Crate</option>
+                            <option value="flame">Flame</option>
+                            <option value="lamp">Lamp</option>
+                            <option value="curtain">Curtain</option>
+                            <option value="dish">Dish</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Read time (minutes)</label>
+                        <input type="number" id="fReadMins" value="4" min="1" max="30">
+                    </div>
+                    <div class="field">
+                        <label>Status</label>
+                        <select id="fPublished">
+                            <option value="true">Published</option>
+                            <option value="false">Draft</option>
+                        </select>
+                    </div>
+                </div>
+
+                <h3 style="margin-top:8px;">Body content</h3>
+                <div id="bodyBlocks"></div>
+                <div class="add-block-row">
+                    <button class="btn-ghost" onclick="addBlock('p')">+ Paragraph</button>
+                    <button class="btn-ghost" onclick="addBlock('h4')">+ Subheading</button>
+                    <button class="btn-ghost" onclick="addBlock('quote')">+ Pull quote</button>
+                </div>
+
+                <h3 style="margin-top:28px;">Call to action (shown at the end of the post)</h3>
+                <div class="field">
+                    <label>CTA text</label>
+                    <textarea id="fCtaText" style="min-height:60px;"
+                        placeholder="Kadis handles X as part of FixIT — ask us about sourcing, installation and support."></textarea>
+                </div>
+                <div class="row2">
+                    <div class="field">
+                        <label>CTA button label</label>
+                        <input type="text" id="fCtaLabel" placeholder="Talk to FixIT about this">
+                    </div>
+                    <div class="field">
+                        <label>CTA link</label>
+                        <input type="text" id="fCtaHref" placeholder="service.html?s=fixit">
+                    </div>
+                </div>
+
+                <div style="display:flex; gap:12px; margin-top:24px;">
+                    <button class="btn" id="saveBtn" onclick="savePost()">Publish post →</button>
+                    <button class="btn-ghost" id="cancelEditBtn" onclick="resetForm()" style="display:none;">Cancel
+                        edit</button>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h3>Existing posts</h3>
+                <div class="post-list" id="postList">
+                    <div class="empty-note">Loading…</div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        // ============================================================
+        // 1. CONFIG — paste your Supabase project URL and anon/public key here
+        // ============================================================
+        const SUPABASE_URL = "https://xjaieymgmhberbkbucrh.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_r86lqj5QiI3qTgXicj7Ryg_AWkXZXu6";
+
+        const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let currentBlocks = [];
+
+        // ---------- Auth ----------
+        async function login() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const btn = document.getElementById('loginBtn');
+            const msg = document.getElementById('loginMsg');
+            msg.className = 'msg'; msg.textContent = '';
+            btn.disabled = true; btn.textContent = 'Signing in…';
+
+            const { error } = await sb.auth.signInWithPassword({ email, password });
+
+            btn.disabled = false; btn.textContent = 'Sign in →';
+
+            if (error) {
+                msg.className = 'msg error';
+                msg.textContent = error.message;
+                return;
+            }
+            showApp();
+        }
+
+        async function logout() {
+            await sb.auth.signOut();
+            location.reload();
+        }
+
+        async function checkSession() {
+            const { data: { session } } = await sb.auth.getSession();
+            if (session) showApp();
+        }
+
+        function showApp() {
+            document.getElementById('loginView').style.display = 'none';
+            document.getElementById('appView').style.display = 'block';
+            document.getElementById('userChip').style.display = 'flex';
+            sb.auth.getUser().then(({ data }) => {
+                document.getElementById('userEmail').textContent = data.user?.email || '';
+            });
+            resetForm();
+            loadPosts();
+        }
+
+        // ---------- Slug helper ----------
+        function slugify(str) {
+            return str.toLowerCase().trim()
+                .replace(/&/g, 'and')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '');
+        }
+        document.getElementById('fTitle').addEventListener('input', (e) => {
+            if (!document.getElementById('editId').value) {
+                document.getElementById('fSlug').value = slugify(e.target.value);
+            }
+        });
+
+
+        async function handleImageSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const msg = document.getElementById('formMsg');
+            msg.className = 'msg'; msg.textContent = 'Uploading image…';
+            msg.style.display = 'block';
+
+            const ext = file.name.split('.').pop();
+            const path = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
+
+            const { error: uploadError } = await sb.storage.from('post-images').upload(path, file);
+
+            if (uploadError) {
+                msg.className = 'msg error';
+                msg.textContent = 'Image upload failed: ' + uploadError.message;
+                return;
+            }
+
+            const { data } = sb.storage.from('post-images').getPublicUrl(path);
+            document.getElementById('fImgUrl').value = data.publicUrl;
+            document.getElementById('imagePreview').src = data.publicUrl;
+            document.getElementById('imagePreviewWrap').style.display = 'block';
+
+            msg.className = 'msg'; msg.textContent = ''; msg.style.display = 'none';
+        }
+
+        function clearImage() {
+            document.getElementById('fImgUrl').value = '';
+            document.getElementById('fImageFile').value = '';
+            document.getElementById('imagePreviewWrap').style.display = 'none';
+        }
+
+        // ---------- Body block builder ----------
+        function addBlock(type, value = '') {
+            currentBlocks.push({ type, value });
+            renderBlocks();
+        }
+
+        function removeBlock(idx) {
+            currentBlocks.splice(idx, 1);
+            renderBlocks();
+        }
+
+        function renderBlocks() {
+            const container = document.getElementById('bodyBlocks');
+            container.innerHTML = '';
+            currentBlocks.forEach((block, idx) => {
+                const div = document.createElement('div');
+                div.className = 'body-block';
+                const label = block.type === 'p' ? 'Paragraph' : block.type === 'h4' ? 'Subheading' : 'Pull quote';
+                div.innerHTML = `
+        <div class="body-block-head">
+          <span class="mono" style="font-size:11px; color:var(--ink-dimmer); text-transform:uppercase;">${label}</span>
+          <button class="remove-block" onclick="removeBlock(${idx})">Remove ✕</button>
+        </div>
+        <textarea data-idx="${idx}" placeholder="${block.type === 'h4' ? 'Subheading text' : block.type === 'quote' ? 'Pull-quote text' : 'Paragraph text'}">${block.value}</textarea>
+      `;
+                container.appendChild(div);
+                div.querySelector('textarea').addEventListener('input', (e) => {
+                    currentBlocks[idx].value = e.target.value;
+                });
+            });
+        }
+
+        // ---------- Form reset ----------
+        function resetForm() {
+            document.getElementById('editId').value = '';
+            document.getElementById('fTitle').value = '';
+            document.getElementById('fCat').value = '';
+            document.getElementById('fSlug').value = '';
+            document.getElementById('fDek').value = '';
+            document.getElementById('fIcon').value = 'network';
+            document.getElementById('fReadMins').value = 4;
+            document.getElementById('fPublished').value = 'true';
+            document.getElementById('fCtaText').value = '';
+            document.getElementById('fCtaLabel').value = '';
+            document.getElementById('fCtaHref').value = '';
+            currentBlocks = [{ type: 'p', value: '' }];
+            renderBlocks();
+            document.getElementById('formTitle').textContent = 'Write a new post';
+            document.getElementById('saveBtn').textContent = 'Publish post →';
+            document.getElementById('cancelEditBtn').style.display = 'none';
+            document.getElementById('formMsg').className = 'msg';
+            clearImage();
+        }
+
+        // ---------- Save (insert or update) ----------
+        async function savePost() {
+            const id = document.getElementById('editId').value;
+            const title = document.getElementById('fTitle').value.trim();
+            const cat = document.getElementById('fCat').value.trim();
+            const slug = document.getElementById('fSlug').value.trim();
+            const dek = document.getElementById('fDek').value.trim();
+            const icon = document.getElementById('fIcon').value;
+            const read_mins = parseInt(document.getElementById('fReadMins').value, 10) || 4;
+            const published = document.getElementById('fPublished').value === 'true';
+            const cta_text = document.getElementById('fCtaText').value.trim();
+            const cta_label = document.getElementById('fCtaLabel').value.trim();
+            const cta_href = document.getElementById('fCtaHref').value.trim();
+            const img_url = document.getElementById('fImgUrl').value.trim();
+
+            const msg = document.getElementById('formMsg');
+            msg.className = 'msg'; msg.textContent = '';
+
+            if (!title || !cat || !slug || !dek) {
+                msg.className = 'msg error';
+                msg.textContent = 'Title, category, slug and dek are all required.';
+                return;
+            }
+
+            const body = currentBlocks
+                .filter(b => b.value.trim())
+                .map((b, i) => {
+                    if (b.type === 'p') return { p: b.value.trim(), lede: i === 0 };
+                    if (b.type === 'h4') return { h4: b.value.trim() };
+                    if (b.type === 'quote') return { quote: b.value.trim() };
+                });
+
+            if (body.length === 0) {
+                msg.className = 'msg error';
+                msg.textContent = 'Add at least one body block.';
+                return;
+            }
+
+            const record = { title, cat, slug, dek, icon, read_mins, published, img_url, cta_text, cta_label, cta_href, body };
+
+            let error;
+            if (id) {
+                ({ error } = await sb.from('posts').update(record).eq('id', id));
+            } else {
+                ({ error } = await sb.from('posts').insert(record));
+            }
+
+            if (error) {
+                msg.className = 'msg error';
+                msg.textContent = error.message.includes('duplicate') ? 'That slug is already taken — please change it.' : error.message;
+                return;
+            }
+
+            msg.className = 'msg ok';
+            msg.textContent = id ? 'Post updated.' : 'Post published.';
+            resetForm();
+            loadPosts();
+        }
+
+        // ---------- Load + list posts ----------
+        async function loadPosts() {
+            const listEl = document.getElementById('postList');
+            const { data, error } = await sb.from('posts').select('*').order('created_at', { ascending: false });
+
+            if (error) {
+                listEl.innerHTML = `<div class="empty-note">Couldn't load posts: ${error.message}</div>`;
+                return;
+            }
+            if (!data || data.length === 0) {
+                listEl.innerHTML = `<div class="empty-note">No posts yet — write your first one above.</div>`;
+                return;
+            }
+
+            listEl.innerHTML = '';
+            data.forEach(post => {
+                const row = document.createElement('div');
+                row.className = 'post-row';
+                row.innerHTML = `
+        <div class="post-row-main">
+          <span class="cat">${post.cat} · <span class="status-pill ${post.published ? 'pub' : 'draft'}">${post.published ? 'Published' : 'Draft'}</span></span>
+          <h4>${post.title}</h4>
+          <span class="slug">#post-${post.slug}</span>
+        </div>
+        <div class="post-row-actions">
+          <button class="btn-ghost" onclick='editPost(${JSON.stringify(post).replace(/'/g, "&#39;")})'>Edit</button>
+          <button class="btn-danger" onclick="deletePost('${post.id}')">Delete</button>
+        </div>
+      `;
+                listEl.appendChild(row);
+            });
+        }
+
+        function editPost(post) {
+            document.getElementById('editId').value = post.id;
+            document.getElementById('fTitle').value = post.title;
+            document.getElementById('fCat').value = post.cat;
+            document.getElementById('fSlug').value = post.slug;
+            document.getElementById('fDek').value = post.dek;
+            document.getElementById('fIcon').value = post.icon;
+            document.getElementById('fReadMins').value = post.read_mins;
+            document.getElementById('fPublished').value = String(post.published);
+            document.getElementById('fCtaText').value = post.cta_text || '';
+            document.getElementById('fCtaLabel').value = post.cta_label || '';
+            document.getElementById('fCtaHref').value = post.cta_href || '';
+            document.getElementById('fImgUrl').value = post.img_url || '';
+            if (post.img_url) {
+                document.getElementById('imagePreview').src = post.img_url;
+                document.getElementById('imagePreviewWrap').style.display = 'block';
+            } else {
+                document.getElementById('imagePreviewWrap').style.display = 'none';
+            }
+
+            currentBlocks = post.body.map(b => {
+                if (b.p) return { type: 'p', value: b.p };
+                if (b.h4) return { type: 'h4', value: b.h4 };
+                if (b.quote) return { type: 'quote', value: b.quote };
+            });
+            renderBlocks();
+
+            document.getElementById('formTitle').textContent = 'Editing: ' + post.title;
+            document.getElementById('saveBtn').textContent = 'Save changes →';
+            document.getElementById('cancelEditBtn').style.display = 'inline-flex';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        async function deletePost(id) {
+            if (!confirm('Delete this post permanently? This cannot be undone.')) return;
+            const { error } = await sb.from('posts').delete().eq('id', id);
+            if (error) { alert('Could not delete: ' + error.message); return; }
+            loadPosts();
+        }
+
+        // ---------- Boot ----------
+        checkSession();
+    </script>
+
+</body>
+
+</html>

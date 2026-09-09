@@ -1,0 +1,390 @@
+{
+  "accessories-8": {
+    "reason": "EMPTY_FULL",
+    "comment": "15KWH FELICITY LITHIUM ION BATTERY (STANDING)"
+  },
+  "electric-fence-and-barb-wire-0": {
+    "reason": "EMPTY_FULL",
+    "comment": "20/20 12 lines Black Aluminium Tiny Pole (Single Phase)"
+  },
+  "electric-fence-and-barb-wire-1": {
+    "reason": "EMPTY_FULL",
+    "comment": "20/20 6Lines Black Aluminium Tiny Pole (Single Phase)"
+  },
+  "electric-fence-and-barb-wire-2": {
+    "reason": "EMPTY_FULL",
+    "comment": "20/20 8Lines Black Aluminium Tiny Pole (Single Phase)"
+  },
+  "electric-fence-and-barb-wire-3": {
+    "reason": "EMPTY_FULL",
+    "comment": "25/25 6Lines Silver Stainless Four Corner Flat Tiny Junction Pole (Double Phase)"
+  },
+  "electric-fence-and-barb-wire-4": {
+    "reason": "EMPTY_FULL",
+    "comment": "25/25 6Lines Silver Stainless Four Corner Flat Tiny Pole (Single Phase)"
+  },
+  "electric-fence-and-barb-wire-5": {
+    "reason": "EMPTY_FULL",
+    "comment": "25/25 8lines Silver Stainless Four Corner Flat Tiny Pole (Single Phase)"
+  },
+  "electric-fence-and-barb-wire-6": {
+    "reason": "EMPTY_FULL",
+    "comment": "25mm 6Lines Silver Stainless Round Tiny Junction Pole (Double Phase)"
+  },
+  "electric-fence-and-barb-wire-7": {
+    "reason": "EMPTY_FULL",
+    "comment": "25mm 6Lines Silver Stainless Round Tiny Pole (Single Phase)"
+  },
+  "electric-fence-and-barb-wire-8": {
+    "reason": "EMPTY_FULL",
+    "comment": "25mm 8lines Silver Stainless Round Tiny Junction Pole (Double Phase)"
+  },
+  "electric-fence-and-barb-wire-9": {
+    "reason": "EMPTY_FULL",
+    "comment": "25mm 8Lines Silver Stainless Round Tiny Pole (Single Phase)"
+  },
+  "device-0": {
+    "reason": "EMPTY_FULL",
+    "comment": "2Ways Network Booster Splitter"
+  },
+  "basic-electricals-electronics-2": {
+    "reason": "TOO_SHORT_AFTER_CLEANING",
+    "comment": "32 GB Memory Card",
+    "cleaned_preview": "<p>32 GB Original Memory Card</p>"
+  },
+  "device-1": {
+    "reason": "EMPTY_FULL",
+    "comment": "3Ways Network Booster Splitter"
+  },
+  "electric-fence-and-barb-wire-10": {
+    "reason": "EMPTY_FULL",
+    "comment": "40/40 12lines Black Aluminium Strong Junction Pole (Double Phase)"
+  },
+  "electric-fence-and-barb-wire-11": {
+    "reason": "EMPTY_FULL",
+    "comment": "40/40 6Lines Black Aluminium Lightweight Pole (Single Phase)"
+  },
+  "electric-fence-and-barb-wire-12": {
+    "reason": "EMPTY_FULL",
+    "comment": "40/40 6Lines Black Aluminium Strong Junction Pole (Double Phase)"
+  },
+  "electric-fence-and-barb-wire-13": {
+    "reason": "EMPTY_FULL",
+    "comment": "40/40 8lines Black Aluminium Lightweight Pole (Single Phase)"
+  },
+  "electric-fence-and-barb-wire-14": {
+    "reason": "EMPTY_FULL",
+    "comment": "40/40 8lines Black Aluminium Strong Junction Pole (Double Phase)"
+  },
+  "gsm-signal-0": {
+    "reason": "TOO_SHORT_AFTER_CLEANING",
+    "comment": "4Ways Network Booster Splitter",
+    "cleaned_preview": "<p><code></code>èb</p>"
+  },
+  "device-2": {
+    "reason": "EMPTY_FULL",
+    "comment": "5meters Factory Crimped RG6 Network Booster Cable"
+  },
+  "tracker-0": {
+    "reason": "EMPTY_FULL",
+    "comment": "Accurate Tracker"
+  },
+  "earphones-0": {
+    "reason": "TITLE_ONLY_NO_REAL_CONTENT",
+    "comment": "AKG Portable Earphones",
+    "cleaned_preview": "<h4>AKG Portable Earphones</h4>"
+  },
+  "intercom-0": {
+    "reason": "EMPTY_FULL",
+    "comment": "Astel 50meters RG6 Network Booster/ Satellite Cable"
+  },
+  "electrical-cables-wires-and-adapters-0": {
+    "reason": "EMPTY_FULL",
+    "comment": "Ausno 300yard 2pair Intercom Cable"
+  },
+  "intercom-1": {
+    "reason": "EMPTY_FULL",
+    "comment": "Ausno Rechargeable Wireless Intercom"
+  },
+  "electric-fence-and-barb-wire-15": {
+    "reason": "EMPTY_FULL",
+    "comment": "Bag of Effanti Bobbings"
+  },
+  "electric-fence-and-barb-wire-16": {
+    "reason": "EMPTY_FULL",
+    "comment": "Bag of LPC Bobbings"
+  },
+  "electric-fence-and-barb-wire-17": {
+    "reason": "EMPTY_FULL",
+    "comment": "Bag of Nemtek Bobbings (Black)"
+  },
+  "headphones-0": {
+    "reason": "EMPTY_FULL",
+    "comment": "Baofeng BF-888S Walkie Talkie Handset (Single)"
+  },
+  "gsm-signal-1": {
+    "reason": "EMPTY_FULL",
+    "comment": "Baofeng Walkie Talkie Antenna"
+  },
+  "intercom-2": {
+    "reason": "EMPTY_FULL",
+    "comment": "Baofeng Walkie Talkie Battery"
+  },
+  "intercom-3": {
+    "reason": "EMPTY_FULL",
+    "comment": "Baofeng Walkie Talkie Charger"
+  },
+  "ear-piece-0": {
+    "reason": "EMPTY_FULL",
+    "comment": "Baofeng Walkie Talkie Earpiece (Black)"
+  },
+  "computer-accessories-17": {
+    "reason": "EMPTY_FULL",
+    "comment": "Baofeng Walkie Talkie Earpiece (White)"
+  },
+  "electric-fence-and-barb-wire-18": {
+    "reason": "EMPTY_FULL",
+    "comment": "Big Strobe Light"
+  },
+  "device-3": {
+    "reason": "TITLE_ONLY_NO_REAL_CONTENT",
+    "comment": "Cncote CE-09N Tracker",
+    "cleaned_preview": "<p>Cncote CE-09N Tracker</p>"
+  },
+  "electrical-cables-wires-and-adapters-2": {
+    "reason": "EMPTY_FULL",
+    "comment": "Coil of 2.5mm Electrical Cable"
+  },
+  "electrical-cables-wires-and-adapters-3": {
+    "reason": "EMPTY_FULL",
+    "comment": "Coil of Medium Siren Speaker Cable"
+  },
+  "electric-fence-and-barb-wire-19": {
+    "reason": "EMPTY_FULL",
+    "comment": "Coil of Small Siren Speaker Cable"
+  },
+  "gsm-desktop-telephone-0": {
+    "reason": "EMPTY_FULL",
+    "comment": "DDK995+ 2Simcard GSM Desktop Telephone"
+  },
+  "automobile-security-gadgets-1": {
+    "reason": "EMPTY_FULL",
+    "comment": "Energizer Magnetic Key"
+  },
+  "automobile-security-gadgets-2": {
+    "reason": "EMPTY_FULL",
+    "comment": "Energizer Receiver With One Remote"
+  },
+  "automobile-security-gadgets-3": {
+    "reason": "EMPTY_FULL",
+    "comment": "Energizer Receiver With Two Remotes"
+  },
+  "3g-and-2g-lte-9": {
+    "reason": "EMPTY_FULL",
+    "comment": "Fixed Wireless Terminal"
+  },
+  "device-4": {
+    "reason": "EMPTY_FULL",
+    "comment": "Hybrid Road Master Speed Limiter Device"
+  },
+  "basic-electricals-electronics-8": {
+    "reason": "TITLE_ONLY_NO_REAL_CONTENT",
+    "comment": "i11-TWS True Wireless Headset",
+    "cleaned_preview": "<p>i11-TWS True Wireless Headset</p><p></p>"
+  },
+  "computer-accessories-44": {
+    "reason": "EMPTY_FULL",
+    "comment": "IKE 24-Extension PABX Machine"
+  },
+  "computer-accessories-45": {
+    "reason": "EMPTY_FULL",
+    "comment": "IKE 32-Extension PABX Machine"
+  },
+  "computer-accessories-46": {
+    "reason": "EMPTY_FULL",
+    "comment": "IKE 8-Extension PABX Machine"
+  },
+  "automobile-security-gadgets-5": {
+    "reason": "EMPTY_FULL",
+    "comment": "Long 12V/7AH Battery"
+  },
+  "automobile-security-gadgets-6": {
+    "reason": "EMPTY_FULL",
+    "comment": "Magnetic Earth Rod"
+  },
+  "electric-fence-and-barb-wire-20": {
+    "reason": "EMPTY_FULL",
+    "comment": "Nemtek 1000meters Electric Fence Stranded Wire"
+  },
+  "automobile-security-gadgets-7": {
+    "reason": "EMPTY_FULL",
+    "comment": "Nemtek Fence Light"
+  },
+  "electric-fence-and-barb-wire-21": {
+    "reason": "EMPTY_FULL",
+    "comment": "Nemtek Wizord 4 Energizer Machine With One Remote Control Setup"
+  },
+  "automobile-security-gadgets-8": {
+    "reason": "EMPTY_FULL",
+    "comment": "Nemtek Wizord 4 Energizer Machine With Two Remote Control Setup"
+  },
+  "automobile-security-gadgets-9": {
+    "reason": "EMPTY_FULL",
+    "comment": "Nemtek Wizord 4 Energizer Machine (Without Remote)"
+  },
+  "device-5": {
+    "reason": "EMPTY_FULL",
+    "comment": "Network Booster Flat Indoor Antenna"
+  },
+  "gsm-signal-2": {
+    "reason": "EMPTY_FULL",
+    "comment": "Network Booster Rocket Outdoor Antenna"
+  },
+  "gsm-signal-3": {
+    "reason": "EMPTY_FULL",
+    "comment": "Network Booster Round Indoor Antenna"
+  },
+  "gsm-signal-4": {
+    "reason": "EMPTY_FULL",
+    "comment": "Network Booster Triangular Log Periodic Outdoor Antenna"
+  },
+  "cables-7": {
+    "reason": "EMPTY_FULL",
+    "comment": "Network Cable Tester"
+  },
+  "gsm-signal-5": {
+    "reason": "EMPTY_FULL",
+    "comment": "Network Signal Booster Kit"
+  },
+  "gsm-signal-6": {
+    "reason": "EMPTY_FULL",
+    "comment": "Network Signal Booster Machine (Without Accessories) (Gold)"
+  },
+  "4g-lte-device-0": {
+    "reason": "EMPTY_FULL",
+    "comment": "Ominidirectional Outdoor Antenna"
+  },
+  "cables-9": {
+    "reason": "TITLE_ONLY_NO_REAL_CONTENT",
+    "comment": "Oraimo M53 Micro Usb Data / Charging Cable (1.5 M, Black)",
+    "cleaned_preview": "<p>Oraimo M53 Micro Usb Data / Charging Cable (1.5 M, Black)</p>"
+  },
+  "earphones-4": {
+    "reason": "TITLE_ONLY_NO_REAL_CONTENT",
+    "comment": "Oraimo Wired Earphones With Mic",
+    "cleaned_preview": "<h4>Oraimo Wired Earphones With Mic</h4>"
+  },
+  "electric-fence-and-barb-wire-22": {
+    "reason": "EMPTY_FULL",
+    "comment": "Packet of LPC Danger Warning Sign"
+  },
+  "automobile-security-gadgets-10": {
+    "reason": "EMPTY_FULL",
+    "comment": "Packet of Nemtek 6mm Ferrules"
+  },
+  "automobile-security-gadgets-11": {
+    "reason": "EMPTY_FULL",
+    "comment": "Packet of Nemtek Danger Warning Sign"
+  },
+  "automobile-security-gadgets-12": {
+    "reason": "EMPTY_FULL",
+    "comment": "Packet of Nemtek Hook"
+  },
+  "automobile-security-gadgets-13": {
+    "reason": "EMPTY_FULL",
+    "comment": "Packet of Nemtek Spring"
+  },
+  "automobile-security-gadgets-14": {
+    "reason": "EMPTY_FULL",
+    "comment": "Packet of Tapping Screw"
+  },
+  "computer-accessories-74": {
+    "reason": "EMPTY_FULL",
+    "comment": "Panasonic Display Intercom Handset (KX-TSC7712CID) (Black)"
+  },
+  "gsm-desktop-telephone-1": {
+    "reason": "EMPTY_FULL",
+    "comment": "Panasonic Display Intercom Handset (KX-TSC77CID) (White)"
+  },
+  "gsm-desktop-telephone-2": {
+    "reason": "EMPTY_FULL",
+    "comment": "Panasonic Non-Display Intercom Handset (KX-TS505MX) (Black)"
+  },
+  "gsm-desktop-telephone-3": {
+    "reason": "EMPTY_FULL",
+    "comment": "Panasonic Non-Display Intercom Handset (KX-TS505MX) (White)"
+  },
+  "automobile-security-gadgets-15": {
+    "reason": "EMPTY_FULL",
+    "comment": "Plumb"
+  },
+  "gsm-signal-7": {
+    "reason": "EMPTY_FULL",
+    "comment": "RG6 Network Booster Connector"
+  },
+  "automobile-security-gadgets-16": {
+    "reason": "EMPTY_FULL",
+    "comment": "Satron 100meters HT Cable (Black)"
+  },
+  "automobile-security-gadgets-17": {
+    "reason": "EMPTY_FULL",
+    "comment": "Satron 50meters HT Cable (Black)"
+  },
+  "automobile-security-gadgets-18": {
+    "reason": "EMPTY_FULL",
+    "comment": "Silver Binding Wire Roll"
+  },
+  "automobile-security-gadgets-19": {
+    "reason": "EMPTY_FULL",
+    "comment": "Siren Alarm Horn"
+  },
+  "automobile-security-gadgets-20": {
+    "reason": "EMPTY_FULL",
+    "comment": "Small Strobe Light"
+  },
+  "automobile-security-gadgets-21": {
+    "reason": "EMPTY_FULL",
+    "comment": "Stanificent 1000meters Electric Fence Stranded Wire"
+  },
+  "automobile-security-gadgets-22": {
+    "reason": "EMPTY_FULL",
+    "comment": "Stanificent 500meters Electric Fence Stranded Wire"
+  },
+  "automobile-security-gadgets-23": {
+    "reason": "EMPTY_FULL",
+    "comment": "Stanificent 700meters Electric Fence Stranded Wire"
+  },
+  "tv-accessories-satellite-decoders-and-equipment-16": {
+    "reason": "TITLE_ONLY_NO_REAL_CONTENT",
+    "comment": "Startimes Decoder Replacement Remote Control",
+    "cleaned_preview": "<h1>Startimes Decoder Replacement Remote Control</h1>"
+  },
+  "electric-fence-and-barb-wire-23": {
+    "reason": "EMPTY_FULL",
+    "comment": "Sunshine 50watts Solar Panel"
+  },
+  "electric-fence-and-barb-wire-24": {
+    "reason": "EMPTY_FULL",
+    "comment": "Sunshine 60watts Solar Panel"
+  },
+  "device-6": {
+    "reason": "EMPTY_FULL",
+    "comment": "TK103 Tracker"
+  },
+  "device-7": {
+    "reason": "EMPTY_FULL",
+    "comment": "TK303 Tracker"
+  },
+  "device-8": {
+    "reason": "EMPTY_FULL",
+    "comment": "Tracker GSM Antenna"
+  },
+  "device-9": {
+    "reason": "EMPTY_FULL",
+    "comment": "Tracker Microphone"
+  },
+  "device-10": {
+    "reason": "EMPTY_FULL",
+    "comment": "Tracker Relay"
+  }
+}

@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KADIS ICT Training — Practical Installation, Engineering & Technical Skills | Abuja</title>
+    <meta name="description"
+        content="KADIS ICT Training delivers hands-on, practical training in CCTV & security systems, automation, solar & power, networking, satellite/entertainment and vehicle tracking — for individuals, groups and organisations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0C0F;
+            --bg-2: #131519;
+            --bg-3: #1A1D22;
+            --bg-4: #20232A;
+            --ink: #EDEEEC;
+            --ink-dim: #9A9FA8;
+            --ink-dimmer: #5C616A;
+            --line: rgba(255, 255, 255, 0.07);
+            --line-bright: rgba(255, 255, 255, 0.13);
+            --amber: #D9772E;
+            --amber-deep: #B85F22;
+            --amber-soft: #E8A15E;
+            --moss: #A9B84C;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        ::selection {
+            background: var(--amber-soft);
+            color: #111;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle at 15% 8%, rgba(217, 119, 46, 0.08), transparent 40%),
+                radial-gradient(circle at 85% 25%, rgba(169, 184, 76, 0.045), transparent 35%),
+                radial-gradient(circle at 50% 90%, rgba(217, 119, 46, 0.05), transparent 45%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrap {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .8s cubic-bezier(.16, .8, .24, 1), transform .8s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+
+            * {
+                animation-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* topbar / nav */
+        .topbar {
+            background: var(--bg-2);
+            border-bottom: 1px solid var(--line);
+            font-size: 12.5px;
+            color: var(--ink-dim);
+        }
+
+        .topbar .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 38px;
+            flex-wrap: wrap;
+        }
+
+        .topbar .dot {
+            color: var(--amber-soft);
+            margin-right: 6px;
+        }
+
+        .topbar-right {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .topbar-right a {
+            color: #F4F6F4;
+            font-weight: 700;
+            transition: color .2s;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(11, 12, 15, 0.86);
+            backdrop-filter: blur(16px) saturate(140%);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 78px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0A0B0E;
+            font-weight: 800;
+            font-size: 15px;
+            box-shadow: 0 6px 20px rgba(217, 119, 46, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            flex-shrink: 0;
+        }
+
+        .logo .lockup {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+            font-family: 'Sora';
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .logo .lockup small {
+            font-family: 'Space Mono';
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--ink-dim);
+            letter-spacing: 0.06em;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 24px;
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink-dim);
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 0;
+            white-space: nowrap;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--ink);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--amber);
+            transition: width .3s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-dim);
+            transition: all .2s;
+            cursor: pointer;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+        }
+
+        .btn-primary {
+            background: var(--amber);
+            color: #0B0C0F;
+            font-weight: 700;
+            font-size: 13.5px;
+            padding: 11px 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 22px rgba(217, 119, 46, 0.22);
+            transition: transform .25s cubic-bezier(.16, .8, .24, 1), box-shadow .25s, background .25s;
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: var(--amber-soft);
+            box-shadow: 0 14px 30px rgba(217, 119, 46, 0.3);
+        }
+
+        .btn-ghost {
+            border: 1px solid var(--line-bright);
+            color: var(--ink);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 13px 24px;
+            border-radius: 10px;
+            transition: all .25s cubic-bezier(.16, .8, .24, 1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--amber);
+            background: rgba(217, 119, 46, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .btn-text {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--ink-dim);
+            transition: color .2s;
+        }
+
+        .btn-text:hover {
+            color: var(--amber-soft);
+        }
+
+        /* hero */
+        .hero {
+            padding: 72px 0 80px;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .hero>div:first-child>* {
+            opacity: 0;
+            transform: translateY(16px);
+            animation: heroIn .7s cubic-bezier(.16, .8, .24, 1) forwards;
+        }
+
+        .hero>div:first-child>*:nth-child(1) {
+            animation-delay: .05s;
+        }
+
+        .hero>div:first-child>*:nth-child(2) {
+            animation-delay: .15s;
+        }
+
+        .hero>div:first-child>*:nth-child(3) {
+            animation-delay: .25s;
+        }
+
+        .hero>div:first-child>*:nth-child(4) {
+            animation-delay: .35s;
+        }
+
+        @keyframes heroIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Space Mono';
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            color: var(--amber-soft);
+            background: rgba(217, 119, 46, 0.08);
+            border: 1px solid rgba(217, 119, 46, 0.25);
+            padding: 7px 14px;
+            border-radius: 100px;
+            margin-bottom: 24px;
+        }
+
+        .eyebrow::before {
+            content: '●';
+            color: var(--moss);
+            font-size: 8px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.18;
+            font-weight: 800;
+            margin-bottom: 26px;
+            max-width: 16ch;
+        }
+
+        .hero h1 .grad {
+            background: linear-gradient(100deg, var(--amber) 10%, var(--amber-soft) 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 16.5px;
+            color: var(--ink-dim);
+            max-width: 480px;
+            line-height: 1.75;
+            margin-bottom: 36px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 36px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats div {
+            border-left: 2px solid var(--amber);
+            padding-left: 16px;
+        }
+
+        .hero-stats b {
+            display: block;
+            font-family: 'Sora';
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .hero-stats span {
+            font-size: 12px;
+            color: var(--ink-dim);
+            line-height: 1.4;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: auto;
+            border-radius: 24px;
+            background: linear-gradient(160deg, var(--bg-3), var(--bg-2));
+            border: 1px solid var(--line);
+            overflow: hidden;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .flow-chip {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--bg-4);
+            border: 1px solid var(--line-bright);
+            border-radius: 12px;
+            padding: 14px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .flow-chip .num {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: var(--amber);
+            color: #0B0C0F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            flex-shrink: 0;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            color: var(--ink-dimmer);
+            font-size: 13px;
+            padding: 0;
+            margin: 4px 0;
+        }
+
+        @media (max-width:980px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-visual {
+                height: auto;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+        }
+
+        .trust {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 30px 0;
+            background: var(--bg-2);
+        }
+
+        .trust .wrap {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 22px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--ink-dim);
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .trust-item .ic {
+            color: var(--amber-soft);
+            font-size: 15px;
+        }
+
+        section {
+            padding: 108px 0;
+        }
+
+        section+section {
+            padding-top: 0;
+        }
+
+        .sec-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 52px;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .sec-head h2 {
+            font-size: 30px;
+            font-weight: 800;
+            line-height: 1.3;
+            margin-top: 6px;
+        }
+
+        .sec-head p {
+            color: var(--ink-dim);
+            font-size: 14.5px;
+            line-height: 1.65;
+            max-width: 420px;
+        }
+
+        .sec-eyebrow {
+            font-family: 'Space Mono';
+            font-size: 12px;
+            color: var(--amber-soft);
+            letter-spacing: .08em;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        /* why-train feature grid */
+        .feat-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .feat-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 28px 22px;
+            transition: border-color .3s, transform .3s;
+        }
+
+        .feat-card:hover {
+            border-color: rgba(217, 119, 46, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .feat-card .ic {
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .feat-card h5 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .feat-card p {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            line-height: 1.65;
+        }
+
+        @media (max-width:980px) {
+            .feat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* category block */
+        .cat-block {
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            background: linear-gradient(160deg, var(--bg-3), var(--bg-2));
+            margin-bottom: 28px;
+            overflow: hidden;
+        }
+
+        .cat-block-head {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 30px 36px;
+            border-bottom: 1px solid var(--line);
+            flex-wrap: wrap;
+        }
+
+        .cat-block-head .num {
+            font-family: 'Space Mono';
+            font-size: 12px;
+            color: var(--amber-soft);
+        }
+
+        .cat-block-head h3 {
+            font-size: 21px;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .cat-block-body {
+            padding: 32px 36px 36px;
+            display: grid;
+            gap: 24px;
+        }
+
+        .course-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 24px 26px;
+        }
+
+        .course-card h4 {
+            font-size: 15.5px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .course-card p {
+            font-size: 13px;
+            color: var(--ink-dim);
+            line-height: 1.65;
+            margin-bottom: 18px;
+        }
+
+        .topic-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .topic-tags span {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 13px;
+            border-radius: 20px;
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            color: var(--ink-dim);
+            line-height: 1.4;
+        }
+
+        .safety-note {
+            font-size: 12.5px;
+            color: var(--amber-soft);
+            background: rgba(217, 119, 46, 0.08);
+            border: 1px solid rgba(217, 119, 46, 0.22);
+            border-radius: 10px;
+            padding: 16px 20px;
+            line-height: 1.7;
+        }
+
+        /* quick category nav pills */
+        .qc-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 18px;
+        }
+
+        .qc-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 24px 18px;
+            text-align: center;
+            transition: border-color .3s, transform .3s;
+        }
+
+        .qc-card:hover {
+            border-color: rgba(217, 119, 46, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .qc-card .ic {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .qc-card h5 {
+            font-size: 12.5px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: .03em;
+        }
+
+        .qc-card span {
+            font-size: 10.5px;
+            color: var(--ink-dim);
+            line-height: 1.65;
+            display: block;
+        }
+
+        @media (max-width:980px) {
+            .qc-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* checklist */
+        .check-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px 32px;
+            margin-top: 8px;
+        }
+
+        .check-item {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            font-size: 14px;
+            color: var(--ink-dim);
+            line-height: 1.6;
+            padding: 4px 0;
+        }
+
+        .check-item .tick {
+            color: var(--moss);
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        @media (max-width:700px) {
+            .check-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* who can enrol tag cloud */
+        .about-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .about-tags span {
+            background: var(--bg-2);
+            border: 1px solid var(--line-bright);
+            border-radius: 100px;
+            padding: 11px 20px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--ink);
+            transition: border-color .2s, transform .2s;
+            line-height: 1.4;
+        }
+
+        .about-tags span:hover {
+            border-color: var(--amber);
+            transform: translateY(-2px);
+        }
+
+        /* process flow chain */
+        .flow-chain {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .flow-chain .node {
+            background: var(--bg-2);
+            border: 1px solid var(--line-bright);
+            border-radius: 10px;
+            padding: 14px 22px;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .flow-chain .arr {
+            color: var(--amber-soft);
+            font-size: 15px;
+        }
+
+        /* approach grid */
+        .serv-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .serv-card {
+            background: linear-gradient(160deg, var(--bg-3), var(--bg));
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            transition: all .35s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .serv-card:hover {
+            border-color: rgba(217, 119, 46, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .serv-num {
+            font-family: 'Space Mono';
+            font-size: 12px;
+            color: var(--ink-dimmer);
+            margin-bottom: 22px;
+            display: block;
+        }
+
+        .serv-card h4 {
+            font-size: 17px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .serv-card p {
+            font-size: 13px;
+            color: var(--ink-dim);
+            line-height: 1.7;
+        }
+
+        /* options grid */
+        .opt-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .opt-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 30px 24px;
+            transition: border-color .3s, transform .3s;
+        }
+
+        .opt-card:hover {
+            border-color: rgba(217, 119, 46, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .opt-card h5 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .opt-card p {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            line-height: 1.65;
+        }
+
+        @media (max-width:980px) {
+            .opt-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* stats band */
+        .stats-band {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .stat-cell {
+            background: var(--bg-2);
+            padding: 40px 26px;
+            text-align: center;
+        }
+
+        .stat-cell b {
+            font-family: 'Sora';
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(120deg, var(--amber), var(--amber-soft));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-cell span {
+            font-size: 11.5px;
+            color: var(--ink-dim);
+            font-family: 'Space Mono';
+            letter-spacing: .03em;
+        }
+
+        @media (max-width:980px) {
+            .stats-band {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* faq */
+        .faq-list {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--bg-2);
+            margin-bottom: 14px;
+            overflow: hidden;
+            transition: border-color .25s;
+        }
+
+        .faq-item.open {
+            border-color: rgba(217, 119, 46, 0.3);
+        }
+
+        .faq-q {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 24px 26px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 18px;
+            color: var(--ink);
+            font-family: 'Sora';
+            font-size: 14.5px;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .faq-q .plus {
+            flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--amber-soft);
+            transition: transform .35s cubic-bezier(.16, .8, .24, 1), background .25s;
+            font-size: 14px;
+        }
+
+        .faq-item.open .faq-q .plus {
+            transform: rotate(135deg);
+            background: var(--amber);
+            color: #0B0C0F;
+            border-color: transparent;
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .faq-a p {
+            padding: 0 26px 24px;
+            color: var(--ink-dim);
+            font-size: 13.5px;
+            line-height: 1.75;
+        }
+
+        .cta-band {
+            background: linear-gradient(120deg, rgba(217, 119, 46, 0.12), rgba(169, 184, 76, 0.05));
+            border: 1px solid rgba(217, 119, 46, 0.22);
+            border-radius: 24px;
+            padding: 72px 56px;
+            text-align: center;
+        }
+
+        .cta-band h2 {
+            font-size: 30px;
+            margin-bottom: 18px;
+            line-height: 1.3;
+        }
+
+        .cta-band p {
+            color: var(--ink-dim);
+            line-height: 1.7;
+            margin-bottom: 34px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            background: var(--bg-2);
+        }
+
+        .foot-topics-row a:hover {
+            border-color: var(--amber);
+            color: rgb(218, 211, 211);
+        }
+
+        .foot-topics {
+            margin-top: 30px;
+            padding: 24px 0 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .foot-topics+.foot-topics {
+            margin-top: 34px;
+        }
+
+        .foot-topics h5 {
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 18px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-topics-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+        }
+
+        .foot-topics-row a {
+            font-size: 12.5px;
+            color: rgb(218, 211, 211);
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            border-radius: 100px;
+            padding: 7px 14px;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .foot-promo {
+            background: linear-gradient(115deg, rgba(217, 119, 46, 0.10), rgba(169, 184, 76, 0.04));
+            border-bottom: 1px solid var(--line);
+            padding: 22px 0;
+        }
+
+        .foot-promo .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .foot-promo p {
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            max-width: 760px;
+            line-height: 1.7;
+        }
+
+        .foot-promo b {
+            color: var(--ink);
+        }
+
+        .foot-contact {
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-dim);
+            line-height: 1.9;
+        }
+
+        .foot-contact .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: space-between;
+        }
+
+        .foot-contact strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .foot-contact a {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-contact .fc-block {
+            max-width: 520px;
+        }
+
+        .foot-main {
+            padding: 56px 0 40px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.4fr repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .foot-col h5 {
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 18px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-col a {
+            display: block;
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            margin-bottom: 12px;
+            transition: color .2s;
+        }
+
+        .foot-col a:hover {
+            color: var(--amber-soft);
+        }
+
+        .foot-bank {
+            padding: 16px 0;
+            font-size: 12.5px;
+            color: var(--ink-dimmer);
+            border-bottom: 1px solid var(--line);
+            border-top: 1px solid var(--line);
+        }
+
+        .foot-bank strong {
+            color: var(--amber-soft);
+        }
+
+        .foot-bottom {
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            color: rgb(216, 208, 208);
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-row a {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--ink-dim);
+            transition: all .2s;
+        }
+
+        .social-row a:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+            transform: translateY(-2px);
+        }
+
+        .wa-float {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 70;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C4A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+            font-size: 25px;
+            color: #fff;
+            transition: transform .25s;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.08);
+        }
+
+        @media (max-width:900px) {
+            .nav-links {
+                display: none;
+            }
+
+            .foot-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .feat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="wrap">
+            <div><span class="dot">●</span>Individual, group, corporate & custom ICT training — Abuja</div>
+            <div class="topbar-right"><a href="tel:08061379390" class="mono">📞 0806 137 9390</a></div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="wrap nav-inner">
+            <a class="logo" href="index.html">
+                <div class="logo-mark"><img src="images/KADISS.png" alt="" srcset=""></div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#solutions">Solutions</a>
+                <a href="installation.html">ICT Engineering</a>
+                <a href="rental.html">Equipment Rentals</a>
+                <a href="projects.html">Projects</a>
+                <a href="eventmedia.html">Media & Events</a>
+                <a href="staffing.html">Trainning</a>
+                <a href="Allcategory.html">Store</a>
+                <a href="join.html">Join our Team</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="nav-actions">
+                <a class="btn-primary"
+                    href="https://wa.me/2348061379390?text=Hi%20KADIS%2C%20I%27d%20like%20to%20enrol%20for%20ICT%20Training.">Enrol
+                    for Training</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="wrap hero" id="top">
+        <div>
+            <span class="eyebrow">PRACTICAL ICT INSTALLATION, ENGINEERING & TECHNICAL SKILLS TRAINING</span>
+            <h1>Learn. Install. <span class="grad">Configure. Troubleshoot.</span></h1>
+            <p>KADIS ICT Training provides practical, hands-on training in ICT installation, security systems, smart
+                automation, solar and electrical systems, networking, satellite technology and vehicle tracking — for
+                beginners, technicians, ICT professionals, entrepreneurs, installers and students.</p>
+            <div class="hero-cta">
+                <a class="btn-primary"
+                    href="https://wa.me/2348061379390?text=Hi%20KADIS%2C%20I%27d%20like%20to%20enrol%20for%20ICT%20Training.">Enrol
+                    for Training →</a>
+                <a class="btn-ghost" href="#programmes">See All Programmes</a>
+            </div>
+            <div class="hero-stats">
+                <div><b>6</b><span>Training categories</span></div>
+                <div><b>20+</b><span>Practical courses</span></div>
+                <div><b>4</b><span>Ways to train</span></div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div>
+                <span class="sec-eyebrow" style="margin-bottom:16px;">FROM LEARNING TO REAL-WORLD INSTALLATION</span>
+            </div>
+            <div>
+                <div class="flow-chip">
+                    <div class="num">1</div>UNDERSTAND
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-chip">
+                    <div class="num">2</div>IDENTIFY COMPONENTS
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-chip">
+                    <div class="num">3</div>PLAN THE INSTALLATION
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-chip">
+                    <div class="num">4</div>INSTALL
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-chip">
+                    <div class="num">5</div>CONFIGURE
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-chip">
+                    <div class="num">6</div>TEST
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-chip">
+                    <div class="num">7</div>TROUBLESHOOT
+                </div>
+                <div class="flow-arrow">↓</div>
+                <div class="flow-chip">
+                    <div class="num">8</div>MAINTAIN
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="trust">
+        <div class="wrap">
+            <div class="trust-item"><span class="ic">✓</span> Hands-on practical training, not just theory</div>
+            <div class="trust-item"><span class="ic">✓</span> Industry-focused, real-world skills</div>
+            <div class="trust-item"><span class="ic">✓</span> Beginner-friendly programmes</div>
+            <div class="trust-item"><span class="ic">✓</span> Connected to KADIS's own products & installs</div>
+        </div>
+    </div>
+
+    <section class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">WHY TRAIN WITH KADIS?</span>
+                <h2>Practical skills, not just theory</h2>
+            </div>
+            <p>Training is connected to the same categories of ICT products, installations, engineering and technical
+                services we provide to customers.</p>
+        </div>
+        <div class="feat-grid">
+            <div class="feat-card reveal">
+                <div class="ic">🔧</div>
+                <h5>Hands-On Practical Training</h5>
+                <p>Learn how systems are actually installed, configured and tested.</p>
+            </div>
+            <div class="feat-card reveal">
+                <div class="ic">🎯</div>
+                <h5>Industry-Focused Skills</h5>
+                <p>Training focuses on practical technologies used in homes, offices, businesses and institutions.</p>
+            </div>
+            <div class="feat-card reveal">
+                <div class="ic">🛠️</div>
+                <h5>Installation & Troubleshooting</h5>
+                <p>Go beyond installation and learn basic fault diagnosis, maintenance and troubleshooting.</p>
+            </div>
+            <div class="feat-card reveal">
+                <div class="ic">💼</div>
+                <h5>Skills for Employment & Business</h5>
+                <p>Develop skills that support employment, freelance work, contracting or your own ICT installation
+                    business.</p>
+            </div>
+            <div class="feat-card reveal">
+                <div class="ic">📚</div>
+                <h5>Beginner-Friendly</h5>
+                <p>Training can be structured for beginners as well as participants with existing technical experience.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAMMES -->
+    <section id="programmes" class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">OUR ICT TRAINING PROGRAMMES</span>
+                <h2>Six categories, full course list</h2>
+            </div>
+        </div>
+
+        <!-- 01 Security -->
+        <div class="cat-block reveal">
+            <div class="cat-block-head"><span class="num">01</span>
+                <h3>🛡️ Security Systems Training</h3>
+            </div>
+            <div class="cat-block-body">
+                <div class="course-card">
+                    <h4>CCTV Installation & Configuration</h4>
+                    <p>Learn practical CCTV installation from camera positioning to configuration and testing.</p>
+                    <div class="topic-tags">
+                        <span>CCTV camera types</span><span>Camera selection</span><span>DVR/NVR
+                            installation</span><span>Camera mounting</span><span>Cabling</span><span>Power
+                            connections</span><span>Network/IP cameras</span><span>Remote viewing</span><span>Camera
+                            configuration</span><span>Basic troubleshooting</span><span>Maintenance</span>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <h4>Access Control & Biometrics</h4>
+                    <p>Learn how to install and configure systems used to control and monitor access to buildings.</p>
+                    <div class="topic-tags">
+                        <span>Fingerprint systems</span><span>RFID/card systems</span><span>Biometric
+                            terminals</span><span>Door access controllers</span><span>Electromagnetic
+                            locks</span><span>Exit buttons</span><span>User registration</span><span>Access
+                            configuration</span><span>Basic troubleshooting</span>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <h4>Electric Fence Installation</h4>
+                    <p>Practical introduction to electric perimeter security systems.</p>
+                </div>
+                <div class="course-card">
+                    <h4>Security Alarm Systems</h4>
+                    <p>Learn installation and basic configuration of security alarm systems, sensors and control panels.
+                    </p>
+                </div>
+                <div class="course-card">
+                    <h4>Video Door Phone Installation</h4>
+                    <p>Learn how to install and configure video door communication systems.</p>
+                </div>
+                <div class="course-card">
+                    <h4>Perimeter Security</h4>
+                    <p>Understand integrated perimeter protection using appropriate security technologies.</p>
+                </div>
+                <div class="course-card">
+                    <h4>Smoke Detector & Fire Alarm System Installation</h4>
+                    <p>Learn the fundamentals of fire detection and alarm systems, including detector placement, wiring,
+                        control panels, testing and maintenance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 02 Automation -->
+        <div class="cat-block reveal">
+            <div class="cat-block-head"><span class="num">02</span>
+                <h3>🤖 Automation & Smart Systems</h3>
+            </div>
+            <div class="cat-block-body">
+                <div class="course-card">
+                    <h4>Automatic Gate Installation</h4>
+                    <p>Learn the fundamentals of automatic gate systems and their components.</p>
+                    <div class="topic-tags">
+                        <span>Gate automation components</span><span>Motor installation principles</span><span>Control
+                            boards</span><span>Sensors</span><span>Remote controls</span><span>Safety
+                            devices</span><span>Wiring</span><span>Configuration</span><span>Testing</span><span>Troubleshooting</span>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <h4>Smart Door Lock Installation</h4>
+                    <p>Learn how to install and configure modern electronic and smart locking systems.</p>
+                </div>
+                <div class="course-card">
+                    <h4>Intercom & PABX Installation</h4>
+                    <p>Learn how businesses and organisations establish internal voice communication systems.</p>
+                    <div class="topic-tags">
+                        <span>PABX systems</span><span>Intercom
+                            systems</span><span>Extensions</span><span>Cabling</span><span>Telephone
+                            points</span><span>Configuration</span><span>Testing</span><span>Troubleshooting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 03 Power -->
+        <div class="cat-block reveal">
+            <div class="cat-block-head"><span class="num">03</span>
+                <h3>⚡ Power & Electrical Systems</h3>
+            </div>
+            <div class="cat-block-body">
+                <div class="course-card">
+                    <h4>Solar & Inverter Installation</h4>
+                    <p>Learn the fundamentals of designing and installing solar/inverter power systems.</p>
+                    <div class="topic-tags">
+                        <span>Solar panels</span><span>Inverters</span><span>Batteries</span><span>Charge
+                            controllers</span><span>DC/AC connections</span><span>System sizing
+                            fundamentals</span><span>Battery configuration</span><span>Wiring</span><span>Installation
+                            practices</span><span>System testing</span><span>Maintenance</span><span>Basic
+                            troubleshooting</span>
+                    </div>
+                </div>
+                <div class="safety-note">⚠ Safety-focused training: Electrical and solar practical work should be
+                    performed using appropriate protective equipment, procedures and qualified supervision.</div>
+            </div>
+        </div>
+
+        <!-- 04 Networking -->
+        <div class="cat-block reveal">
+            <div class="cat-block-head"><span class="num">04</span>
+                <h3>🌐 Networking & Communication</h3>
+            </div>
+            <div class="cat-block-body">
+                <div class="course-card">
+                    <h4>ICT Networking Training</h4>
+                    <p>Learn how to build and troubleshoot computer networks for homes, offices and organisations.</p>
+                    <div class="topic-tags">
+                        <span>Network fundamentals</span><span>LAN installation</span><span>Network
+                            cables</span><span>RJ45 termination</span><span>Switches</span><span>Patch
+                            panels</span><span>Network racks</span><span>Structured cabling</span><span>IP
+                            addressing</span><span>Network testing</span><span>Basic troubleshooting</span>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <h4>Router & Wi-Fi Installation</h4>
+                    <p>Learn how to deploy reliable wireless connectivity.</p>
+                    <div class="topic-tags">
+                        <span>Router setup</span><span>Wi-Fi configuration</span><span>Access points</span><span>Network
+                            security</span><span>SSID configuration</span><span>Password management</span><span>Coverage
+                            planning</span><span>Basic troubleshooting</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 05 Satellite -->
+        <div class="cat-block reveal">
+            <div class="cat-block-head"><span class="num">05</span>
+                <h3>📡 Satellite & Entertainment Systems</h3>
+            </div>
+            <div class="cat-block-body">
+                <div class="course-card">
+                    <h4>DSTV / GOTV / SLTV Installation</h4>
+                    <p>Learn practical satellite and digital television installation techniques.</p>
+                    <div class="topic-tags">
+                        <span>Dish installation</span><span>Signal alignment</span><span>Cable
+                            termination</span><span>Signal testing</span><span>Decoder installation</span><span>Basic
+                            troubleshooting</span><span>Maintenance</span>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <h4>Satellite & Free-to-Air Installation</h4>
+                    <p>Learn the fundamentals of satellite reception, dish alignment, LNB installation, cabling and
+                        signal optimization.</p>
+                </div>
+                <div class="course-card">
+                    <h4>Starlink Installation</h4>
+                    <p>Learn the practical fundamentals of Starlink equipment installation and network setup, subject to
+                        the manufacturer's current installation requirements.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 06 Vehicle -->
+        <div class="cat-block reveal">
+            <div class="cat-block-head"><span class="num">06</span>
+                <h3>🚗 Vehicle Technology</h3>
+            </div>
+            <div class="cat-block-body">
+                <div class="course-card">
+                    <h4>Car Tracker Installation</h4>
+                    <p>Learn the fundamentals of vehicle tracking system installation.</p>
+                    <div class="topic-tags">
+                        <span>GPS tracker components</span><span>Tracker installation principles</span><span>Vehicle
+                            power connections</span><span>Device configuration</span><span>Tracking
+                            platforms</span><span>Testing</span><span>Basic
+                            troubleshooting</span><span>Maintenance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES quick nav -->
+    <section id="categories" class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">KADIS ICT TRAINING CATEGORIES</span>
+                <h2>Six major categories, at a glance</h2>
+            </div>
+        </div>
+        <div class="qc-grid">
+            <div class="qc-card reveal">
+                <div class="ic">🛡️</div>
+                <h5>SECURITY</h5><span>CCTV • Access Control • Biometrics • Electric Fence • Alarm Systems • Video Door
+                    Phones • Fire Alarm</span>
+            </div>
+            <div class="qc-card reveal">
+                <div class="ic">🤖</div>
+                <h5>AUTOMATION</h5><span>Automatic Gates • Smart Locks • Intercom • PABX</span>
+            </div>
+            <div class="qc-card reveal">
+                <div class="ic">⚡</div>
+                <h5>POWER</h5><span>Solar • Inverter • Battery Systems • Electrical Fundamentals</span>
+            </div>
+            <div class="qc-card reveal">
+                <div class="ic">🌐</div>
+                <h5>NETWORKING</h5><span>ICT Networking • Structured Cabling • Routers • Wi-Fi</span>
+            </div>
+            <div class="qc-card reveal">
+                <div class="ic">📡</div>
+                <h5>SATELLITE & ENTERTAINMENT</h5><span>DSTV • GOTV • SLTV • Satellite • Free-to-Air • Starlink</span>
+            </div>
+            <div class="qc-card reveal">
+                <div class="ic">🚗</div>
+                <h5>VEHICLE TECHNOLOGY</h5><span>Car Tracker Installation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHO CAN ENROL -->
+    <section id="who" class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">WHO CAN ENROL?</span>
+                <h2>Our training is suitable for</h2>
+            </div>
+        </div>
+        <div class="about-tags reveal">
+            <span>Beginners</span><span>ICT technicians</span><span>Electrical technicians</span><span>Security system
+                installers</span><span>Networking technicians</span><span>Engineering students</span><span>ICT
+                students</span><span>Electricians</span><span>Entrepreneurs</span><span>Business
+                owners</span><span>Freelancers</span><span>Existing installers seeking additional
+                skills</span><span>Individuals changing or developing their careers</span>
+        </div>
+    </section>
+
+    <!-- APPROACH -->
+    <section id="approach" class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">KADIS PRACTICAL TRAINING APPROACH</span>
+                <h2>Learn from real installation scenarios</h2>
+            </div>
+        </div>
+        <div class="serv-grid">
+            <div class="serv-card reveal"><span class="serv-num">01</span>
+                <h4>Theory</h4>
+                <p>Understand the technology.</p>
+            </div>
+            <div class="serv-card reveal"><span class="serv-num">02</span>
+                <h4>Demonstration</h4>
+                <p>Watch how the equipment is installed.</p>
+            </div>
+            <div class="serv-card reveal"><span class="serv-num">03</span>
+                <h4>Practical</h4>
+                <p>Work with actual equipment under supervision.</p>
+            </div>
+            <div class="serv-card reveal"><span class="serv-num">04</span>
+                <h4>Configuration</h4>
+                <p>Learn how to configure and test the system.</p>
+            </div>
+            <div class="serv-card reveal"><span class="serv-num">05</span>
+                <h4>Troubleshooting</h4>
+                <p>Understand common installation and operational problems.</p>
+            </div>
+            <div class="serv-card reveal"><span class="serv-num">06</span>
+                <h4>Project Work</h4>
+                <p>Complete practical installation exercises.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OUTCOMES -->
+    <section class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">TRAINING OUTCOMES</span>
+                <h2>What will you learn?</h2>
+            </div>
+            <p>Depending on the selected programme, participants should develop the ability to:</p>
+        </div>
+        <div class="check-grid reveal">
+            <div class="check-item"><span class="tick">✓</span>Identify appropriate equipment</div>
+            <div class="check-item"><span class="tick">✓</span>Understand system components</div>
+            <div class="check-item"><span class="tick">✓</span>Plan basic installations</div>
+            <div class="check-item"><span class="tick">✓</span>Install equipment correctly</div>
+            <div class="check-item"><span class="tick">✓</span>Configure systems</div>
+            <div class="check-item"><span class="tick">✓</span>Test completed installations</div>
+            <div class="check-item"><span class="tick">✓</span>Identify common faults</div>
+            <div class="check-item"><span class="tick">✓</span>Perform basic troubleshooting</div>
+            <div class="check-item"><span class="tick">✓</span>Carry out routine maintenance</div>
+            <div class="check-item"><span class="tick">✓</span>Understand professional installation practices</div>
+            <div class="check-item"><span class="tick">✓</span>Communicate effectively with customers</div>
+        </div>
+    </section>
+
+    <!-- TRAINING + PRODUCTS -->
+    <section class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">KADIS TRAINING + KADIS PRODUCTS</span>
+                <h2>Learn with the technology. Work with the technology.</h2>
+            </div>
+            <p>One of KADIS's major advantages is the connection between its training, products and installation
+                services.</p>
+        </div>
+        <div class="about-tags reveal" style="margin-bottom:28px;">
+            <span>CCTV</span><span>Access Control</span><span>Biometrics</span><span>Electric Fence</span><span>Fire
+                Alarm</span><span>Smart Locks</span><span>Automatic
+                Gates</span><span>PABX</span><span>Intercom</span><span>Solar</span><span>Inverter</span><span>Networking</span><span>Routers</span><span>Wi-Fi</span><span>DSTV</span><span>GOTV</span><span>SLTV</span><span>Satellite</span><span>Starlink</span><span>Car
+                Trackers</span>
+        </div>
+        <div class="flow-chain reveal">
+            <div class="node">SHOP</div>
+            <div class="arr">→</div>
+            <div class="node">TRAIN</div>
+            <div class="arr">→</div>
+            <div class="node">INSTALL</div>
+            <div class="arr">→</div>
+            <div class="node">SUPPORT</div>
+        </div>
+    </section>
+
+    <!-- ASPIRING INSTALLERS -->
+    <section class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">FOR ASPIRING ICT INSTALLERS</span>
+                <h2>Want to start your own ICT installation business?</h2>
+            </div>
+            <p>Start with one technical specialization and progressively expand.</p>
+        </div>
+        <div class="flow-chain reveal" style="margin-bottom:28px;">
+            <div class="node">CCTV</div>
+            <div class="arr">→</div>
+            <div class="node">Access Control</div>
+            <div class="arr">→</div>
+            <div class="node">Networking</div>
+            <div class="arr">→</div>
+            <div class="node">Solar</div>
+            <div class="arr">→</div>
+            <div class="node">Automation</div>
+            <div class="arr">→</div>
+            <div class="node">Satellite</div>
+            <div class="arr">→</div>
+            <div class="node">Vehicle Tracking</div>
+        </div>
+        <a class="btn-primary reveal"
+            href="https://wa.me/2348061379390?text=Hi%20KADIS%2C%20I%27d%20like%20to%20start%20my%20ICT%20training%20journey.">Start
+            Your Training Journey →</a>
+    </section>
+
+    <!-- CORPORATE -->
+    <section class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">CORPORATE & ORGANISATIONAL TRAINING</span>
+                <h2>ICT training for organisations</h2>
+            </div>
+        </div>
+        <div class="about-tags reveal" style="margin-bottom:26px;">
+            <span>Companies</span><span>Schools</span><span>Government
+                institutions</span><span>NGOs</span><span>Security companies</span><span>ICT
+                companies</span><span>Engineering firms</span><span>Technical teams</span><span>Facility management
+                teams</span>
+        </div>
+        <a class="btn-ghost reveal"
+            href="https://wa.me/2348061379390?text=Hi%20KADIS%2C%20I%27d%20like%20to%20request%20corporate%20ICT%20training%20for%20my%20staff.">Request
+            Corporate Training →</a>
+    </section>
+
+    <!-- TRAINING OPTIONS -->
+    <section id="options" class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">TRAINING OPTIONS</span>
+                <h2>Choose how you want to train</h2>
+            </div>
+        </div>
+        <div class="opt-grid">
+            <div class="opt-card reveal">
+                <h5>Individual Training</h5>
+                <p>For people who want to develop practical ICT installation skills.</p>
+            </div>
+            <div class="opt-card reveal">
+                <h5>Group Training</h5>
+                <p>For multiple participants.</p>
+            </div>
+            <div class="opt-card reveal">
+                <h5>Corporate Training</h5>
+                <p>For organisations training their technical or operational teams.</p>
+            </div>
+            <div class="opt-card reveal">
+                <h5>Custom Training</h5>
+                <p>Training tailored to a specific technology or organisational requirement.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrap">
+        <div class="stats-band">
+            <div class="stat-cell reveal"><b>6</b><span>TRAINING CATEGORIES</span></div>
+            <div class="stat-cell reveal"><b>20+</b><span>PRACTICAL COURSES</span></div>
+            <div class="stat-cell reveal"><b>4</b><span>TRAINING OPTIONS</span></div>
+            <div class="stat-cell reveal"><b>2020</b><span>KADIS SERVING ABUJA SINCE</span></div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faqs" class="wrap">
+        <div class="sec-head reveal"
+            style="justify-content:center; text-align:center; flex-direction:column; align-items:center;">
+            <span class="sec-eyebrow">FREQUENTLY ASKED QUESTIONS</span>
+            <h2>Got questions?</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">What ICT courses does KADIS offer?<span
+                        class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>KADIS focuses on practical installation training across security, automation, power, networking,
+                        satellite/entertainment and vehicle technology.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">Can beginners enrol?<span class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>Yes. Training can be structured for beginners depending on the selected programme.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">Is KADIS training practical?<span
+                        class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>The programme should emphasize practical demonstrations, supervised installation exercises,
+                        configuration and troubleshooting.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">Can I learn CCTV installation?<span
+                        class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>Yes. CCTV installation is one of the core Security Systems Training programmes.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">Does KADIS train people on access control and
+                    biometrics?<span class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>Yes.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">Can I learn solar and inverter installation?<span
+                        class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>Yes. Solar and inverter installation is part of the Power & Electrical Systems category.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">Does KADIS teach networking?<span
+                        class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>Yes. Training includes ICT networking, structured cabling, routers and Wi-Fi installation.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">Can I learn DSTV, GOTV and satellite installation?<span
+                        class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>Yes.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">Does KADIS offer Starlink installation training?<span
+                        class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>Yes, as part of the Satellite & Entertainment Systems category.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">Does KADIS train people on automatic gates and smart
+                    locks?<span class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>Yes.</p>
+                </div>
+            </div>
+            <div class="faq-item reveal">
+                <button class="faq-q" onclick="toggleFaq(this)">Can organisations train their staff?<span
+                        class="plus">+</span></button>
+                <div class="faq-a">
+                    <p>Yes. Corporate and customised ICT training can be offered according to organisational
+                        requirements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrap">
+        <div class="cta-band reveal">
+            <h2>Turn ICT knowledge into practical skills</h2>
+            <p>Security • Automation • Solar • Networking • Satellite • Vehicle Technology — whether you're starting
+                from scratch, improving your skills or training your organisation's workforce, KADIS ICT Training
+                connects learning with practical ICT installation.</p>
+            <div class="cta-buttons">
+                <a class="btn-primary"
+                    href="https://wa.me/2348061379390?text=Hi%20KADIS%2C%20I%27d%20like%20to%20enrol%20for%20ICT%20Training.">Enrol
+                    for ICT Training →</a>
+                <a class="btn-ghost" href="https://wa.me/2348061379390">Chat on WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="foot-promo">
+            <div class="wrap">
+                <p><b>Ready to learn a practical ICT skill?</b> Call or WhatsApp us to enrol, or ask about corporate
+                    training for your team.</p>
+                <a class="btn-primary" href="https://wa.me/2348061379390">Order on WhatsApp →</a>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="foot-grid">
+                <div class="foot-col">
+                    <a class="logo" href="#top" style="margin-bottom:14px;">
+                        <div class="logo-mark">K</div>
+                        <div class="lockup">KADIS<small>ICT TRAINING</small></div>
+                    </a>
+                    <p style="color:var(--ink-dim); font-size:13px; line-height:1.65; max-width:280px;">Practical ICT
+                        installation, engineering and technical skills training — part of the KADIS ICT & Engineering
+                        Solutions ecosystem.</p>
+                </div>
+                <div class="foot-col">
+                    <h5>Shop</h5>
+                    <a href="security.html">Security Systems</a>
+                    <a href="category.html?cat=cctv-camera">CCTV Cameras</a>
+                    <a href="smart.html">Smart Home</a>
+                    <a href="wifi.html">Wifi / Mifi / Routers</a>
+                    <a href="satellite.html">Starlink</a>
+                    <a href="gadgets.html">Phone Accessories</a>
+                    <a href="ps.html">Games & Consoles</a>
+                    <a href="solar.html">Solar & Batteries</a>
+                    <a href="cables.html">Cables, Wires & Adapters</a>
+                    <a href="ict_tools.html">ICT Engineering Tools</a>
+                    <a href="electronic_converter.html">Electronic Converters & OTG</a>
+                    <a href="ringlights.html">Ring lights</a>
+                    <a href="satellite.html">Tv Decoders & Satellite Accessories</a>
+                </div>
+                <div class="foot-col">
+                    <h5>Services</h5>
+                    <a href="installation.html">ICT Installations & Engineering</a>
+                    <a href="techforce.html">TechForce</a>
+                    <a href="dts.html">Digital Transformation (KDTS)</a>
+                    <a href="rental.html">Equipment Rentals</a>
+                    <a href="security.html">Security Systems</a>
+                    <a href="skillab.html">Tech SkillLab</a>
+                    <a href="satelliteinstall.html">Satellite Solutions</a>
+                    <a href="smartiot.html">Smart Home & IoT</a>
+                    <a href="eventmedia.html">Event Media</a>
+                    <a href="delivery.html">Delivery</a>
+                    <a href="installation.html">Starlink Installations</a>
+                    <a href="security.html">Security Systems</a>
+                    <a href="installation.html">AC & Freezer installation</a>
+                    <a href="satelliteinstall.html">Satellite Installation</a>
+                    <a href="source.html">Request Equipment</a>
+                    <a href="join.html">Join Our Team</a>
+                </div>
+                <div class="foot-col">
+                    <div class="foot-col">
+                        <h5>Contact</h5>
+                        <a href="tel:08024207231">0802 420 7231</a>
+                        <a href="#"> Head of Service, Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama,
+                            Abuja,
+                            Nigeria.</a>
+                        <a href="#">KADIS SHOP : Apo Urban Market, Apo, opposite Apo Shoprite, after NNPC/Dankogi
+                            Junction,
+                            Shop F1119, Abuja.</a>
+                        <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="foot-topics">
+                <h5>Blog Categories</h5>
+                <div class="foot-topics-row">
+                    <a href="blog.html#post-cctv-and-security-gadgets-solution">CCTV & Security</a>
+                    <a href="blog.html#post-electric-fence-solutions">Electric Fencing</a>
+                    <a href="blog.html#post-security-and-surveillance-system-solutions">Surveillance Systems</a>
+                    <a href="blog.html#post-access-control-system">Access Control</a>
+                    <a href="blog.html#post-biometric-devices-and-access-control-system-solutions">Biometric Devices</a>
+                    <a href="blog.html#post-automatic-or-electronic-gate-solutions">Automated Gates</a>
+                    <a href="blog.html#post-smart-door-locks">Smart Door Locks</a>
+                    <a href="blog.html#post-smart-homes-and-automated-house">Smart Homes</a>
+                    <a href="blog.html#post-smart-switches-hotels-commercial-buildings">Smart Switches</a>
+                    <a href="blog.html#post-smart-lighting-for-estates">Smart Lighting</a>
+                    <a href="blog.html#post-smart-curtains-luxury-apartments">Smart Curtains</a>
+                    <a href="blog.html#post-dstv-free-to-air-sltv-starlink-freetv-gotv-and-startimes-solutions">DSTV,
+                        GOtv &
+                        Starlink</a>
+                    <a href="blog.html#post-starlink-satellite-network-and-installation">Starlink Installation</a>
+                    <a href="blog.html#post-satellite-systems-remote-areas">Satellite for Remote Areas</a>
+                    <a href="blog.html#post-ict-networking-and-troubleshooting">Networking & Troubleshooting</a>
+                    <a href="blog.html#post-network-booster-and-installation">Network Boosters</a>
+                    <a href="blog.html#post-network-jammer-and-installation">Network Jammers</a>
+                    <a href="blog.html#post-pabx-and-intercom-system-solutions">PABX & Intercom</a>
+                    <a href="blog.html#post-solar-and-inverter-system">Solar & Inverters</a>
+                    <a href="blog.html#post-mobile-phone-updates-and-solutions">Mobile Phone Solutions</a>
+                    <a href="blog.html#post-phone-repairs-and-solution-tips">Phone Repairs</a>
+                    <a href="blog.html#post-phone-accessories-support-and-solutions">Phone Accessories</a>
+                    <a href="blog.html#post-computer-gadgets-and-accessories-solutions">Computer Accessories</a>
+                    <a href="blog.html#post-computer-repairs-and-solution-tips">Computer Repairs</a>
+                    <a href="blog.html#post-playstation-ps-games-consoles-and-accessories-solutions">PlayStation &
+                        Consoles</a>
+                    <a href="blog.html#post-drones-and-installation">Drones</a>
+                    <a href="blog.html#post-ict-engineering-tools">ICT Engineering Tools</a>
+                    <a href="blog.html#post-kadis-techforce">KADIS TechForce</a>
+                    <a href="blog.html#post-digital-transformation-kdts">Digital Transformation</a>
+                    <a href="blog.html#post-kadis-equipment-rentals-expansion">Equipment Rentals</a>
+                    <a href="blog.html#post-time-attendance-system">Time Attendance Systems</a>
+                    <a href="blog.html#post-ac-fridge-and-tv-installation-and-maintenance">AC, Fridge & TV Install</a>
+                    <a href="blog.html#post-ac-tv-and-refrigerator-sales-and-delivery">AC, TV & Fridge Sales</a>
+                    <a href="blog.html#post-fire-alarm-and-smoke-detectors">Fire Alarms & Smoke Detectors</a>
+                    <a href="blog.html#post-fire-extinguisher-sales-installation-training-and-certification">Fire
+                        Extinguishers</a>
+                    <a href="blog.html#post-fire-safety-technology-guide">Fire Safety Technology</a>
+                    <a href="blog.html#post-smoke-extractors">Smoke Extractors</a>
+                    <a href="blog.html#post-street-lights-and-poles">Street Lights & Poles</a>
+                    <a href="blog.html#post-rope-lights-and-designs">Rope Lights</a>
+                </div>
+            </div>
+
+            <div class="foot-topics">
+                <h5>Tips, Skills, Solutions & Updates</h5>
+                <div class="foot-topics-row">
+                    <a href="tips.html#post-smart-door-lock-installation-in-abuja">Smart Door Lock Install</a>
+                    <a href="tips.html#post-smart-locks-for-schools-and-offices">Locks for Schools & Offices</a>
+                    <a href="tips.html#post-how-smart-locks-work-with-cctv-systems">Smart Locks & CCTV</a>
+                    <a href="tips.html#post-future-of-smart-lock-technology">Future of Smart Locks</a>
+                    <a href="tips.html#post-smart-secure-schools-abuja">Smart & Secure Schools</a>
+                    <a href="tips.html#post-from-manual-records-to-smart-schools">School Management Systems</a>
+                    <a href="tips.html#post-transforming-school-management-abuja">School ERP Systems</a>
+                    <a href="tips.html#post-smart-lock-installation-mistakes-to-avoid">Lock Install Mistakes</a>
+                    <a href="tips.html#post-how-to-secure-your-property-with-smart-locks">Secure Your Property</a>
+                    <a href="tips.html#post-smart-access-using-rfid-and-biometrics">RFID & Biometric Access</a>
+                    <a href="tips.html#post-best-smart-lock-brands-in-nigeria">Best Smart Lock Brands</a>
+                    <a href="tips.html#post-smart-locks-for-gates-and-main-doors">Locks for Gates & Doors</a>
+                    <a href="tips.html#post-voice-controlled-smart-locks-explained">Voice-Controlled Locks</a>
+                    <a href="tips.html#post-smart-lock-security-features-to-know">Smart Lock Features</a>
+                    <a href="tips.html#post-keyless-entry-systems-explained">Keyless Entry Systems</a>
+                    <a href="tips.html#post-smart-lock-maintenance-tips">Smart Lock Maintenance</a>
+                    <a href="tips.html#post-why-renting-event-ict-equipment-in-abuja-saves-money">Why Rent Event & ICT
+                        Gear</a>
+                    <a href="tips.html#post-abuja-equipment-rentals">Abuja Equipment Rentals</a>
+                    <a href="tips.html#post-smart-locks-with-mobile-app-control">App-Controlled Locks</a>
+                </div>
+            </div>
+
+            <div class="foot-bottom">
+                <span>© 2020–2026 KADIS.COM.NG · All Rights Reserved</span>
+                <div class="social-row">
+                    <a href="https://web.facebook.com/kadisdigitals" aria-label="Facebook">f</a>
+                    <a href="https://www.instagram.com/kadisdigitals" aria-label="Instagram">ig</a>
+                    <a href="https://www.youtube.com/@kadisdigitals" aria-label="YouTube">yt</a>
+                    <a href="https://www.tiktok.com/@kadisdigitals" aria-label="TikTok">tt</a>
+                </div>
+                <span>Powered by E-Franky Global Services Limited</span>
+            </div>
+        </div>
+    </footer>
+
+    <a class="wa-float" href="https://wa.me/2348061379390" aria-label="Chat on WhatsApp">💬</a>
+
+    <script>
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const answer = item.querySelector('.faq-a');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(open => {
+                open.classList.remove('open');
+                open.querySelector('.faq-a').style.maxHeight = null;
+            });
+            if (!isOpen) { item.classList.add('open'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
+        }
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const idx = Number(entry.target.dataset.idx || 0);
+                    entry.target.style.transitionDelay = Math.min(idx, 6) * 60 + 'ms';
+                    entry.target.classList.add('in-view');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.reveal').forEach((el, i) => { el.dataset.idx = i % 6; io.observe(el); });
+    </script>
+</body>
+
+</html>
