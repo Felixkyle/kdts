@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Notes — KADIS.COM.NG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0C0B09;
+            --ink-2: #131210;
+            --ink-3: #1B1916;
+            --paper: #EFEAE0;
+            --paper-dim: #A79C89;
+            --paper-dimmer: #6B6255;
+            --rule: rgba(239, 234, 224, 0.10);
+            --rule-strong: rgba(239, 234, 224, 0.20);
+            --amber: #D9772E;
+            --amber-soft: #E8A15E;
+
+            /* add these */
+            --bg: var(--ink);
+            --bg-2: var(--ink-2);
+            --bg-3: var(--ink-3);
+            --line: var(--rule);
+            --line-bright: var(--rule-strong);
+            --ink-dim: var(--paper-dim);
+            --ink-dimmer: var(--paper-dimmer);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--paper);
+            font-family: 'Source Serif 4', serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .serif-display {
+            font-family: 'Fraunces', serif;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .sans {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        ::selection {
+            background: var(--amber-soft);
+            color: #161310;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* ---------- Top nav ---------- */
+        nav {
+            border-bottom: 1px solid var(--rule);
+            padding: 18px 0;
+            background: var(--bg);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink-dim);
+            margin-left: 20px;
+            overflow-x: auto;
+        }
+
+        .nav-links a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 0;
+            white-space: nowrap;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            border-bottom: 2px solid var(--amber);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--amber);
+            transition: width .3s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 0 0 auto;
+        }
+
+        .nav-actions .btn-primary {
+            white-space: nowrap;
+            font-size: 12px;
+            padding: 11px 15px;
+        }
+
+        /* ---------- Masthead ---------- */
+        .masthead {
+            padding: 88px 0 60px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .masthead .kicker {
+            font-family: 'Space Mono';
+            font-size: 11.5px;
+            color: var(--amber-soft);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            display: block;
+        }
+
+        .masthead h1 {
+            font-family: 'Fraunces';
+            font-weight: 500;
+            font-size: clamp(42px, 7vw, 84px);
+            line-height: 0.98;
+            letter-spacing: -0.01em;
+            margin-bottom: 24px;
+        }
+
+        .masthead h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: white;
+        }
+
+        .masthead .dek {
+            font-size: 17px;
+            color: rgb(213, 209, 209);
+            max-width: 540px;
+            line-height: 1.7;
+            font-family: 'Source Serif 4';
+        }
+
+        /* ---------- Index / accordion ---------- */
+        .index-section {
+            padding: 10px 0 100px;
+        }
+
+        .index-head {
+            font-family: 'Space Mono';
+            font-size: 11.5px;
+            color: rgb(207, 202, 202);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 40px 0 20px;
+        }
+
+        .entry {
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .entry-summary {
+            display: grid;
+            grid-template-columns: 64px 1fr auto auto;
+            gap: 22px;
+            align-items: center;
+            padding: 30px 0;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .idx-num {
+            font-family: 'Fraunces';
+            font-weight: 400;
+            font-size: 15px;
+            color: var(--paper-dimmer);
+            font-style: italic;
+        }
+
+        .idx-main .cat {
+            font-family: 'Space Mono';
+            font-size: 10.5px;
+            color: var(--amber-soft);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 9px;
+        }
+
+        .idx-main h3 {
+            font-family: 'Fraunces';
+            font-weight: 500;
+            font-size: 23px;
+            line-height: 1.25;
+            margin-bottom: 8px;
+            transition: color .2s;
+        }
+
+        .entry-summary:hover .idx-main h3 {
+            color: var(--amber-soft);
+        }
+
+        .idx-main p {
+            color: rgb(211, 209, 209);
+            font-size: 14px;
+            line-height: 1.65;
+            max-width: 520px;
+        }
+
+        .idx-meta {
+            font-family: 'Space Mono';
+            font-size: 11px;
+            color: var(--paper-dimmer);
+            white-space: nowrap;
+        }
+
+        .toggle-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--rule-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-family: 'Manrope';
+            font-size: 16px;
+            color: var(--paper-dim);
+            transition: transform .35s cubic-bezier(.16, .8, .24, 1), border-color .3s, color .3s;
+        }
+
+        .entry.open .toggle-icon {
+            transform: rotate(45deg);
+            border-color: var(--amber-soft);
+            color: var(--amber-soft);
+        }
+
+        .entry.open .idx-main h3 {
+            color: var(--amber-soft);
+        }
+
+        .panel-wrap {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows .5s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .entry.open .panel-wrap {
+            grid-template-rows: 1fr;
+        }
+
+        .panel-inner {
+            overflow: hidden;
+        }
+
+        .panel {
+            padding: 6px 0 50px;
+            max-width: 680px;
+        }
+
+        .panel figure {
+            margin: 6px 0 34px;
+            border: 1px solid var(--rule-strong);
+            border-radius: 4px;
+            background: var(--ink-2);
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 16/9;
+        }
+
+        .panel figure img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 2px;
+            display: block;
+        }
+
+        .panel figure.img-missing {
+            background: repeating-linear-gradient(45deg, var(--ink-2), var(--ink-2) 10px, var(--ink-3) 10px, var(--ink-3) 20px);
+        }
+
+        .panel figure.img-missing img {
+            display: none;
+        }
+
+        .panel figure .img-placeholder-label {
+            display: none;
+            font-family: 'Space Mono';
+            font-size: 11px;
+            color: var(--paper-dimmer);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .panel figure.img-missing .img-placeholder-label {
+            display: block;
+        }
+
+        .panel figcaption {
+            display: none;
+        }
+
+        .panel p {
+            font-size: 17px;
+            line-height: 1.82;
+            color: var(--paper);
+            margin-bottom: 24px;
+        }
+
+        .panel p.lede::first-letter {
+            font-family: 'Fraunces';
+            font-weight: 500;
+            font-size: 64px;
+            float: left;
+            line-height: 0.8;
+            margin: 6px 10px 0 0;
+            color: var(--amber-soft);
+        }
+
+        .panel h4 {
+            font-family: 'Fraunces';
+            font-weight: 500;
+            font-size: 21px;
+            margin: 36px 0 14px;
+            line-height: 1.25;
+        }
+
+        .panel .pull-quote {
+            margin: 38px 0;
+            padding: 4px 0 4px 26px;
+            border-left: 2px solid var(--amber);
+        }
+
+        .panel .pull-quote p {
+            font-family: 'Fraunces';
+            font-style: italic;
+            font-weight: 400;
+            font-size: 22px;
+            line-height: 1.45;
+            color: var(--paper);
+            margin: 0;
+        }
+
+        .panel-cta {
+            margin-top: 36px;
+            padding-top: 28px;
+            border-top: 1px solid var(--rule);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .panel-cta p {
+            font-size: 14px;
+            color: rgb(209, 203, 203);
+            max-width: 380px;
+            margin: 0;
+        }
+
+        .cta-link {
+            font-family: 'Manrope';
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--paper);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--rule-strong);
+            padding-bottom: 3px;
+            transition: all .25s;
+            white-space: nowrap;
+        }
+
+        .cta-link:hover {
+            color: var(--amber-soft);
+            border-color: var(--amber-soft);
+            gap: 12px;
+        }
+
+        .permalink {
+            display: inline-block;
+            margin-top: 16px;
+            font-family: 'Space Mono';
+            font-size: 11px;
+            color: var(--paper-dimmer);
+            transition: color .2s;
+        }
+
+        .permalink:hover {
+            color: var(--amber-soft);
+        }
+
+        .placeholder-tag {
+            display: inline-block;
+            margin-bottom: 14px;
+            font-family: 'Space Mono';
+            font-size: 10px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink);
+            background: var(--amber-soft);
+            padding: 4px 9px;
+            border-radius: 3px;
+        }
+
+        @media (max-width:640px) {
+            .entry-summary {
+                grid-template-columns: 1fr auto;
+                grid-template-areas: "num toggle" "main main" "meta meta";
+                row-gap: 8px;
+            }
+
+            .idx-num {
+                grid-area: num;
+            }
+
+            .toggle-icon {
+                grid-area: toggle;
+                justify-self: end;
+            }
+
+            .idx-main {
+                grid-area: main;
+            }
+
+            .idx-meta {
+                grid-area: meta;
+            }
+
+            .nav-links {
+                order: 3;
+                width: 100%;
+                margin-left: 0;
+                gap: 14px;
+            }
+        }
+
+        /* ---------- Footer (quiet, editorial) ---------- */
+        footer {
+            border-top: 1px solid var(--line);
+            background: var(--bg-2);
+        }
+
+        .foot-promo {
+            background: linear-gradient(115deg, rgba(217, 119, 46, 0.10), rgba(169, 184, 76, 0.04));
+            border-bottom: 1px solid var(--line);
+            padding: 22px 0;
+        }
+
+        .foot-promo .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .foot-promo p {
+            font-size: 13.5px;
+            color: white;
+            max-width: 760px;
+            line-height: 1.7;
+        }
+
+        .foot-promo b {
+            color: rgb(165, 112, 12);
+        }
+
+        .foot-promo .btn-primary {
+            background: var(--amber);
+            color: #0B0C0F;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 11px 22px;
+            border-radius: 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            box-shadow: 0 8px 22px rgba(217, 119, 46, 0.22);
+            transition: transform .25s, background .25s;
+        }
+
+        .foot-promo .btn-primary:hover {
+            transform: translateY(-2px);
+            background: var(--amber-soft);
+        }
+
+        .foot-contact {
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: white;
+            line-height: 1.9;
+        }
+
+        .foot-contact .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: space-between;
+            color: white;
+        }
+
+        .foot-contact strong {
+            color: rgb(220, 121, 40);
+            font-weight: 700;
+        }
+
+        .foot-contact a {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-contact .fc-block {
+            max-width: 520px;
+            color: white;
+        }
+
+
+        .fc-block a {
+            color: white;
+        }
+
+        .foot-main {
+            padding: 56px 0 40px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.3fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 0;
+        }
+
+        .foot-col h5 {
+            font-size: 13px;
+            color: rgb(162, 148, 148);
+            margin-bottom: 18px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-col a {
+            display: block;
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            margin-bottom: 12px;
+            transition: color .2s;
+        }
+
+        .foot-col a:hover {
+            color: var(--amber-soft);
+        }
+
+        /* ---- Blog topics: compact wrapped pill row instead of one giant
+       vertical list crammed into a footer column ---- */
+        .foot-topics {
+            padding: 30px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .foot-topics h5 {
+            font-size: 13px;
+            color: white;
+            margin-bottom: 16px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-topics-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .foot-topics-row a {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            background: var(--bg-3);
+            border: 1px solid rgb(168, 132, 102);
+            border-radius: 100px;
+            padding: 7px 14px;
+            transition: border-color .2s, color .2s;
+            white-space: nowrap;
+        }
+
+        .foot-topics-row a:hover {
+            border-color: white;
+            color: var(--amber-soft);
+        }
+
+        .foot-links-line {
+            padding: 20px 24px;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-dim);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 0;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .foot-links-line a {
+            color: rgb(215, 214, 214);
+            font-weight: 700;
+        }
+
+        .foot-links-line .sep {
+            color: var(--ink-dimmer);
+            margin: 0 10px;
+        }
+
+        .foot-bank {
+            padding: 16px 24px;
+            font-size: 12.5px;
+            color: rgb(213, 211, 211);
+            border-bottom: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .foot-bank strong {
+            color: var(--amber-soft);
+        }
+
+        .foot-bottom {
+            padding: 22px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            color: rgb(195, 190, 190);
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-row a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: var(--ink-dim);
+            transition: all .2s;
+        }
+
+        .social-row a:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-channel {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            width: fit-content;
+            padding: 13px 18px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--ink);
+            transition: all 0.25s ease;
+            margin: 0 22px 24px;
+        }
+
+        .whatsapp-channel:hover {
+            transform: translateY(-2px);
+            border-color: rgba(37, 211, 102, 0.45);
+            background: rgba(37, 211, 102, 0.07);
+        }
+
+        .whatsapp-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #fff;
+            font-size: 21px;
+        }
+
+        .whatsapp-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            color: white;
+        }
+
+        .whatsapp-content strong {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .whatsapp-content small {
+            font-size: 11px;
+            color: var(--ink-dim);
+            line-height: 1.3;
+        }
+
+        .whatsapp-arrow {
+            margin-left: 8px;
+            font-size: 19px;
+            color: var(--amber);
+            transition: transform 0.25s ease;
+        }
+
+        .whatsapp-channel:hover .whatsapp-arrow {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="wrap nav-inner">
+            <a class="logo" href="index.html">
+                <img src="images/KADISS.png" alt="Kadis" style="height:38px; width:auto; border-radius:8px;">
+            </a>
+            <div class="nav-links">
+                <a href="installation.html">ICT Engineering</a>
+                <a href="index.html#solutions">Digital Solutions</a>
+                <a href="staffing.html">ICT Staffing</a>
+                <a href="training.html">Training</a>
+                <a href="join.html">Join our Team</a>
+                <a href="rental.html">Equipment Rentals</a>
+                <a href="Allcategory.html">Store</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="masthead">
+        <div class="wrap">
+            <span class="kicker">Kadis Journal — Vol. 01</span>
+            <h1 class="serif-display">Field Notes <em>on ICT, installations & infrastructure.</em></h1>
+            <p class="dek">Dispatches from the Kadis engineering floor — how we choose equipment, what installations
+                teach us,
+                and what's changing across security, smart-home and digital infrastructure work in Abuja. Click a
+                dispatch to
+                read it right here.</p>
+        </div>
+    </section>
+
+    <section class="index-section wrap">
+        <div class="index-head">All dispatches</div>
+        <div id="entryList"></div>
+    </section>
+
+    <footer>
+        <div class="foot-promo">
+            <div class="wrap">
+                <p><b>Shop & order now</b> — or place your order via phone call or WhatsApp message. We also do
+                    door-step
+                    delivery within Abuja and 4 surrounding states.</p>
+                <a class="btn-primary" href="https://wa.me/2348061379390">Order on WhatsApp →</a>
+            </div>
+        </div>
+
+        <div class="foot-contact" id="contact">
+            <div class="wrap">
+                <div class="fc-block">
+                    <strong>Headoffice:</strong> Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama, Abuja,
+                    Nigeria.
+                    <br> <strong>Branch:</strong> Apo Ultra Modern Market, Apo, opposite Apo Shoprite, after
+                    NNPC/Dankogi Junction,
+                    Shop F1119, Abuja.
+                </div>
+                <div class="fc-block">
+                    <strong>WhatsApp / Hotline:</strong> <a href="tel:08061379390">0806 137 9390</a>, <a
+                        href="tel:08024207231">0802 420 7231</a><br>
+                    <strong>E-mail:</strong> <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="foot-main">
+                <div class="foot-grid">
+                    <div class="foot-col">
+                        <a class="logo" href="index.html" style="margin-bottom:16px;">
+                            <img src="images/KADISS.png" alt="Kadis"
+                                style="height:38px; width:auto; border-radius:8px;">
+                        </a>
+                        <p style="color:var(--ink-dim); font-size:13.5px; line-height:1.7; max-width:280px;">Abuja's No.
+                            1 ICT
+                            Ecosystem — gadgets, security, smart home, satellite & digital solutions, delivered
+                            door-step.</p>
+                    </div>
+                    <div class="foot-col">
+                        <h5>Shop</h5>
+                        <a href="security.html">Security Systems</a>
+                        <a href="category.html?cat=cctv-camera">CCTV Cameras</a>
+                        <a href="smart.html">Smart Home</a>
+                        <a href="wifi.html">Wifi / Mifi / Routers</a>
+                        <a href="satellite.html">Starlink</a>
+                        <a href="gadgets.html">Phone Accessories</a>
+                        <a href="ps.html">Games & Consoles</a>
+                        <a href="solar.html">Solar & Batteries</a>
+                        <a href="cables.html">Cables, Wires & Adapters</a>
+                        <a href="ict_tools.html">ICT Engineering Tools</a>
+                        <a href="electronic_converter.html">Electronic Converters & OTG</a>
+                        <a href="ringlights.html">Ring lights</a>
+                        <a href="satellite.html">Tv Decoders & Satellite Accessories</a>
+                    </div>
+                    <div class="foot-col">
+                        <h5>Services</h5>
+                        <a href="installation.html">ICT Installations & Engineering</a>
+                        <a href="techforce.html">TechForce</a>
+                        <a href="dts.html">Digital Transformation (KDTS)</a>
+                        <a href="rental.html">Equipment Rentals</a>
+                        <a href="security.html">Security Systems</a>
+                        <a href="skillab.html">Tech SkillLab</a>
+                        <a href="satelliteinstall.html">Satellite Solutions</a>
+                        <a href="smartiot.html">Smart Home & IoT</a>
+                        <a href="eventmedia.html">Event & Media</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="delivery.html">Delivery</a>
+                        <a href="installation.html">Starlink Installations</a>
+                        <a href="security.html">Security Systems</a>
+                        <a href="installation.html">AC & Freezer installation</a>
+                        <a href="satelliteinstall.html">Satellite Installation</a>
+                        <a href="source.html">Request Equipment</a>
+                        <a href="training.html">Training</a>
+                        <a href="join.html">Join Our Team</a>
+                    </div>
+                    <div class="foot-col">
+                        <div class="foot-col">
+                            <h5>Contact</h5>
+                            <a href="tel:08061379390">0806 137 9390</a>
+                            <a href="tel:08024207231">0802 420 7231</a>
+                            <a href="#"> Head of Service, Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama,
+                                Abuja, Nigeria.</a>
+                            <a href="#">KADIS SHOP : Apo Urban Market, Apo, opposite Apo Shoprite, after
+                                NNPC/Dankogi Junction, Shop F1119, Abuja.</a>
+                            <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="foot-topics">
+                    <h5>Blog Categories</h5>
+                    <div class="foot-topics-row">
+                        <a href="blog.html#post-cctv-and-security-gadgets-solution">CCTV & Security</a>
+                        <a href="blog.html#post-electric-fence-solutions">Electric Fencing</a>
+                        <a href="blog.html#post-security-and-surveillance-system-solutions">Surveillance Systems</a>
+                        <a href="blog.html#post-access-control-system">Access Control</a>
+                        <a href="blog.html#post-biometric-devices-and-access-control-system-solutions">Biometric
+                            Devices</a>
+                        <a href="blog.html#post-automatic-or-electronic-gate-solutions">Automated Gates</a>
+                        <a href="blog.html#post-smart-door-locks">Smart Door Locks</a>
+                        <a href="blog.html#post-smart-homes-and-automated-house">Smart Homes</a>
+                        <a href="blog.html#post-smart-switches-hotels-commercial-buildings">Smart Switches</a>
+                        <a href="blog.html#post-smart-lighting-for-estates">Smart Lighting</a>
+                        <a href="blog.html#post-smart-curtains-luxury-apartments">Smart Curtains</a>
+                        <a href="blog.html#post-dstv-free-to-air-sltv-starlink-freetv-gotv-and-startimes-solutions">DSTV,
+                            GOtv &
+                            Starlink</a>
+                        <a href="blog.html#post-starlink-satellite-network-and-installation">Starlink Installation</a>
+                        <a href="blog.html#post-satellite-systems-remote-areas">Satellite for Remote Areas</a>
+                        <a href="blog.html#post-ict-networking-and-troubleshooting">Networking & Troubleshooting</a>
+                        <a href="blog.html#post-network-booster-and-installation">Network Boosters</a>
+                        <a href="blog.html#post-network-jammer-and-installation">Network Jammers</a>
+                        <a href="blog.html#post-pabx-and-intercom-system-solutions">PABX & Intercom</a>
+                        <a href="blog.html#post-solar-and-inverter-system">Solar & Inverters</a>
+                        <a href="blog.html#post-mobile-phone-updates-and-solutions">Mobile Phone Solutions</a>
+                        <a href="blog.html#post-phone-repairs-and-solution-tips">Phone Repairs</a>
+                        <a href="blog.html#post-phone-accessories-support-and-solutions">Phone Accessories</a>
+                        <a href="blog.html#post-computer-gadgets-and-accessories-solutions">Computer Accessories</a>
+                        <a href="blog.html#post-computer-repairs-and-solution-tips">Computer Repairs</a>
+                        <a href="blog.html#post-playstation-ps-games-consoles-and-accessories-solutions">PlayStation &
+                            Consoles</a>
+                        <a href="blog.html#post-drones-and-installation">Drones</a>
+                        <a href="blog.html#post-ict-engineering-tools">ICT Engineering Tools</a>
+                        <a href="blog.html#post-kadis-techforce">KADIS TechForce</a>
+                        <a href="blog.html#post-digital-transformation-kdts">Digital Transformation</a>
+                        <a href="blog.html#post-kadis-equipment-rentals-expansion">Equipment Rentals</a>
+                        <a href="blog.html#post-time-attendance-system">Time Attendance Systems</a>
+                        <a href="blog.html#post-ac-fridge-and-tv-installation-and-maintenance">AC, Fridge & TV
+                            Install</a>
+                        <a href="blog.html#post-ac-tv-and-refrigerator-sales-and-delivery">AC, TV & Fridge Sales</a>
+                        <a href="blog.html#post-fire-alarm-and-smoke-detectors">Fire Alarms & Smoke Detectors</a>
+                        <a href="blog.html#post-fire-extinguisher-sales-installation-training-and-certification">Fire
+                            Extinguishers</a>
+                        <a href="blog.html#post-fire-safety-technology-guide">Fire Safety Technology</a>
+                        <a href="blog.html#post-smoke-extractors">Smoke Extractors</a>
+                        <a href="blog.html#post-street-lights-and-poles">Street Lights & Poles</a>
+                        <a href="blog.html#post-rope-lights-and-designs">Rope Lights</a>
+                    </div>
+                </div>
+
+                <div class="foot-topics">
+                    <h5>Tips, Skills, Solutions & Updates</h5>
+                    <div class="foot-topics-row">
+                        <a href="tips.html#post-smart-door-lock-installation-in-abuja">Smart Door Lock Install</a>
+                        <a href="tips.html#post-smart-locks-for-schools-and-offices">Locks for Schools & Offices</a>
+                        <a href="tips.html#post-how-smart-locks-work-with-cctv-systems">Smart Locks & CCTV</a>
+                        <a href="tips.html#post-future-of-smart-lock-technology">Future of Smart Locks</a>
+                        <a href="tips.html#post-smart-secure-schools-abuja">Smart & Secure Schools</a>
+                        <a href="tips.html#post-from-manual-records-to-smart-schools">School Management Systems</a>
+                        <a href="tips.html#post-transforming-school-management-abuja">School ERP Systems</a>
+                        <a href="tips.html#post-smart-lock-installation-mistakes-to-avoid">Lock Install Mistakes</a>
+                        <a href="tips.html#post-how-to-secure-your-property-with-smart-locks">Secure Your Property</a>
+                        <a href="tips.html#post-smart-access-using-rfid-and-biometrics">RFID & Biometric Access</a>
+                        <a href="tips.html#post-best-smart-lock-brands-in-nigeria">Best Smart Lock Brands</a>
+                        <a href="tips.html#post-smart-locks-for-gates-and-main-doors">Locks for Gates & Doors</a>
+                        <a href="tips.html#post-voice-controlled-smart-locks-explained">Voice-Controlled Locks</a>
+                        <a href="tips.html#post-smart-lock-security-features-to-know">Smart Lock Features</a>
+                        <a href="tips.html#post-keyless-entry-systems-explained">Keyless Entry Systems</a>
+                        <a href="tips.html#post-smart-lock-maintenance-tips">Smart Lock Maintenance</a>
+                        <a href="tips.html#post-why-renting-event-ict-equipment-in-abuja-saves-money">Why Rent Event &
+                            ICT Gear</a>
+                        <a href="tips.html#post-abuja-equipment-rentals">Abuja Equipment Rentals</a>
+                        <a href="tips.html#post-smart-locks-with-mobile-app-control">App-Controlled Locks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="foot-links-line">
+            Trusted Equipment Rentals for ICT, Events & Security — <a href="rental.html">Click here to rent now</a>
+            <span class="sep">|</span>
+            <a href="index.html#faqs">Frequently Asked Questions</a>
+            <span class="sep">|</span>
+            <a href="index.html#about">About Kadis</a>
+        </div>
+
+        <div class="foot-bank">
+            <strong>NB:</strong> All payments should be made to this bank account only: E-Franky Global Services Limited
+            —
+            GTBank: 0424528897.
+        </div>
+
+        <div class="foot-bottom">
+            <span>© 2020–2026 KADIS.COM.NG · All Rights Reserved</span>
+            <div class="social-row">
+                <a href="https://web.facebook.com/kadisdigitals" aria-label="Facebook">f</a>
+                <a href="https://www.instagram.com/kadisdigitals" aria-label="Instagram">ig</a>
+                <a href="https://www.youtube.com/@kadisdigitals" aria-label="YouTube">yt</a>
+                <a href="https://www.tiktok.com/@kadisdigitals" aria-label="TikTok">tt</a>
+            </div>
+            <span>Powered by E-Franky Global Services Limited</span>
+        </div>
+        <a href="https://whatsapp.com/channel/0029VaxUvHk3gvWa5WhtZ03K" class="whatsapp-channel" target="_blank"
+            rel="noopener noreferrer" aria-label="Follow KADIS ICT & Media Solutions on WhatsApp">
+            <span class="whatsapp-icon" aria-hidden="true">
+                <i class="fab fa-whatsapp"></i>
+            </span>
+
+            <span class="whatsapp-content">
+                <strong>Follow KADIS on WhatsApp</strong>
+                <small>Get updates, solutions & tech insights</small>
+            </span>
+
+            <span class="whatsapp-arrow" aria-hidden="true">→</span>
+        </a>
+    </footer>
+
+    <script>
+        const POSTS = [
+            {
+                slug: "smart-switches-hotels-commercial-buildings",
+                num: "007", cat: "Smart Home", readMins: 6,
+                img: "images/kadis-blog-07.jpg",
+                title: "Smart Switches for Hotels and Commercial Buildings",
+                dek: "What separates a smart-switch install that pays for itself from one that becomes a maintenance headache.",
+                cta: { text: "Kadis handles smart-switch sourcing and installation end to end, from relay selection to the management dashboard.", label: "Talk to FixIT about a smart-switch install", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "For hotels and commercial buildings across Nigeria, lighting and power aren't just a comfort line item — they're one of the largest controllable costs on the utility bill, especially where diesel generators fill the gap left by grid supply. Smart switches have become one of the fastest-paying-for-itself upgrades available, but the difference between an installation that delivers real savings and one that becomes a recurring maintenance call almost always comes down to decisions made before a single wire is cut.", lede: true },
+                    { h4: "Start With the Switch, Not the App" },
+                    { p: "It's tempting to shop by app features first, but the switch hardware underneath matters more. Commercial-grade units rated for 10A to 16A with high-cycle relays, sourced from reputable manufacturers, are what stand between a system that runs quietly for years and one that starts failing under the load of a busy guest floor within months." },
+                    { h4: "Wired or Wireless — Match It to the Building" },
+                    { p: "New-build hotels have the luxury of running structured cabling during construction, which makes wired protocols like KNX or RS-485 the stronger long-term choice. Retrofits are a different story: tearing into finished walls to rewire an occupied property is rarely worth it, which is where Zigbee or Wi-Fi mesh systems earn their keep, layering smart control over existing wiring." },
+                    { quote: "A smart switch is only as smart as the installation behind it." },
+                    { h4: "Buy a Platform, Not Just a Switch" },
+                    { p: "The switch you install this year should be able to grow with the building — curtains, thermostats, CCTV, access control, smart locks and solar monitoring. Before committing to any provider, ask to see the system live: scene control, key-card room presence detection, and the management dashboard a front-desk team will actually use." },
+                    { h4: "Why the Installer Matters as Much as the Equipment" },
+                    { p: "Professional installation is what determines whether wiring is done safely, configuration holds up under daily use, the setup meets electrical code, and the system reaches its full working lifespan." }
+                ]
+            },
+            {
+                slug: "fire-safety-technology-guide",
+                num: "006", cat: "Fire & Life Safety", readMins: 5,
+                img: "images/kadis-blog-06.png",
+                title: "A Field Guide to Modern Fire Safety Technology",
+                dek: "Why the same buildings getting smarter are also getting more exposed to fire risk — and what a modern system actually watches for.",
+                cta: { text: "Kadis installs and maintains fire alarm and smoke detection systems as part of FixIT, sized to the building.", label: "Talk to FixIT about fire safety", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Fire remains one of the most common causes of property loss and business interruption anywhere, and as buildings absorb more automation, IoT devices and always-on electronics, the electrical load behind the walls grows with them. A single fault today can spread faster than the smoke alarms designed a generation ago were built to catch.", lede: true },
+                    { h4: "What 'Smart' Actually Adds" },
+                    { p: "A modern fire safety system layers sensors, cloud connectivity and analysis software on top of the same basic job traditional alarms have always done. Built-in processors read multiple sensors at once and use pattern recognition to tell a real fire apart from harmless conditions — burnt toast, steam, dust — cutting down on the false alarms that eventually make people ignore every alarm." },
+                    { h4: "Different Buildings, Different Stakes" },
+                    { p: "Schools and hospitals carry risks ordinary offices don't. Hospitals combine oxygen cylinders, medical gases, lab chemicals and patients who can't self-evacuate; schools combine large numbers of people who need clear, fast guidance. Detection systems built for these environments pinpoint a fire's exact location, so responders can move directly to the source instead of clearing an entire building room by room." },
+                    { quote: "The best fire alarm is the one that tells you exactly where to go, not just that something is wrong." },
+                    { h4: "Wireless Changes the Installation Math" },
+                    { p: "For retrofits especially, wireless fire alarm systems remove the need to run new cable through finished ceilings and walls, while still supporting remote monitoring and integration with CCTV, access control and voice evacuation systems." },
+                    { h4: "Maintenance Is Not Optional" },
+                    { p: "A fire system is only as reliable as its last inspection. Routine testing, sensor cleaning, and checking that cloud connectivity and mobile alerts still work are what keep a system ready the one time it actually matters — treating installation as the finish line is the most common mistake building owners make." }
+                ]
+            },
+            {
+                slug: "smart-lighting-for-estates",
+                num: "005", cat: "Smart Home & Security", readMins: 5,
+                img: "images/kadis-blog-05.png",
+                title: "Best Smart Lighting Systems for Estates",
+                dek: "Why estate management is increasingly judged by whether the walkways and perimeter fences stay lit — and what that costs to run.",
+                cta: { text: "Kadis designs and installs estate-wide smart lighting, from perimeter fencing to internal roads, with motion-sensor security built in.", label: "Talk to FixIT about estate lighting", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A well-run estate used to be judged by its roads and its houses. Increasingly, it's judged by whether the entrances, walkways, parking areas and perimeter fences stay lit — and by how much that lighting costs the estate management to run every month.", lede: true },
+                    { h4: "Where Smart Lighting Actually Pays Off" },
+                    { p: "Entrances, internal roads, pedestrian walkways, parking areas, playgrounds, gardens, clubhouses and perimeter fences are the areas estate lighting projects usually cover first, since they're the spaces residents notice immediately when the lights are working — or aren't." },
+                    { h4: "Light as a Security Layer" },
+                    { p: "Paired with motion sensors, estate lighting stops being purely cosmetic. Lights that switch on when movement is detected along a perimeter fence or a dark walkway double as an early alert for security personnel, not just a convenience for residents walking home at night." },
+                    { quote: "A dark corner is a decision estate management makes, not bad luck." },
+                    { h4: "The Energy Case" },
+                    { p: "LED-based smart lighting draws a fraction of the power older estate lighting used, and scheduling or daylight-sensing controls mean fixtures aren't running at full brightness — or running at all — when nobody's around to need them. Across dozens of poles, that difference compounds fast." },
+                    { h4: "Getting It Right" },
+                    { p: "The systems that hold up long-term are designed for the estate's actual layout from the start — pole spacing, cabling routes, and a control setup the estate management team can actually operate — rather than a generic lighting kit dropped in after the fact." }
+                ]
+            },
+            {
+                slug: "smart-curtains-luxury-apartments",
+                num: "004", cat: "Smart Home", readMins: 5,
+                img: "images/kadis-blog-04.png",
+                title: "Smart Curtains for Luxury Apartments",
+                dek: "How motorized curtain systems went from novelty to a genuine measure of what counts as a well-finished property.",
+                cta: { text: "Kadis sources, sizes and installs smart curtain systems for apartments, hotels and offices — matched to the room, not just the window.", label: "Talk to FixIT about smart curtains", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Luxury used to mean the furniture and the finishes. Increasingly, it means the apartment can dim itself, close its own curtains at sunset, and do it without anyone touching a remote — a shift smart curtain systems are quietly driving in serviced apartments, high-end offices and private homes alike.", lede: true },
+                    { h4: "More Than a Motor on a Rail" },
+                    { p: "A smart curtain system pairs a motorized track with a controller that responds to a smartphone app, a wall switch, a voice assistant, or nothing at all — running instead on a schedule tied to sunrise, sunset, or a custom home-automation routine." },
+                    { h4: "Wired for Growth" },
+                    { p: "The better installations are chosen with an eye on what comes next: platforms built to sit alongside smart lighting, CCTV and climate control, rather than as a standalone gadget that has to be replaced once the rest of the apartment catches up." },
+                    { quote: "Nobody notices well-run automation — they only notice when it's missing." },
+                    { h4: "Where Installation Quality Shows Up" },
+                    { p: "Motor sizing and track alignment sound like small details until they're wrong — an undersized motor strains and fails early, and a poorly aligned track binds within months. Both are installation problems, not product problems." },
+                    { h4: "A Practical Upside: Heat and Privacy" },
+                    { p: "Beyond convenience, automated curtains cut indoor heat gain by closing on a schedule during the hottest part of the day, and give residents privacy control that doesn't depend on remembering to walk over and close them by hand." }
+                ]
+            },
+            {
+                slug: "satellite-systems-remote-areas",
+                num: "003", cat: "Satellite & Connectivity", readMins: 5,
+                img: "images/kadis-blog-03.png",
+                title: "Satellite Systems for Remote Areas",
+                dek: "Two different problems — internet access and television — and why the installation matters as much as which system you pick.",
+                cta: { text: "Kadis sells, installs and configures Starlink, DStv, GOtv, Startimes and SLTV systems, with signal alignment included.", label: "Talk to FixIT about satellite installs", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "For homes, schools and businesses outside the reach of fibre or stable mobile networks, satellite technology has quietly become the difference between being offline and being connected — and between watching nothing and having a full range of TV to choose from.", lede: true },
+                    { h4: "Two Different Jobs, Two Different Systems" },
+                    { p: "Satellite internet and satellite television solve different problems and often run on different hardware. Starlink and similar low-earth-orbit systems exist to deliver internet access to places fibre will never reach economically. DStv, GOtv, Startimes, SLTV and free-to-air decoders exist to deliver broadcast television — picking the right one usually comes down to budget and which channels actually matter to the household." },
+                    { h4: "Why Alignment Still Matters" },
+                    { p: "Even with modern self-aligning dishes, professional installation is what separates a stable signal from one that drops every time it rains. Correct dish positioning, cable routing and decoder configuration are unglamorous, but they're the difference between a system that works and one that generates a support call every month." },
+                    { quote: "Remote doesn't have to mean disconnected — it just means the installation has to be right the first time." },
+                    { h4: "Beyond the Living Room" },
+                    { p: "The same satellite infrastructure that brings in television and internet also supports security monitoring and estate-wide connectivity for schools and businesses in areas where laying cable isn't practical — one dish, multiple uses." }
+                ]
+            },
+            {
+                slug: "digital-transformation-kdts",
+                num: "002", cat: "Digital Transformation", readMins: 5,
+                img: "images/kadis-blog-02.png",
+                title: "Why Digital Transformation Is No Longer Optional for Nigerian Businesses",
+                dek: "Introducing KADIS Digital Transformation Solutions (KDTS) — and why organizations that automate now are outrunning the ones that wait.",
+                cta: { text: "KDTS is Kadis's consulting and enterprise technology division — automation, software implementation, ICT infrastructure, cloud and AI consulting.", label: "See what KDTS covers", href: "installation.html?s=kdts" },
+                body: [
+                    { p: "Across Nigeria's fast-changing digital economy, the organizations pulling ahead aren't necessarily the biggest — they're the ones that have embraced technology deliberately, rather than bolting it on when a problem forces the issue. That pattern holds across sectors: businesses, government agencies, schools, hospitals, NGOs and SMEs are all being reshaped by the same underlying shift.", lede: true },
+                    { h4: "Transformation Is a Process, Not a Purchase" },
+                    { p: "It's easy to mistake digital transformation for a shopping list — new software, a new website, a new system. In practice it's closer to a redesign of how an organization works: automating processes that used to run on paper, moving infrastructure to the cloud where it can scale without a matching rise in overhead, and using the data an organization already generates to make faster, better-informed decisions." },
+                    { quote: "The organizations winning right now aren't the biggest — they're the ones that automated first." },
+                    { h4: "Introducing KADIS Digital Transformation Solutions" },
+                    { p: "This is the gap KDTS was built to close — a dedicated consulting, software development and enterprise technology division inside Kadis focused on helping organizations modernize, automate and digitally transform how they operate, across business automation, enterprise software implementation, ICT infrastructure, cloud computing and AI consulting." },
+                    { h4: "Where to Start" },
+                    { p: "Most engagements start the same way a FixIT installation does — with a conversation about what's actually slowing an organization down, not a pitch for a specific product." }
+                ]
+            },
+            {
+                slug: "kadis-equipment-rentals-expansion",
+                num: "001", cat: "Rentals", readMins: 4,
+                img: "images/kadis-blog-01.png",
+                title: "KADIS.COM.NG Has Expanded — Introducing ICT Equipment Rentals",
+                dek: "Why Kadis started renting out the equipment it used to only sell and install — and what's available by the day, week or project.",
+                cta: { text: "Browse what's available to rent — security, networking, event and engineering equipment, by the day, week or project.", label: "See Equipment Rentals", href: "installation.html?s=rentals" },
+                body: [
+                    { p: "Not every piece of ICT or event equipment is worth owning. A church only needs a full sound system twice a year. A construction site only needs scaffolding for the length of the project. Kadis expanded into ICT Equipment Rentals to serve exactly that gap — access to premium equipment without the capital outlay of buying it outright.", lede: true },
+                    { h4: "What's Available" },
+                    { p: "The rental catalogue spans four broad categories: security, networking and telecommunications equipment (routers, CCTV cameras, walkie-talkies); event equipment (laptops, projectors, LED screens, sound systems, printers, cameras, power banks); engineering equipment (power tools, scaffolds, ladders, welding machines); and generators plus trucks, towing vans and motorcycles for logistics and field support." },
+                    { quote: "Some equipment is only ever needed once — that's exactly what a rental fleet is for." },
+                    { h4: "Who It's Built For" },
+                    { p: "The rental division serves businesses, schools, government agencies, telecom operators, event organizers and independent ICT professionals — anyone who needs reliable equipment for a defined window rather than an open-ended purchase." },
+                    { h4: "Flexible by Design" },
+                    { p: "Rental plans run by the day, the week, the month, or the length of a project, so the commitment matches the actual need — part of the same broader ambition of building Abuja's ICT ecosystem as one trusted brand." }
+                ]
+            },
+        ];
+        function slugify(str) {
+            return str.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+        }
+
+        const CATEGORY_TOPICS = [
+            {
+                num: "039", cat: "Appliances", readMins: 5, img: "images/kadis-blog-01.png",
+                title: "AC, Fridge and TV Installation and Maintenance",
+                dek: "Why a badly installed AC or fridge costs more in the first year than the unit itself.",
+                cta: { text: "Kadis installs and maintains ACs, fridges and TVs across Abuja, with servicing plans available.", label: "Talk to FixIT about installation", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "An air conditioner, refrigerator or television is only as good as the installation behind it. In Abuja's climate, an AC unit mounted without proper bracket support, correct refrigerant charge and clear airflow around the outdoor condenser will run harder, cool less, and fail years before it should — the same is true of a fridge placed against a wall with no ventilation gap, or a TV mounted without checking the wall's load rating.", lede: true },
+                    { h4: "Installation Decides the Running Cost" },
+                    { p: "Most of the electricity an AC unit draws over its lifetime is spent fighting a bad installation — an undersized breaker, poor insulation on the copper piping, or a unit sized wrong for the room. Getting the sizing and setup right at the point of installation is the single biggest lever on the monthly power bill that follows." },
+                    { h4: "Maintenance Nobody Sees Until It Fails" },
+                    { p: "Filters clogged with Harmattan dust, low refrigerant levels, and condenser coils caked in dirt are the three most common reasons an AC that used to cool a room suddenly can't. A fridge with a dirty compressor coil or a worn door seal quietly runs longer cycles than it should, using more power to hold the same temperature." },
+                    { quote: "The unit rarely fails first — the maintenance schedule does." },
+                    { h4: "What a Proper Service Includes" },
+                    { p: "A real maintenance visit checks refrigerant pressure, cleans coils and filters, tests the compressor's electrical draw, and inspects door seals and drainage — not just a wipe-down. For TVs, that extends to checking ventilation around the unit and the condition of the power supply feeding it, since voltage fluctuation is one of the leading causes of early TV failure in Nigeria." },
+                    { h4: "Buying New vs. Fixing What You Have" },
+                    { p: "Not every fault means a replacement. A trained technician can usually tell within a single visit whether a compressor, gas top-up or board repair will get several more years out of a unit, versus when the honest advice is that a new unit will pay for itself faster than continuing to repair the old one." },
+                    { h4: "Setting Up a Maintenance Schedule" },
+                    { p: "Most breakdowns Kadis gets called out for could have been caught on a routine visit — which is why a scheduled maintenance plan, rather than a one-off callout after something fails, is the more cost-effective way to own an AC, fridge or TV in Abuja's climate. Twice-yearly servicing, timed around the dustiest months, catches the small issues before they become expensive ones." }
+                ]
+            },
+            {
+                num: "038", cat: "Appliances", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "AC, TV and Refrigerator Sales and Delivery",
+                dek: "What to check before buying — and why delivery and setup shouldn't be an afterthought.",
+                cta: { text: "Kadis sells and delivers ACs, TVs, fridges and freezers across Abuja, with installation available on request.", label: "See appliance sales", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Buying a major appliance in Nigeria comes with a question that doesn't exist in markets with stable power: how will this unit hold up against voltage swings, generator switching, and long stretches without stabilized supply? That question should shape the buying decision as much as price and brand.", lede: true },
+                    { h4: "What Actually Matters on the Spec Sheet" },
+                    { p: "For ACs, cooling capacity (BTU) matched to room size matters more than brand name — an oversized unit cycles on and off too often and wastes power, while an undersized one runs constantly and still can't keep up. For fridges and freezers, a wide voltage tolerance and a stabilizer-compatible compressor are worth paying for over a slightly cheaper unit without them." },
+                    { h4: "Delivery Is Part of the Purchase" },
+                    { p: "A fridge transported lying on its side and switched on immediately can damage the compressor oil distribution before it's even been used once. Proper delivery means the unit travels upright, rests for a few hours before power-on if it was tilted, and arrives without the dents and scratches that turn into insurance headaches later." },
+                    { quote: "A good appliance badly delivered is a warranty claim waiting to happen." },
+                    { h4: "Genuine Units, Real Warranties" },
+                    { p: "Grey-market imports without a local warranty are common in the Nigerian market, and they're usually the units that become unrepairable the moment a part fails. Buying through a supplier that can service what it sells — not just deliver it — is the difference between a five-year appliance and a two-year one." },
+                    { h4: "What a Trustworthy Supplier Looks Like" },
+                    { p: "The clearest sign of a reliable appliance supplier isn't the showroom — it's whether they still answer the phone a year after the sale, when a part needs replacing or a warranty claim needs processing. Buying from a supplier that also installs and services what it sells removes the finger-pointing that happens when a retailer and a repair technician are two unrelated businesses." }
+                ]
+            },
+            {
+                num: "037", cat: "Security", readMins: 5, img: "images/kadis-blog-01.png",
+                title: "Access Control System",
+                dek: "Moving a building from keys to credentials — and what that actually changes day to day.",
+                cta: { text: "Kadis designs and installs access control systems for offices, estates and institutions across Abuja.", label: "Talk to FixIT about access control", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Every building with more than a handful of regular visitors eventually runs into the same problem: keys get copied, lost, or never returned when someone leaves. An access control system replaces that with credentials — a card, a fingerprint, a face, or a PIN — that can be issued, restricted, and revoked without ever changing a lock.", lede: true },
+                    { h4: "What It Actually Controls" },
+                    { p: "Beyond simply unlocking a door, a proper access control system logs who entered which door and when, restricts certain doors to certain hours or certain staff, and can lock a building down instantly if a credential is reported lost or an employee leaves — none of which a physical key can do." },
+                    { h4: "Choosing the Right Credential" },
+                    { p: "Card and fob systems are the simplest to deploy and manage day to day. Biometric systems — fingerprint or facial recognition — remove the risk of a credential being lent or copied, which matters more in server rooms, cash offices and restricted areas than it does at a general staff entrance." },
+                    { quote: "A key can be copied without anyone knowing. A credential can be revoked the moment you decide to." },
+                    { h4: "Integration Is Where the Value Compounds" },
+                    { p: "On its own, access control secures doors. Paired with CCTV and a time attendance system, the same credential that lets someone in also logs their arrival time and puts a face to every door event — turning three separate systems into one coherent record." },
+                    { h4: "Planning an Installation That Scales" },
+                    { p: "A system installed for twenty staff should still make sense at two hundred — which means choosing a platform with enough door and credential capacity from the outset, even if only a fraction is used on day one. Retrofitting a system that's outgrown its own capacity almost always costs more than paying slightly more for headroom the first time around." }
+                ]
+            },
+            {
+                num: "036", cat: "Security", readMins: 5, img: "images/kadis-smart-home.png",
+                title: "Automatic or Electronic Gate Solutions",
+                dek: "What separates a gate that opens smoothly for years from one that becomes a daily struggle.",
+                cta: { text: "Kadis supplies and installs automatic gate systems — sliding, swing and boom barrier — sized to the gate's weight and use.", label: "Talk to FixIT about gate automation", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "An automatic gate is one of the most-used pieces of security equipment on any property — opening and closing dozens of times a day for staff, deliveries and residents — which means the motor and control system behind it take more mechanical wear than almost anything else on site.", lede: true },
+                    { h4: "Sliding, Swing, or Boom Barrier" },
+                    { p: "Sliding gates suit properties with the wall length to accommodate the track and are the most common choice for Nigerian compounds. Swing gates need clearance on the inside to open but handle heavier gates well. Boom barriers are built for high-traffic vehicle control rather than full perimeter security, and are common at estates and offices managing many daily entries." },
+                    { h4: "Motor Sizing Is the Detail Most People Skip" },
+                    { p: "A motor rated below the actual weight of the gate will strain on every open-close cycle and fail early — often within the first year. Matching motor torque to gate weight and length, and accounting for wind load on solid gates, is what separates an installation that runs quietly for a decade from one that needs constant motor replacements." },
+                    { quote: "The gate doesn't fail first — the motor sized for a lighter gate does." },
+                    { h4: "Backup Power Is Not Optional" },
+                    { p: "A gate that only works with grid power is a gate that fails exactly when it matters — during an outage, at night. Battery backup integrated into the gate's control box keeps it operating through outages, and pairing the system with remote access or an intercom means it doesn't need someone stationed at it around the clock." },
+                    { h4: "Ongoing Maintenance Keeps It Reliable" },
+                    { p: "A gate motor under daily use needs periodic checks on chain or belt tension, hinge wear, and the condition of its control board — problems that start small and quiet, like a slightly slower open cycle, and end with a gate stuck fully open or fully shut at the worst possible time. Scheduled servicing catches that drift before it becomes a lockout." }
+                ]
+            },
+            {
+                num: "035", cat: "Security", readMins: 5, img: "images/kadis-blog-07.jpg",
+                title: "Biometric Devices and Access Control System Solutions",
+                dek: "Fingerprint, face, and beyond — matching the biometric method to what a building actually needs.",
+                cta: { text: "Kadis supplies and installs biometric access control and attendance devices for offices, schools and institutions.", label: "Talk to FixIT about biometric systems", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Biometric access control ties a door or a clock-in system to something that can't be lent, copied or forgotten at home — a fingerprint, a face, sometimes an iris — which is exactly why it's become the standard for offices, schools and institutions that need certainty about who's actually on the premises.", lede: true },
+                    { h4: "Fingerprint vs. Facial Recognition" },
+                    { p: "Fingerprint readers are affordable, fast, and well understood, but performance drops with worn or dirty fingers — common on sites with a lot of manual work. Facial recognition avoids that problem entirely and works well at higher traffic entry points, though it needs good, consistent lighting to perform reliably." },
+                    { h4: "Where Biometrics Earn Their Cost" },
+                    { p: "Server rooms, cash offices, pharmacy stores and any space where 'someone used my card' is a real liability are where biometric access pays for itself fastest — the credential simply can't be handed to someone else the way a card or PIN can." },
+                    { quote: "You can lend a card. You can't lend a fingerprint." },
+                    { h4: "Data Handling Matters as Much as the Hardware" },
+                    { p: "Biometric data is sensitive by nature, so where and how it's stored — on the device itself versus a central server, encrypted or not — should be part of the buying conversation, not an afterthought discovered after installation." },
+                    { h4: "Enrollment Quality Decides Accuracy" },
+                    { p: "A biometric system is only as reliable as the quality of the initial fingerprint or facial scan taken during enrollment — a rushed or poorly captured scan is the most common reason a device later struggles to recognize the same person. Taking the extra few minutes per person at setup is what prevents daily false-rejection frustration down the line." }
+                ]
+            },
+            {
+                num: "034", cat: "Security", readMins: 5, img: "images/kadis-blog-07.jpg",
+                title: "CCTV & Security Gadgets Solution",
+                dek: "Camera count matters less than coverage, storage and who's actually watching the footage.",
+                cta: { text: "Kadis designs, installs and configures CCTV systems for homes, offices and estates, sized to the property.", label: "Talk to FixIT about CCTV", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "The most common mistake in CCTV planning is buying by camera count instead of by coverage — four well-placed cameras watching every entrance and blind spot will do more than eight cameras with overlapping views and gaps everywhere else.", lede: true },
+                    { h4: "Placement Before Product" },
+                    { p: "Entrances, gates, parking areas, and any point where a fence line is easy to cross should be covered first. Height, angle and lighting at each point matter more than camera resolution — a 4MP camera aimed correctly beats an 8MP camera aimed at a blank wall." },
+                    { h4: "Storage Is the Part People Forget" },
+                    { p: "A camera system is only useful after the fact if footage is actually retrievable — which means enough storage days, a DVR or NVR that won't silently overwrite critical footage too soon, and (ideally) a cloud backup for anything genuinely important. Storage capacity should be sized around how far back you'd realistically need to look, not the cheapest option on the shelf." },
+                    { quote: "A camera that recorded nothing useful is worse than no camera — it gives false confidence." },
+                    { h4: "Remote Monitoring Changes What CCTV Is For" },
+                    { p: "Modern systems push live feeds and motion alerts to a phone, turning CCTV from a system you check after something's gone wrong into one that can actually notify you while it's happening — which is where the real security value sits." },
+                    { h4: "Cabling and Power Reliability" },
+                    { p: "A wireless camera is only as reliable as the Wi-Fi signal reaching it, and a wired camera is only as reliable as the cable run behind it — both fail quietly if power and connectivity aren't planned properly during installation. Pairing a CCTV system with a small UPS keeps recording continuous through the outages that tend to coincide with when footage matters most." }
+                ]
+            },
+            {
+                num: "033", cat: "Computing", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "Computer Gadgets and Accessories Solutions",
+                dek: "The small purchases that decide how long a laptop or desktop setup actually lasts.",
+                cta: { text: "Kadis supplies genuine computer accessories and gadgets, from power protection to peripherals, across Abuja.", label: "See computer accessories", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Laptops and desktops rarely fail because of the computer itself — far more often it's what's plugged into them. A cheap charger with poor voltage regulation, an unstable power strip, or a fake battery is usually the real cause behind a machine that 'suddenly stopped working.'", lede: true },
+                    { h4: "Power Protection Comes First" },
+                    { p: "A surge protector or a small UPS for a desktop setup is the cheapest insurance available against Nigeria's unstable grid — a single voltage spike during a PHCN restoration can take out a power supply or motherboard that would otherwise have lasted years." },
+                    { h4: "Genuine vs. Compatible" },
+                    { p: "Chargers, batteries and RAM sold as 'compatible' rather than genuine are a common source of repeat failures — an underpowered charger stresses a laptop's charging circuit over time even when it appears to work fine at first." },
+                    { quote: "The accessory is usually cheaper than the repair it prevents." },
+                    { h4: "Building Around How You Actually Work" },
+                    { p: "External monitors, docking stations, mechanical keyboards and proper laptop stands aren't luxuries for anyone spending a full working day at a screen — they're what stands between a comfortable, productive setup and the repetitive strain and eye fatigue that come from working off a laptop screen alone." },
+                    { h4: "Buying for the Long Term" },
+                    { p: "It's tempting to treat accessories as disposable, low-stakes purchases, but a good docking station, a reliable external drive or a properly rated charger typically outlasts several laptop upgrade cycles — buying once, from a supplier that stocks genuine stock, usually works out cheaper than replacing cheap accessories every few months." }
+                ]
+            },
+            {
+                num: "032", cat: "Computing", readMins: 5, img: "images/kadis-blog-01.png",
+                title: "Computer Repairs & Solution Tips",
+                dek: "How to tell a quick fix from a sign the machine is past its useful life.",
+                cta: { text: "Kadis repairs laptops and desktops — hardware and software — with diagnostics before any work begins.", label: "Talk to FixIT about a repair", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Most computer problems fall into one of two buckets: something that can be fixed in under an hour for a fraction of a new machine's cost, or a sign that the underlying hardware has reached the end of its useful life. Telling the two apart is where a proper diagnostic matters more than a guess.", lede: true },
+                    { h4: "The Common, Cheap-to-Fix Problems" },
+                    { p: "A slow machine is very often a storage or startup-software problem, not a hardware one — swapping a mechanical hard drive for an SSD alone can make an old laptop feel new again. Overheating, unexpected shutdowns and fan noise are usually dust and dried thermal paste, both fixable in a single service visit." },
+                    { h4: "When It's Worth Investing in a Repair" },
+                    { p: "Motherboard-level faults, screen replacements on otherwise good machines, and keyboard or battery swaps are worth doing on machines still capable of running current software comfortably — the real judgment call is whether the repair cost, plus what's left of the machine's usable life, still beats the price of something new." },
+                    { quote: "Not every slow computer needs replacing — some just need a diagnosis." },
+                    { h4: "Data First, Repair Second" },
+                    { p: "Before any repair touches a drive, backing up what's on it should be the first step, not an afterthought — a failing hard drive can go from 'slow' to 'unreadable' during the very repair meant to fix it." },
+                    { h4: "Software Problems Deserve a Look Too" },
+                    { p: "Not every slowdown is hardware — malware, a bloated startup list, or a Windows installation that's never been reset can drag down an otherwise capable machine just as badly as failing hardware. A proper diagnostic checks both sides before recommending a repair, rather than assuming the fix has to be physical." }
+                ]
+            },
+            {
+                num: "031", cat: "Aerial & Drones", readMins: 5, img: "images/kadis-blog-01.png",
+                title: "Drones and Installation",
+                dek: "What drones are actually being used for on Nigerian sites, and what installation means for a drone program.",
+                cta: { text: "Kadis supplies drones and supports setup, calibration and operator training for aerial survey and security use.", label: "Talk to FixIT about drones", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Drones have moved past hobbyist photography into serious infrastructure work — construction progress monitoring, large-property security sweeps, agricultural surveys, and event coverage are now routine uses across Nigerian sites, not novelties.", lede: true },
+                    { h4: "Matching the Drone to the Job" },
+                    { p: "A construction site tracking progress over months needs a drone with reliable mapping software and consistent flight-path repeatability. A security team sweeping a large estate perimeter needs range, thermal imaging in some cases, and live video feed rather than mapping precision. These are different tools even when they look similar on a shelf." },
+                    { h4: "'Installation' Means More Than Unboxing" },
+                    { p: "Setting up a drone program properly includes calibrating the unit for local conditions, configuring geofencing and no-fly boundaries around the specific site, and pairing it with the right controller and, where needed, a docking or charging station for repeated use." },
+                    { quote: "A drone bought is a camera. A drone set up properly is a survey tool." },
+                    { h4: "Regulatory Reality" },
+                    { p: "Commercial drone use in Nigeria sits under NCAA regulation, and any serious deployment — especially for surveying, security or commercial filming — needs to account for registration and permitted flight areas from the start, not as an afterthought once the equipment has already landed on-site." },
+                    { h4: "Operator Training Matters as Much as the Drone" },
+                    { p: "A capable drone in inexperienced hands produces unusable footage and unnecessary risk — proper operator training, covering both flight skill and an understanding of local airspace rules, is what turns a drone purchase into a dependable tool for survey, security or event work rather than an expensive toy." }
+                ]
+            },
+            {
+                num: "030", cat: "Satellite & TV", readMins: 5, img: "images/kadis-blog-01.png",
+                title: "DSTV, Free-to-Air, SLTV, StarLink, FreeTV, GOTV & Startimes Solutions",
+                dek: "With six different ways to get television and internet into a Nigerian home, picking the right one comes down to a few honest questions.",
+                cta: { text: "Kadis sells, installs and configures DStv, GOtv, Startimes, SLTV, free-to-air and Starlink systems across Abuja.", label: "Talk to FixIT about TV & satellite", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Nigerian households have more television and connectivity options today than at any point before — subscription satellite, free-to-air decoders, and low-earth-orbit internet all compete for the same wall space, and the right choice depends less on brand loyalty than on budget, location and what's actually being watched.", lede: true },
+                    { h4: "Subscription vs. Free-to-Air" },
+                    { p: "DStv and GOtv sit at different price points but both bring premium channels and consistent programming for a monthly fee. Startimes competes on price with a strong local-content lineup. Free-to-air and SLTV decoders remove the subscription entirely, trading a smaller channel selection for zero recurring cost — a real option for households watching mostly local content." },
+                    { h4: "Where Starlink Fits" },
+                    { p: "Starlink solves a different problem entirely: internet access, not television, and specifically in areas fibre and stable mobile data don't reach. It's increasingly paired with DStv or GOtv in the same household rather than replacing them, since one delivers channels and the other delivers a home internet connection." },
+                    { quote: "These systems don't compete with each other as much as people assume — most homes end up running two." },
+                    { h4: "Installation Quality Decides the Experience" },
+                    { p: "Whichever system is chosen, dish alignment, cable routing and decoder configuration determine whether the signal holds through a storm or drops the moment the weather turns — the single biggest source of TV support calls in Nigeria." },
+                    { h4: "Bundling for Real Household Needs" },
+                    { p: "Increasingly, the practical setup for a Nigerian household isn't picking one system over another — it's running a subscription decoder for entertainment channels alongside a Starlink connection for everything else, since the two solve genuinely different problems and rarely compete for the same budget line." }
+                ]
+            },
+            {
+                num: "029", cat: "Security", readMins: 5, img: "images/kadis-blog-01.png",
+                title: "Electric Fence Solutions",
+                dek: "How an electric fence actually deters intrusion, and the safety details that matter as much as the voltage.",
+                cta: { text: "Kadis designs and installs electric fence systems for homes, estates and commercial properties, to code.", label: "Talk to FixIT about electric fencing", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "An electric fence works less on the shock itself and more on the psychology of it — a visible, humming perimeter is one of the strongest deterrents against opportunistic intrusion available, well before anyone actually attempts to cross it.", lede: true },
+                    { h4: "How the System Actually Works" },
+                    { p: "A pulse energizer sends short, high-voltage, low-current pulses through a series of wires strung along the top of a perimeter wall or fence. The pulse is designed to startle and deter, not to cause lasting harm — which is exactly why the energizer's specification and installation to safety standard matters more than raw voltage." },
+                    { h4: "Integration Multiplies the Value" },
+                    { p: "On its own, an electric fence deters. Wired into a monitoring panel or alarm system, a wire break or intrusion attempt on the fence triggers an alert in real time — turning a passive deterrent into an active early-warning system." },
+                    { quote: "The wire deters. The alarm behind it is what actually tells you something happened." },
+                    { h4: "Getting the Safety Side Right" },
+                    { p: "Correct earthing, proper warning signage, and an energizer that meets recognized safety standards are not optional extras — they're what keeps an electric fence a legal, safe deterrent rather than a liability, and it's exactly where a professional installation earns its cost over a DIY kit." },
+                    { h4: "Combining It With Other Deterrents" },
+                    { p: "An electric fence works best as one layer among several rather than a standalone solution — paired with perimeter lighting and a monitored alarm, it moves from simply deterring an intrusion attempt to actively alerting someone the moment one happens, which is the difference between a deterrent and a response system." }
+                ]
+            },
+            {
+                num: "028", cat: "Fire & Life Safety", readMins: 5, img: "images/kadis-smoke- extractor.png",
+                title: "Fire Alarm and Smoke Detectors",
+                dek: "The difference between a smoke detector that works and one that's just making noise in the ceiling.",
+                cta: { text: "Kadis installs and maintains fire alarm and smoke detection systems, sized and zoned to the building.", label: "Talk to FixIT about fire alarms", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A smoke detector's only job is to buy people time — the earlier it catches a developing fire, the more of that time it actually delivers. That makes detector type, placement and maintenance the whole story, far more than any single feature on the box.", lede: true },
+                    { h4: "Ionization vs. Photoelectric" },
+                    { p: "Ionization detectors respond faster to flaming fires with little smoke. Photoelectric detectors respond faster to smoldering fires that produce heavy smoke before flame — kitchens, storage rooms and areas with slow-burning risk are usually better served by photoelectric, while dual-sensor detectors cover both scenarios in spaces where the risk type isn't predictable." },
+                    { h4: "Placement Decides Detection Time" },
+                    { p: "A detector mounted too close to a kitchen triggers constant false alarms from cooking; one mounted too far from a bedroom corridor may not sound in time. Zoning a building properly — separating cooking areas, sleeping areas, storage and plant rooms — is where a professional fire alarm design earns its keep over a handful of standalone detectors bought off a shelf." },
+                    { quote: "A smoke detector that goes off from every meal gets disconnected — and that's how real fires go undetected." },
+                    { h4: "Maintenance Keeps It Honest" },
+                    { p: "Battery checks, sensor cleaning and periodic testing are what keep a detector reliable years after installation — dust buildup alone can delay detection or trigger nuisance alarms, and either failure mode defeats the entire point of having the system." },
+                    { h4: "Integration With Building-Wide Systems" },
+                    { p: "A standalone smoke detector saves lives in the room it's in. Wired into a building-wide fire alarm panel, the same detector can trigger evacuation signals, alert a monitoring service, and even unlock access-controlled doors automatically — turning individual detection points into one coordinated response across an entire building." }
+                ]
+            },
+            {
+                num: "027", cat: "Fire & Life Safety", readMins: 5, img: "images/kadis-blog-02.png",
+                title: "Fire Extinguisher Sales, Installation, Training and Certification",
+                dek: "Owning an extinguisher and being ready to use one correctly are two different things.",
+                cta: { text: "Kadis supplies, installs and services fire extinguishers, and runs on-site training and certification.", label: "Talk to FixIT about fire extinguishers", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A fire extinguisher mounted on a wall does nothing on its own — it's the right type, in the right place, maintained on schedule, with someone nearby who actually knows how to use it, that makes the difference in the first ninety seconds of a fire.", lede: true },
+                    { h4: "Matching Extinguisher Type to Risk" },
+                    { p: "Class A extinguishers handle ordinary combustibles like wood and paper. Class B covers flammable liquids. Class C is rated for electrical fires — critical in server rooms and offices full of equipment. Using the wrong class on the wrong fire can make things worse, not better, which is exactly why extinguisher selection should follow a proper risk assessment of the space, not a generic office checklist." },
+                    { h4: "Installation and Placement Standards" },
+                    { p: "Extinguishers need to be visible, unobstructed, mounted at an accessible height, and positioned along realistic evacuation paths — not tucked behind furniture or filed in a store room where nobody will find them in an emergency." },
+                    { quote: "An extinguisher nobody can find or use is a compliance checkbox, not a safety measure." },
+                    { h4: "Training Is the Part Most Buildings Skip" },
+                    { p: "Buying and mounting extinguishers is the easy half. Certified training — how to assess whether to fight a fire or evacuate, and how to actually operate an extinguisher under pressure — is what turns equipment on a wall into a building that's genuinely prepared, and it's typically what insurance and regulatory inspections are actually checking for." },
+                    { h4: "Regular Inspection Keeps Certification Valid" },
+                    { p: "An extinguisher's pressure gauge, seal and physical condition need periodic inspection — a unit that's lost pressure or passed its service date can fail exactly when needed, and most regulatory and insurance inspections check inspection tags before anything else. Scheduling this alongside fire alarm servicing keeps a building's whole fire safety programme current at once." }
+                ]
+            },
+            {
+                num: "026", cat: "ICT Tools", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "ICT Engineering Tools",
+                dek: "The toolkit that separates a professional installation from one that fails within a year.",
+                cta: { text: "Kadis supplies professional-grade ICT engineering tools for installers, technicians and contractors.", label: "See ICT engineering tools", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Behind every well-run CCTV install, network cabling job or satellite alignment is a toolkit most customers never see — crimping tools, cable testers, signal meters and termination kits that decide whether a job is done right the first time or needs a return visit within weeks.", lede: true },
+                    { h4: "Testing Tools Matter More Than People Assume" },
+                    { p: "A network cable that looks correctly terminated can still fail under load if it wasn't tested — cable testers and signal meters catch faults before a client ever notices a dropped connection, turning a guess into a verified, working installation." },
+                    { h4: "Why Professional-Grade Matters" },
+                    { p: "Consumer-grade crimping tools and testers wear out fast under daily commercial use, and their imprecision shows up later as intermittent faults that are far more expensive to trace than they would have been to prevent with the right equipment from the start." },
+                    { quote: "A technician is only as good as the tools that confirm the work is actually done right." },
+                    { h4: "Equipping a Growing Team" },
+                    { p: "For contractors and in-house ICT teams scaling up, standardizing on one reliable toolkit — rather than a mix of whatever each technician happens to own — keeps quality consistent across every job a team sends out." },
+                    { h4: "Calibration and Care Extend Tool Life" },
+                    { p: "Signal meters, testers and precision tools lose accuracy over time if they're not calibrated and stored properly — a cable tester giving a false pass is arguably worse than no tester at all, since it creates confidence in work that hasn't actually been verified. Regular calibration checks are part of what separates a professional toolkit from a box of gadgets." }
+                ]
+            },
+            {
+                num: "025", cat: "Networking", readMins: 5, img: "images/kadis-blog-01.png",
+                title: "ICT Networking and Troubleshooting",
+                dek: "Most 'slow internet' complaints aren't an internet problem — they're a network design problem.",
+                cta: { text: "Kadis designs, installs and troubleshoots office and home networks, from cabling to Wi-Fi coverage.", label: "Talk to FixIT about networking", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "When an office complains that 'the internet is slow,' the internet connection itself is often innocent — the real culprit is usually a router placed in the wrong spot, cabling that wasn't planned for the building's layout, or too many devices competing on a network that was never designed for the load.", lede: true },
+                    { h4: "Structured Cabling Still Matters" },
+                    { p: "Even in a Wi-Fi-first world, a properly cabled backbone — running Ethernet to fixed points like desks, access points and servers — gives a network reliability that wireless alone can't match, especially in buildings with thick walls or multiple floors." },
+                    { h4: "Wi-Fi Coverage Is a Design Problem" },
+                    { p: "A single router in a corner covering an entire floor almost never works. Mesh systems or properly placed access points, planned around the building's actual walls and dead zones, are what turn patchy Wi-Fi into consistent coverage — this is a site survey problem, not a hardware-shopping problem." },
+                    { quote: "Buying a better router rarely fixes a network that was never designed properly in the first place." },
+                    { h4: "Troubleshooting Starts With Isolation" },
+                    { p: "A proper diagnosis separates the problem into layers — is it the ISP connection, the router, the cabling, or a specific device — rather than guessing and replacing equipment one piece at a time until something happens to work." },
+                    { h4: "Documentation Saves the Next Visit" },
+                    { p: "A network that's properly documented — which device sits where, what's connected to what, and what changed at the last visit — turns future troubleshooting from a fresh investigation into a quick check against a known baseline. Most repeat network problems in undocumented offices take far longer to diagnose than they should, simply because nobody wrote down what was there before." }
+                ]
+            },
+            {
+                num: "024", cat: "About Kadis", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "KADIS TechForce",
+                dek: "The field team behind every installation, repair and delivery Kadis runs across Abuja.",
+                cta: { text: "KADIS TechForce is the trained field team behind installation, repair and support across every Kadis installation.", label: "Learn more about KADIS TechForce", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Behind every Kadis installation — a CCTV system, an AC unit, a satellite dish, an access control panel — is a technician who's been out to dozens of similar jobs before, and it's that field experience, not just the equipment on the truck, that KADIS TechForce is built around.", lede: true },
+                    { h4: "Trained Across Multiple Disciplines" },
+                    { p: "A single TechForce visit can cover networking, security systems, appliance installation and satellite alignment, because the team is trained across categories rather than siloed into narrow specialties — which matters on properties where several systems need attention in the same visit." },
+                    { h4: "Consistency Across Every Job" },
+                    { p: "Whether the job is a single home AC install or a full estate-wide CCTV and access control rollout, the same standards apply — proper diagnostics before work begins, testing before sign-off, and a technician who can explain what was done and why." },
+                    { quote: "The equipment is the same everywhere. The installation is what makes the difference." },
+                    { h4: "Built for Abuja's Realities" },
+                    { p: "TechForce technicians work with the specific challenges of Nigerian infrastructure daily — unstable grid power, dust, and buildings retrofitted long after original construction — which is a different skill set from installing the same equipment in a market with stable utilities and new-build wiring throughout." },
+                    { h4: "A Single Point of Contact" },
+                    { p: "For clients running multiple systems — CCTV, AC, networking, satellite — dealing with one team that understands how all of it fits together removes the back-and-forth of managing separate vendors for each category, and it's one of the more practical reasons properties choose to keep TechForce on for ongoing support rather than one-off jobs." }
+                ]
+            },
+            {
+                num: "023", cat: "Mobile", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "Mobile Phone Updates and Solutions",
+                dek: "Keeping a phone running well is mostly about a handful of habits, not constant upgrades.",
+                cta: { text: "Kadis handles mobile phone diagnostics, updates and troubleshooting alongside repairs and accessories.", label: "Talk to FixIT about phone solutions", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Most phone complaints — slow performance, fast battery drain, overheating — trace back to a handful of preventable causes rather than a phone reaching the end of its life, and a proper diagnostic usually finds the actual cause faster than guesswork or a factory reset.", lede: true },
+                    { h4: "Software Updates Are a Security Issue, Not Just Features" },
+                    { p: "Skipped software updates are one of the most common ways phones stay vulnerable to malware and data theft — updates aren't just about new features, they patch the exact vulnerabilities attackers are actively exploiting on outdated devices." },
+                    { h4: "Battery Health Is Trackable" },
+                    { p: "A phone that used to last a full day and now barely makes it to lunch usually has a measurable drop in battery health, not a mysterious fault — most modern phones can report this number directly, and it's the first thing worth checking before assuming something else is wrong." },
+                    { quote: "A slow phone is a diagnosis, not a verdict — most of the time, it isn't the end of the phone's life." },
+                    { h4: "Storage and Background Apps" },
+                    { p: "A phone running near full storage capacity slows down across the board, and background apps left running unchecked are the most common hidden drain on both battery and performance — two of the simplest fixes for problems that feel far more serious than they are." },
+                    { h4: "Backing Up Before Anything Goes Wrong" },
+                    { p: "The best time to set up a backup routine for a phone is before a problem happens, not after — cloud backup or a simple periodic transfer to a computer means a lost, stolen or badly damaged phone costs money to replace, not years of photos and contacts along with it." }
+                ]
+            },
+            {
+                num: "022", cat: "Networking", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "Network Booster and Installation",
+                dek: "When the problem is signal strength, not the phone or the network provider.",
+                cta: { text: "Kadis supplies and installs network boosters for homes and offices with weak mobile signal.", label: "Talk to FixIT about signal boosters", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Weak mobile signal inside a building is rarely the network provider's fault — thick concrete walls, low-emissivity glass, and distance from the nearest tower all block signal in ways a stronger phone can't fix, which is exactly the gap a network booster is built to close.", lede: true },
+                    { h4: "How a Booster Actually Works" },
+                    { p: "A signal booster picks up the existing outdoor signal through an external antenna, amplifies it, and rebroadcasts it inside the building through an internal antenna — it strengthens an existing signal rather than creating a new one, so it only helps where at least some signal already reaches the property." },
+                    { h4: "Sizing for the Space" },
+                    { p: "A booster rated for a single office won't cover a multi-floor building, and installing one undersized for the space leaves the same dead zones it was meant to fix. Matching booster power and antenna placement to the building's actual size and layout is where the installation earns or loses its value." },
+                    { quote: "A booster amplifies what's already there — it can't manufacture signal that never reaches the building." },
+                    { h4: "Where It Matters Most" },
+                    { p: "Basements, server rooms, buildings with reflective glass, and properties on the edge of network coverage areas are where boosters consistently deliver the clearest before-and-after difference." },
+                    { h4: "Combining Boosters With Wi-Fi Calling" },
+                    { p: "Where a booster still can't fully solve a dead zone, most modern phones support Wi-Fi calling as a fallback — routing calls over an existing internet connection instead of the mobile network. Knowing this option exists, and setting it up alongside a booster, closes gaps that hardware alone sometimes can't reach." }
+                ]
+            },
+            {
+                num: "021", cat: "Networking", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "Network Jammer and Installation",
+                dek: "Where legitimate signal jamming is used, and why deployment has to be deliberate and controlled.",
+                cta: { text: "Kadis supplies and installs network jamming equipment for authorized security and controlled-environment use.", label: "Talk to FixIT about signal control", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Network jammers exist for a narrow set of legitimate uses — securing sensitive meeting rooms, examination halls, correctional facilities and certain high-security environments where uncontrolled mobile signal is itself a security risk — and deploying one responsibly means understanding exactly what it does before it does it.", lede: true },
+                    { h4: "What a Jammer Actually Does" },
+                    { p: "A jammer blocks a defined range of frequencies within a specific radius, preventing devices in that zone from connecting to mobile networks or Wi-Fi. It's a blunt tool by design — it doesn't distinguish between an authorized and unauthorized device, which is exactly why the radius and frequency range have to be planned precisely for the space." },
+                    { h4: "Containing the Effect" },
+                    { p: "Poorly planned jammer installation can bleed signal blockage into neighboring rooms, floors or even nearby properties — proper installation accounts for the building's construction and the jammer's actual range, not just the room it's meant to cover." },
+                    { quote: "A jammer aimed at one room and a jammer that blocks the whole building are the same equipment, badly installed." },
+                    { h4: "Use Within the Law" },
+                    { p: "Jammer deployment in Nigeria sits under regulatory oversight, and any installation for examination halls, secure facilities or controlled environments needs to be planned with that framework in mind from the outset, not treated as an equipment purchase alone." },
+                    { h4: "Who Should Be Installing These" },
+                    { p: "Given the regulatory and technical sensitivity involved, jammer installation isn't a job for general electrical contractors — it needs a technician who understands both the equipment's actual range characteristics and the legal framework governing its use, so the deployment does exactly what it's meant to and nothing more." }
+                ]
+            },
+            {
+                num: "020", cat: "Telephony", readMins: 5, img: "images/kadis-blog-01.png",
+                title: "PABX and Intercom System Solutions",
+                dek: "Why offices still need a proper phone system in the age of mobile phones and WhatsApp.",
+                cta: { text: "Kadis designs and installs PABX and intercom systems for offices, estates and institutions.", label: "Talk to FixIT about PABX & intercom", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "It's easy to assume mobile phones made office phone systems obsolete — but a PABX (private automatic branch exchange) still solves problems mobiles can't: internal extension dialing, call routing to the right department, and a single main line that presents a business professionally to the outside world.", lede: true },
+                    { h4: "What a Modern PABX Adds" },
+                    { p: "Beyond basic call routing, a modern PABX supports voicemail-to-email, call recording for training or compliance, and — increasingly — VoIP, which routes calls over the internet instead of traditional phone lines and can meaningfully cut communication costs for offices with heavy call volume." },
+                    { h4: "Intercoms Solve a Different Problem" },
+                    { p: "An intercom system handles building-level communication — gate to reception, floor to floor, apartment to visitor at the gate — and is often the missing link between a security gate and whoever needs to approve entry, especially paired with an automatic gate or access control system." },
+                    { quote: "A PABX handles who's calling in. An intercom handles who's standing at the gate." },
+                    { h4: "Sizing to the Organization" },
+                    { p: "A five-person office and a hundred-person institution need very different PABX capacity — the right system scales to the number of extensions and call volume actually expected, not the largest package on offer." },
+                    { h4: "Migrating From an Old System" },
+                    { p: "Offices upgrading from an aging analogue PABX rarely need to rip out every phone at once — many modern systems can run alongside existing extensions during a phased migration, which keeps the office communicating throughout the transition instead of facing a disruptive full cutover." }
+                ]
+            },
+            {
+                num: "019", cat: "Mobile", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "Phone Accessories Support and Solutions",
+                dek: "The accessories that actually protect a phone investment, and the ones that just look like they do.",
+                cta: { text: "Kadis supplies genuine phone accessories — chargers, cases, screen protection and more — across Abuja.", label: "See phone accessories", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A phone accessory market flooded with cheap, fast-selling options makes it easy to buy something that looks protective but actually does very little — a soft case with no corner reinforcement, a screen protector that scratches within a week, a charger that slowly degrades the battery it's meant to charge.", lede: true },
+                    { h4: "What Actually Protects a Phone" },
+                    { p: "Cases with reinforced corners and raised edges around the screen and camera meaningfully reduce damage from drops — a thin decorative case does very little in an actual fall. Tempered glass screen protection outperforms plastic film on both scratch resistance and impact absorption." },
+                    { h4: "Chargers Deserve More Attention Than They Get" },
+                    { p: "An underpowered or poorly regulated charger is one of the most common, least suspected causes of long-term battery degradation — it's worth spending on a genuine or properly certified charger over the cheapest option at a roadside stall." },
+                    { quote: "The accessory that looks the same as the genuine one usually isn't built the same underneath." },
+                    { h4: "Matching Accessories to How the Phone Is Used" },
+                    { p: "A phone used mainly at a desk has very different accessory needs from one carried on a construction site or used for fieldwork — ruggedized cases, portable power banks and car mounts matter far more in the second scenario than the first." },
+                    { h4: "Warranty and Return Policy Matter" },
+                    { p: "A cheap accessory with no return policy is a purchase with no recourse if it fails in the first week — buying from a supplier that stands behind what it sells, even on smaller items like chargers and cases, is worth the marginally higher price over an unverifiable roadside stall option." }
+                ]
+            },
+            {
+                num: "018", cat: "Mobile", readMins: 5, img: "images/kadis-blog-01.png",
+                title: "Phone Repairs and Solution Tips",
+                dek: "Screen, battery, or something deeper — how to know what a phone problem is actually costing to fix.",
+                cta: { text: "Kadis repairs phones — screens, batteries, charging ports and more — with a diagnostic before any work begins.", label: "Talk to FixIT about a phone repair", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A cracked screen, a battery that drains in hours, or a charging port that only works at one angle are the three most common reasons a phone ends up at a repair counter — and each has a very different cost-to-value calculation depending on the phone's age and condition otherwise.", lede: true },
+                    { h4: "Screens: Repair Is Almost Always Worth It" },
+                    { p: "A cracked screen on an otherwise working phone is one of the clearest cases where repair beats replacement — the cost is a fraction of a new device, and a properly sourced replacement screen restores full function without compromising the rest of the phone." },
+                    { h4: "Batteries: A Predictable, Worthwhile Fix" },
+                    { p: "Lithium-ion batteries degrade predictably over roughly two to three years of daily use — a battery swap on a phone that's otherwise in good shape is one of the most reliably worthwhile repairs available, often restoring the phone to feeling brand new." },
+                    { quote: "Most phone repairs are cheaper than people assume — the real cost is usually the anxiety of not knowing." },
+                    { h4: "Charging Ports and Water Damage: Diagnose First" },
+                    { p: "A charging port that only connects at certain angles is often just lint or debris, not a hardware fault — worth checking before assuming a repair is needed. Water damage is the exception where speed matters more than anything else: getting the device to a technician within hours meaningfully improves the odds of a full recovery." },
+                    { h4: "Choosing a Repair Technician" },
+                    { p: "The quality gap between repair technicians is wide — a poorly done screen or battery replacement can introduce new problems, like a loose digitizer connection or a battery that swells within months. Asking what parts a technician actually uses, and whether they test the phone fully before handing it back, is a fair question to ask before agreeing to any repair." }
+                ]
+            },
+            {
+                num: "017", cat: "Gaming", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "PlayStation (PS) Games, Consoles and Accessories Solutions",
+                dek: "Buying, setting up and maintaining a PlayStation in a Nigerian home — power protection included.",
+                cta: { text: "Kadis supplies PlayStation consoles, games and accessories, and can help with setup and power protection.", label: "See PlayStation solutions", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A PlayStation console is one of the more sensitive pieces of electronics in a typical Nigerian home — a precision optical drive and a power supply that doesn't tolerate voltage instability well, which makes setup and power protection matter more than most buyers expect.", lede: true },
+                    { h4: "Protecting the Investment" },
+                    { p: "Running a console straight off unstable mains power, without a surge protector or stabilizer, is one of the fastest ways to shorten its lifespan — a single bad power spike during a generator switch-over can damage the power supply unit outright." },
+                    { h4: "Ventilation Matters More Than People Realize" },
+                    { p: "Consoles placed in enclosed TV cabinets with poor airflow run hotter than they're designed to, and sustained heat is one of the leading causes of premature hardware failure — leaving clear space around the vents costs nothing and adds years to a console's working life." },
+                    { quote: "The games rarely damage a console. The power supply behind it usually does." },
+                    { h4: "Genuine Accessories and Storage" },
+                    { p: "Third-party controllers and cables vary wildly in build quality, and a console running low on storage slows down noticeably when installing or updating larger titles — an external SSD is often the simplest upgrade to keep a console running smoothly as game sizes keep growing." },
+                    { h4: "Setting Up for Online Play" },
+                    { p: "A console that struggles with lag during online play is more often a network setup issue than a console problem — wired Ethernet to the console, rather than relying on Wi-Fi alone, and a router positioned close enough to matter, fix more online performance complaints than any console-side setting ever will." }
+                ]
+            },
+            {
+                num: "016", cat: "Lighting", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "Rope Lights and Designs",
+                dek: "Rope lighting done well reads as architecture — done badly, it reads as a string of bulbs.",
+                cta: { text: "Kadis supplies and installs rope lighting for homes, events and commercial properties across Abuja.", label: "Talk to FixIT about rope lighting", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Rope lighting sits in an unusual spot between decoration and infrastructure — used well, it outlines a building's architecture, a ceiling design, or an event space in a way that looks intentional; used carelessly, it looks exactly like what it is: a string of lights taped along a wall.", lede: true },
+                    { h4: "Design Comes Before Installation" },
+                    { p: "The difference between rope lighting that elevates a space and rope lighting that looks like an afterthought is almost always planning — where the lines run, how they interact with existing architectural features, and whether the color temperature matches the rest of the lighting in the space." },
+                    { h4: "Where It's Used Most" },
+                    { p: "Ceiling coves, staircases, outdoor fencing, event backdrops and building façades are the most common applications — each with different requirements for weatherproofing, brightness and how visible the fixture itself should be versus just the light it casts." },
+                    { quote: "Good rope lighting disappears — you notice the shape it makes, not the wire itself." },
+                    { h4: "Durability for Nigerian Conditions" },
+                    { p: "Outdoor installations need genuinely weatherproof rated cabling and connectors, not indoor-rated lighting pushed outside — sun exposure and rain are what typically end a poorly rated outdoor rope light installation within a single season." },
+                    { h4: "Powering Longer Runs Correctly" },
+                    { p: "Long rope light runs need power injected at multiple points along their length, not just from one end — skipping this causes visible dimming toward the far end of the run, which is one of the most common installation mistakes on larger projects and one of the easiest to avoid with proper planning." }
+                ]
+            },
+            {
+                num: "015", cat: "Security", readMins: 5, img: "images/kadis-blog-01.png",
+                title: "Security and Surveillance System Solutions",
+                dek: "How CCTV, access control, alarms and fencing work together instead of as separate purchases.",
+                cta: { text: "Kadis designs integrated security systems — CCTV, access control, alarms and fencing — for homes, offices and estates.", label: "Talk to FixIT about a security system", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Most properties end up with security equipment bought one piece at a time — a camera here, an alarm there, a fence upgrade later — when the far more effective approach treats all of it as one system designed together from the start.", lede: true },
+                    { h4: "Layered Security Beats Single-Point Security" },
+                    { p: "No single system catches everything. A perimeter fence deters, a camera records, a motion sensor alerts, and access control restricts — layered together, a gap in one layer is usually caught by another, which is the entire logic behind a properly designed security plan." },
+                    { h4: "Design Starts With a Risk Assessment" },
+                    { p: "A residential compound, a commercial office and a large estate have completely different risk profiles, entry points and traffic patterns — a proper security design starts by walking the actual property, not by starting from a standard equipment list." },
+                    { quote: "Security equipment bought piece by piece rarely adds up to a system — it adds up to a pile of devices." },
+                    { h4: "Monitoring Is the Ongoing Half of the Job" },
+                    { p: "Installed equipment is only half the value — a system that's actually monitored, whether by on-site personnel or remote alerts to a phone, is what turns recorded footage and triggered alarms into a response that happens while it still matters." },
+                    { h4: "Reviewing and Updating the Plan Over Time" },
+                    { p: "A security system designed for a property five years ago may not reflect how that property is actually used today — new entrances, changed traffic patterns, or an extension to the building all shift where risk actually sits. Periodically reviewing the original design against current use is what keeps a security system relevant rather than outdated." }
+                ]
+            },
+            {
+                num: "014", cat: "Smart Home & Security", readMins: 4, img: "images/kadis-blog-04.png",
+                title: "Smart Door Locks",
+                dek: "Replacing keys with codes, cards or fingerprints — and what actually makes a smart lock secure.",
+                cta: { text: "Kadis supplies and installs smart door locks for homes and offices, with setup and app configuration included.", label: "Talk to FixIT about smart locks", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A smart lock replaces the physical key with a code, a card, a fingerprint or a phone app — which solves the everyday annoyance of lost keys and copied spares, but only actually improves security if the lock itself is built and installed properly.", lede: true },
+                    { h4: "Not All Smart Locks Are Equal" },
+                    { p: "Build quality on the bolt and strike plate matters as much on a smart lock as it does on a traditional deadbolt — a smart lock with a weak physical mechanism behind a good app is still an easy lock to force open." },
+                    { h4: "Backup Access Is Essential" },
+                    { p: "Every smart lock installation needs a reliable fallback — a physical key override or backup power source — for the moment the battery dies or the app has an issue. A lock that strands you outside during a power or battery failure defeats its own convenience." },
+                    { quote: "A smart lock is only as secure as the door and frame it's mounted on." },
+                    { h4: "Where It Pairs Well With Other Systems" },
+                    { p: "Smart locks integrate naturally with broader home automation and access control — granting temporary codes to guests or staff, and logging exactly who unlocked a door and when, without ever handing out a physical key that could be copied." },
+                    { h4: "Managing Access for Staff and Guests" },
+                    { p: "One of the most practical benefits of a smart lock in an office or short-let property is temporary access — issuing a code that expires automatically after a guest's stay or a contractor's visit, without ever having to physically collect a key back or worry about it being copied." }
+                ]
+            },
+            {
+                num: "013", cat: "Smart Home", readMins: 5, img: "images/kadis-smart-home.png",
+                title: "Smart Homes and Automated House",
+                dek: "What a smart home actually is once the marketing language is stripped away.",
+                cta: { text: "Kadis designs and installs smart home systems — lighting, curtains, security and climate — as one integrated platform.", label: "Talk to FixIT about smart home automation", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Strip away the marketing language and a smart home is really just a set of devices — lighting, curtains, locks, cameras, climate control — that can talk to each other and be managed from one place, instead of each requiring its own separate switch, remote or routine.", lede: true },
+                    { h4: "Start With a Platform, Not a Gadget" },
+                    { p: "The single most common mistake in home automation is buying individual smart gadgets one at a time without a shared platform behind them — the result is a phone full of five different apps that don't talk to each other, instead of one coherent system." },
+                    { h4: "What Actually Gets Used Day to Day" },
+                    { p: "Lighting scenes, scheduled curtains, motion-triggered security lighting and voice control of common routines are the features homeowners actually use daily — far more than the more elaborate integrations that look impressive in a demo but rarely get touched after the first month." },
+                    { quote: "The best smart home feature is the one you stop noticing because it just works." },
+                    { h4: "Designed for the House, Not Just Installed Into It" },
+                    { p: "A home automation system planned alongside a build or renovation — with wiring, sensor placement and hub location considered from the start — performs far better long-term than smart devices retrofitted piecemeal into a house never designed for them." },
+                    { h4: "Budgeting in Phases" },
+                    { p: "A full smart home rollout doesn't need to happen in one project — starting with lighting and security, then adding curtains, climate control and deeper automation over time, keeps the investment manageable while still building toward one integrated system, provided the initial platform choice can actually support that later expansion." }
+                ]
+            },
+            {
+                num: "012", cat: "Fire & Life Safety", readMins: 4, img: "images/kadis-blog-05.png",
+                title: "Smoke Extractors",
+                dek: "Clearing smoke fast is its own safety system, separate from detecting and putting out the fire.",
+                cta: { text: "Kadis supplies and installs smoke extraction systems for commercial kitchens, warehouses and industrial spaces.", label: "Talk to FixIT about smoke extraction", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Detecting a fire and extinguishing it are only two parts of the safety picture — clearing the smoke that's already filled a space is its own problem, and in commercial kitchens, warehouses and industrial buildings, smoke extraction systems are what keep that smoke from becoming its own hazard.", lede: true },
+                    { h4: "Where Smoke Extraction Is Essential" },
+                    { p: "Commercial kitchens generate heat and smoke as a matter of routine, not just during emergencies — a properly sized extraction system keeps cooking smoke and grease vapor from building up to dangerous or simply unworkable levels, long before any actual fire risk enters the picture." },
+                    { h4: "Sizing to the Space" },
+                    { p: "An extraction system rated below the volume of the space it serves will struggle to clear smoke fast enough to matter — sizing has to account for room volume, ceiling height and the intensity of the heat source generating the smoke in the first place." },
+                    { quote: "A room full of smoke is its own emergency, even before you get to the fire underneath it." },
+                    { h4: "Maintenance Prevents a Different Fire Risk" },
+                    { p: "Grease buildup inside extraction ductwork is itself a fire hazard — regular cleaning and filter maintenance aren't just about air quality, they're what keeps the extraction system from becoming the next fire risk in the building." },
+                    { h4: "Noise and Airflow Balance" },
+                    { p: "An extraction system that's too aggressive for its space creates its own problems — excessive noise, uncomfortable draughts, or make-up air issues that pull cold air in from unwanted places. Balancing extraction rate against the size and use of the room is a design decision, not just a matter of buying the most powerful unit available." }
+                ]
+            },
+            {
+                num: "011", cat: "Solar & Power", readMins: 6, img: "images/kadis-solar.png",
+                title: "Solar and Inverter System",
+                dek: "Sizing a solar and inverter setup around actual load, not a package deal.",
+                cta: { text: "Kadis designs, supplies and installs solar and inverter systems sized to actual household or business load.", label: "Talk to FixIT about solar & inverters", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Solar and inverter systems have gone from a backup-power luxury to close to a necessity for Nigerian homes and businesses, but the single biggest source of buyer regret is a system sized around a sales package rather than an actual load assessment of what needs to run and for how long.", lede: true },
+                    { h4: "Start With a Load Audit, Not a Panel Count" },
+                    { p: "Before choosing panels, batteries or inverter capacity, listing out exactly what needs power — fridge, lights, TV, AC, pumps — and for how many hours a day is what should drive system sizing. A system undersized for real load will disappoint immediately; one oversized wastes money on capacity that's never used." },
+                    { h4: "Battery Technology Matters as Much as Panel Count" },
+                    { p: "Lithium batteries cost more upfront than lead-acid but last significantly longer, handle deeper discharge cycles without damage, and need far less maintenance — over a system's full lifespan, the higher initial cost is often recovered many times over." },
+                    { quote: "The panels get the attention. The batteries and the sizing decide whether the system actually works for you." },
+                    { h4: "Installation Quality Decides Efficiency" },
+                    { p: "Panel angle and orientation, cable sizing, and correct inverter configuration all affect real-world output — two identical systems can perform very differently depending purely on how well they were installed, which is where a professional design pays for itself over the system's lifetime." },
+                    { h4: "Ongoing System Monitoring" },
+                    { p: "A solar and battery system's performance degrades gradually and often invisibly — panel output can drop from dust buildup, and battery capacity fades over years of cycling, both of which go unnoticed without periodic checks. Systems with app-based monitoring make this easy to catch early; systems without it need a manual inspection built into a maintenance routine." }
+                ]
+            },
+            {
+                num: "010", cat: "Satellite & Connectivity", readMins: 5, img: "images/kadis-starlink.png",
+                title: "StarLink Satellite Network and Installation",
+                dek: "What Starlink actually needs to perform well, beyond just mounting the dish.",
+                cta: { text: "Kadis sells, installs and configures Starlink systems across Abuja, including sites off the main grid.", label: "Talk to FixIT about Starlink installation", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Starlink has changed what internet access looks like for homes, schools and businesses beyond fibre and stable mobile network reach — but getting the performance the marketing promises depends on details the box itself doesn't explain.", lede: true },
+                    { h4: "A Clear View of the Sky Is Non-Negotiable" },
+                    { p: "Starlink's low-earth-orbit satellites need an unobstructed view of the sky — trees, buildings, and even roof overhangs can interrupt the connection. A proper site survey before mounting the dish is what prevents a system that works intermittently instead of consistently." },
+                    { h4: "Mounting and Cable Routing" },
+                    { p: "A dish mounted insecurely on a roof is a liability in Nigeria's storm season, and cable runs into the building need to be weatherproofed and routed to avoid both damage and unsightly clutter — details that separate a professional installation from a self-mounted dish sitting loose on a balcony rail." },
+                    { quote: "Starlink solves the connectivity problem. The installation decides whether that connection is actually reliable." },
+                    { h4: "Power Considerations" },
+                    { p: "Starlink terminals draw continuous power and don't tolerate outages gracefully without a backup source — pairing the installation with a stabilizer or small UPS keeps the connection from dropping every time the grid does." },
+                    { h4: "Planning for Multiple Devices" },
+                    { p: "A Starlink connection shared across many devices — a household's phones, laptops and smart TVs, or a small office's full network — performs best when paired with a properly configured router rather than relying on the terminal's own basic Wi-Fi output, especially in larger homes or multi-room offices." }
+                ]
+            },
+            {
+                num: "009", cat: "Lighting", readMins: 4, img: "images/kadis-blog-01.png",
+                title: "Street Lights and Poles",
+                dek: "Estate and street lighting done well is a safety project as much as a visibility one.",
+                cta: { text: "Kadis supplies and installs street lighting and poles for estates, roads and commercial properties.", label: "Talk to FixIT about street lighting", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Street lighting is one of those infrastructure investments residents only notice when it's missing — a dark stretch of road or a poorly lit estate entrance is a safety issue and a perception issue at the same time, and both are solved by the same well-planned lighting project.", lede: true },
+                    { h4: "Pole Spacing and Height Matter More Than Bulb Choice" },
+                    { p: "Poles spaced too far apart leave dark gaps no matter how bright each individual light is — proper spacing calculated against pole height and light spread is what actually determines whether a road or walkway is evenly lit, not the wattage of the fixture alone." },
+                    { h4: "Solar Street Lighting Is Increasingly the Default" },
+                    { p: "Solar-powered street lights remove the need to trench power cable to every pole and keep running through grid outages — for estates and rural roads especially, that combination of lower installation cost and independence from grid reliability makes solar the practical choice more often than not." },
+                    { quote: "Nobody thanks you for street lighting that works — they only notice the pole that's out." },
+                    { h4: "Poles Are Structural, Not Just Decorative" },
+                    { p: "Pole material and foundation depth need to account for wind load and, in some areas, ground conditions — a pole that leans or falls within a few years is usually a foundation problem, not a lighting problem." },
+                    { h4: "Coordinating With Other Estate Infrastructure" },
+                    { p: "Street lighting projects planned alongside other estate infrastructure work — road resurfacing, drainage, or perimeter fencing — avoid the wasted cost of trenching the same ground twice. Sequencing lighting installation with other planned works, rather than treating it as a standalone project, is a simple way estates keep overall costs down." }
+                ]
+            },
+            {
+                num: "008", cat: "Access Control", readMins: 4, img: "images/kadis-time-atta.png",
+                title: "Time Attendance System",
+                dek: "Replacing the sign-in sheet with something that can't be faked or forgotten.",
+                cta: { text: "Kadis supplies and installs biometric and card-based time attendance systems for offices, schools and factories.", label: "Talk to FixIT about time attendance", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A paper sign-in sheet or a manual register has one obvious weakness: it depends entirely on honesty, and it's trivially easy for one person to sign in for another. A time attendance system removes that weakness by tying attendance to something that can't be handed off — a fingerprint, a face, or a personal card.", lede: true },
+                    { h4: "Biometric vs. Card-Based" },
+                    { p: "Fingerprint and facial recognition systems eliminate buddy-punching entirely, since the credential can't be lent. Card-based systems are cheaper to deploy and still a significant upgrade over paper, though they carry the same lend-and-share risk as any other physical credential." },
+                    { h4: "What Good Reporting Looks Like" },
+                    { p: "Beyond just logging clock-in and clock-out times, a proper time attendance system should generate reports HR can actually use — lateness patterns, overtime totals, absence trends — turning raw timestamps into information that supports real management decisions." },
+                    { quote: "A sign-in sheet tells you who was expected. A time attendance system tells you who was actually there." },
+                    { h4: "Pairs Naturally With Access Control" },
+                    { p: "Where a building already has biometric or card-based access control at the entrance, the same credential can double as the attendance record — one tap or scan handling both building security and HR reporting at once." },
+                    { h4: "Handling Multiple Sites From One System" },
+                    { p: "Organizations running more than one location benefit from a time attendance system that consolidates data centrally, rather than one report per site — giving HR a single view of attendance across every branch instead of having to manually combine separate spreadsheets each month." }
+                ]
+            }
+        ];
+
+        const placeholderPosts = CATEGORY_TOPICS.map(t => ({
+            slug: slugify(t.title),
+            num: t.num, cat: t.cat, readMins: t.readMins,
+            title: t.title,
+            dek: t.dek,
+            img: t.img || "",
+            cta: t.cta,
+            body: t.body
+        }));
+
+        const ALL_POSTS = [...placeholderPosts, ...POSTS];
+
+        const SUPABASE_URL = "https://xjaieymgmhberbkbucrh.supabase.co";
+        const SUPABASE_ANON_KEY = "sb_publishable_r86lqj5QiI3qTgXicj7Ryg_AWkXZXu6";
+
+        let sb = null;
+        try {
+            sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        } catch (e) {
+            console.warn('Supabase client failed to initialize — showing local posts only:', e);
+        }
+
+        async function loadAndRenderPosts() {
+            let supabasePosts = [];
+            if (sb) {
+                try {
+                    const fetchPromise = sb
+                        .from('posts')
+                        .select('*')
+                        .eq('published', true)
+                        .order('created_at', { ascending: false });
+                    const timeoutPromise = new Promise((_, reject) =>
+                        setTimeout(() => reject(new Error('Supabase request timed out')), 4000)
+                    );
+                    const { data, error } = await Promise.race([fetchPromise, timeoutPromise]);
+                    if (!error && data) {
+                        supabasePosts = data.map((p, i) => ({
+                            slug: p.slug,
+                            num: String(900 + i).padStart(3, '0'),
+                            cat: p.cat,
+                            readMins: p.read_mins || 4,
+                            title: p.title,
+                            dek: p.dek,
+                            img: p.img_url || '',
+                            cta: { text: p.cta_text, label: p.cta_label, href: p.cta_href },
+                            body: p.body
+                        }));
+                    } else if (error) {
+                        console.warn('Could not load admin posts:', error.message);
+                    }
+                } catch (e) {
+                    console.warn('Could not load admin posts (or request timed out) — showing local posts only:', e);
+                }
+            }
+
+            const FULL_LIST = [...supabasePosts, ...ALL_POSTS];
+
+            const list = document.getElementById('entryList');
+            list.innerHTML = '';
+
+            FULL_LIST.forEach((p) => {
+                const entry = document.createElement('div');
+                entry.className = 'entry';
+                entry.id = `post-${p.slug}`;
+
+                const bodyHtml = p.body.map(block => {
+                    if (block.h4) return `<h4>${block.h4}</h4>`;
+                    if (block.quote) return `<div class="pull-quote"><p>${block.quote}</p></div>`;
+                    if (block.p) return `<p class="${block.lede ? 'lede' : ''}">${block.p}</p>`;
+                    return '';
+                }).join('');
+
+                // Image slot: every post always shows the figure box, whether or
+                // not an image is set. If p.img is empty, or the URL fails to
+                // load, the box stays visible with a dashed placeholder pattern
+                // and a small "image not set" label — so you can always see
+                // exactly where a photo will go. Once a working URL is in p.img,
+                // the placeholder disappears and the real photo fills the box.
+                const imgSrc = p.img || '';
+                const missingClass = imgSrc ? '' : 'img-missing';
+                const figureHtml = `<img src="${imgSrc}" alt="${p.title}" loading="lazy" onerror="this.closest('figure').classList.add('img-missing');"><span class="img-placeholder-label">Image not set — No. ${p.num}</span>`;
+
+                entry.innerHTML = `
+        <div class="entry-summary" data-toggle>
+          <div class="idx-num">No. ${p.num}</div>
+          <div class="idx-main">
+            <span class="cat">${p.cat}</span>
+            <h3>${p.title}</h3>
+            <p>${p.dek}</p>
+          </div>
+          <div class="idx-meta">${p.readMins} min read</div>
+          <div class="toggle-icon">+</div>
+        </div>
+        <div class="panel-wrap">
+          <div class="panel-inner">
+            <div class="panel">
+              <figure class="has-photo ${missingClass}">${figureHtml}</figure>
+              ${bodyHtml}
+              ${p.cta && p.cta.text ? `
+              <div class="panel-cta">
+                <p>${p.cta.text}</p>
+                <a class="cta-link" href="${p.cta.href}">${p.cta.label} →</a>
+              </div>` : ''}
+              <a class="permalink" href="#post-${p.slug}">§ link to this dispatch</a>
+            </div>
+          </div>
+        </div>
+      `;
+                list.appendChild(entry);
+                entry.querySelector('[data-toggle]').addEventListener('click', () => {
+                    entry.classList.toggle('open');
+                });
+            });
+
+            const hashSlug = location.hash.replace('#post-', '');
+            const targetId = hashSlug ? `post-${hashSlug}` : (FULL_LIST[0] ? `post-${FULL_LIST[0].slug}` : null);
+            const target = targetId ? document.getElementById(targetId) : null;
+            if (target) {
+                target.classList.add('open');
+                if (hashSlug) setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+            }
+        }
+
+        loadAndRenderPosts();
+
+        window.addEventListener('hashchange', () => {
+            const slug = location.hash.replace('#post-', '');
+            const el = document.getElementById(`post-${slug}`);
+            if (el) {
+                el.classList.add('open');
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+
+    </script>
+    <script>
+        document.querySelectorAll('a[href*="wa.me"], a[href*="instagram.com"], a[href*="facebook.com"], a[href*="tiktok.com"], a[href*="youtube.com"], a[href*="twitter.com"], a[href*="x.com"], a[href*="linkedin.com"]').forEach(function (link) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener');
+        });
+    </script>
+    <script src="responsive.js"></script>
+</body>
+
+</html>

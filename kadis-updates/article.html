@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Field Notes — KADIS.COM.NG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0C0B09; --ink-2:#131210; --ink-3:#1B1916;
+    --paper:#EFEAE0; --paper-dim:#A79C89; --paper-dimmer:#6B6255;
+    --rule:rgba(239,234,224,0.10); --rule-strong:rgba(239,234,224,0.20);
+    --amber:#D9772E; --amber-soft:#E8A15E;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--ink); color:var(--paper); font-family:'Source Serif 4', serif; -webkit-font-smoothing:antialiased;}
+  a{text-decoration:none; color:inherit;}
+  .serif-display{font-family:'Fraunces', serif;}
+  .mono{font-family:'Space Mono', monospace;}
+  .sans{font-family:'Manrope', sans-serif;}
+  ::selection{background:var(--amber-soft); color:#161310;}
+  .wrap{max-width:980px; margin:0 auto; padding:0 32px;}
+  .narrow{max-width:680px; margin:0 auto; padding:0 32px;}
+
+  header.site{border-bottom:1px solid var(--rule); padding:22px 0;}
+  header.site .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{width:30px; height:30px; border-radius:7px; background:var(--amber); display:flex; align-items:center; justify-content:center; color:#171310; font-weight:800; font-size:13px; font-family:'Manrope';}
+  .brand-name{font-family:'Manrope'; font-weight:700; font-size:14px; letter-spacing:0.02em;}
+  .brand-sep{width:1px; height:16px; background:var(--rule-strong); margin:0 4px;}
+  .brand-sub{font-family:'Space Mono'; font-size:11px; color:var(--paper-dim); letter-spacing:0.1em; text-transform:uppercase;}
+  .back-link{font-family:'Manrope'; font-size:13px; font-weight:600; color:var(--paper-dim); display:flex; align-items:center; gap:6px; transition:color .2s;}
+  .back-link:hover{color:var(--amber-soft);}
+
+  /* ---------- Article head ---------- */
+  .art-head{padding:70px 0 46px; border-bottom:1px solid var(--rule);}
+  .meta-row{display:flex; align-items:center; gap:14px; margin-bottom:24px; font-family:'Space Mono'; font-size:11.5px; color:var(--paper-dim); letter-spacing:0.06em;}
+  .meta-row .cat{color:var(--amber-soft);}
+  .meta-row .dot{color:var(--paper-dimmer);}
+  .art-head h1{font-family:'Fraunces'; font-weight:500; font-size:clamp(32px,5.5vw,58px); line-height:1.05; margin-bottom:22px;}
+  .art-head .dek{font-size:18px; color:var(--paper-dim); line-height:1.7; max-width:620px;}
+  .art-icon{margin:36px 0 0; width:64px; height:64px; opacity:.7;}
+  .art-icon svg{width:100%; height:100%; color:var(--paper-dim);}
+
+  /* ---------- Article body ---------- */
+  .art-body{padding:56px 0 20px;}
+  .art-body p{font-size:18px; line-height:1.85; color:var(--paper); margin-bottom:26px;}
+  .art-body p.lede::first-letter{
+    font-family:'Fraunces'; font-weight:500; font-size:76px; float:left; line-height:0.82;
+    margin:6px 12px 0 0; color:var(--amber-soft);
+  }
+  .art-body h3{font-family:'Fraunces'; font-weight:500; font-size:26px; margin:46px 0 18px; line-height:1.25;}
+  .pull-quote{margin:48px 0; padding:6px 0 6px 30px; border-left:2px solid var(--amber); }
+  .pull-quote p{font-family:'Fraunces'; font-style:italic; font-weight:400; font-size:26px; line-height:1.45; color:var(--paper); margin:0;}
+  .art-cta{margin-top:50px; padding:34px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;}
+  .art-cta p{font-size:15px; color:var(--paper-dim); max-width:400px; font-family:'Source Serif 4';}
+  .cta-link{font-family:'Manrope'; font-size:13.5px; font-weight:700; color:var(--paper); display:inline-flex; align-items:center; gap:8px; border-bottom:1px solid var(--rule-strong); padding-bottom:3px; transition:all .25s; white-space:nowrap;}
+  .cta-link:hover{color:var(--amber-soft); border-color:var(--amber-soft); gap:12px;}
+
+  /* ---------- Related ---------- */
+  .related{padding:70px 0 100px;}
+  .related-head{font-family:'Space Mono'; font-size:11.5px; color:var(--paper-dimmer); letter-spacing:0.14em; text-transform:uppercase; margin-bottom:8px; padding-bottom:20px; border-bottom:1px solid var(--rule);}
+  .idx-row{display:grid; grid-template-columns:70px 1fr auto; gap:24px; align-items:baseline; padding:28px 0; border-bottom:1px solid var(--rule); transition:opacity .2s;}
+  .idx-row:hover{opacity:0.75;}
+  .idx-num{font-family:'Fraunces'; font-weight:400; font-size:15px; color:var(--paper-dimmer); font-style:italic;}
+  .idx-main .cat{font-family:'Space Mono'; font-size:10.5px; color:var(--amber-soft); letter-spacing:0.1em; text-transform:uppercase; display:block; margin-bottom:8px;}
+  .idx-main h3{font-family:'Fraunces'; font-weight:500; font-size:21px; line-height:1.25;}
+  .idx-meta{font-family:'Space Mono'; font-size:11px; color:var(--paper-dimmer); white-space:nowrap; text-align:right;}
+  @media (max-width:640px){ .idx-row{grid-template-columns:1fr; gap:8px;} .idx-meta{text-align:left;} }
+
+  footer.site{border-top:1px solid var(--rule); padding:56px 0 40px;}
+  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-family:'Manrope'; font-size:12px; color:rgb(184, 178, 178);}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="brand">
+      <a href="index.html" style="display:flex; align-items:center; gap:12px;">
+        <div class="brand-mark">K</div>
+        <div class="brand-name">KADIS</div>
+      </a>
+      <div class="brand-sep"></div>
+      <div class="brand-sub">Field Notes</div>
+    </div>
+    <a class="back-link" href="blog.html">← All dispatches</a>
+  </div>
+</header>
+
+<section class="art-head narrow">
+  <div class="meta-row">
+    <span class="cat" id="metaCat"></span><span class="dot">·</span>
+    <span id="metaNum"></span><span class="dot">·</span>
+    <span id="metaRead"></span>
+  </div>
+  <h1 class="serif-display" id="artTitle"></h1>
+  <p class="dek" id="artDek"></p>
+  <div class="art-icon" id="artIcon"></div>
+</section>
+
+<article class="art-body narrow" id="artBody"></article>
+
+<section class="related wrap">
+  <div class="related-head">More dispatches</div>
+  <div id="relatedList"></div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-bottom">
+      <span>© 2020–2026 KADIS.COM.NG</span>
+      <a class="back-link" href="index.html">Back to the shop →</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const ICON = {
+    switches: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><rect x="30" y="20" width="60" height="80" rx="4"/><rect x="42" y="36" width="15" height="26" rx="7"/><rect x="63" y="36" width="15" height="26" rx="7"/><path d="M46 30v6M71 30v6"/><path d="M38 82h44M38 90h30"/><path d="M50 12c4-4 8-4 12 0" stroke-width="0.9"/></svg>`,
+    network: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"><circle cx="60" cy="34" r="9"/><circle cx="30" cy="82" r="7"/><circle cx="60" cy="90" r="7"/><circle cx="90" cy="82" r="7"/><path d="M60 43v22M60 65 30 82M60 65l0 25M60 65 90 82"/></svg>`,
+    crate: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M22 46 60 30l38 16-38 16Z"/><path d="M22 46v34l38 16V62"/><path d="M98 46v34l-38 16"/><path d="M22 46l38 16"/></svg>`,
+  };
+
+  const POSTS = [
+    {
+      slug:"smart-switches-hotels-commercial-buildings",
+      num:"003", cat:"Smart Home", icon:"switches", readMins:6,
+      title:"Smart Switches for Hotels and Commercial Buildings",
+      dek:"What separates a smart-switch install that pays for itself from one that becomes a maintenance headache — from relay ratings to key-card room control.",
+      cta:{ text:"Kadis handles smart-switch sourcing and installation end to end, from relay selection to configuring the management dashboard.", label:"Talk to FixIT about a smart-switch install", href:"service.html?s=fixit" },
+      body:[
+        {p:"For hotels and commercial buildings across Nigeria, lighting and power aren't just a comfort line item — they're one of the largest controllable costs on the utility bill, especially where diesel generators fill the gap left by grid supply. Smart switches have become one of the fastest-paying-for-itself upgrades available, but the difference between an installation that delivers real savings and one that becomes a recurring maintenance call almost always comes down to decisions made before a single wire is cut.", lede:true},
+        {h3:"Start With the Switch, Not the App"},
+        {p:"It's tempting to shop by app features first, but the switch hardware underneath matters more. Commercial-grade units rated for 10A to 16A with high-cycle relays, sourced from reputable manufacturers, are what stand between a system that runs quietly for years and one that starts failing under the load of a busy guest floor within months. This is not the place to economize."},
+        {h3:"Wired or Wireless — Match It to the Building"},
+        {p:"New-build hotels have the luxury of running structured cabling during construction, which makes wired protocols like KNX or RS-485 the stronger long-term choice — more reliable, less prone to interference in a building full of concrete and steel. Retrofits are a different story: tearing into finished walls to rewire an occupied property is rarely worth it, which is where Zigbee or Wi-Fi mesh systems earn their keep, layering smart control over existing wiring."},
+        {quote:"A smart switch is only as smart as the installation behind it."},
+        {h3:"Buy a Platform, Not Just a Switch"},
+        {p:"The switch you install this year should be able to grow with the building. Look for a platform built to expand into smart curtains, thermostats, CCTV, access control, smart door locks and solar monitoring — so the next upgrade plugs into what's already there instead of replacing it. Before committing to any provider, ask to see the system live: scene control, key-card room presence detection, and the management dashboard a front-desk or facilities team will actually use day to day."},
+        {h3:"Measure What You're Saving"},
+        {p:"None of this matters if you can't prove the return. Knowing current energy consumption before installation gives a baseline to measure real savings against once the system is live — the number that eventually justifies the investment to ownership or stakeholders."},
+        {h3:"Why the Installer Matters as Much as the Equipment"},
+        {p:"Professional installation is what determines whether wiring is done safely, configuration holds up under daily use, the setup meets electrical code, and the system reaches its full working lifespan. A smart switch is a small device with a lot riding on how it's put in."}
+      ]
+    },
+    {
+      slug:"digital-transformation-kdts",
+      num:"002", cat:"Digital Transformation", icon:"network", readMins:5,
+      title:"Why Digital Transformation Is No Longer Optional for Nigerian Businesses",
+      dek:"Introducing KADIS Digital Transformation Solutions (KDTS) — and why organizations that automate now are outrunning the ones that wait.",
+      cta:{ text:"KDTS is Kadis's consulting and enterprise technology division — automation, software implementation, ICT infrastructure, cloud and AI consulting under one roof.", label:"See what KDTS covers", href:"service.html?s=kdts" },
+      body:[
+        {p:"Across Nigeria's fast-changing digital economy, the organizations pulling ahead aren't necessarily the biggest — they're the ones that have embraced technology deliberately, rather than bolting it on when a problem forces the issue. That pattern holds across sectors: businesses, government agencies, schools, hospitals, NGOs and SMEs are all being reshaped by the same underlying shift, whether they've chosen it consciously or not.", lede:true},
+        {h3:"Transformation Is a Process, Not a Purchase"},
+        {p:"It's easy to mistake digital transformation for a shopping list — new software, a new website, a new system. In practice it's closer to a redesign of how an organization actually works: automating processes that used to run on paper and memory, moving infrastructure to the cloud where it can scale without a matching increase in overhead, and using the data an organization already generates to make faster, better-informed decisions."},
+        {quote:"The organizations winning right now aren't the biggest — they're the ones that automated first."},
+        {h3:"Introducing KADIS Digital Transformation Solutions"},
+        {p:"This is the gap KADIS Digital Transformation Solutions, or KDTS, was built to close — a dedicated consulting, software development and enterprise technology division inside Kadis focused on helping organizations modernize, automate and digitally transform how they operate. Rather than treating each request as a one-off software purchase, KDTS works across business automation, enterprise software implementation, ICT infrastructure, cloud computing and AI consulting, so the pieces are designed to work together instead of accumulating as disconnected tools."},
+        {h3:"Who This Is For"},
+        {p:"The same breadth that defines the problem defines who KDTS works with — established businesses looking to modernize legacy systems, government agencies under pressure to digitize service delivery, schools and hospitals managing growing volumes of records and workflows, and NGOs and SMEs that need enterprise-grade infrastructure without an enterprise-sized IT department."},
+        {h3:"Where to Start"},
+        {p:"Most engagements start the same way a FixIT installation does — with a conversation about what's actually slowing an organization down, not a pitch for a specific product. From there, KDTS scopes what modernization actually requires, in what order, and at what pace the organization can realistically absorb it."}
+      ]
+    },
+    {
+      slug:"kadis-equipment-rentals-expansion",
+      num:"001", cat:"Rentals", icon:"crate", readMins:4,
+      title:"KADIS.COM.NG Has Expanded — Introducing ICT Equipment Rentals",
+      dek:"Why Kadis started renting out the equipment it used to only sell and install — and what's available by the day, week or project.",
+      cta:{ text:"Browse what's available to rent — security, networking, event and engineering equipment, by the day, week or project.", label:"See Equipment Rentals", href:"service.html?s=rentals" },
+      body:[
+        {p:"Not every piece of ICT or event equipment is worth owning. A church only needs a full sound system twice a year. A construction site only needs scaffolding for the length of the project. A telecom contractor might only need a bank of routers for a two-week deployment. Kadis expanded into ICT Equipment Rentals to serve exactly that gap — access to premium, professional equipment without the capital outlay of buying it outright.", lede:true},
+        {h3:"What's Available"},
+        {p:"The rental catalogue spans four broad categories. Security, networking and telecommunications equipment covers routers, CCTV cameras, walkie-talkies and related gear for temporary deployments or surveillance needs. Event equipment includes laptops, projectors, LED screens, sound systems, printers, scanners, photocopiers, cameras and power banks for conferences, weddings, church services and corporate events. Engineering equipment covers power tools, scaffolds, ladders and welding machines for construction, ICT and industrial projects. And for logistics and field support, Kadis also rents generators plus trucks, towing vans and motorcycles."},
+        {quote:"Some equipment is only ever needed once — that's exactly what a rental fleet is for."},
+        {h3:"Who It's Built For"},
+        {p:"The rental division serves businesses, schools, government agencies, telecom operators, event organizers and independent ICT professionals — anyone who needs reliable equipment for a defined window rather than an open-ended purchase."},
+        {h3:"Flexible by Design"},
+        {p:"Rental plans run by the day, the week, the month, or the length of a project, so the commitment matches the actual need rather than forcing a longer or shorter rental than the job requires. It's the same instinct behind Kadis's broader ambition — building out Abuja's ICT ecosystem as one trusted brand, rather than sending customers elsewhere for the pieces that don't fit neatly into gadgets or installations."}
+      ]
+    },
+  ];
+
+  const params = new URLSearchParams(location.search);
+  const post = POSTS.find(p => p.slug === params.get('post')) || POSTS[0];
+
+  document.title = `${post.title} — Kadis Field Notes`;
+  document.getElementById('metaCat').textContent = post.cat;
+  document.getElementById('metaNum').textContent = `Dispatch No. ${post.num}`;
+  document.getElementById('metaRead').textContent = `${post.readMins} min read`;
+  document.getElementById('artTitle').textContent = post.title;
+  document.getElementById('artDek').textContent = post.dek;
+  document.getElementById('artIcon').innerHTML = ICON[post.icon];
+
+  const bodyEl = document.getElementById('artBody');
+  post.body.forEach(block=>{
+    if(block.h3){
+      const h = document.createElement('h3');
+      h.textContent = block.h3;
+      bodyEl.appendChild(h);
+    } else if(block.quote){
+      const q = document.createElement('div');
+      q.className = 'pull-quote';
+      q.innerHTML = `<p>${block.quote}</p>`;
+      bodyEl.appendChild(q);
+    } else if(block.p){
+      const p = document.createElement('p');
+      if(block.lede) p.className = 'lede';
+      p.textContent = block.p;
+      bodyEl.appendChild(p);
+    }
+  });
+  const ctaEl = document.createElement('div');
+  ctaEl.className = 'art-cta';
+  ctaEl.innerHTML = `<p>${post.cta.text}</p><a class="cta-link" href="${post.cta.href}">${post.cta.label} →</a>`;
+  bodyEl.appendChild(ctaEl);
+
+  const relList = document.getElementById('relatedList');
+  POSTS.filter(p=>p.slug!==post.slug).forEach(p=>{
+    const row = document.createElement('a');
+    row.href = `article.html?post=${p.slug}`;
+    row.className = 'idx-row';
+    row.innerHTML = `
+      <div class="idx-num">No. ${p.num}</div>
+      <div class="idx-main"><span class="cat">${p.cat}</span><h3>${p.title}</h3></div>
+      <div class="idx-meta">${p.readMins} min read</div>
+    `;
+    relList.appendChild(row);
+  });
+</script>
+
+</body>
+</html>
