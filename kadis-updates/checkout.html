@@ -1,0 +1,2445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout — KADIS.COM.NG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0B0C0F;
+            --bg-2: #131519;
+            --bg-3: #1A1D22;
+            --bg-4: #20232A;
+            --ink: #EDEEEC;
+            --ink-dim: #9A9FA8;
+            --ink-dimmer: #5C616A;
+            --line: rgba(255, 255, 255, 0.07);
+            --line-bright: rgba(255, 255, 255, 0.13);
+            --amber: #D9772E;
+            --amber-deep: #B85F22;
+            --amber-soft: #E8A15E;
+            --moss: #A9B84C;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        ::selection {
+            background: var(--amber-soft);
+            color: #111;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 15% 8%, rgba(217, 119, 46, 0.08), transparent 40%),
+                radial-gradient(circle at 85% 25%, rgba(169, 184, 76, 0.045), transparent 35%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrap {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .7s cubic-bezier(.16, .8, .24, 1), transform .7s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+
+            * {
+                animation-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* ---------- Top bar / Nav (same shell as the rest of the site) ---------- */
+        .topbar {
+            background: var(--bg-2);
+            border-bottom: 1px solid var(--line);
+            font-size: 12.5px;
+            color: var(--ink-dim);
+        }
+
+        .topbar .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 38px;
+            flex-wrap: wrap;
+        }
+
+        .topbar .dot {
+            color: var(--amber-soft);
+            margin-right: 6px;
+        }
+
+        .topbar-right {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .topbar-right span.mono {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(11, 12, 15, 0.82);
+            backdrop-filter: blur(16px) saturate(140%);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 78px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Sora';
+            font-weight: 800;
+            font-size: 22px;
+            margin-top: 15px;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0A0B0E;
+            font-weight: 800;
+            font-size: 16px;
+            box-shadow: 0 6px 20px rgba(217, 119, 46, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+
+        .logo span {
+            color: var(--ink-dim);
+            font-weight: 600;
+            font-size: 12px;
+            display: block;
+            letter-spacing: 0.08em;
+            font-family: 'Space Mono';
+        }
+
+        /* ---------- Nav ---------- */
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 78px;
+            gap: 42px;
+        }
+
+        .logo {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink-dim);
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 0;
+            white-space: nowrap;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--ink);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--amber);
+            transition: width .3s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 0 0 auto;
+        }
+
+        .nav-actions .btn-primary {
+            white-space: nowrap;
+            font-size: 12px;
+            padding: 11px 15px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-dim);
+            transition: all .2s;
+            cursor: pointer;
+            position: relative;
+            background: transparent;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--amber);
+            color: #0A0B0E;
+            font-size: 10px;
+            font-weight: 800;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono';
+        }
+
+        .btn-primary {
+            background: var(--amber);
+            color: #0B0C0F;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 11px 22px;
+            border-radius: 10px;
+            box-shadow: 0 8px 22px rgba(217, 119, 46, 0.22);
+            transition: transform .25s cubic-bezier(.16, .8, .24, 1), box-shadow .25s, background .25s;
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: var(--amber-soft);
+            box-shadow: 0 14px 30px rgba(217, 119, 46, 0.3);
+        }
+
+        .btn-ghost {
+            border: 1px solid var(--line-bright);
+            color: var(--ink);
+            font-weight: 700;
+            font-size: 13.5px;
+            padding: 11px 20px;
+            border-radius: 10px;
+            transition: all .25s cubic-bezier(.16, .8, .24, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--amber);
+            background: rgba(217, 119, 46, 0.06);
+        }
+
+        .search-row {
+            border-bottom: 1px solid var(--line);
+            background: var(--bg);
+            padding: 16px 0;
+            position: sticky;
+            top: 78px;
+            z-index: 56;
+        }
+
+        .search-row .wrap {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .search-bar {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: var(--bg-2);
+            border: 1px solid var(--line-bright);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color .2s;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--amber);
+        }
+
+        .search-bar input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--ink);
+            padding: 13px 16px;
+            font-size: 14px;
+            font-family: 'Manrope';
+        }
+
+        .search-bar input::placeholder {
+            color: var(--ink-dimmer);
+        }
+
+        .search-bar .go {
+            background: var(--amber);
+            color: #0B0C0F;
+            border: none;
+            padding: 13px 22px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background .2s;
+        }
+
+        .search-bar .go:hover {
+            background: var(--amber-soft);
+        }
+
+        .crumbs {
+            padding: 18px 0;
+            font-size: 13px;
+            color: var(--ink-dim);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .crumbs a {
+            transition: color .2s;
+            color: rgb(187, 178, 178);
+        }
+
+        .crumbs a:hover {
+            color: var(--amber-soft);
+        }
+
+        .crumbs .sep {
+            color: var(--ink-dimmer);
+        }
+
+        .crumbs .cur {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        /* ---------- Page hero ---------- */
+        .page-hero {
+            padding: 16px 0 50px;
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            flex-wrap: wrap;
+        }
+
+        .page-hero-badge {
+            width: 84px;
+            height: 84px;
+            border-radius: 22px;
+            flex-shrink: 0;
+            background: linear-gradient(150deg, var(--bg-4), var(--bg-3));
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.07), inset 0 -8px 14px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .page-hero-badge::after {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            border-radius: 30px;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(217, 119, 46, 0.18), transparent 70%);
+            animation: badgeGlow 5s ease-in-out infinite;
+        }
+
+        @keyframes badgeGlow {
+
+            0%,
+            100% {
+                opacity: .55;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .page-hero-badge svg {
+            width: 38px;
+            height: 38px;
+            color: var(--amber-soft);
+            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
+        }
+
+        .page-hero-text span.tag {
+            font-family: 'Space Mono';
+            font-size: 12px;
+            color: var(--amber-soft);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .page-hero-text h1 {
+            font-size: 34px;
+            margin: 8px 0 8px;
+        }
+
+        .page-hero-text p {
+            color: rgb(188, 183, 183);
+            font-size: 15px;
+            max-width: 560px;
+            line-height: 1.65;
+        }
+
+        section {
+            padding: 70px 0;
+        }
+
+        .sec-head {
+            margin-bottom: 36px;
+        }
+
+        .sec-eyebrow {
+            font-family: 'Space Mono';
+            font-size: 12px;
+            color: var(--amber-soft);
+            letter-spacing: .08em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .sec-head h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .sec-head p {
+            color: var(--ink-dim);
+            font-size: 14.5px;
+            max-width: 560px;
+        }
+
+        /* ---------- Coverage cards ---------- */
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width:980px) {
+            .coverage-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:560px) {
+            .coverage-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .coverage-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 22px;
+            transition: transform .3s cubic-bezier(.16, .8, .24, 1), border-color .3s;
+        }
+
+        .coverage-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(217, 119, 46, 0.28);
+        }
+
+        .coverage-card.primary {
+            border-color: rgba(217, 119, 46, 0.35);
+            background: linear-gradient(160deg, var(--bg-3), var(--bg-2));
+        }
+
+        .coverage-card b {
+            display: block;
+            font-family: 'Sora';
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .coverage-card .time {
+            font-family: 'Space Mono';
+            font-size: 20px;
+            color: var(--amber-soft);
+            font-weight: 700;
+            margin: 8px 0 6px;
+        }
+
+        .coverage-card span {
+            font-size: 12px;
+            color: var(--ink-dim);
+        }
+
+        /* ---------- Process timeline ---------- */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            position: relative;
+        }
+
+        @media (max-width:900px) {
+            .timeline {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width:560px) {
+            .timeline {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tl-step {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+            transition: transform .3s cubic-bezier(.16, .8, .24, 1), border-color .3s;
+        }
+
+        .tl-step:hover {
+            transform: translateY(-4px);
+            border-color: rgba(217, 119, 46, 0.28);
+        }
+
+        .tl-step .num {
+            font-family: 'Space Mono';
+            font-size: 12px;
+            color: var(--amber-soft);
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--line-bright);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .tl-step h5 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .tl-step span {
+            font-size: 13px;
+            color: var(--ink-dim);
+            line-height: 1.55;
+        }
+
+        /* ---------- Track your delivery ---------- */
+        .track-copy {
+            color: var(--ink-dim);
+            font-size: 14.5px;
+            line-height: 1.75;
+            max-width: 680px;
+            margin-bottom: 30px;
+        }
+
+        .track-copy strong {
+            color: var(--ink);
+        }
+
+        .track-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width:900px) {
+            .track-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:560px) {
+            .track-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .track-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: transform .3s cubic-bezier(.16, .8, .24, 1), border-color .3s;
+        }
+
+        .track-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(217, 119, 46, 0.28);
+        }
+
+        .track-card .ic {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: linear-gradient(150deg, var(--bg-4), var(--bg-3));
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .track-card .ic svg {
+            width: 20px;
+            height: 20px;
+            color: var(--amber-soft);
+        }
+
+        .track-card b {
+            font-family: 'Sora';
+            font-size: 14.5px;
+            font-weight: 700;
+        }
+
+        .track-card span {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            line-height: 1.5;
+        }
+
+        /* ---------- Fee note ---------- */
+        .note-band {
+            background: linear-gradient(120deg, rgba(217, 119, 46, 0.10), rgba(169, 184, 76, 0.04));
+            border: 1px solid rgba(217, 119, 46, 0.2);
+            border-radius: 18px;
+            padding: 26px 30px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .note-band svg {
+            width: 22px;
+            height: 22px;
+            color: var(--amber-soft);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .note-band p {
+            color: var(--ink-dim);
+            font-size: 13.5px;
+            line-height: 1.7;
+        }
+
+        .note-band strong {
+            color: var(--ink);
+        }
+
+        /* ---------- FAQ (shared style with homepage) ---------- */
+        .faq-list {
+            max-width: 820px;
+        }
+
+        .faq-item {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--bg-2);
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: border-color .25s;
+        }
+
+        .faq-item.open {
+            border-color: rgba(217, 119, 46, 0.3);
+        }
+
+        .faq-q {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            color: var(--ink);
+            font-family: 'Sora';
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .faq-q .plus {
+            flex-shrink: 0;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--amber-soft);
+            transition: transform .35s cubic-bezier(.16, .8, .24, 1), background .25s;
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .faq-item.open .faq-q .plus {
+            transform: rotate(135deg);
+            background: var(--amber);
+            color: #0B0C0F;
+            border-color: transparent;
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .faq-a p {
+            padding: 0 24px 20px;
+            color: var(--ink-dim);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .cta-band {
+            background: linear-gradient(120deg, rgba(217, 119, 46, 0.12), rgba(169, 184, 76, 0.05));
+            border: 1px solid rgba(217, 119, 46, 0.22);
+            border-radius: 24px;
+            padding: 56px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-band h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .cta-band p {
+            color: var(--ink-dim);
+            margin-bottom: 26px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            background: var(--bg-2);
+        }
+
+        .foot-promo {
+            background: linear-gradient(115deg, rgba(217, 119, 46, 0.10), rgba(169, 184, 76, 0.04));
+            border-bottom: 1px solid var(--line);
+            padding: 22px 0;
+        }
+
+        .foot-promo .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .foot-promo p {
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            max-width: 760px;
+            line-height: 1.7;
+        }
+
+        .foot-promo b {
+            color: var(--ink);
+        }
+
+        .foot-promo .btn-primary {
+            flex-shrink: 0;
+        }
+
+        .foot-contact {
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-dim);
+            line-height: 1.9;
+        }
+
+        .foot-contact .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: space-between;
+        }
+
+        .foot-contact strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .foot-contact a {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-contact .fc-block {
+            max-width: 520px;
+        }
+
+        .foot-main {
+            padding: 56px 0 40px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.3fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 0;
+        }
+
+        .foot-col h5 {
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 18px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-col a {
+            display: block;
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            margin-bottom: 12px;
+            transition: color .2s;
+        }
+
+        .foot-col a:hover {
+            color: var(--amber-soft);
+        }
+
+        /* ---- Blog topics: compact wrapped pill row instead of one giant
+       vertical list crammed into a footer column ---- */
+        .foot-topics {
+            padding: 30px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .foot-topics h5 {
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 16px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-topics-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .foot-topics-row a {
+            font-size: 12.5px;
+            color: rgb(191, 188, 188);
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            border-radius: 100px;
+            padding: 7px 14px;
+            transition: border-color .2s, color .2s;
+            white-space: nowrap;
+        }
+
+        .foot-topics-row a:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+        }
+
+        .foot-links-line {
+            padding: 20px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-dim);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 0;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .foot-links-line a {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-links-line .sep {
+            color: var(--ink-dimmer);
+            margin: 0 10px;
+        }
+
+        .foot-bank {
+            padding: 16px 0;
+            font-size: 12.5px;
+            color: rgb(198, 195, 195);
+            border-bottom: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .foot-bank strong {
+            color: var(--amber-soft);
+        }
+
+        .foot-bottom {
+            padding: 22px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            color: rgb(177, 172, 172);
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-row a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: var(--ink-dim);
+            transition: all .2s;
+        }
+
+        .social-row a:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+            transform: translateY(-2px);
+        }
+
+        .wa-float {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 70;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C4A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+            font-size: 26px;
+            color: #fff;
+            transition: transform .25s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .wa-float:hover {
+            transform: scale(1.08);
+        }
+
+        @media (max-width:900px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
+        /* ---------- Cart page ---------- */
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 1fr 340px;
+            gap: 28px;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cart-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .cart-row {
+            display: grid;
+            grid-template-columns: 76px 1fr auto auto auto;
+            gap: 16px;
+            align-items: center;
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 14px;
+        }
+
+        @media (max-width: 640px) {
+            .cart-row {
+                grid-template-columns: 60px 1fr;
+                grid-template-areas: "img name" "img price" "img qty" "img remove";
+                row-gap: 8px;
+            }
+
+            .cart-row .cr-img {
+                grid-area: img;
+            }
+
+            .cart-row .cr-name {
+                grid-area: name;
+            }
+
+            .cart-row .cr-price {
+                grid-area: price;
+            }
+
+            .cart-row .cr-qty {
+                grid-area: qty;
+            }
+
+            .cart-row .cr-remove {
+                grid-area: remove;
+                justify-self: start;
+            }
+        }
+
+        .cr-img {
+            width: 76px;
+            height: 76px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--bg-3);
+            border: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .cr-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cr-img .ph {
+            color: var(--ink-dimmer);
+            font-size: 22px;
+        }
+
+        .cr-name span {
+            display: block;
+            font-family: 'Space Mono';
+            font-size: 11px;
+            color: var(--amber-soft);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            margin-bottom: 4px;
+        }
+
+        .cr-name b {
+            font-size: 14.5px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .cr-price {
+            font-family: 'Space Mono';
+            font-size: 13px;
+            color: var(--ink-dim);
+            white-space: nowrap;
+        }
+
+        .cr-qty {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--line-bright);
+            border-radius: 9px;
+            overflow: hidden;
+        }
+
+        .cr-qty button {
+            width: 30px;
+            height: 30px;
+            background: var(--bg-3);
+            border: none;
+            color: var(--ink);
+            font-size: 15px;
+            cursor: pointer;
+            transition: background .2s;
+        }
+
+        .cr-qty button:hover {
+            background: var(--bg-4);
+            color: var(--amber-soft);
+        }
+
+        .cr-qty input {
+            width: 36px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            color: var(--ink);
+            font-family: 'Space Mono';
+            font-size: 13.5px;
+        }
+
+        .cr-remove {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--ink-dim);
+            cursor: pointer;
+            font-size: 15px;
+            transition: all .2s;
+        }
+
+        .cr-remove:hover {
+            border-color: #C24C4C;
+            color: #E27373;
+            background: rgba(194, 76, 76, 0.08);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 70px 20px;
+            border: 1px dashed var(--line-bright);
+            border-radius: 16px;
+        }
+
+        .cart-empty .ce-icon {
+            font-size: 44px;
+            margin-bottom: 14px;
+            opacity: .7;
+        }
+
+        .cart-empty h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .cart-empty p {
+            color: rgb(175, 167, 167);
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .summary-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 22px;
+            position: sticky;
+            top: 150px;
+        }
+
+        .summary-card h4 {
+            font-size: 15px;
+            margin-bottom: 16px;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            padding: 9px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .summary-line.total {
+            border-bottom: none;
+            padding-top: 14px;
+            font-size: 16px;
+            font-weight: 800;
+            color: var(--ink);
+        }
+
+        .summary-line.total b {
+            font-family: 'Space Mono';
+            color: var(--amber-soft);
+        }
+
+        .summary-card .btn-primary {
+            width: 100%;
+            justify-content: center;
+            margin-top: 16px;
+        }
+
+        .summary-note {
+            margin-top: 14px;
+            font-size: 12px;
+            color: var(--ink-dimmer);
+            line-height: 1.6;
+        }
+
+        /* ---------- Checkout page ---------- */
+        .checkout-steps {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 26px;
+            font-family: 'Space Mono';
+            font-size: 12px;
+            color: var(--ink-dimmer);
+        }
+
+        .checkout-steps .step {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkout-steps .step .num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        .checkout-steps .step.active {
+            color: var(--amber-soft);
+        }
+
+        .checkout-steps .step.active .num {
+            background: var(--amber);
+            border-color: var(--amber);
+            color: #0B0C0F;
+            font-weight: 700;
+        }
+
+        .checkout-steps .step.done .num {
+            background: var(--moss);
+            border-color: var(--moss);
+            color: #0B0C0F;
+        }
+
+        .checkout-steps .divider {
+            width: 26px;
+            height: 1px;
+            background: var(--line-bright);
+        }
+
+        .checkout-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 28px;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .checkout-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 26px;
+        }
+
+        .form-card h4 {
+            font-size: 15.5px;
+            margin-bottom: 18px;
+        }
+
+        .form-card h4.spaced {
+            margin-top: 26px;
+        }
+
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        @media (max-width: 560px) {
+            .field-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .field label {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+        }
+
+        .field label .req {
+            color: var(--amber-soft);
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            border-radius: 9px;
+            color: var(--ink);
+            padding: 11px 12px;
+            font-family: 'Manrope';
+            font-size: 13.5px;
+            outline: none;
+            transition: border-color .2s;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--amber);
+        }
+
+        .field textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .field.invalid input,
+        .field.invalid select {
+            border-color: #C24C4C;
+        }
+
+        .field .err-msg {
+            display: none;
+            font-size: 11.5px;
+            color: #E27373;
+        }
+
+        .field.invalid .err-msg {
+            display: block;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 13px;
+            color: var(--ink-dim);
+            margin: 4px 0 18px;
+        }
+
+        .checkbox-row input {
+            width: 15px;
+            height: 15px;
+            accent-color: var(--amber);
+        }
+
+        .order-mini {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .order-mini table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .order-mini th {
+            text-align: left;
+            background: var(--bg-3);
+            color: var(--ink-dim);
+            font-weight: 600;
+            padding: 10px 12px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        .order-mini td {
+            padding: 11px 12px;
+            border-top: 1px solid var(--line);
+        }
+
+        .order-mini tr.grand td {
+            font-weight: 800;
+            color: var(--amber-soft);
+            font-family: 'Space Mono';
+        }
+
+        .pay-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .pay-method {
+            border: 1px solid var(--line-bright);
+            border-radius: 12px;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: border-color .2s, background .2s;
+        }
+
+        .pay-method.active {
+            border-color: var(--amber);
+            background: rgba(217, 119, 46, 0.07);
+        }
+
+        .pay-method .pm-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13.5px;
+            font-weight: 700;
+        }
+
+        .pay-method input[type="radio"] {
+            accent-color: var(--amber);
+            width: 15px;
+            height: 15px;
+        }
+
+        .pay-method .pm-detail {
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--line);
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            line-height: 1.7;
+        }
+
+        .pay-method.active .pm-detail {
+            display: block;
+        }
+
+        .pay-method.disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        .privacy-note {
+            font-size: 12px;
+            color: var(--ink-dimmer);
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .privacy-note a {
+            color: var(--amber-soft);
+        }
+
+        .place-order-btn {
+            width: 100%;
+            justify-content: center;
+            font-size: 14.5px;
+            padding: 15px;
+        }
+
+        .place-order-btn:disabled {
+            opacity: .6;
+            cursor: wait;
+        }
+
+        /* ---------- Order received ---------- */
+        .thanks-banner {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(169, 184, 76, 0.09);
+            border: 1px solid rgba(169, 184, 76, 0.35);
+            border-radius: 14px;
+            padding: 18px 20px;
+            margin-bottom: 22px;
+        }
+
+        .thanks-banner .tb-ic {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: var(--moss);
+            color: #0B0C0F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .thanks-banner b {
+            font-size: 15.5px;
+            display: block;
+        }
+
+        .thanks-banner span {
+            font-size: 13px;
+            color: var(--ink-dim);
+        }
+
+        .meta-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 22px;
+        }
+
+        @media (max-width: 700px) {
+            .meta-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .meta-strip div {
+            padding: 16px 18px;
+            border-right: 1px solid var(--line);
+            background: var(--bg-2);
+        }
+
+        .meta-strip div:last-child {
+            border-right: none;
+        }
+
+        .meta-strip span {
+            display: block;
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--ink-dimmer);
+            margin-bottom: 6px;
+        }
+
+        .meta-strip b {
+            font-size: 14px;
+        }
+
+        .bank-callout {
+            background: linear-gradient(135deg, rgba(217, 119, 46, 0.12), rgba(217, 119, 46, 0.03));
+            border: 1px solid rgba(217, 119, 46, 0.35);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 22px;
+        }
+
+        .bank-callout h4 {
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+
+        .bank-callout p {
+            font-size: 13px;
+            color: var(--ink-dim);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .bank-callout p b {
+            color: var(--ink);
+        }
+
+        .bank-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 560px) {
+            .bank-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bank-cell {
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            border-radius: 10px;
+            padding: 13px 15px;
+        }
+
+        .bank-cell span {
+            display: block;
+            font-size: 10.5px;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: var(--ink-dimmer);
+            margin-bottom: 5px;
+        }
+
+        .bank-cell b {
+            font-family: 'Space Mono';
+            font-size: 15px;
+        }
+
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            color: var(--amber-soft);
+            font-size: 12.5px;
+            font-weight: 700;
+            padding: 9px 14px;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: border-color .2s;
+        }
+
+        .copy-btn:hover {
+            border-color: var(--amber);
+        }
+
+        .wa-callout {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+            background: rgba(37, 211, 102, 0.08);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: 12px;
+            padding: 14px 16px;
+        }
+
+        .wa-callout p {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .wa-callout a.btn-primary {
+            white-space: nowrap;
+        }
+
+        .details-box {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 18px;
+        }
+
+        .details-box h5 {
+            font-size: 13.5px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            color: var(--ink-dim);
+        }
+
+        .details-box p {
+            font-size: 13.5px;
+            line-height: 1.9;
+        }
+
+        .details-box p.addr-line {
+            color: var(--ink-dim);
+        }
+
+        .whatsapp-channel {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            width: fit-content;
+            padding: 13px 18px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--ink);
+            transition: all 0.25s ease;
+        }
+
+        .whatsapp-channel:hover {
+            transform: translateY(-2px);
+            border-color: rgba(37, 211, 102, 0.45);
+            background: rgba(37, 211, 102, 0.07);
+        }
+
+        .whatsapp-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #fff;
+            font-size: 21px;
+        }
+
+        .whatsapp-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .whatsapp-content strong {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .whatsapp-content small {
+            font-size: 11px;
+            color: var(--ink-dim);
+            line-height: 1.3;
+        }
+
+        .whatsapp-arrow {
+            margin-left: 8px;
+            font-size: 19px;
+            color: var(--amber);
+            transition: transform 0.25s ease;
+        }
+
+        .whatsapp-channel:hover .whatsapp-arrow {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="wrap">
+            <div><span class="dot">●</span>Same-day delivery in Abuja for orders before 12 noon</div>
+            <div class="topbar-right">
+                <span>Nasarawa · Niger · Kaduna · Kogi</span>
+                <a class="mono" href="tel:08061379390">📞 0806 137 9390</a>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="wrap nav-inner">
+            <a class="logo" href="index.html" style="margin-bottom:16px;">
+                <img src="images/KADISS.png" alt="Kadis" style="height:38px; width:auto; border-radius:8px;">
+            </a>
+            <div class="nav-links">
+                <a href="index.html#solutions">Digital Solutions</a>
+                <a href="installation.html">ICT Engineering</a>
+                <a href="staffing.html">ICT Staffing</a>
+               <a href="training.html">ICT Training</a>
+                <a href="join.html">Join our Team</a>
+                <a href="rental.html">Equipment Rentals</a>
+                <a href="Allcategory.html">Store</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="nav-actions">
+                <a class="icon-btn" href="cart.html">🛒<span class="cart-count">0</span></a>
+                <a class="btn-primary" href="#" data-open-solution>Request a Solution</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="search-row">
+        <div class="wrap">
+            <div class="search-bar">
+                <input type="text" id="siteSearch" placeholder="Search 530+ products — CCTV, batteries, PS5, routers…">
+                <button class="go" id="siteSearchBtn">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap">
+        <div class="crumbs">
+            <a href="index.html">Home</a><span class="sep">/</span><a href="cart.html">Cart</a><span
+                class="sep">/</span><span class="cur">Checkout</span>
+        </div>
+    </div>
+
+    <div class="wrap page-hero">
+        <div class="page-hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M20 6L9 17l-5-5" />
+            </svg>
+        </div>
+        <div class="page-hero-text">
+            <span class="tag" id="heroTag">Step 2 of 2</span>
+            <h1 id="heroTitle">Checkout</h1>
+            <p id="heroSub">Enter your delivery details, then confirm your order with a bank transfer.</p>
+        </div>
+    </div>
+
+    <main class="wrap" style="padding-bottom:90px;">
+        <div class="checkout-steps">
+            <div class="step done">
+                <div class="num">1</div><span>Cart</span>
+            </div>
+            <div class="divider"></div>
+            <div class="step active" id="stepBilling">
+                <div class="num">2</div><span>Billing &amp; Order</span>
+            </div>
+            <div class="divider"></div>
+            <div class="step" id="stepDone">
+                <div class="num">3</div><span>Confirmation</span>
+            </div>
+        </div>
+        <div id="checkoutRoot"></div>
+    </main>
+    <footer>
+        <div class="foot-promo">
+            <div class="wrap">
+                <p><b>Shop & order now</b> — or place your order via phone call or WhatsApp message. We also do
+                    door-step
+                    delivery within Abuja and 4 surrounding states.</p>
+                <a class="btn-primary" href="https://wa.me/2348061379390">Order on WhatsApp →</a>
+            </div>
+        </div>
+
+        <div class="foot-contact" id="contact">
+            <div class="wrap">
+                <div class="fc-block">
+                    <strong>Headoffice:</strong> Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama, Abuja,
+                    Nigeria.
+                    <br> <strong>Branch:</strong> Apo Ultra Modern Market, Apo, opposite Apo Shoprite, after
+                    NNPC/Dankogi
+                    Junction,
+                    Shop F1119, Abuja.
+                </div>
+                <div class="fc-block">
+                    <strong>WhatsApp / Hotline:</strong>
+                    <a href="tel:08061379390">0806 137 9390</a>, <br>
+                    <a href="tel:08024207231">0802 420 7231</a><br>
+                    <strong>E-mail:</strong> <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="foot-main">
+                <div class="foot-grid">
+                    <div class="foot-col">
+                        <a class="logo" href="index.html" style="margin-bottom:16px;">
+                            <img src="images/KADISS.png" alt="Kadis"
+                                style="height:38px; width:auto; border-radius:8px;">
+                        </a>
+                        <p style="color:var(--ink-dim); font-size:13.5px; line-height:1.7; max-width:280px;">Abuja's No.
+                            1 ICT
+                            Ecosystem — gadgets, security, smart home, satellite & digital solutions, delivered
+                            door-step.</p>
+                    </div>
+                    <div class="foot-col">
+                        <h5>Shop</h5>
+                        <a href="security.html">Security Systems</a>
+                        <a href="category.html?cat=cctv-camera">CCTV Cameras</a>
+                        <a href="smart.html">Smart Home</a>
+                        <a href="wifi.html">Wifi / Mifi / Routers</a>
+                        <a href="satellite.html">Starlink</a>
+                        <a href="gadgets.html">Phone Accessories</a>
+                        <a href="ps.html">Games & Consoles</a>
+                        <a href="solar.html">Solar & Batteries</a>
+                        <a href="cables.html">Cables, Wires & Adapters</a>
+                        <a href="ict_tools.html">ICT Engineering Tools</a>
+                        <a href="electronic_converter.html">Electronic Converters & OTG</a>
+                        <a href="ringlights.html">Ring lights</a>
+                        <a href="satellite.html">Tv Decoders & Satellite Accessories</a>
+                    </div>
+                    <div class="foot-col">
+                        <h5>Services</h5>
+                        <a href="installation.html">ICT Installations & Engineering</a>
+                        <a href="techforce.html">TechForce</a>
+                        <a href="dts.html">Digital Transformation (KDTS)</a>
+                        <a href="rental.html">Equipment Rentals</a>
+                        <a href="security.html">Security Systems</a>
+                        <a href="skillab.html">Tech SkillLab</a>
+                        <a href="satelliteinstall.html">Satellite Solutions</a>
+                        <a href="smartiot.html">Smart Home & IoT</a>
+                        <a href="eventmedia.html">Event & Media</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="delivery.html">Delivery</a>
+                        <a href="installation.html">Starlink Installations</a>
+                        <a href="security.html">Security Systems</a>
+                        <a href="installation.html">AC & Freezer installation</a>
+                        <a href="satelliteinstall.html">Satellite Installation</a>
+                        <a href="source.html">Request Equipment</a>
+                        <a href="training.html">ICT Training</a>
+                        <a href="join.html">Join Our Team</a>
+                    </div>
+                    <div class="foot-col">
+                        <div class="foot-col">
+                            <h5>Contact</h5>
+                            <a href="tel:08061379390">0806 137 9390</a>
+                            <a href="tel:08024207231">0802 420 7231</a>
+                            <a href="#"> Head Office: Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama,
+                                Abuja, Nigeria.</a>
+                            <a href="#">Branch: Apo Urban Market, Apo, opposite Apo Shoprite, after
+                                NNPC/Dankogi Junction, Shop F1119, Abuja.</a>
+                            <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="foot-topics">
+                    <h5>Blog Categories</h5>
+                    <div class="foot-topics-row">
+                        <a href="blog.html#post-cctv-and-security-gadgets-solution">CCTV & Security</a>
+                        <a href="blog.html#post-electric-fence-solutions">Electric Fencing</a>
+                        <a href="blog.html#post-security-and-surveillance-system-solutions">Surveillance Systems</a>
+                        <a href="blog.html#post-access-control-system">Access Control</a>
+                        <a href="blog.html#post-biometric-devices-and-access-control-system-solutions">Biometric
+                            Devices</a>
+                        <a href="blog.html#post-automatic-or-electronic-gate-solutions">Automated Gates</a>
+                        <a href="blog.html#post-smart-door-locks">Smart Door Locks</a>
+                        <a href="blog.html#post-smart-homes-and-automated-house">Smart Homes</a>
+                        <a href="blog.html#post-smart-switches-hotels-commercial-buildings">Smart Switches</a>
+                        <a href="blog.html#post-smart-lighting-for-estates">Smart Lighting</a>
+                        <a href="blog.html#post-smart-curtains-luxury-apartments">Smart Curtains</a>
+                        <a href="blog.html#post-dstv-free-to-air-sltv-starlink-freetv-gotv-and-startimes-solutions">DSTV,
+                            GOtv &
+                            Starlink</a>
+                        <a href="blog.html#post-starlink-satellite-network-and-installation">Starlink Installation</a>
+                        <a href="blog.html#post-satellite-systems-remote-areas">Satellite for Remote Areas</a>
+                        <a href="blog.html#post-ict-networking-and-troubleshooting">Networking & Troubleshooting</a>
+                        <a href="blog.html#post-network-booster-and-installation">Network Boosters</a>
+                        <a href="blog.html#post-network-jammer-and-installation">Network Jammers</a>
+                        <a href="blog.html#post-pabx-and-intercom-system-solutions">PABX & Intercom</a>
+                        <a href="blog.html#post-solar-and-inverter-system">Solar & Inverters</a>
+                        <a href="blog.html#post-mobile-phone-updates-and-solutions">Mobile Phone Solutions</a>
+                        <a href="blog.html#post-phone-repairs-and-solution-tips">Phone Repairs</a>
+                        <a href="blog.html#post-phone-accessories-support-and-solutions">Phone Accessories</a>
+                        <a href="blog.html#post-computer-gadgets-and-accessories-solutions">Computer Accessories</a>
+                        <a href="blog.html#post-computer-repairs-and-solution-tips">Computer Repairs</a>
+                        <a href="blog.html#post-playstation-ps-games-consoles-and-accessories-solutions">PlayStation &
+                            Consoles</a>
+                        <a href="blog.html#post-drones-and-installation">Drones</a>
+                        <a href="blog.html#post-ict-engineering-tools">ICT Engineering Tools</a>
+                        <a href="blog.html#post-kadis-techforce">KADIS TechForce</a>
+                        <a href="blog.html#post-digital-transformation-kdts">Digital Transformation</a>
+                        <a href="blog.html#post-kadis-equipment-rentals-expansion">Equipment Rentals</a>
+                        <a href="blog.html#post-time-attendance-system">Time Attendance Systems</a>
+                        <a href="blog.html#post-ac-fridge-and-tv-installation-and-maintenance">AC, Fridge & TV
+                            Install</a>
+                        <a href="blog.html#post-ac-tv-and-refrigerator-sales-and-delivery">AC, TV & Fridge Sales</a>
+                        <a href="blog.html#post-fire-alarm-and-smoke-detectors">Fire Alarms & Smoke Detectors</a>
+                        <a href="blog.html#post-fire-extinguisher-sales-installation-training-and-certification">Fire
+                            Extinguishers</a>
+                        <a href="blog.html#post-fire-safety-technology-guide">Fire Safety Technology</a>
+                        <a href="blog.html#post-smoke-extractors">Smoke Extractors</a>
+                        <a href="blog.html#post-street-lights-and-poles">Street Lights & Poles</a>
+                        <a href="blog.html#post-rope-lights-and-designs">Rope Lights</a>
+                    </div>
+                </div>
+
+                <div class="foot-topics">
+                    <h5>Tips, Skills, Solutions & Updates</h5>
+                    <div class="foot-topics-row">
+                        <a href="tips.html#post-smart-door-lock-installation-in-abuja">Smart Door Lock Install</a>
+                        <a href="tips.html#post-smart-locks-for-schools-and-offices">Locks for Schools & Offices</a>
+                        <a href="tips.html#post-how-smart-locks-work-with-cctv-systems">Smart Locks & CCTV</a>
+                        <a href="tips.html#post-future-of-smart-lock-technology">Future of Smart Locks</a>
+                        <a href="tips.html#post-smart-secure-schools-abuja">Smart & Secure Schools</a>
+                        <a href="tips.html#post-from-manual-records-to-smart-schools">School Management Systems</a>
+                        <a href="tips.html#post-transforming-school-management-abuja">School ERP Systems</a>
+                        <a href="tips.html#post-smart-lock-installation-mistakes-to-avoid">Lock Install Mistakes</a>
+                        <a href="tips.html#post-how-to-secure-your-property-with-smart-locks">Secure Your Property</a>
+                        <a href="tips.html#post-smart-access-using-rfid-and-biometrics">RFID & Biometric Access</a>
+                        <a href="tips.html#post-best-smart-lock-brands-in-nigeria">Best Smart Lock Brands</a>
+                        <a href="tips.html#post-smart-locks-for-gates-and-main-doors">Locks for Gates & Doors</a>
+                        <a href="tips.html#post-voice-controlled-smart-locks-explained">Voice-Controlled Locks</a>
+                        <a href="tips.html#post-smart-lock-security-features-to-know">Smart Lock Features</a>
+                        <a href="tips.html#post-keyless-entry-systems-explained">Keyless Entry Systems</a>
+                        <a href="tips.html#post-smart-lock-maintenance-tips">Smart Lock Maintenance</a>
+                        <a href="tips.html#post-why-renting-event-ict-equipment-in-abuja-saves-money">Why Rent Event &
+                            ICT Gear</a>
+                        <a href="tips.html#post-abuja-equipment-rentals">Abuja Equipment Rentals</a>
+                        <a href="tips.html#post-smart-locks-with-mobile-app-control">App-Controlled Locks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="foot-links-line">
+            Trusted Equipment Rentals for ICT, Events & Security — <a href="rental.html">Click here to rent now</a>
+            <span class="sep">|</span>
+            <a href="index.html#faqs">Frequently Asked Questions</a>
+            <span class="sep">|</span>
+            <a href="index.html#about">About Kadis</a>
+        </div>
+
+        <div class="foot-bank">
+            <strong>NB:</strong> All payments should be made to this bank account only: E-Franky Global Services Limited
+            —
+            GTBank: 0424528897.
+        </div>
+
+        <div class="foot-bottom">
+            <span>© 2020–2026 KADIS.COM.NG · All Rights Reserved</span>
+            <div class="social-row">
+                <a href="https://web.facebook.com/kadisdigitals" aria-label="Facebook">f</a>
+                <a href="https://www.instagram.com/kadisdigitals" aria-label="Instagram">ig</a>
+                <a href="https://www.youtube.com/@kadisdigitals" aria-label="YouTube">yt</a>
+                <a href="https://www.tiktok.com/@kadisdigitals" aria-label="TikTok">tt</a>
+            </div>
+            <span>Powered by E-Franky Global Services Limited</span>
+        </div>
+        <a href="https://whatsapp.com/channel/0029VaxUvHk3gvWa5WhtZ03K" class="whatsapp-channel" target="_blank"
+            rel="noopener noreferrer" aria-label="Follow KADIS ICT & Media Solutions on WhatsApp">
+            <span class="whatsapp-icon" aria-hidden="true">
+                <i class="fab fa-whatsapp"></i>
+            </span>
+
+            <span class="whatsapp-content">
+                <strong>Follow KADIS on WhatsApp</strong>
+                <small>Get updates, solutions & tech insights</small>
+            </span>
+
+            <span class="whatsapp-arrow" aria-hidden="true">→</span>
+        </a>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+    <script src="productdetails.js"></script>
+    <script src="Quickview.js"></script>
+    <script src="product-index-data.js"></script>
+    <script src="site-search.js"></script>
+    <script src="request-solution.js"></script>
+
+    <script>
+        const NG_STATES = ["Abuja (FCT)", "Nasarawa", "Niger", "Kaduna", "Kogi", "Lagos", "Rivers", "Oyo", "Kano", "Ogun", "Enugu", "Delta", "Edo", "Plateau", "Anambra", "Other"];
+        const BANK = { name: "E-Franky Global Services Limited", bank: "GTBank", account: "0424528897", whatsapp: "+2348061379390", waLink: "https://wa.me/2348061379390" };
+
+        function fieldErr(id, msg) {
+            const f = document.getElementById(id).closest('.field');
+            f.classList.add('invalid');
+            f.querySelector('.err-msg').textContent = msg;
+        }
+        function clearErr(id) {
+            const f = document.getElementById(id).closest('.field');
+            f.classList.remove('invalid');
+        }
+
+        function renderBilling() {
+            const root = document.getElementById('checkoutRoot');
+            const cart = KadisCart.getCart();
+
+            if (cart.length === 0) {
+                root.innerHTML = `
+          <div class="cart-empty reveal in-view">
+            <div class="ce-icon">🛒</div>
+            <h3>Your cart is empty</h3>
+            <p>Add something to your cart before checking out.</p>
+            <a class="btn-primary" href="Allcategory.html">Start Shopping →</a>
+          </div>`;
+                return;
+            }
+
+            const subtotal = KadisCart.cartSubtotal();
+            const rows = cart.map(item => `
+        <tr>
+          <td>${item.name} <span style="color:var(--ink-dimmer);">× ${item.qty}</span></td>
+          <td style="text-align:right; white-space:nowrap;">${KadisCart.money(item.price * item.qty)}</td>
+        </tr>`).join('');
+
+            const statesOpts = NG_STATES.map(s => `<option value="${s}">${s}</option>`).join('');
+
+            root.innerHTML = `
+        <div class="checkout-layout">
+          <div class="form-card reveal in-view">
+            <h4>Billing details</h4>
+            <div class="field-row">
+              <div class="field"><label>First name <span class="req">*</span></label><input id="ckFirst" type="text" placeholder="Ayomikun"><span class="err-msg">Please enter your first name.</span></div>
+              <div class="field"><label>Last name <span class="req">*</span></label><input id="ckLast" type="text" placeholder="Olajide"><span class="err-msg">Please enter your last name.</span></div>
+            </div>
+            <div class="field"><label>Company name (optional)</label><input id="ckCompany" type="text"></div>
+            <div class="field"><label>Country / Region <span class="req">*</span></label><input value="Nigeria" disabled></div>
+            <div class="field"><label>Street address <span class="req">*</span></label><input id="ckStreet" type="text" placeholder="House no., street, area"><span class="err-msg">Please enter your street address.</span></div>
+            <div class="field"><label>Apartment, suite, unit, etc. (optional)</label><input id="ckApt" type="text"></div>
+            <div class="field-row">
+              <div class="field"><label>Town / City <span class="req">*</span></label><input id="ckCity" type="text"><span class="err-msg">Please enter your town/city.</span></div>
+              <div class="field"><label>State <span class="req">*</span></label>
+                <select id="ckState"><option value="">Select a state…</option>${statesOpts}</select>
+                <span class="err-msg">Please select your state.</span>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field"><label>Phone <span class="req">*</span></label><input id="ckPhone" type="tel" placeholder="0801 234 5678"><span class="err-msg">Please enter a valid phone number.</span></div>
+              <div class="field"><label>Email address <span class="req">*</span></label><input id="ckEmail" type="email"><span class="err-msg">Please enter a valid email address.</span></div>
+            </div>
+
+            <h4 class="spaced">Additional information</h4>
+            <div class="field"><label>Order notes (optional)</label><textarea id="ckNotes" placeholder="Notes about your order, e.g. special notes for delivery."></textarea></div>
+          </div>
+
+          <div class="summary-card reveal in-view">
+            <h4>Your order</h4>
+            <div class="order-mini">
+              <table>
+                <tr><th>Product</th><th style="text-align:right;">Subtotal</th></tr>
+                ${rows}
+                <tr><td>Subtotal</td><td style="text-align:right;">${KadisCart.money(subtotal)}</td></tr>
+                <tr class="grand"><td>Total</td><td style="text-align:right;">${KadisCart.money(subtotal)}</td></tr>
+              </table>
+            </div>
+
+            <div class="pay-methods">
+              <label class="pay-method active" id="pmBank">
+                <div class="pm-head"><input type="radio" name="pm" checked> Direct bank transfer</div>
+                <div class="pm-detail">Make your payment directly into our bank account. Please use your order number as the payment reference. Your order will not be delivered until funds have cleared. We only deliver orders within Abuja, Nasarawa, Niger, Kaduna and Kogi State.</div>
+              </label>
+              <label class="pay-method" id="pmCod">
+                <div class="pm-head"><input type="radio" name="pm"> Cash on Delivery</div>
+                <div class="pm-detail">Pay in cash when your order is delivered to your address.</div>
+              </label>
+            </div>
+
+            <p class="privacy-note">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+
+            <button class="btn-primary place-order-btn" id="placeOrderBtn">Place Order →</button>
+          </div>
+        </div>`;
+
+            document.querySelectorAll('.pay-method').forEach(pm => {
+                pm.addEventListener('click', () => {
+                    document.querySelectorAll('.pay-method').forEach(x => { x.classList.remove('active'); x.querySelector('input').checked = false; });
+                    pm.classList.add('active');
+                    pm.querySelector('input').checked = true;
+                });
+            });
+
+            ['ckFirst', 'ckLast', 'ckStreet', 'ckCity', 'ckState', 'ckPhone', 'ckEmail'].forEach(id => {
+                document.getElementById(id).addEventListener('input', () => clearErr(id));
+                document.getElementById(id).addEventListener('change', () => clearErr(id));
+            });
+
+            document.getElementById('placeOrderBtn').addEventListener('click', placeOrder);
+        }
+
+        function placeOrder() {
+            let ok = true;
+            const req = ['ckFirst', 'ckLast', 'ckStreet', 'ckCity', 'ckState', 'ckPhone'];
+            req.forEach(id => {
+                const v = document.getElementById(id).value.trim();
+                if (!v) { fieldErr(id, 'This field is required.'); ok = false; } else { clearErr(id); }
+            });
+            const email = document.getElementById('ckEmail').value.trim();
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { fieldErr('ckEmail', 'Please enter a valid email address.'); ok = false; } else { clearErr('ckEmail'); }
+            const phone = document.getElementById('ckPhone').value.trim();
+            if (phone && phone.replace(/\D/g, '').length < 10) { fieldErr('ckPhone', 'Please enter a valid phone number.'); ok = false; }
+            if (!ok) {
+                document.querySelector('.field.invalid').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+
+            const btn = document.getElementById('placeOrderBtn');
+            btn.disabled = true;
+            btn.textContent = 'Placing your order…';
+
+            const paymentMethod = document.getElementById('pmBank').classList.contains('active') ? 'Direct bank transfer' : 'Cash on Delivery';
+            const cart = KadisCart.getCart();
+            const order = {
+                number: String(Math.floor(1000 + Math.random() * 9000)),
+                date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
+                total: KadisCart.cartSubtotal(),
+                paymentMethod,
+                items: cart,
+                billing: {
+                    firstName: document.getElementById('ckFirst').value.trim(),
+                    lastName: document.getElementById('ckLast').value.trim(),
+                    company: document.getElementById('ckCompany').value.trim(),
+                    street: document.getElementById('ckStreet').value.trim(),
+                    apt: document.getElementById('ckApt').value.trim(),
+                    city: document.getElementById('ckCity').value.trim(),
+                    state: document.getElementById('ckState').value,
+                    phone: document.getElementById('ckPhone').value.trim(),
+                    email: email,
+                    notes: document.getElementById('ckNotes').value.trim()
+                }
+            };
+
+            setTimeout(() => {
+                localStorage.setItem(KadisCart.LAST_ORDER_KEY, JSON.stringify(order));
+                sessionStorage.setItem('kadis_just_ordered', '1');
+                KadisCart.clearCart();
+                renderConfirmation(order);
+            }, 500);
+        }
+
+        function renderConfirmation(order) {
+            document.getElementById('heroTag').textContent = 'Order placed';
+            document.getElementById('heroTitle').textContent = 'Thank you!';
+            document.getElementById('heroSub').textContent = 'Your order has been received — complete payment to confirm it.';
+            document.getElementById('stepBilling').classList.remove('active');
+            document.getElementById('stepBilling').classList.add('done');
+            document.getElementById('stepDone').classList.add('active');
+
+            const b = order.billing;
+            const rows = order.items.map(item => `
+        <tr><td>${item.name} <span style="color:var(--ink-dimmer);">× ${item.qty}</span></td><td style="text-align:right; white-space:nowrap;">${KadisCart.money(item.price * item.qty)}</td></tr>`).join('');
+
+            const root = document.getElementById('checkoutRoot');
+            root.innerHTML = `
+        <div class="thanks-banner reveal in-view">
+          <div class="tb-ic">✓</div>
+          <div><b>Thank you. Your order has been received.</b><span>We'll confirm as soon as your payment clears.</span></div>
+        </div>
+
+        <div class="meta-strip reveal in-view">
+          <div><span>Order number</span><b>${order.number}</b></div>
+          <div><span>Date</span><b>${order.date}</b></div>
+          <div><span>Total</span><b>${KadisCart.money(order.total)}</b></div>
+          <div><span>Payment method</span><b>${order.paymentMethod}</b></div>
+        </div>
+
+        ${order.paymentMethod === 'Direct bank transfer' ? `
+        <div class="bank-callout reveal in-view">
+          <h4>Complete your payment</h4>
+          <p>All payments should be made to the following bank account. Please use <b>Order #${order.number}</b> as your payment reference. Your order won't be dispatched until funds have cleared.</p>
+          <div class="bank-grid">
+            <div class="bank-cell"><span>Account name</span><b style="font-size:13.5px;">${BANK.name}</b></div>
+            <div class="bank-cell"><span>Bank</span><b>${BANK.bank}</b></div>
+            <div class="bank-cell" style="grid-column:1/-1;"><span>Account number</span><b>${BANK.account}</b></div>
+          </div>
+          <div class="wa-callout">
+            <p>Send your proof of payment and delivery address to <b style="color:var(--ink);">${BANK.whatsapp}</b> via WhatsApp so we can confirm and dispatch your order.</p>
+            <a class="btn-primary" href="${BANK.waLink}?text=${encodeURIComponent('Hi Kadis, here is my proof of payment for Order #' + order.number)}" target="_blank" rel="noopener">Send on WhatsApp →</a>
+          </div>
+        </div>` : `
+        <div class="bank-callout reveal in-view">
+          <h4>Cash on Delivery selected</h4>
+          <p>Have <b>${KadisCart.money(order.total)}</b> ready when your order arrives. We'll reach out on <b>${b.phone}</b> to confirm delivery timing.</p>
+        </div>`}
+
+        <div class="details-box reveal in-view">
+          <h5>Order details</h5>
+          <table class="order-mini" style="border:none;"><tbody>${rows}
+            <tr><td>Subtotal</td><td style="text-align:right;">${KadisCart.money(order.total)}</td></tr>
+            <tr class="grand"><td>Total</td><td style="text-align:right;">${KadisCart.money(order.total)}</td></tr>
+          </tbody></table>
+        </div>
+
+        <div class="details-box reveal in-view">
+          <h5>Billing address</h5>
+          <p>${b.firstName} ${b.lastName}${b.company ? ' — ' + b.company : ''}</p>
+          <p class="addr-line">${b.street}${b.apt ? ', ' + b.apt : ''}</p>
+          <p class="addr-line">${b.city}, ${b.state}</p>
+          <p class="addr-line">📞 ${b.phone}</p>
+          <p class="addr-line">✉️ ${b.email}</p>
+          ${b.notes ? `<p class="addr-line">📝 ${b.notes}</p>` : ''}
+        </div>
+
+        <a class="btn-primary" href="Allcategory.html" style="display:inline-flex;">Continue Shopping →</a>
+      `;
+        }
+
+        // if there's already a completed order in this session and the cart is
+        // now empty, show the confirmation instead of an empty-cart message
+        // (handles page refresh right after placing an order)
+        const cartNow = KadisCart.getCart();
+        const lastOrderRaw = localStorage.getItem(KadisCart.LAST_ORDER_KEY);
+        if (cartNow.length === 0 && lastOrderRaw && sessionStorage.getItem('kadis_just_ordered') === '1') {
+            renderConfirmation(JSON.parse(lastOrderRaw));
+        } else {
+            sessionStorage.removeItem('kadis_just_ordered');
+            renderBilling();
+        }
+    </script>
+
+    <a class="wa-float" href="https://wa.me/2348061379390" aria-label="Chat on WhatsApp">💬</a>
+
+    <script>
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const answer = item.querySelector('.faq-a');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(open => {
+                open.classList.remove('open');
+                open.querySelector('.faq-a').style.maxHeight = null;
+            });
+            if (!isOpen) {
+                item.classList.add('open');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+            }
+        }
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
+    <script>
+        document.querySelectorAll('a[href*="wa.me"], a[href*="instagram.com"], a[href*="facebook.com"], a[href*="tiktok.com"], a[href*="youtube.com"], a[href*="twitter.com"], a[href*="x.com"], a[href*="linkedin.com"]').forEach(function (link) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener');
+        });
+    </script>
+    <script src="responsive.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,2295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT & Event Equipment Rental Abuja | KADIS ICT & Engineering Solutions</title>
+    <meta name="description"
+        content="Rent ICT, security, event and power equipment by the day, week or month across Abuja and neighbouring states — no long-term ownership cost.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ===== BASE SYSTEM — identical tokens/nav/footer to category.html ===== */
+        :root {
+            --bg: #0B0C0F;
+            --bg-2: #131519;
+            --bg-3: #1A1D22;
+            --bg-4: #20232A;
+            --ink: #EDEEEC;
+            --ink-dim: #9A9FA8;
+            --ink-dimmer: #5C616A;
+            --line: rgba(255, 255, 255, 0.07);
+            --line-bright: rgba(255, 255, 255, 0.13);
+            --amber: #D9772E;
+            --amber-deep: #B85F22;
+            --amber-soft: #E8A15E;
+            --moss: #A9B84C;
+            --glow: 0 0 60px rgba(217, 119, 46, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        ::selection {
+            background: var(--amber-soft);
+            color: #111;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 15% 8%, rgba(217, 119, 46, 0.08), transparent 40%),
+                radial-gradient(circle at 85% 25%, rgba(169, 184, 76, 0.045), transparent 35%),
+                radial-gradient(circle at 50% 90%, rgba(217, 119, 46, 0.05), transparent 45%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrap {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .8s cubic-bezier(.16, .8, .24, 1), transform .8s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+
+            * {
+                animation-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        .topbar {
+            background: var(--bg-2);
+            border-bottom: 1px solid var(--line);
+            font-size: 12.5px;
+            color: var(--ink-dim);
+        }
+
+        .topbar .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 38px;
+            flex-wrap: wrap;
+        }
+
+        .topbar .dot {
+            color: var(--amber-soft);
+            margin-right: 6px;
+        }
+
+        .topbar-right {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .topbar-right span.mono {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .topbar-right a {
+            transition: color .2s;
+        }
+
+        .topbar-right a:hover {
+            color: var(--ink);
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(11, 12, 15, 0.82);
+            backdrop-filter: blur(16px) saturate(140%);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 78px;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0A0B0E;
+            font-weight: 800;
+            font-size: 16px;
+            box-shadow: 0 6px 20px rgba(217, 119, 46, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+            overflow: hidden;
+        }
+
+        .logo-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .logo span {
+            color: var(--ink-dim);
+            font-weight: 600;
+            font-size: 12px;
+            display: block;
+            letter-spacing: 0.08em;
+            font-family: 'Space Mono';
+        }
+
+        /* ---------- Nav ---------- */
+
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink-dim);
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 0;
+            white-space: nowrap;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--ink);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--amber);
+            transition: width .3s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 0 0 auto;
+        }
+
+        .nav-actions .btn-primary {
+            white-space: nowrap;
+            font-size: 12px;
+            padding: 11px 15px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-dim);
+            transition: all .2s;
+            cursor: pointer;
+            position: relative;
+            background: transparent;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--amber);
+            color: #0A0B0E;
+            font-size: 10px;
+            font-weight: 800;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono';
+        }
+
+        .btn-primary {
+            background: var(--amber);
+            color: #0B0C0F;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 11px 22px;
+            border-radius: 10px;
+            box-shadow: 0 8px 22px rgba(217, 119, 46, 0.22);
+            transition: transform .25s cubic-bezier(.16, .8, .24, 1), box-shadow .25s, background .25s;
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: var(--amber-soft);
+            box-shadow: 0 14px 30px rgba(217, 119, 46, 0.3);
+        }
+
+        .btn-ghost {
+            border: 1px solid var(--line-bright);
+            color: var(--ink);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 13px 24px;
+            border-radius: 10px;
+            transition: all .25s cubic-bezier(.16, .8, .24, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--amber);
+            background: rgba(217, 119, 46, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .search-row {
+            border-bottom: 1px solid var(--line);
+            background: var(--bg);
+            padding: 16px 0;
+            position: sticky;
+            top: 78px;
+            z-index: 45;
+        }
+
+        .search-row .wrap {
+            z-index: 56;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .mega-wrap {
+            position: relative;
+        }
+
+        .cat-trigger {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            border-radius: 10px;
+            padding: 13px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: border-color .2s;
+            color: var(--ink);
+        }
+
+        .cat-trigger:hover,
+        .cat-trigger.active {
+            border-color: var(--amber);
+        }
+
+        .cat-trigger .bars {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cat-trigger .bars span {
+            width: 14px;
+            height: 2px;
+            background: var(--amber-soft);
+            display: block;
+            border-radius: 1px;
+        }
+
+        .cat-trigger .chev {
+            color: var(--ink-dimmer);
+            font-size: 11px;
+            transition: transform .2s;
+        }
+
+        .cat-trigger.active .chev {
+            transform: rotate(180deg);
+        }
+
+        .search-bar {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: var(--bg-2);
+            border: 1px solid var(--line-bright);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color .2s;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--amber);
+        }
+
+        .search-bar input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--ink);
+            padding: 13px 16px;
+            font-size: 14px;
+            font-family: 'Manrope';
+        }
+
+        .search-bar input::placeholder {
+            color: var(--ink-dimmer);
+        }
+
+        .search-bar .go {
+            background: var(--amber);
+            color: #0B0C0F;
+            border: none;
+            padding: 13px 22px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background .2s;
+        }
+
+        .search-bar .go:hover {
+            background: var(--amber-soft);
+        }
+
+        .mega-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+            background: rgba(6, 7, 9, 0.6);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s ease;
+        }
+
+        .mega-backdrop.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mega-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            width: min(920px, 92vw);
+            background: var(--bg-2);
+            border: 1px solid var(--line-bright);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 26px;
+            z-index: 60;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .mega-menu.open {
+            display: grid;
+        }
+
+        .mega-col h6 {
+            font-family: 'Space Mono';
+            font-size: 11px;
+            letter-spacing: .05em;
+            color: var(--amber-soft);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .mega-col a {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--ink-dim);
+            padding: 6px 0;
+            transition: color .2s;
+        }
+
+        .mega-col a:hover {
+            color: var(--amber-soft);
+        }
+
+        .mega-col a small {
+            color: var(--ink-dimmer);
+            font-family: 'Space Mono';
+            font-size: 10.5px;
+            flex-shrink: 0;
+        }
+
+        .breadcrumb {
+            padding: 22px 0 0;
+            font-size: 13px;
+            color: var(--ink-dimmer);
+        }
+
+        .breadcrumb a {
+            color: rgb(223, 216, 216);
+            transition: color .2s;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--amber-soft);
+        }
+
+        .breadcrumb .sep {
+            margin: 0 8px;
+            color: var(--ink-dimmer);
+        }
+
+        .breadcrumb .current {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Space Mono';
+            font-size: 12px;
+            letter-spacing: 0.08em;
+            color: var(--amber-soft);
+            background: rgba(217, 119, 46, 0.08);
+            border: 1px solid rgba(217, 119, 46, 0.25);
+            padding: 7px 14px;
+            border-radius: 100px;
+            margin-bottom: 22px;
+        }
+
+        .eyebrow::before {
+            content: '●';
+            color: var(--moss);
+            font-size: 8px;
+        }
+
+        /* ---------- Service hero ---------- */
+        .svc-hero {
+            padding: 26px 0 60px;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 44px;
+            align-items: center;
+        }
+
+        .svc-hero h1 {
+            font-size: 46px;
+            line-height: 1.08;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .svc-hero h1 .grad {
+            background: linear-gradient(100deg, var(--amber) 10%, var(--amber-soft) 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .svc-hero p {
+            font-size: 16px;
+            color: rgb(225, 220, 220);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .svc-cta {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+
+        .svc-stats {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .svc-stats div {
+            border-left: 2px solid var(--amber);
+            padding-left: 14px;
+        }
+
+        .svc-stats b {
+            display: block;
+            font-family: 'Sora';
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .svc-stats span {
+            font-size: 12px;
+            color: var(--ink-dim);
+        }
+
+        .svc-visual {
+            background: linear-gradient(160deg, var(--bg-3), var(--bg-2));
+            border: 1px solid var(--line-bright);
+            border-radius: 24px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        .svc-visual::after {
+            content: '';
+            position: absolute;
+            bottom: -70px;
+            right: -70px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(217, 119, 46, 0.14), transparent 70%);
+        }
+
+        .svc-visual-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sv-item {
+            background: var(--bg-4);
+            border: 1px solid var(--line-bright);
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -8px 14px rgba(0, 0, 0, 0.3);
+        }
+
+        .sv-item .ic {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(150deg, var(--bg-3), var(--bg-4));
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .sv-item .ic svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .sv-item b {
+            display: block;
+            font-size: 12.5px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .sv-item span {
+            font-size: 10.5px;
+            color: var(--ink-dimmer);
+            font-family: 'Space Mono';
+        }
+
+        @media (max-width:980px) {
+            .svc-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .svc-hero h1 {
+                font-size: 34px;
+            }
+        }
+
+        .trust {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 26px 0;
+            background: var(--bg-2);
+        }
+
+        .trust .wrap {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            font-weight: 600;
+        }
+
+        .trust-item .ic {
+            color: var(--amber-soft);
+            font-size: 16px;
+        }
+
+        section {
+            padding: 90px 0;
+        }
+
+        .sec-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 44px;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .sec-head h2 {
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .sec-head p {
+            color: rgb(220, 215, 215);
+            font-size: 15px;
+            max-width: 440px;
+        }
+
+        .sec-eyebrow {
+            font-family: 'Space Mono';
+            font-size: 12px;
+            color: var(--amber-soft);
+            letter-spacing: .08em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .see-all {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--ink);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: color .2s;
+        }
+
+        .see-all:hover {
+            color: var(--amber-soft);
+        }
+
+        /* ---------- Rental categories grid ---------- */
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .cat-card {
+            background: linear-gradient(160deg, var(--bg-3), var(--bg-2));
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 26px 22px;
+            position: relative;
+            overflow: hidden;
+            transition: transform .35s cubic-bezier(.16, .8, .24, 1), border-color .35s ease, box-shadow .35s ease;
+            cursor: pointer;
+        }
+
+        .cat-card:hover {
+            border-color: rgba(217, 119, 46, 0.35);
+            box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(217, 119, 46, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .cat-card .glow {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(169, 184, 76, 0.10), transparent 70%);
+            top: -40px;
+            right: -40px;
+        }
+
+        .cat-card .ic {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(150deg, var(--bg-4), var(--bg-3));
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -6px 10px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.35);
+            margin-bottom: 20px;
+        }
+
+        .cat-card .ic svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .cat-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .cat-card p {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            line-height: 1.55;
+            margin-bottom: 6px;
+        }
+
+        .cat-card span.price-from {
+            font-size: 12px;
+            color: var(--amber-soft);
+            font-family: 'Space Mono';
+            font-weight: 700;
+        }
+
+        @media (max-width:980px) {
+            .cat-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ---------- Quick-look items strip ---------- */
+        .quicklook {
+            padding: 0 0 30px;
+        }
+
+        .ql-scroll {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 14px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--amber) transparent;
+        }
+
+        .ql-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .ql-scroll::-webkit-scrollbar-thumb {
+            background: var(--amber);
+            border-radius: 10px;
+        }
+
+        .ql-card {
+            flex: 0 0 200px;
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform .3s cubic-bezier(.16, .8, .24, 1), border-color .3s;
+        }
+
+        .ql-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(217, 119, 46, 0.3);
+        }
+
+        .ql-img {
+            width: 100%;
+            height: 130px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: linear-gradient(150deg, var(--bg-4), var(--bg-3));
+            position: relative;
+        }
+
+        .ql-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .ql-body {
+            padding: 14px;
+        }
+
+        .ql-body span {
+            font-family: 'Space Mono';
+            font-size: 9.5px;
+            color: var(--ink-dimmer);
+            text-transform: uppercase;
+            letter-spacing: .05em;
+        }
+
+        .ql-body h6 {
+            font-size: 12.5px;
+            font-weight: 700;
+            margin: 6px 0 8px;
+            line-height: 1.35;
+            min-height: 33px;
+        }
+
+        .ql-price {
+            font-family: 'Sora';
+            font-size: 14px;
+            color: var(--amber-soft);
+            font-weight: 800;
+        }
+
+        .ql-price small {
+            font-family: 'Manrope';
+            font-size: 11px;
+            color: var(--ink-dimmer);
+            font-weight: 600;
+        }
+
+        /* ---------- How it works ---------- */
+        .steps-wrap {
+            background: var(--bg-2);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .step-card {
+            background: linear-gradient(160deg, var(--bg-3), var(--bg));
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 26px 22px;
+            position: relative;
+        }
+
+        .step-num {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: var(--amber);
+            color: #0B0C0F;
+            font-family: 'Sora';
+            font-weight: 800;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .step-card h5 {
+            font-size: 14.5px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-card p {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            line-height: 1.55;
+        }
+
+        @media (max-width:980px) {
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ---------- Pricing plans ---------- */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .plan-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all .3s cubic-bezier(.16, .8, .24, 1);
+            position: relative;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(217, 119, 46, 0.3);
+        }
+
+        .plan-card.popular {
+            border-color: var(--amber);
+            box-shadow: 0 20px 50px rgba(217, 119, 46, 0.14);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -13px;
+            left: 32px;
+            background: var(--amber);
+            color: #0B0C0F;
+            font-family: 'Space Mono';
+            font-size: 10.5px;
+            font-weight: 800;
+            padding: 5px 12px;
+            border-radius: 100px;
+            letter-spacing: .04em;
+        }
+
+        .plan-card h4 {
+            font-size: 13px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: var(--ink-dim);
+            margin-bottom: 10px;
+        }
+
+        .plan-card .plan-desc {
+            font-size: 13px;
+            color: var(--ink-dim);
+            margin-bottom: 22px;
+            line-height: 1.6;
+        }
+
+        .plan-list {
+            list-style: none;
+            margin-bottom: 26px;
+        }
+
+        .plan-list li {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            font-size: 13px;
+            color: var(--ink-dim);
+            padding: 8px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .plan-list li:first-child {
+            border-top: none;
+        }
+
+        .plan-list li .chk {
+            color: var(--amber-soft);
+            flex-shrink: 0;
+            font-weight: 800;
+        }
+
+        @media (max-width:980px) {
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ---------- Requirements ---------- */
+        .req-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 34px;
+            align-items: start;
+        }
+
+        .req-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            padding: 32px;
+        }
+
+        .req-card h3 {
+            font-size: 20px;
+            margin-bottom: 18px;
+        }
+
+        .req-list {
+            list-style: none;
+        }
+
+        .req-list li {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            font-size: 14px;
+            color: var(--ink-dim);
+            padding: 12px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .req-list li:first-child {
+            border-top: none;
+        }
+
+        .req-num {
+            width: 24px;
+            height: 24px;
+            border-radius: 7px;
+            background: var(--bg-4);
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono';
+            font-size: 11px;
+            color: var(--amber-soft);
+            flex-shrink: 0;
+        }
+
+        .req-note {
+            background: rgba(217, 119, 46, 0.06);
+            border: 1px solid rgba(217, 119, 46, 0.2);
+            border-radius: 14px;
+            padding: 18px 20px;
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            line-height: 1.6;
+            margin-top: 18px;
+        }
+
+        .req-note b {
+            color: var(--amber-soft);
+        }
+
+        .stats-band {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .stat-cell {
+            background: var(--bg-2);
+            padding: 34px 26px;
+            text-align: center;
+        }
+
+        .stat-cell b {
+            font-family: 'Sora';
+            font-size: 34px;
+            font-weight: 800;
+            background: linear-gradient(120deg, var(--amber), var(--amber-soft));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: block;
+        }
+
+        .stat-cell span {
+            font-size: 12px;
+            color: var(--ink-dim);
+            font-family: 'Space Mono';
+        }
+
+        @media (max-width:980px) {
+            .stats-band {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .req-wrap {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cta-band {
+            background: linear-gradient(120deg, rgba(217, 119, 46, 0.12), rgba(169, 184, 76, 0.05));
+            border: 1px solid rgba(217, 119, 46, 0.22);
+            border-radius: 24px;
+            padding: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-band h2 {
+            font-size: 30px;
+            margin-bottom: 14px;
+        }
+
+        .cta-band p {
+            color: rgb(223, 216, 216);
+            margin-bottom: 30px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .foot-topics-row a:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+        }
+
+        .foot-topics {
+            margin-top: 30px;
+            padding: 24px 0 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .foot-topics+.foot-topics {
+            margin-top: 34px;
+        }
+
+        .foot-topics h5 {
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 18px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-topics-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+        }
+
+        .foot-topics-row a {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            border-radius: 100px;
+            padding: 7px 14px;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            background: var(--bg-2);
+        }
+
+        .foot-promo {
+            background: linear-gradient(115deg, rgba(217, 119, 46, 0.10), rgba(169, 184, 76, 0.04));
+            border-bottom: 1px solid var(--line);
+            padding: 22px 0;
+        }
+
+        .foot-promo .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .foot-promo p {
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            max-width: 760px;
+            line-height: 1.7;
+        }
+
+        .foot-promo b {
+            color: var(--ink);
+        }
+
+        .foot-promo .btn-primary {
+            flex-shrink: 0;
+        }
+
+        .foot-contact {
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-dim);
+            line-height: 1.9;
+        }
+
+        .foot-contact .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: space-between;
+        }
+
+        .foot-contact strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .foot-contact a {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-contact .fc-block {
+            max-width: 520px;
+        }
+
+        .foot-main {
+            padding: 56px 0 40px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.4fr repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .foot-col h5 {
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 18px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-col a {
+            display: block;
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            margin-bottom: 12px;
+            transition: color .2s;
+        }
+
+        .foot-col a:hover {
+            color: var(--amber-soft);
+        }
+
+        .foot-links-line {
+            padding: 20px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-dim);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 0;
+            align-items: center;
+        }
+
+        .foot-links-line a {
+            color: rgb(222, 215, 215);
+            font-weight: 700;
+        }
+
+        .foot-links-line .sep {
+            color: var(--ink-dimmer);
+            margin: 0 10px;
+        }
+
+        .foot-bank {
+            padding: 16px 0;
+            font-size: 12.5px;
+            color: var(--ink-dimmer);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .foot-bank strong {
+            color: var(--amber-soft);
+        }
+
+        .foot-bottom {
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            color: rgb(225, 219, 219);
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-row a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: var(--ink-dim);
+            transition: all .2s;
+        }
+
+        .social-row a:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+            transform: translateY(-2px);
+        }
+
+        .wa-float {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 70;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C4A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+            font-size: 26px;
+            color: #fff;
+            transition: transform .25s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .wa-float:hover {
+            transform: scale(1.08);
+        }
+
+        @media (max-width:900px) {
+            .foot-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mega-menu {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-row .wrap {
+                flex-wrap: wrap;
+            }
+
+            .search-row {
+                position: static;
+            }
+        }
+
+        .whatsapp-channel {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            width: fit-content;
+            padding: 13px 18px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--ink);
+            transition: all 0.25s ease;
+        }
+
+        .whatsapp-channel:hover {
+            transform: translateY(-2px);
+            border-color: rgba(37, 211, 102, 0.45);
+            background: rgba(37, 211, 102, 0.07);
+        }
+
+        .whatsapp-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #fff;
+            font-size: 21px;
+        }
+
+        .whatsapp-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .whatsapp-content strong {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .whatsapp-content small {
+            font-size: 11px;
+            color: var(--ink-dim);
+            line-height: 1.3;
+        }
+
+        .whatsapp-arrow {
+            margin-left: 8px;
+            font-size: 19px;
+            color: var(--amber);
+            transition: transform 0.25s ease;
+        }
+
+        .whatsapp-channel:hover .whatsapp-arrow {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="wrap">
+            <div><span class="dot">●</span>Same-day delivery in Abuja for orders before 12 noon</div>
+            <div class="topbar-right">
+                <span>Nasarawa · Niger · Kaduna · Kogi</span>
+                <a class="mono" href="tel:08061379390">📞 0806 137 9390</a>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="wrap nav-inner">
+            <div class="foot-col">
+                <a class="logo" href="index.html" style="margin-bottom:16px;">
+                    <img src="images/KADISS.png" alt="Kadis" style="height:38px; width:auto; border-radius:8px;">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html#solutions">Digital Solutions</a>
+                <a href="installation.html">ICT Engineering</a>
+                <a href="staffing.html">ICT Staffing</a>
+                <a href="training.html">ICT Training</a>
+                <a href="join.html">Join our Team</a>
+                <a href="rental.html">Equipment Rentals</a>
+                <a href="Allcategory.html">Store</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="nav-actions">
+                <a class="icon-btn" href="cart.html">🛒<span class="cart-count">0</span></a>
+                <a class="btn-primary" href="#" data-open-solution>Request a Solution</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="mega-backdrop" id="megaBackdrop" onclick="closeMega()"></div>
+
+    <div class="wrap breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep">/</span>
+        <a href="index.html#services">Services</a>
+        <span class="sep">/</span>
+        <span class="current">Equipment Rentals</span>
+    </div>
+
+    <!-- ============================================================
+     HERO
+     ============================================================ -->
+    <header class="wrap svc-hero">
+        <div>
+            <span class="eyebrow">EQUIPMENT RENTALS</span>
+            <h1>You can Rent <span class="grad">for the Job.</span></h1>
+            <p>ICT, networking, CCTV and event equipment, mobile speakers, Projectors, sound systems, Mobile power
+                tanks, Microphones, Dj equipments plus delivery bikes and dispatch vehicles for logistics and
+                last-mile runs. Daily, weekly or monthly, with optional doorstep delivery and pickup across Abuja.</p>
+            <div class="svc-cta">
+                <a class="btn-primary" href="#" data-open-solution="Equipment Rental">Check Availability →</a>
+                <a class="btn-ghost"
+                    href="https://wa.me/2348061379390?text=Hi%20Kadis%2C%20I%27d%20like%20to%20rent%20equipment.">Chat
+                    on WhatsApp</a>
+            </div>
+            <div class="svc-stats">
+                <div><b>7+</b><span>Rental categories</span></div>
+                <div><b>Daily / Weekly / Monthly</b><span>Flexible plans</span></div>
+                <div><b>5</b><span>States covered</span></div>
+            </div>
+        </div>
+
+        <div class="svc-visual">
+            <div class="svc-visual-grid">
+                <div class="sv-item">
+                    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="7" width="13" height="9" rx="2" />
+                            <path d="M15 9.5 21 6v12l-6-3.5" />
+                            <circle cx="7.5" cy="11.5" r="1.8" />
+                        </svg></div>
+                    <b>CCTV & Security</b><span>From ₦8,000/day</span>
+                </div>
+                <div class="sv-item">
+                    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="17.5" r="3.5" />
+                            <circle cx="19" cy="17.5" r="3.5" />
+                            <path d="M9 17.5h4l3-8h3M5 17.5l4-8h3" />
+                            <circle cx="16" cy="6.5" r="1.4" />
+                        </svg></div>
+                    <b>Delivery Bikes</b><span>From ₦6,500/day</span>
+                </div>
+                <div class="sv-item">
+                    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="6" width="14" height="10" rx="1.6" />
+                            <path d="M17 9.5 21 7v8l-4-2.5" />
+                        </svg></div>
+                    <b>Projectors & LED</b><span>From ₦12,000/day</span>
+                </div>
+                <div class="sv-item">
+                    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 8v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8" />
+                            <path d="M8 14v3M16 14v3M4 5v3M20 5v3" />
+                        </svg></div>
+                    <b>Networking Gear</b><span>From ₦5,000/day</span>
+                </div>
+                <div class="sv-item">
+                    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="6" y="2" width="12" height="20" rx="2" />
+                            <circle cx="12" cy="8" r="2.2" />
+                            <circle cx="12" cy="16" r="3.4" />
+                            <circle cx="12" cy="16" r="1" />
+                        </svg></div>
+                    <b>Speakers</b><span>From ₦10,000/day</span>
+                </div>
+                <div class="sv-item">
+                    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <circle cx="8" cy="12" r="3.2" />
+                            <circle cx="8" cy="12" r="0.7" />
+                            <path d="M15 8v8M18 8v8M21 8v8" />
+                        </svg></div>
+                    <b>DJ Equipment</b><span>From ₦20,000/day</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="trust">
+        <div class="wrap">
+            <div class="trust-item"><span class="ic">✓</span> Genuine, tested equipment</div>
+            <div class="trust-item"><span class="ic">✓</span> Doorstep delivery & pickup</div>
+            <div class="trust-item"><span class="ic">✓</span> Daily, weekly & monthly plans</div>
+            <div class="trust-item"><span class="ic">✓</span> Simple ID + deposit process</div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+     RENTAL CATEGORIES
+     ============================================================ -->
+    <section class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">WHAT YOU CAN RENT</span>
+                <h2>One fleet, every kind of job</h2>
+            </div>
+            <p>From a one-day event to a month-long field project — pick a category and we'll help you spec what you
+                actually need.</p>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-card reveal">
+                <div class="glow"></div>
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="7" width="13" height="9" rx="2" />
+                        <path d="M15 9.5 21 6v12l-6-3.5" />
+                        <circle cx="7.5" cy="11.5" r="1.8" />
+                    </svg></div>
+                <h4>CCTV & Security Equipment</h4>
+                <p>Cameras, NVRs, access control and temporary surveillance kits for sites, events and offices.</p>
+                <span class="price-from">From ₦8,000/day</span>
+            </div>
+            <div class="cat-card reveal">
+                <div class="glow"></div>
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M2.5 9a13.5 13.5 0 0 1 19 0" />
+                        <path d="M5.8 12.3a9 9 0 0 1 12.4 0" />
+                        <path d="M9 15.6a4.5 4.5 0 0 1 6 0" />
+                        <circle cx="12" cy="19" r="1.2" />
+                    </svg></div>
+                <h4>Networking & Telecom</h4>
+                <p>Routers, switches, Mifi/WiFi, walkie-talkies and temporary network deployments.</p>
+                <span class="price-from">From ₦5,000/day</span>
+            </div>
+            <div class="cat-card reveal">
+                <div class="glow"></div>
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="6" width="14" height="10" rx="1.6" />
+                        <path d="M17 9.5 21 7v8l-4-2.5" />
+                        <path d="M7 20h6" />
+                    </svg></div>
+                <h4>Event & Production Gear</h4>
+                <p>Projectors, LED screens, sound systems, ring lights, Mobile speakers, Microphones, Dj equipments and
+                    streaming setups for events.</p>
+                <span class="price-from">From ₦12,000/day</span>
+            </div>
+            <div class="cat-card reveal">
+                <div class="glow"></div>
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="17.5" r="3.5" />
+                        <circle cx="19" cy="17.5" r="3.5" />
+                        <path d="M9 17.5h4l3-8h3M5 17.5l4-8h3" />
+                        <circle cx="16" cy="6.5" r="1.4" />
+                    </svg></div>
+                <h4>Delivery Bikes & Vehicles</h4>
+                <p>Dispatch bikes for logistics runs, plus support vehicles for event and project days.</p>
+                <span class="price-from">From ₦6,500/day</span>
+            </div>
+            <div class="cat-card reveal">
+                <div class="glow"></div>
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="8" width="16" height="10" rx="2" />
+                        <path d="M19 11v4" stroke-width="2.4" />
+                        <path d="M11 11l-2 3h3l-2 3" stroke-linejoin="round" />
+                    </svg></div>
+                <h4>Power & Backup</h4>
+                <p>Generators, inverter/battery banks and power strips for sites without reliable mains.</p>
+                <span class="price-from">From ₦10,000/day</span>
+            </div>
+            <div class="cat-card reveal">
+                <div class="glow"></div>
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="3" width="16" height="18" rx="2" />
+                        <path d="M8 7h8M8 11h8M8 15h5" />
+                    </svg></div>
+                <h4>Laptops & Computers</h4>
+                <p>Business laptops and accessories for meetings, exams, training and short-term staffing.</p>
+                <span class="price-from">From ₦7,000/day</span>
+            </div>
+            <div class="cat-card reveal">
+                <div class="glow"></div>
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3 5 6v5c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6l-7-3Z" />
+                        <path d="M9.5 12.5l1.8 1.8L15 10.5" />
+                    </svg></div>
+                <h4>ICT Engineering Tools</h4>
+                <p>Crimping tools, cable testers, ladders and field kits for installers and contractors.</p>
+                <span class="price-from">From ₦4,000/day</span>
+            </div>
+            <div class="cat-card reveal">
+                <div class="glow"></div>
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber-soft)" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 11 12 4l9 7" />
+                        <path d="M6 10v9h12v-9" />
+                        <path d="M10 19v-5h4v5" />
+                    </svg></div>
+                <h4>Smart Home Demo Kits</h4>
+                <p>Short-term smart switches, sensors and hubs for showrooms, demos and pilots.</p>
+                <span class="price-from">From ₦6,000/day</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+     QUICK-LOOK RENTAL ITEMS
+     ============================================================ -->
+    <section class="quicklook wrap">
+        <div class="sec-head reveal" style="margin-bottom:26px;">
+            <div>
+                <span class="sec-eyebrow">POPULAR RIGHT NOW</span>
+                <h2 style="font-size:26px;">Frequently rented items</h2>
+            </div>
+        </div>
+        <div class="ql-scroll">
+            <div class="ql-card reveal">
+                <div class="ql-img"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGI4jnYMn-BZN7gOvj85Y4-QO0yAMHDoYJo3wqqvnRTA&s=10"
+                        alt="Dispatch motorbike for rent"></div>
+                <div class="ql-body"><span>Delivery Bikes</span>
+                    <h6>Dispatch Motorbike, Full Tank + Rider Option</h6>
+                    <div class="ql-price">₦6,500<small>/day</small></div>
+                </div>
+            </div>
+            <div class="ql-card reveal">
+                <div class="ql-img"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTINWsOvpMGixVRj3JaVCETHfpApye9eD1TnhFDFsMHxQ&s=10"
+                        alt="4-channel portable CCTV kit"></div>
+                <div class="ql-body"><span>Security</span>
+                    <h6>4-Channel Portable CCTV Kit</h6>
+                    <div class="ql-price">₦8,000<small>/day</small></div>
+                </div>
+            </div>
+            <div class="ql-card reveal">
+                <div class="ql-img"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbBg2eAvxUCUC6De8nSLjo3PufFv23ijniiLJcvpahGg&s=10"
+                        alt="4K projector and screen combo">
+                </div>
+                <div class="ql-body"><span>Events</span>
+                    <h6>4K Projector + Screen Combo</h6>
+                    <div class="ql-price">₦15,000<small>/day</small></div>
+                </div>
+            </div>
+            <div class="ql-card reveal">
+                <div class="ql-img"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6sOikUotGqF14SFP5h0-EcQyYxqstDDWRidomxvCb7Q&s=10"
+                        alt="3.5KVA petrol generator"></div>
+                <div class="ql-body"><span>Power</span>
+                    <h6>3.5KVA Petrol Generator</h6>
+                    <div class="ql-price">₦10,000<small>/day</small></div>
+                </div>
+            </div>
+            <div class="ql-card reveal">
+                <div class="ql-img"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyFVlNguYrlcxESyKLfWuKGV_kDX-ZEhhhwCHpEOqqHQ&s=10"
+                        alt="Pair of long-range walkie-talkies">
+                </div>
+                <div class="ql-body"><span>Networking</span>
+                    <h6>Pair of Long-Range Walkie-Talkies</h6>
+                    <div class="ql-price">₦3,500<small>/day</small></div>
+                </div>
+            </div>
+            <div class="ql-card reveal">
+                <div class="ql-img"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7bO3NkqTLYO7OB5q1l42HRy_1LuqRMzxh-IxkPZr_lw&s=10"
+                        alt="Core i5 business laptop"></div>
+                <div class="ql-body"><span>Computers</span>
+                    <h6>Core i5 Business Laptop</h6>
+                    <div class="ql-price">₦7,000<small>/day</small></div>
+                </div>
+            </div>
+            <div class="ql-card reveal">
+                <div class="ql-img"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0mj1Mpejral0m51y81TAeGD8dnMw3QHD01QGAy4zdUw&s"
+                        alt="Ring light and tripod streaming kit">
+                </div>
+                <div class="ql-body"><span>Events</span>
+                    <h6>Ring Light + Tripod Streaming Kit</h6>
+                    <div class="ql-price">₦4,500<small>/day</small></div>
+                </div>
+            </div>
+            <div class="ql-card reveal">
+                <div class="ql-img"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJk_iR-YH1XRNVQ_yDTnunaM1mp7uNmZrMqTPL-TS4lw&s=10"
+                        alt="Dispatch bike weekly fleet rate"></div>
+                <div class="ql-body"><span>Delivery Bikes</span>
+                    <h6>Dispatch Bike — Weekly Fleet Rate</h6>
+                    <div class="ql-price">₦38,000<small>/wk</small></div>
+                </div>
+            </div>
+            <div class="ql-card reveal">
+                <div class="ql-img"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRrlXmxdJSWOymoVHdZcRtyQI6vdbHC0LuUnJAq5ozuA&s=10"
+                        alt="PA speaker and amplifier set"></div>
+                <div class="ql-body"><span>Sound Systems</span>
+                    <h6>PA Speaker + Amplifier Set</h6>
+                    <div class="ql-price">₦10,000<small>/day</small></div>
+                </div>
+            </div>
+            <div class="ql-card reveal">
+                <div class="ql-img"><img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg2IicAPoYtbN16NIAS8Ntlyfb3W8ZCEPmpqspLR27Cg&s=10"
+                        alt="DJ turntable and mixer setup"></div>
+                <div class="ql-body"><span>Events</span>
+                    <h6>DJ Turntable + Mixer Setup</h6>
+                    <div class="ql-price">₦20,000<small>/day</small></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+     HOW IT WORKS
+     ============================================================ -->
+    <section class="steps-wrap">
+        <div class="wrap">
+            <div class="sec-head reveal">
+                <div><span class="sec-eyebrow">HOW RENTING WORKS</span>
+                    <h2>Five steps, same-day if you need it</h2>
+                </div>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card reveal">
+                    <div class="step-num">1</div>
+                    <h5>Tell us the job</h5>
+                    <p>Call or WhatsApp what you're doing and for how long — event, project, delivery run, whatever it
+                        is.</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num">2</div>
+                    <h5>We spec it</h5>
+                    <p>We recommend the right equipment and confirm daily, weekly or monthly pricing.</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num">3</div>
+                    <h5>ID & agreement</h5>
+                    <p>Provide a valid ID, a guarantor, and sign the simple rental agreement.</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num">4</div>
+                    <h5>Deposit & delivery</h5>
+                    <p>Pay the refundable deposit and rental fee — we deliver or you pick up.</p>
+                </div>
+                <div class="step-card reveal">
+                    <div class="step-num">5</div>
+                    <h5>Use it, return it</h5>
+                    <p>Return or extend before the due date. Deposit is refunded once equipment is checked in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+     PRICING PLANS
+     ============================================================ -->
+    <section class="wrap">
+        <div class="sec-head reveal">
+            <div><span class="sec-eyebrow">RENTAL PLANS</span>
+                <h2>Pay for the time you actually need</h2>
+            </div>
+            <p>Exact rates depend on the equipment — these plans show how the discounts stack as you commit longer.</p>
+        </div>
+        <div class="plans-grid">
+            <div class="plan-card reveal">
+                <h4>Daily</h4>
+                <p class="plan-desc">Best for one-off events, short deliveries and quick jobs.</p>
+                <ul class="plan-list">
+                    <li><span class="chk">✓</span> Standard per-day rate</li>
+                    <li><span class="chk">✓</span> Same-day pickup or delivery</li>
+                    <li><span class="chk">✓</span> Refundable deposit</li>
+                </ul>
+                <a class="btn-ghost" style="width:100%; justify-content:center;"
+                    href="https://wa.me/2348061379390?text=Hi%20Kadis%2C%20I%27d%20like%20a%20daily%20rental%20quote.">Get
+                    a daily quote</a>
+            </div>
+            <div class="plan-card popular reveal">
+                <span class="plan-badge">MOST POPULAR</span>
+                <h4>Weekly</h4>
+                <p class="plan-desc">For events, projects and dispatch runs spanning several days.</p>
+                <ul class="plan-list">
+                    <li><span class="chk">✓</span> Discounted vs. 7× daily rate</li>
+                    <li><span class="chk">✓</span> Free mid-week equipment check</li>
+                    <li><span class="chk">✓</span> Priority replacement on fault</li>
+                </ul>
+                <a class="btn-primary" style="width:100%; justify-content:center;"
+                    href="https://wa.me/2348061379390?text=Hi%20Kadis%2C%20I%27d%20like%20a%20weekly%20rental%20quote.">Get
+                    a weekly quote</a>
+            </div>
+            <div class="plan-card reveal">
+                <h4>Monthly</h4>
+                <p class="plan-desc">For long-term projects, offices and standing dispatch fleets.</p>
+                <ul class="plan-list">
+                    <li><span class="chk">✓</span> Lowest per-day equivalent rate</li>
+                    <li><span class="chk">✓</span> Scheduled maintenance included</li>
+                    <li><span class="chk">✓</span> Dedicated account contact</li>
+                </ul>
+                <a class="btn-ghost" style="width:100%; justify-content:center;"
+                    href="https://wa.me/2348061379390?text=Hi%20Kadis%2C%20I%27d%20like%20a%20monthly%20rental%20quote.">Get
+                    a monthly quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+     REQUIREMENTS
+     ============================================================ -->
+    <section class="wrap">
+        <div class="req-wrap">
+            <div class="req-card reveal">
+                <h3>What you'll need to rent</h3>
+                <ul class="req-list">
+                    <li><span class="req-num">1</span> A valid government-issued photo ID — NIN slip/card, driver's
+                        licence, international passport or voter's card.</li>
+                    <li><span class="req-num">2</span> A passport photograph.</li>
+                    <li><span class="req-num">3</span> A guarantor who signs the rental agreement with you.</li>
+                    <li><span class="req-num">4</span> A refundable security deposit (or other agreed security), sized
+                        to the equipment value.</li>
+                    <li><span class="req-num">5</span> A signed Equipment Rental Agreement covering the rental period
+                        and equipment condition.</li>
+                </ul>
+                <div class="req-note"><b>Note:</b> Higher-value equipment — laptops, cameras, networking gear,
+                    generators or engineering instruments — may need a larger deposit or additional documentation. We'll
+                    confirm exact requirements when you request a quote.</div>
+            </div>
+            <div class="req-card reveal">
+                <h3>Who rents from Kadis</h3>
+                <ul class="req-list">
+                    <li><span class="req-num">✓</span> Businesses covering a short-term equipment gap without a big
+                        capital outlay.</li>
+                    <li><span class="req-num">✓</span> Event organisers needing screens, sound, lighting or security for
+                        a single day.</li>
+                    <li><span class="req-num">✓</span> Contractors and field engineers who need tools for one project,
+                        not every project.</li>
+                    <li><span class="req-num">✓</span> Dispatch riders, small businesses and logistics teams needing
+                        delivery bikes on demand.</li>
+                    <li><span class="req-num">✓</span> Schools, government agencies and institutions running short-term
+                        programmes.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrap">
+        <div class="stats-band">
+            <div class="stat-cell reveal"><b>7+</b><span>RENTAL CATEGORIES</span></div>
+            <div class="stat-cell reveal"><b>24hr</b><span>SAME-DAY DELIVERY</span></div>
+            <div class="stat-cell reveal"><b>5</b><span>STATES COVERED</span></div>
+            <div class="stat-cell reveal"><b>2020</b><span>SERVING ABUJA SINCE</span></div>
+        </div>
+    </section>
+
+    <section class="wrap">
+        <div class="cta-band reveal">
+            <h2>Not sure what to rent?</h2>
+            <p>Tell us the job on WhatsApp and we'll put together the right equipment list and a quote — usually within
+                minutes.</p>
+            <div class="cta-buttons">
+                <a class="btn-primary"
+                    href="https://wa.me/2348061379390?text=Hi%20Kadis%2C%20I%27d%20like%20to%20rent%20equipment.">Chat
+                    on WhatsApp →</a>
+                <a class="btn-ghost" href="tel:08061379390">Call 0806 137 9390</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="foot-promo">
+            <div class="wrap">
+                <p><b>Shop & order now</b> — or place your order via phone call or WhatsApp message. We also do
+                    door-step
+                    delivery within Abuja and 4 surrounding states.</p>
+                <a class="btn-primary" href="https://wa.me/2348061379390">Order on WhatsApp →</a>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="foot-main">
+                <div class="foot-grid">
+                    <div class="foot-col">
+                        <a class="logo" href="index.html" style="margin-bottom:16px;">
+                            <img src="images/KADISS.png" alt="Kadis"
+                                style="height:38px; width:auto; border-radius:8px;">
+                        </a>
+                        <p style="color:var(--ink-dim); font-size:13.5px; line-height:1.7; max-width:280px;">Abuja's No.
+                            1 ICT
+                            Ecosystem — gadgets, security, smart home, satellite & digital solutions, delivered
+                            door-step.</p>
+                    </div>
+                    <div class="foot-col">
+                        <h5>Shop</h5>
+                        <a href="security.html">Security Systems</a>
+                        <a href="category.html?cat=cctv-camera">CCTV Cameras</a>
+                        <a href="smart.html">Smart Home</a>
+                        <a href="wifi.html">Wifi / Mifi / Routers</a>
+                        <a href="satellite.html">Starlink</a>
+                        <a href="gadgets.html">Phone Accessories</a>
+                        <a href="ps.html">Games & Consoles</a>
+                        <a href="solar.html">Solar & Batteries</a>
+                        <a href="cables.html">Cables, Wires & Adapters</a>
+                        <a href="ict_tools.html">ICT Engineering Tools</a>
+                        <a href="electronic_converter.html">Electronic Converters & OTG</a>
+                        <a href="ringlights.html">Ring lights</a>
+                        <a href="satellite.html">Tv Decoders & Satellite Accessories</a>
+                    </div>
+                    <div class="foot-col">
+                        <h5>Services</h5>
+                        <a href="installation.html">ICT Installations & Engineering</a>
+                        <a href="techforce.html">TechForce</a>
+                        <a href="dts.html">Digital Transformation (KDTS)</a>
+                        <a href="rental.html">Equipment Rentals</a>
+                        <a href="security.html">Security Systems</a>
+                        <a href="skillab.html">Tech SkillLab</a>
+                        <a href="satelliteinstall.html">Satellite Solutions</a>
+                        <a href="smartiot.html">Smart Home & IoT</a>
+                        <a href="eventmedia.html">Event & Media</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="delivery.html">Delivery</a>
+                        <a href="installation.html">Starlink Installations</a>
+                        <a href="security.html">Security Systems</a>
+                        <a href="installation.html">AC & Freezer installation</a>
+                        <a href="satelliteinstall.html">Satellite Installation</a>
+                        <a href="source.html">Request Equipment</a>
+                        <a href="training.html">ICT Training</a>
+                        <a href="join.html">Join Our Team</a>
+                    </div>
+                    <div class="foot-col">
+                        <div class="foot-col">
+                            <h5>Contact</h5>
+                            <a href="tel:08061379390">0806 137 9390</a>
+                            <a href="tel:08024207231">0802 420 7231</a>
+                            <a href="#"> Head Office : Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama,
+                                Abuja, Nigeria.</a>
+                            <a href="#">Branch : Apo Urban Market, Apo, opposite Apo Shoprite, after
+                                NNPC/Dankogi Junction, Shop F1119, Abuja.</a>
+                            <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="foot-topics">
+                    <h5>Blog Categories</h5>
+                    <div class="foot-topics-row">
+                        <a href="blog.html#post-cctv-and-security-gadgets-solution">CCTV & Security</a>
+                        <a href="blog.html#post-electric-fence-solutions">Electric Fencing</a>
+                        <a href="blog.html#post-security-and-surveillance-system-solutions">Surveillance Systems</a>
+                        <a href="blog.html#post-access-control-system">Access Control</a>
+                        <a href="blog.html#post-biometric-devices-and-access-control-system-solutions">Biometric
+                            Devices</a>
+                        <a href="blog.html#post-automatic-or-electronic-gate-solutions">Automated Gates</a>
+                        <a href="blog.html#post-smart-door-locks">Smart Door Locks</a>
+                        <a href="blog.html#post-smart-homes-and-automated-house">Smart Homes</a>
+                        <a href="blog.html#post-smart-switches-hotels-commercial-buildings">Smart Switches</a>
+                        <a href="blog.html#post-smart-lighting-for-estates">Smart Lighting</a>
+                        <a href="blog.html#post-smart-curtains-luxury-apartments">Smart Curtains</a>
+                        <a href="blog.html#post-dstv-free-to-air-sltv-starlink-freetv-gotv-and-startimes-solutions">DSTV,
+                            GOtv &
+                            Starlink</a>
+                        <a href="blog.html#post-starlink-satellite-network-and-installation">Starlink Installation</a>
+                        <a href="blog.html#post-satellite-systems-remote-areas">Satellite for Remote Areas</a>
+                        <a href="blog.html#post-ict-networking-and-troubleshooting">Networking & Troubleshooting</a>
+                        <a href="blog.html#post-network-booster-and-installation">Network Boosters</a>
+                        <a href="blog.html#post-network-jammer-and-installation">Network Jammers</a>
+                        <a href="blog.html#post-pabx-and-intercom-system-solutions">PABX & Intercom</a>
+                        <a href="blog.html#post-solar-and-inverter-system">Solar & Inverters</a>
+                        <a href="blog.html#post-mobile-phone-updates-and-solutions">Mobile Phone Solutions</a>
+                        <a href="blog.html#post-phone-repairs-and-solution-tips">Phone Repairs</a>
+                        <a href="blog.html#post-phone-accessories-support-and-solutions">Phone Accessories</a>
+                        <a href="blog.html#post-computer-gadgets-and-accessories-solutions">Computer Accessories</a>
+                        <a href="blog.html#post-computer-repairs-and-solution-tips">Computer Repairs</a>
+                        <a href="blog.html#post-playstation-ps-games-consoles-and-accessories-solutions">PlayStation &
+                            Consoles</a>
+                        <a href="blog.html#post-drones-and-installation">Drones</a>
+                        <a href="blog.html#post-ict-engineering-tools">ICT Engineering Tools</a>
+                        <a href="blog.html#post-kadis-techforce">KADIS TechForce</a>
+                        <a href="blog.html#post-digital-transformation-kdts">Digital Transformation</a>
+                        <a href="blog.html#post-kadis-equipment-rentals-expansion">Equipment Rentals</a>
+                        <a href="blog.html#post-time-attendance-system">Time Attendance Systems</a>
+                        <a href="blog.html#post-ac-fridge-and-tv-installation-and-maintenance">AC, Fridge & TV
+                            Install</a>
+                        <a href="blog.html#post-ac-tv-and-refrigerator-sales-and-delivery">AC, TV & Fridge Sales</a>
+                        <a href="blog.html#post-fire-alarm-and-smoke-detectors">Fire Alarms & Smoke Detectors</a>
+                        <a href="blog.html#post-fire-extinguisher-sales-installation-training-and-certification">Fire
+                            Extinguishers</a>
+                        <a href="blog.html#post-fire-safety-technology-guide">Fire Safety Technology</a>
+                        <a href="blog.html#post-smoke-extractors">Smoke Extractors</a>
+                        <a href="blog.html#post-street-lights-and-poles">Street Lights & Poles</a>
+                        <a href="blog.html#post-rope-lights-and-designs">Rope Lights</a>
+                    </div>
+                </div>
+
+                <div class="foot-topics">
+                    <h5>Tips, Skills, Solutions & Updates</h5>
+                    <div class="foot-topics-row">
+                        <a href="tips.html#post-smart-door-lock-installation-in-abuja">Smart Door Lock Install</a>
+                        <a href="tips.html#post-smart-locks-for-schools-and-offices">Locks for Schools & Offices</a>
+                        <a href="tips.html#post-how-smart-locks-work-with-cctv-systems">Smart Locks & CCTV</a>
+                        <a href="tips.html#post-future-of-smart-lock-technology">Future of Smart Locks</a>
+                        <a href="tips.html#post-smart-secure-schools-abuja">Smart & Secure Schools</a>
+                        <a href="tips.html#post-from-manual-records-to-smart-schools">School Management Systems</a>
+                        <a href="tips.html#post-transforming-school-management-abuja">School ERP Systems</a>
+                        <a href="tips.html#post-smart-lock-installation-mistakes-to-avoid">Lock Install Mistakes</a>
+                        <a href="tips.html#post-how-to-secure-your-property-with-smart-locks">Secure Your Property</a>
+                        <a href="tips.html#post-smart-access-using-rfid-and-biometrics">RFID & Biometric Access</a>
+                        <a href="tips.html#post-best-smart-lock-brands-in-nigeria">Best Smart Lock Brands</a>
+                        <a href="tips.html#post-smart-locks-for-gates-and-main-doors">Locks for Gates & Doors</a>
+                        <a href="tips.html#post-voice-controlled-smart-locks-explained">Voice-Controlled Locks</a>
+                        <a href="tips.html#post-smart-lock-security-features-to-know">Smart Lock Features</a>
+                        <a href="tips.html#post-keyless-entry-systems-explained">Keyless Entry Systems</a>
+                        <a href="tips.html#post-smart-lock-maintenance-tips">Smart Lock Maintenance</a>
+                        <a href="tips.html#post-why-renting-event-ict-equipment-in-abuja-saves-money">Why Rent Event &
+                            ICT Gear</a>
+                        <a href="tips.html#post-abuja-equipment-rentals">Abuja Equipment Rentals</a>
+                        <a href="tips.html#post-smart-locks-with-mobile-app-control">App-Controlled Locks</a>
+                    </div>
+                </div>
+
+                <div class="foot-bottom">
+                    <span>© 2020–2026 KADIS.COM.NG · All Rights Reserved</span>
+                    <div class="social-row">
+                        <a href="https://web.facebook.com/kadisdigitals" aria-label="Facebook">f</a>
+                        <a href="https://www.instagram.com/kadisdigitals" aria-label="Instagram">ig</a>
+                        <a href="https://www.youtube.com/@kadisdigitals" aria-label="YouTube">yt</a>
+                        <a href="https://www.tiktok.com/@kadisdigitals" aria-label="TikTok">tt</a>
+                    </div>
+                    <span>Powered by E-Franky Global Services Limited</span>
+                </div>
+                <a href="https://whatsapp.com/channel/0029VaxUvHk3gvWa5WhtZ03K" class="whatsapp-channel" target="_blank"
+                    rel="noopener noreferrer" aria-label="Follow KADIS ICT & Media Solutions on WhatsApp">
+                    <span class="whatsapp-icon" aria-hidden="true">
+                        <i class="fab fa-whatsapp"></i>
+                    </span>
+
+                    <span class="whatsapp-content">
+                        <strong>Follow KADIS on WhatsApp</strong>
+                        <small>Get updates, solutions & tech insights</small>
+                    </span>
+
+                    <span class="whatsapp-arrow" aria-hidden="true">→</span>
+                </a>
+            </div>
+    </footer>
+
+    <a class="wa-float" href="https://wa.me/2348061379390" aria-label="Chat on WhatsApp">💬</a>
+
+    <script>
+        function toggleMega() {
+            document.getElementById('megaMenu').classList.toggle('open');
+            document.getElementById('catTrigger').classList.toggle('active');
+            document.getElementById('megaBackdrop').classList.toggle('show');
+        }
+        function closeMega() {
+            document.getElementById('megaMenu').classList.remove('open');
+            document.getElementById('catTrigger').classList.remove('active');
+            document.getElementById('megaBackdrop').classList.remove('show');
+        }
+        document.addEventListener('click', (e) => {
+            const wrap = document.querySelector('.mega-wrap');
+            if (!wrap.contains(e.target)) closeMega();
+        });
+        document.querySelectorAll('.mega-menu a').forEach(link => {
+            link.addEventListener('click', closeMega);
+        });
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const idx = Number(entry.target.dataset.idx || 0);
+                    entry.target.style.transitionDelay = Math.min(idx, 6) * 70 + 'ms';
+                    entry.target.classList.add('in-view');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach((el, i) => {
+            el.dataset.idx = i % 6;
+            io.observe(el);
+        });
+    </script>
+
+    <script src="cart.js"></script>
+    <script src="productdetails.js"></script>
+    <script src="Quickview.js"></script>
+    <script src="product-index-data.js"></script>
+    <script src="site-search.js"></script>
+    <script src="request-solution.js"></script>
+    <script src="responsive.js"></script>
+
+    <script>
+        document.querySelectorAll('a[href*="wa.me"], a[href*="instagram.com"], a[href*="facebook.com"], a[href*="tiktok.com"], a[href*="youtube.com"], a[href*="twitter.com"], a[href*="x.com"], a[href*="linkedin.com"]').forEach(function (link) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener');
+        });
+    </script>
+
+</body>
+
+</html>

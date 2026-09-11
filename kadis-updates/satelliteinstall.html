@@ -1,0 +1,2507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Satellite Solutions Abuja — GOtv, SLTV & Starlink | KADIS.COM.NG</title>
+  <meta name="description"
+    content="GOtv installation, SLTV (StarTimes) installation, Starlink setup and configuration, satellite equipment sourcing, signal troubleshooting and commercial satellite installations — by Kadis engineers in Abuja.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0B0C0F;
+      --bg-2: #131519;
+      --bg-3: #1A1D22;
+      --bg-4: #20232A;
+
+      --ink: #EDEEEC;
+      --ink-dim: #9A9FA8;
+      --ink-dimmer: #5C616A;
+      --line: rgba(255, 255, 255, 0.07);
+      --line-bright: rgba(255, 255, 255, 0.13);
+
+      --amber: #D9772E;
+      --amber-deep: #B85F22;
+      --amber-soft: #E8A15E;
+
+      --moss: #A9B84C;
+
+      --glow: 0 0 60px rgba(217, 119, 46, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Sora', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
+    .mono {
+      font-family: 'Space Mono', monospace;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    ::selection {
+      background: var(--amber-soft);
+      color: #111;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 8%, rgba(217, 119, 46, 0.08), transparent 40%),
+        radial-gradient(circle at 85% 25%, rgba(169, 184, 76, 0.045), transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(217, 119, 46, 0.05), transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .8s cubic-bezier(.16, .8, .24, 1), transform .8s cubic-bezier(.16, .8, .24, 1);
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+
+      .chip {
+        animation: none !important;
+      }
+
+      * {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    /* ---------- Top utility bar ---------- */
+    .topbar {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--line);
+      font-size: 12.5px;
+      color: var(--ink-dim);
+    }
+
+    .topbar .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 38px;
+      flex-wrap: wrap;
+    }
+
+    .topbar .dot {
+      color: var(--amber-soft);
+      margin-right: 6px;
+    }
+
+    .topbar-right {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .topbar-right span.mono {
+      color: var(--amber-soft);
+      font-weight: 700;
+    }
+
+    .topbar-right a {
+      transition: color .2s;
+    }
+
+    .topbar-right a:hover {
+      color: var(--ink);
+    }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(11, 12, 15, 0.82);
+      backdrop-filter: blur(16px) saturate(140%);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 78px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Sora';
+      font-weight: 800;
+      font-size: 22px;
+      margin-top: 15px;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--amber), var(--amber-deep));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0A0B0E;
+      font-weight: 800;
+      font-size: 16px;
+      box-shadow: 0 6px 20px rgba(217, 119, 46, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    }
+
+    /* ---------- Nav ---------- */
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      height: 78px;
+      gap: 42px;
+    }
+
+    .logo {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-dim);
+      margin-left: 20px;
+    }
+
+    .nav-links a {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 0;
+      white-space: nowrap;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--amber);
+      transition: width .3s cubic-bezier(.16, .8, .24, 1);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .nav-actions .btn-primary {
+      white-space: nowrap;
+      font-size: 12px;
+      padding: 11px 15px;
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--line-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-dim);
+      transition: all .2s;
+      cursor: pointer;
+      position: relative;
+      background: transparent;
+    }
+
+    .icon-btn:hover {
+      border-color: var(--amber);
+      color: var(--amber-soft);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: var(--amber);
+      color: #0A0B0E;
+      font-size: 10px;
+      font-weight: 800;
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Mono';
+    }
+
+    .btn-primary {
+      background: var(--amber);
+      color: #0B0C0F;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 11px 22px;
+      border-radius: 10px;
+      box-shadow: 0 8px 22px rgba(217, 119, 46, 0.22);
+      transition: transform .25s cubic-bezier(.16, .8, .24, 1), box-shadow .25s, background .25s;
+      white-space: nowrap;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: var(--amber-soft);
+      box-shadow: 0 14px 30px rgba(217, 119, 46, 0.3);
+    }
+
+    /* ---------- Search row + mega menu ---------- */
+    .search-row {
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+      padding: 16px 0;
+      position: sticky;
+      top: 78px;
+      z-index: 45;
+    }
+
+    .search-row .wrap {
+      z-index: 56;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .mega-wrap {
+      position: relative;
+    }
+
+    .cat-trigger {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--bg-3);
+      border: 1px solid var(--line-bright);
+      border-radius: 10px;
+      padding: 13px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: border-color .2s;
+      color: var(--ink);
+    }
+
+    .cat-trigger:hover,
+    .cat-trigger.active {
+      border-color: var(--amber);
+    }
+
+    .cat-trigger .bars {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .cat-trigger .bars span {
+      width: 14px;
+      height: 2px;
+      background: var(--amber-soft);
+      display: block;
+      border-radius: 1px;
+    }
+
+    .cat-trigger .chev {
+      color: var(--ink-dimmer);
+      font-size: 11px;
+      transition: transform .2s;
+    }
+
+    .cat-trigger.active .chev {
+      transform: rotate(180deg);
+    }
+
+    .search-bar {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: var(--bg-2);
+      border: 1px solid var(--line-bright);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+
+    .search-bar:focus-within {
+      border-color: var(--amber);
+    }
+
+    .search-bar input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--ink);
+      padding: 13px 16px;
+      font-size: 14px;
+      font-family: 'Manrope';
+    }
+
+    .search-bar input::placeholder {
+      color: var(--ink-dimmer);
+    }
+
+    .search-bar .go {
+      background: var(--amber);
+      color: #0B0C0F;
+      border: none;
+      padding: 13px 22px;
+      font-weight: 800;
+      font-size: 14px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background .2s;
+    }
+
+    .search-bar .go:hover {
+      background: var(--amber-soft);
+    }
+
+    .mega-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: rgba(6, 7, 9, 0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease;
+    }
+
+    @media (max-width:900px) {
+      .mega-backdrop.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    .mega-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 0;
+      width: min(920px, 92vw);
+      background: var(--bg-2);
+      border: 1px solid var(--line-bright);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
+      display: none;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+      z-index: 60;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    .mega-menu.open {
+      display: grid;
+    }
+
+    .mega-col h6 {
+      font-family: 'Space Mono';
+      font-size: 11px;
+      letter-spacing: .05em;
+      color: var(--amber-soft);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .mega-col a {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--ink-dim);
+      padding: 6px 0;
+      transition: color .2s;
+    }
+
+    .mega-col a:hover {
+      color: var(--amber-soft);
+    }
+
+    .mega-col a small {
+      color: var(--ink-dimmer);
+      font-family: 'Space Mono';
+      font-size: 10.5px;
+      flex-shrink: 0;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 56px 0 60px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero>div:first-child>* {
+      opacity: 0;
+      transform: translateY(16px);
+      animation: heroIn .7s cubic-bezier(.16, .8, .24, 1) forwards;
+    }
+
+    .hero>div:first-child>*:nth-child(1) {
+      animation-delay: .05s;
+    }
+
+    .hero>div:first-child>*:nth-child(2) {
+      animation-delay: .15s;
+    }
+
+    .hero>div:first-child>*:nth-child(3) {
+      animation-delay: .25s;
+      color: rgb(225, 218, 218);
+    }
+
+    .hero>div:first-child>*:nth-child(4) {
+      animation-delay: .35s;
+    }
+
+    .hero>div:first-child>*:nth-child(5) {
+      animation-delay: .45s;
+    }
+
+    @keyframes heroIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Space Mono';
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--amber-soft);
+      background: rgba(217, 119, 46, 0.08);
+      border: 1px solid rgba(217, 119, 46, 0.25);
+      padding: 7px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow::before {
+      content: '●';
+      color: var(--moss);
+      font-size: 8px;
+    }
+
+    .hero h1 {
+      font-size: 54px;
+      line-height: 1.05;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 .grad {
+      background: linear-gradient(100deg, var(--amber) 10%, var(--amber-soft) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 17px;
+      color: var(--ink-dim);
+      max-width: 500px;
+      line-height: 1.65;
+      margin-bottom: 34px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--line-bright);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 13px 24px;
+      border-radius: 10px;
+      transition: all .25s cubic-bezier(.16, .8, .24, 1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--amber);
+      background: rgba(217, 119, 46, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats div {
+      border-left: 2px solid var(--amber);
+      padding-left: 14px;
+    }
+
+    .hero-stats b {
+      display: block;
+      font-family: 'Sora';
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .hero-stats span {
+      font-size: 12.5px;
+      color: var(--ink-dim);
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 480px;
+      perspective: 1400px;
+    }
+
+    .orbit-core {
+      position: absolute;
+      inset: 0;
+      margin: auto;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, var(--amber-soft), var(--amber) 45%, transparent 70%);
+      filter: blur(4px);
+      opacity: 0.8;
+      box-shadow: 0 0 120px 30px rgba(217, 119, 46, 0.28);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: .75;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      50% {
+        opacity: .9;
+        transform: translate(-50%, -50%) scale(1.03);
+      }
+    }
+
+    .orbit-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) rotateX(62deg);
+    }
+
+    .r1 {
+      width: 340px;
+      height: 340px;
+      animation: spin 40s linear infinite;
+    }
+
+    .r2 {
+      width: 440px;
+      height: 440px;
+      border-color: rgba(169, 184, 76, 0.14);
+      animation: spin 60s linear infinite reverse;
+    }
+
+    @keyframes spin {
+      from {
+        transform: translate(-50%, -50%) rotateX(62deg) rotateZ(0deg);
+      }
+
+      to {
+        transform: translate(-50%, -50%) rotateX(62deg) rotateZ(360deg);
+      }
+    }
+
+    .chip {
+      position: absolute;
+      width: 74px;
+      height: 74px;
+      border-radius: 18px;
+      background: linear-gradient(150deg, var(--bg-4), var(--bg-3));
+      border: 1px solid var(--line-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.07), inset 0 -8px 14px rgba(0, 0, 0, 0.35);
+      transform-style: preserve-3d;
+      transition: transform .4s ease, box-shadow .4s ease;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .chip svg {
+      width: 30px;
+      height: 30px;
+      filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.55));
+    }
+
+    .chip:hover {
+      transform: translateY(-6px) scale(1.05);
+      box-shadow: 0 24px 46px rgba(217, 119, 46, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    }
+
+    .chip.c1 {
+      top: 6%;
+      left: 8%;
+      animation-delay: 0s;
+    }
+
+    .chip.c2 {
+      top: 2%;
+      right: 14%;
+      animation-delay: 1.4s;
+    }
+
+    .chip.c3 {
+      bottom: 16%;
+      left: 2%;
+      animation-delay: 2.4s;
+    }
+
+    .chip.c4 {
+      bottom: 4%;
+      right: 6%;
+      animation-delay: 0.7s;
+    }
+
+    .chip.c5 {
+      top: 42%;
+      left: -2%;
+      animation-delay: 2.1s;
+    }
+
+    .chip.c6 {
+      top: 46%;
+      right: -4%;
+      animation-delay: 3.1s;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .center-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 168px;
+      height: 168px;
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.015));
+      border: 1px solid var(--line-bright);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+    }
+
+    .center-card .n {
+      font-family: 'Sora';
+      font-weight: 800;
+      font-size: 30px;
+      background: linear-gradient(120deg, var(--amber), var(--amber-soft));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .center-card .l {
+      font-family: 'Space Mono';
+      font-size: 10px;
+      color: var(--ink-dim);
+      letter-spacing: .05em;
+      text-align: center;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        height: 340px;
+        margin-top: 20px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+      }
+    }
+
+    /* ---------- Trust strip ---------- */
+    .trust {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 26px 0;
+      background: var(--bg-2);
+    }
+
+    .trust .wrap {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--ink-dim);
+      font-weight: 600;
+    }
+
+    a.trust-item {
+      transition: color .2s;
+    }
+
+    a.trust-item:hover {
+      color: var(--amber-soft);
+    }
+
+    .trust-item .ic {
+      color: var(--amber-soft);
+      font-size: 16px;
+    }
+
+    /* ---------- Section shell ---------- */
+    section {
+      padding: 90px 0;
+    }
+
+    .sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 44px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .sec-head h2 {
+      font-size: 34px;
+      font-weight: 800;
+    }
+
+    .sec-head p {
+      color: rgb(223, 217, 217);
+      font-size: 15px;
+      max-width: 420px;
+    }
+
+    .sec-eyebrow {
+      font-family: 'Space Mono';
+      font-size: 12px;
+      color: var(--amber-soft);
+      letter-spacing: .08em;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .see-all {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+      transition: color .2s;
+    }
+
+    .see-all:hover {
+      color: var(--amber-soft);
+    }
+
+    /* ---------- Topic grid ---------- */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .cat-card {
+      background: linear-gradient(160deg, var(--bg-3), var(--bg-2));
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 26px 22px;
+      position: relative;
+      overflow: hidden;
+      transition: transform .35s cubic-bezier(.16, .8, .24, 1), border-color .35s ease, box-shadow .35s ease;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      display: block;
+    }
+
+    .cat-card:hover {
+      border-color: rgba(217, 119, 46, 0.35);
+      box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(217, 119, 46, 0.12);
+    }
+
+    .cat-card .glow {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(169, 184, 76, 0.10), transparent 70%);
+      top: -40px;
+      right: -40px;
+      transition: opacity .3s;
+    }
+
+    .cat-card .ic {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(150deg, var(--bg-4), var(--bg-3));
+      border: 1px solid var(--line-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -6px 10px rgba(0, 0, 0, 0.3), 0 8px 16px rgba(0, 0, 0, 0.35);
+      margin-bottom: 22px;
+    }
+
+    .cat-card .ic svg {
+      width: 24px;
+      height: 24px;
+      filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+    }
+
+    .cat-card h4 {
+      font-size: 16.5px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .cat-card span {
+      font-size: 12.5px;
+      color: var(--ink-dim);
+      font-family: 'Space Mono';
+    }
+
+    .cat-card .arrow {
+      position: absolute;
+      bottom: 22px;
+      right: 22px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--line-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: all .3s;
+      color: var(--amber-soft);
+    }
+
+    .cat-card:hover .arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (max-width: 980px) {
+      .cat-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .cat-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ---------- Service detail blocks with process steps ---------- */
+    .svc-detail {
+      border-top: 1px solid var(--line);
+      padding: 44px 0;
+      scroll-margin-top: 160px;
+    }
+
+    .svc-detail:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .svc-detail h3 {
+      font-size: 21px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .svc-detail>p.lead {
+      color: rgb(223, 218, 218);
+      font-size: 14.5px;
+      margin-bottom: 26px;
+      max-width: 640px;
+      line-height: 1.65;
+    }
+
+    .proc-steps {
+      display: grid;
+      gap: 4px;
+      counter-reset: step;
+    }
+
+    .proc-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 18px 20px;
+      border-radius: 14px;
+      transition: background .25s ease;
+    }
+
+    .proc-step:hover {
+      background: var(--bg-2);
+    }
+
+    .proc-step .num {
+      font-family: 'Space Mono';
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--amber-soft);
+      border: 1px solid var(--line-bright);
+      background: var(--bg-2);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .proc-step .rail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .proc-step .body h6 {
+      font-size: 14.5px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .proc-step .body span {
+      font-size: 13px;
+      color: rgb(225, 220, 220);
+      line-height: 1.6;
+      display: block;
+      max-width: 620px;
+    }
+
+    /* ---------- Stats band ---------- */
+    .stats-band {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .stat-cell {
+      background: var(--bg-2);
+      padding: 34px 26px;
+      text-align: center;
+    }
+
+    .stat-cell b {
+      font-family: 'Sora';
+      font-size: 34px;
+      font-weight: 800;
+      background: linear-gradient(120deg, var(--amber), var(--amber-soft));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: block;
+    }
+
+    .stat-cell span {
+      font-size: 12px;
+      color: var(--ink-dim);
+      font-family: 'Space Mono';
+    }
+
+    @media (max-width: 980px) {
+      .stats-band {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq-list {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .faq-group-label {
+      font-size: 13px;
+      font-family: 'Space Mono';
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgb(226, 220, 220);
+      margin: 28px 0 12px;
+    }
+
+    .faq-group-label:first-child {
+      margin-top: 0;
+      color: rgb(230, 223, 223);
+    }
+
+    .faq-item {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--bg-2);
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color .25s;
+    }
+
+    .faq-item.open {
+      border-color: rgba(217, 119, 46, 0.3);
+    }
+
+    .faq-q {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      color: var(--ink);
+      font-family: 'Sora';
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .faq-q .plus {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--line-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber-soft);
+      transition: transform .35s cubic-bezier(.16, .8, .24, 1), background .25s;
+      font-size: 15px;
+      font-weight: 400;
+    }
+
+    .faq-item.open .faq-q .plus {
+      transform: rotate(135deg);
+      background: var(--amber);
+      color: #0B0C0F;
+      border-color: transparent;
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s cubic-bezier(.16, .8, .24, 1);
+    }
+
+    .faq-a p {
+      padding: 0 24px 20px;
+      color: var(--ink-dim);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ---------- CTA ---------- */
+    .cta-band {
+      background: linear-gradient(120deg, rgba(217, 119, 46, 0.12), rgba(169, 184, 76, 0.05));
+      border: 1px solid rgba(217, 119, 46, 0.22);
+      border-radius: 24px;
+      padding: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-band h2 {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .cta-band p {
+      color: rgb(233, 226, 226);
+      margin-bottom: 30px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid var(--line);
+      background: var(--bg-2);
+    }
+
+    .foot-topics-row a:hover {
+      border-color: var(--amber);
+      color: var(--amber-soft);
+    }
+
+    .foot-topics {
+      margin-top: 30px;
+      padding: 24px 0 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .foot-topics+.foot-topics {
+      margin-top: 34px;
+    }
+
+    .foot-topics h5 {
+      font-size: 13px;
+      color: var(--ink);
+      margin-bottom: 18px;
+      font-family: 'Space Mono';
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .foot-topics-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+    }
+
+    .foot-topics-row a {
+      font-size: 12.5px;
+      color: rgb(220, 212, 212);
+      background: var(--bg-3);
+      border: 1px solid var(--line-bright);
+      border-radius: 100px;
+      padding: 7px 14px;
+      white-space: nowrap;
+      display: inline-block;
+    }
+
+    .foot-promo {
+      background: linear-gradient(115deg, rgba(217, 119, 46, 0.10), rgba(169, 184, 76, 0.04));
+      border-bottom: 1px solid var(--line);
+      padding: 22px 0;
+    }
+
+    .foot-promo .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .foot-promo p {
+      font-size: 13.5px;
+      color: var(--ink-dim);
+      max-width: 760px;
+      line-height: 1.7;
+    }
+
+    .foot-promo b {
+      color: var(--ink);
+    }
+
+    .foot-promo .btn-primary {
+      flex-shrink: 0;
+    }
+
+    .foot-contact {
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--ink-dim);
+      line-height: 1.9;
+    }
+
+    .foot-contact .wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: space-between;
+    }
+
+    .foot-contact strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .foot-contact a {
+      color: var(--amber-soft);
+      font-weight: 700;
+    }
+
+    .foot-contact .fc-block {
+      max-width: 520px;
+    }
+
+    .foot-main {
+      padding: 56px 0 40px;
+    }
+
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(4, 1fr);
+      gap: 40px;
+    }
+
+    .foot-col h5 {
+      font-size: 13px;
+      color: var(--ink);
+      margin-bottom: 18px;
+      font-family: 'Space Mono';
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .foot-col a {
+      display: block;
+      font-size: 13.5px;
+      color: var(--ink-dim);
+      margin-bottom: 12px;
+      transition: color .2s;
+    }
+
+    .foot-col a:hover {
+      color: var(--amber-soft);
+    }
+
+    .foot-links-line {
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      font-size: 13px;
+      color: var(--ink-dim);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 0;
+      align-items: center;
+    }
+
+    .foot-links-line a {
+      color: var(--amber-soft);
+      font-weight: 700;
+    }
+
+    .foot-links-line .sep {
+      color: var(--ink-dimmer);
+      margin: 0 10px;
+    }
+
+    .foot-bank {
+      padding: 16px 0;
+      font-size: 12.5px;
+      color: var(--ink-dimmer);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .foot-bank strong {
+      color: var(--amber-soft);
+    }
+
+    .foot-bottom {
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: rgb(202, 194, 194);
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .social-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-row a {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      border: 1px solid var(--line-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      color: var(--ink-dim);
+      transition: all .2s;
+    }
+
+    .social-row a:hover {
+      border-color: var(--amber);
+      color: var(--amber-soft);
+      transform: translateY(-2px);
+    }
+
+    /* ---------- Floating WhatsApp ---------- */
+    .wa-float {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 70;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #25D366, #128C4A);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+      font-size: 26px;
+      color: #fff;
+      transition: transform .25s cubic-bezier(.16, .8, .24, 1);
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+    }
+
+    .whatsapp-channel {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      width: fit-content;
+      padding: 13px 18px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--ink);
+      transition: all 0.25s ease;
+    }
+
+    .whatsapp-channel:hover {
+      transform: translateY(-2px);
+      border-color: rgba(37, 211, 102, 0.45);
+      background: rgba(37, 211, 102, 0.07);
+    }
+
+    .whatsapp-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      font-size: 21px;
+    }
+
+    .whatsapp-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .whatsapp-content strong {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .whatsapp-content small {
+      font-size: 11px;
+      color: var(--ink-dim);
+      line-height: 1.3;
+    }
+
+    .whatsapp-arrow {
+      margin-left: 8px;
+      font-size: 19px;
+      color: var(--amber);
+      transition: transform 0.25s ease;
+    }
+
+    .whatsapp-channel:hover .whatsapp-arrow {
+      transform: translateX(4px);
+    }
+
+    @media (max-width: 900px) {
+      .foot-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mega-menu {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .search-row .wrap {
+        flex-wrap: wrap;
+      }
+
+      .search-row {
+        position: static;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="wrap">
+      <div><span class="dot">●</span>Free signal & site assessment — book yours on WhatsApp</div>
+      <div class="topbar-right">
+        <span>Nasarawa · Niger · Kaduna · Kogi</span>
+        <a class="mono" href="tel:08061379390">📞 0806 137 9390</a>
+      </div>
+    </div>
+  </div>
+
+  <nav>
+    <div class="wrap nav-inner">
+      <a class="logo" href="index.html" style="margin-bottom:16px;">
+        <img src="images/KADISS.png" alt="Kadis" style="height:38px; width:auto; border-radius:8px;">
+      </a>
+    <div class="nav-links">
+        <a href="index.html#solutions">Digital Solutions</a>
+        <a href="installation.html">ICT Engineering</a>
+        <a href="staffing.html">ICT Staffing</a>
+        <a href="training.html">ICT Training</a>
+        <a href="join.html">Join our Team</a>
+        <a href="rental.html">Equipment Rentals</a>
+        <a href="Allcategory.html">Store</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="nav-actions">
+        <a class="icon-btn" href="cart.html">🛒<span class="cart-count">0</span></a>
+        <a class="btn-primary" href="#" data-open-solution>Request a Solution</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="search-row">
+    <div class="wrap">
+      <div class="mega-wrap">
+        <div class="cat-trigger" id="catTrigger" onclick="toggleMega()">
+          <div class="bars"><span></span><span></span><span></span></div>
+          All Categories
+          <span class="chev">▾</span>
+        </div>
+        <div class="mega-menu" id="megaMenu">
+          <div class="mega-col">
+            <h6>Security</h6>
+            <a href="security.html">Home & Office Security <small>64</small></a>
+            <a href="category.html?cat=cctv-camera">CCTV Camera <small>20</small></a>
+            <a href="security.html">Electric Fence & Barb Wire <small>46</small></a>
+            <a href="security.html">Automobile Security <small>27</small></a>
+            <a href="security.html">Device Security <small>28</small></a>
+            <a href="security.html">Internet Security <small>26</small></a>
+          </div>
+          <div class="mega-col">
+            <h6>Phones & Computers</h6>
+            <a href="gadgets.html">Phone Accessories <small>145</small></a>
+            <a href="gadgets.html">Computer Accessories <small>224</small></a>
+            <a href="gadgets.html">Keyboard & Mouse <small>59</small></a>
+            <a href="gadgets.html">Flash Drives & Storage <small>31</small></a>
+            <a href="gadgets.html">Printers <small>10</small></a>
+            <a href="gadgets.html">Bluetooth & Earbuds <small>59</small></a>
+          </div>
+          <div class="mega-col">
+            <h6>Smart Home & Networking</h6>
+            <a href="smart.html">Smart Home Automation <small>50</small></a>
+            <a href="wifi.html">Networking Equipment <small>42</small></a>
+            <a href="wifi.html">Wifi / Mifi / Routers <small>22</small></a>
+            <a href="satellite.html#starlink">Starlink Network System <small>2</small></a>
+            <a href="security.html">Intercom <small>20</small></a>
+            <a href="wifi.html">Signal Booster <small>14</small></a>
+          </div>
+          <div class="mega-col">
+            <h6>Games, TV & More</h6>
+            <a href="ps.html">Games & Consoles <small>53</small></a>
+            <a href="satellite.html">TV & Satellite Decoders <small>24</small></a>
+            <a href="solar.html">Solar & Batteries <small>25</small></a>
+            <a href="cables.html">Cables, Wires & Adapters <small>48</small></a>
+            <a href="ict_tools.html">ICT Engineering Tools <small>11</small></a>
+            <a href="ringlights.html">Ring Lights <small>6</small></a>
+          </div>
+        </div>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="siteSearch" placeholder="Search GOtv, SLTV, Starlink, decoders…">
+        <button class="go" id="siteSearchBtn">Search</button>
+      </div>
+    </div>
+  </div>
+  <div class="mega-backdrop" id="megaBackdrop" onclick="closeMega()"></div>
+
+  <!-- HERO -->
+  <header class="wrap hero">
+    <div>
+      <span class="eyebrow">SATELLITE SOLUTIONS · ABUJA</span>
+      <h1>Point the dish once. <span class="grad">Get it right the first time.</span></h1>
+      <p>GOtv, SLTV (StarTimes) and Starlink — installed, aligned and signal-tested by Kadis engineers. From a single
+        home decoder to a fully wired hotel or estate, we handle the dish, the cabling, the configuration and the
+        troubleshooting, so you're not left guessing why the signal dropped.</p>
+      <div class="hero-cta">
+        <a class="btn-primary" href="https://wa.me/2348061379390">Book a Free Signal Assessment →</a>
+        <a class="btn-ghost" href="index.html#about">See Our Process</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>3</b><span>Satellite platforms covered</span></div>
+        <div><b>6</b><span>Satellite services offered</span></div>
+        <div><b>24hr</b><span>Site visit turnaround</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual" id="heroVisual">
+      <div class="orbit-core"></div>
+      <div class="orbit-ring r1"></div>
+      <div class="orbit-ring r2"></div>
+      <div class="chip c1" title="GOtv Installation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="12" rx="2" />
+          <path d="M8 21h8M12 17v4" />
+        </svg></div>
+      <div class="chip c2" title="SLTV / StarTimes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="6" width="18" height="11" rx="2" />
+          <path d="M9 20h6" />
+          <circle cx="12" cy="11.5" r="2.2" />
+        </svg></div>
+      <div class="chip c3" title="Starlink Dish"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 15a12 12 0 0 1 16-11" />
+          <path d="M9 15a6 6 0 0 1 7-6" />
+          <circle cx="16" cy="15" r="1.6" />
+          <path d="M16 15v6M13.5 21h5" />
+        </svg></div>
+      <div class="chip c4" title="Equipment Sourcing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 8V6a2 2 0 0 1 2-2h3l1.4 2H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" />
+        </svg></div>
+      <div class="chip c5" title="Signal Troubleshooting"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12h4l2-7 4 14 2-7h6" />
+        </svg></div>
+      <div class="chip c6" title="Commercial Installations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="4" y="3" width="16" height="18" rx="1.5" />
+          <path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2" />
+        </svg></div>
+      <div class="center-card">
+        <div class="n"><img src="/images/KADISS.png" alt="Kadis logo"
+            style="height: 32px; width: auto; border-radius: 10px;"></div>
+        <div class="l">Satellite, Engineered</div>
+      </div>
+    </div>
+  </header>
+
+  <div class="trust">
+    <div class="wrap">
+      <div class="trust-item"><span class="ic">✓</span> Genuine dishes, decoders & LNBs</div>
+      <a class="trust-item" href="delivery.html" style="cursor:pointer;"><span class="ic">✓</span> Same-day service,
+        Abuja & 4 states</a>
+      <div class="trust-item"><span class="ic">✓</span> Every install signal-tested before we leave</div>
+      <div class="trust-item"><span class="ic">✓</span> One engineer you can call back for support</div>
+    </div>
+  </div>
+
+  <!-- TOPICS -->
+  <section id="topics" class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="sec-eyebrow">WHAT WE HANDLE</span>
+        <h2>Six ways we keep you connected</h2>
+      </div>
+      <p>Tap a topic to jump straight to how that service works, start to finish.</p>
+    </div>
+    <div class="cat-grid">
+      <a class="cat-card reveal" href="satelliteinstall.html">
+        <div class="glow"></div>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--amber-soft)"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="12" rx="2" />
+            <path d="M8 21h8M12 17v4" />
+          </svg></div>
+        <h4>GOtv Installation</h4><span>Dish, decoder & activation</span>
+        <div class="arrow">→</div>
+      </a>
+      <a class="cat-card reveal" href="satelliteinstall.html">
+        <div class="glow"></div>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--amber-soft)"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="6" width="18" height="11" rx="2" />
+            <path d="M9 20h6" />
+            <circle cx="12" cy="11.5" r="2.2" />
+          </svg></div>
+        <h4>SLTV Installation</h4><span>StarTimes dish & decoder setup</span>
+        <div class="arrow">→</div>
+      </a>
+      <a class="cat-card reveal" href="satelliteinstall.html">
+        <div class="glow"></div>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--amber-soft)"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 15a12 12 0 0 1 16-11" />
+            <path d="M9 15a6 6 0 0 1 7-6" />
+            <circle cx="16" cy="15" r="1.6" />
+            <path d="M16 15v6M13.5 21h5" />
+          </svg></div>
+        <h4>Starlink Setup</h4><span>Installation & configuration</span>
+        <div class="arrow">→</div>
+      </a>
+      <a class="cat-card reveal" href="satelliteinstall.html">
+        <div class="glow"></div>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--amber-soft)"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 8V6a2 2 0 0 1 2-2h3l1.4 2H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z" />
+          </svg></div>
+        <h4>Equipment Sourcing</h4><span>Genuine dishes, decoders & parts</span>
+        <div class="arrow">→</div>
+      </a>
+      <a class="cat-card reveal" href="installation.html">
+        <div class="glow"></div>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--amber-soft)"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h4l2-7 4 14 2-7h6" />
+          </svg></div>
+        <h4>Signal Troubleshooting</h4><span>Diagnosis & repairs</span>
+        <div class="arrow">→</div>
+      </a>
+      <a class="cat-card reveal" href="satelliteinstall.html">
+        <div class="glow"></div>
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--amber-soft)"
+            stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="3" width="16" height="18" rx="1.5" />
+            <path d="M8 7h2M14 7h2M8 11h2M14 11h2M8 15h2M14 15h2" />
+          </svg></div>
+        <h4>Commercial Installations</h4><span>Hotels, estates & offices</span>
+        <div class="arrow">→</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- SERVICE DETAIL SECTIONS -->
+  <section id="services" class="wrap">
+    <div class="sec-head reveal">
+      <div>
+        <span class="sec-eyebrow">HOW EACH SERVICE WORKS</span>
+        <h2>Satellite services, step by step</h2>
+      </div>
+      <p>The exact process our engineers follow for every job, so you know what to expect before we arrive.</p>
+    </div>
+
+    <div class="svc-detail reveal" id="gotv">
+      <h3>📡 GOtv Installation Services Process</h3>
+      <p class="lead">From a first phone call to a fully activated decoder, here's how we get your GOtv connection
+        running — and keep it running.</p>
+      <div class="proc-steps">
+        <div class="proc-step">
+          <div class="num">1</div>
+          <div class="body">
+            <h6>Site & Signal Assessment</h6><span>We check your roof or wall access and confirm a clear line of sight
+              to the satellite before any equipment goes up.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">2</div>
+          <div class="body">
+            <h6>Dish Mounting & Alignment</h6><span>The dish is mounted and precisely aligned for the strongest possible
+              signal at your specific location.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">3</div>
+          <div class="body">
+            <h6>Decoder Setup & Cabling</h6><span>The decoder is connected, cabling is run neatly along walls or
+              trunking, and every port is tested end-to-end.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">4</div>
+          <div class="body">
+            <h6>Subscription Activation</h6><span>Your GOtv smart card is registered and activated with the package
+              you've chosen.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">5</div>
+          <div class="body">
+            <h6>Signal Test & Channel Scan</h6><span>A full channel scan is run and picture and sound quality confirmed
+              on every connected TV point.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">6</div>
+          <div class="body">
+            <h6>Customer Walkthrough</h6><span>We show you how to read basic error prompts and reset the decoder
+              yourself before we leave.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-detail reveal" id="sltv">
+      <h3>📺 SLTV (StarTimes) Installations</h3>
+      <p class="lead">StarTimes sits on a different orbital position from GOtv, so alignment and setup are handled as
+        their own dedicated process.</p>
+      <div class="proc-steps">
+        <div class="proc-step">
+          <div class="num">1</div>
+          <div class="body">
+            <h6>Site Assessment</h6><span>We confirm your roof or mounting point has a clear, unobstructed view toward
+              the StarTimes satellite position.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">2</div>
+          <div class="body">
+            <h6>Dish Mounting & Fine Alignment</h6><span>The dish is fixed and fine-tuned specifically for StarTimes'
+              orbital position, distinct from GOtv or DStv alignment.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">3</div>
+          <div class="body">
+            <h6>Decoder Installation</h6><span>The decoder is connected to your TV, powered up and cabled through to
+              every room that needs a feed.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">4</div>
+          <div class="body">
+            <h6>Smart Card & Subscription Activation</h6><span>Your smart card is registered and your chosen bouquet is
+              activated on the spot.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">5</div>
+          <div class="body">
+            <h6>Signal & Channel Testing</h6><span>Every channel is scanned and checked for a clean, stable picture
+              before the job is signed off.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">6</div>
+          <div class="body">
+            <h6>Customer Walkthrough</h6><span>We explain how to renew your subscription and what to do if the signal
+              drops after weather changes.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-detail reveal" id="starlink">
+      <h3>🛰️ Starlink Installation & Configuration</h3>
+      <p class="lead">Starlink doesn't point at one fixed satellite — it needs a clear view of open sky. That changes
+        how the survey and setup are done.</p>
+      <div class="proc-steps">
+        <div class="proc-step">
+          <div class="num">1</div>
+          <div class="body">
+            <h6>Sky Visibility Survey</h6><span>We check for obstructions — roof lines, trees, neighbouring buildings —
+              since Starlink needs open sky rather than a fixed satellite point.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">2</div>
+          <div class="body">
+            <h6>Mounting & Cable Routing</h6><span>The dish is mounted on a roof, pole or wall bracket, with cabling
+              routed cleanly indoors to the router.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">3</div>
+          <div class="body">
+            <h6>Router & App Configuration</h6><span>We set up the Starlink app on your phone and configure your Wi-Fi
+              network name and password.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">4</div>
+          <div class="body">
+            <h6>Speed & Obstruction Test</h6><span>A live speed test is run and the app's obstruction map is reviewed to
+              catch any blind spots early.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">5</div>
+          <div class="body">
+            <h6>Network Optimization</h6><span>Router placement is adjusted, and mesh extenders are added if your home
+              needs wider coverage.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">6</div>
+          <div class="body">
+            <h6>Ongoing Monitoring Support</h6><span>We stay reachable if a firmware update or new obstruction later
+              affects your connection.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-detail reveal" id="equipment">
+      <h3>🧰 Satellite Equipment Sourcing</h3>
+      <p class="lead">Before any dish goes up, we make sure it's the right dish — genuine, compatible, and backed by a
+        warranty.</p>
+      <div class="proc-steps">
+        <div class="proc-step">
+          <div class="num">1</div>
+          <div class="body">
+            <h6>Needs Consultation</h6><span>We talk through which service — GOtv, SLTV or Starlink — and how many
+              decoder or TV points you actually need.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">2</div>
+          <div class="body">
+            <h6>Genuine Equipment Sourcing</h6><span>Dishes, decoders, LNBs, cables and mounts are sourced only from
+              authorized, genuine suppliers.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">3</div>
+          <div class="body">
+            <h6>Compatibility Check</h6><span>Equipment is matched to your building type, roof material and any existing
+              setup already in place.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">4</div>
+          <div class="body">
+            <h6>Warranty Registration</h6><span>Every device is registered under its manufacturer or Kadis warranty
+              before it's ever handed over.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">5</div>
+          <div class="body">
+            <h6>Delivery & Handover</h6><span>Equipment is delivered ready for installation — same-day within Abuja, or
+              straight into our install team's hands.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-detail reveal" id="troubleshooting">
+      <h3>🔧 Signal Troubleshooting & Repairs</h3>
+      <p class="lead">No signal, weak signal or a decoder throwing error codes — here's how we track it down and fix
+        it.</p>
+      <div class="proc-steps">
+        <div class="proc-step">
+          <div class="num">1</div>
+          <div class="body">
+            <h6>Remote Diagnosis</h6><span>Describe the issue over phone or WhatsApp — no signal, weak signal, an error
+              code — for an initial read on what's wrong.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">2</div>
+          <div class="body">
+            <h6>On-Site Inspection</h6><span>An engineer inspects dish alignment, cabling, the LNB and decoder ports for
+              damage, rust or drift.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">3</div>
+          <div class="body">
+            <h6>Realignment or Part Replacement</h6><span>The dish is realigned, or a faulty cable, LNB or decoder is
+              repaired or swapped out.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">4</div>
+          <div class="body">
+            <h6>Signal Verification</h6><span>A full signal strength and channel test is run before the job is
+              considered done.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">5</div>
+          <div class="body">
+            <h6>Prevention Advice</h6><span>We explain what likely caused the fault — wind, rust, rodents, storm damage
+              — and how to avoid a repeat.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="svc-detail reveal" id="commercial">
+      <h3>🏢 Commercial Installation Services</h3>
+      <p class="lead">Hotels, estates, schools and offices need satellite TV across many rooms at once — the process
+        scales differently from a single home install.</p>
+      <div class="proc-steps">
+        <div class="proc-step">
+          <div class="num">1</div>
+          <div class="body">
+            <h6>Site Survey & Scoping</h6><span>We assess the property to plan a distribution layout across every room
+              or unit that needs a feed.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">2</div>
+          <div class="body">
+            <h6>Centralized System Design</h6><span>A headend or distribution plan is designed so one or a few dishes
+              can serve many TV points at once.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">3</div>
+          <div class="body">
+            <h6>Bulk Installation</h6><span>Our engineering team installs across all units on an agreed schedule, with
+              minimal disruption to daily operations.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">4</div>
+          <div class="body">
+            <h6>Bulk Subscription & Configuration</h6><span>Decoders and subscriptions are activated and configured
+              together, room by room.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">5</div>
+          <div class="body">
+            <h6>Full-System Testing</h6><span>Every single point is individually tested before we sign off on the
+              project.</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <div class="num">6</div>
+          <div class="body">
+            <h6>Single Point of Contact</h6><span>One dedicated contact manages support requests going forward, instead
+              of juggling multiple technicians.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="stats-band">
+      <div class="stat-cell reveal"><b>3</b><span>SATELLITE PLATFORMS COVERED</span></div>
+      <div class="stat-cell reveal"><b>All states</b><span>STATES DELIVERED TO</span></div>
+      <div class="stat-cell reveal"><b>1 team</b><span>YOU CAN CALL BACK</span></div>
+      <div class="stat-cell reveal"><b>2020</b><span>SERVING ABUJA SINCE</span></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faqs" class="wrap">
+    <div class="sec-head reveal"
+      style="justify-content:center; text-align:center; flex-direction:column; align-items:center;">
+      <span class="sec-eyebrow">SATELLITE QUESTIONS</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <h4 class="faq-group-label">Getting started</h4>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">Which satellite TV service should I choose — GOtv or SLTV?<span
+            class="plus">+</span></button>
+        <div class="faq-a">
+          <p>It comes down to the channels and pricing tier you want. During your free assessment,
+            we walk through both bouquets so you can compare before committing to a decoder.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I get Starlink installed alongside my satellite TV?<span
+            class="plus">+</span></button>
+        <div class="faq-a">
+          <p>Yes. Starlink is for internet, not TV, so it runs entirely separately from your GOtv or
+            SLTV decoder — many customers have both installed on the same visit.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you install in rented apartments and estates?<span
+            class="plus">+</span></button>
+        <div class="faq-a">
+          <p>Yes. Our engineers assess mounting options that avoid permanent damage where possible,
+            so tenants aren't stuck leaving equipment behind when they move.</p>
+        </div>
+      </div>
+
+      <h4 class="faq-group-label">Signal & performance</h4>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">Why does my satellite signal drop during rain or wind?<span
+            class="plus">+</span></button>
+        <div class="faq-a">
+          <p>Heavy weather can briefly weaken signal strength on any satellite dish. If drops happen
+            often even in clear weather, that usually points to a misaligned dish, which our troubleshooting visit
+            fixes.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">Can Starlink work in areas with poor mobile network
+          coverage?<span class="plus">+</span></button>
+        <div class="faq-a">
+          <p>Yes — that's one of its main advantages. As long as the dish has a clear view of open
+            sky, Starlink doesn't depend on local mobile towers at all.</p>
+        </div>
+      </div>
+
+      <h4 class="faq-group-label">Equipment, cost & support</h4>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">How much does a satellite installation cost?<span
+            class="plus">+</span></button>
+        <div class="faq-a">
+          <p>It depends on the service, the number of TV points, and your building layout. A free
+            site assessment gives you an accurate quote — reach out on WhatsApp to book one.</p>
+        </div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" onclick="toggleFaq(this)">Do you offer support after installation?<span
+            class="plus">+</span></button>
+        <div class="faq-a">
+          <p>Yes. Every install is backed by warranty on the equipment, and our team stays reachable
+            for realignment, subscription help, or troubleshooting whenever you need it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="cta-band reveal">
+      <h2>Ready for a clean, stable signal?</h2>
+      <p>Book a free site assessment with a Kadis engineer — GOtv, SLTV, Starlink, equipment sourcing or a full
+        commercial rollout, one team, no middlemen.</p>
+      <div class="cta-buttons">
+        <a class="btn-primary" href="https://wa.me/2348061379390">Chat on WhatsApp →</a>
+        <a class="btn-ghost" href="tel:08061379390">Call 0806 137 9390</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-promo">
+      <div class="wrap">
+        <p><b>Shop & order now</b> — or place your order via phone call or WhatsApp message. We also do door-step
+          delivery within Abuja and 4 surrounding states.</p>
+        <a class="btn-primary" href="https://wa.me/2348061379390">Order on WhatsApp →</a>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="foot-main">
+        <div class="foot-grid">
+          <div class="foot-col">
+            <a class="logo" href="index.html" style="margin-bottom:16px;">
+              <img src="images/KADISS.png" alt="Kadis" style="height:38px; width:auto; border-radius:8px;">
+            </a>
+            <p style="color:var(--ink-dim); font-size:13.5px; line-height:1.7; max-width:280px;">Abuja's No. 1 ICT
+              Ecosystem — gadgets, security, smart home, satellite & digital solutions, delivered door-step.</p>
+          </div>
+          <div class="foot-col">
+            <h5>Shop</h5>
+            <a href="security.html">Security Systems</a>
+            <a href="category.html?cat=cctv-camera">CCTV Cameras</a>
+            <a href="smart.html">Smart Home</a>
+            <a href="wifi.html">Wifi / Mifi / Routers</a>
+            <a href="satellite.html">Starlink</a>
+            <a href="gadgets.html">Phone Accessories</a>
+            <a href="ps.html">Games & Consoles</a>
+            <a href="solar.html">Solar & Batteries</a>
+            <a href="cables.html">Cables, Wires & Adapters</a>
+            <a href="ict_tools.html">ICT Engineering Tools</a>
+            <a href="electronic_converter.html">Electronic Converters & OTG</a>
+            <a href="ringlights.html">Ring lights</a>
+            <a href="satellite.html">Tv Decoders & Satellite Accessories</a>
+          </div>
+          <div class="foot-col">
+            <h5>Services</h5>
+            <a href="installation.html">ICT Installations & Engineering</a>
+            <a href="techforce.html">TechForce</a>
+            <a href="dts.html">Digital Transformation (KDTS)</a>
+            <a href="rental.html">Equipment Rentals</a>
+            <a href="security.html">Security Systems</a>
+            <a href="skillab.html">Tech SkillLab</a>
+            <a href="satelliteinstall.html">Satellite Solutions</a>
+            <a href="smartiot.html">Smart Home & IoT</a>
+            <a href="eventmedia.html">Event & Media</a>
+            <a href="projects.html">Projects</a>
+            <a href="delivery.html">Delivery</a>
+            <a href="installation.html">Starlink Installations</a>
+            <a href="security.html">Security Systems</a>
+            <a href="installation.html">AC & Freezer installation</a>
+            <a href="satelliteinstall.html">Satellite Installation</a>
+            <a href="source.html">Request Equipment</a>
+            <a href="training.html">ICT Training</a>
+            <a href="join.html">Join Our Team</a>
+          </div>
+          <div class="foot-col">
+            <div class="foot-col">
+              <h5>Contact</h5>
+              <a href="tel:08061379390">0806 137 9390</a>
+              <a href="tel:08024207231">0802 420 7231</a>
+              <a href="#"> Head Office : Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama, Abuja,
+                Nigeria.</a>
+              <a href="#">Branch : Apo Urban Market, Apo, opposite Apo Shoprite, after NNPC/Dankogi Junction,
+                Shop F1119, Abuja.</a>
+              <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="foot-topics">
+          <h5>Blog Categories</h5>
+          <div class="foot-topics-row">
+            <a href="blog.html#post-cctv-and-security-gadgets-solution">CCTV & Security</a>
+            <a href="blog.html#post-electric-fence-solutions">Electric Fencing</a>
+            <a href="blog.html#post-security-and-surveillance-system-solutions">Surveillance Systems</a>
+            <a href="blog.html#post-access-control-system">Access Control</a>
+            <a href="blog.html#post-biometric-devices-and-access-control-system-solutions">Biometric Devices</a>
+            <a href="blog.html#post-automatic-or-electronic-gate-solutions">Automated Gates</a>
+            <a href="blog.html#post-smart-door-locks">Smart Door Locks</a>
+            <a href="blog.html#post-smart-homes-and-automated-house">Smart Homes</a>
+            <a href="blog.html#post-smart-switches-hotels-commercial-buildings">Smart Switches</a>
+            <a href="blog.html#post-smart-lighting-for-estates">Smart Lighting</a>
+            <a href="blog.html#post-smart-curtains-luxury-apartments">Smart Curtains</a>
+            <a href="blog.html#post-dstv-free-to-air-sltv-starlink-freetv-gotv-and-startimes-solutions">DSTV, GOtv &
+              Starlink</a>
+            <a href="blog.html#post-starlink-satellite-network-and-installation">Starlink Installation</a>
+            <a href="blog.html#post-satellite-systems-remote-areas">Satellite for Remote Areas</a>
+            <a href="blog.html#post-ict-networking-and-troubleshooting">Networking & Troubleshooting</a>
+            <a href="blog.html#post-network-booster-and-installation">Network Boosters</a>
+            <a href="blog.html#post-network-jammer-and-installation">Network Jammers</a>
+            <a href="blog.html#post-pabx-and-intercom-system-solutions">PABX & Intercom</a>
+            <a href="blog.html#post-solar-and-inverter-system">Solar & Inverters</a>
+            <a href="blog.html#post-mobile-phone-updates-and-solutions">Mobile Phone Solutions</a>
+            <a href="blog.html#post-phone-repairs-and-solution-tips">Phone Repairs</a>
+            <a href="blog.html#post-phone-accessories-support-and-solutions">Phone Accessories</a>
+            <a href="blog.html#post-computer-gadgets-and-accessories-solutions">Computer Accessories</a>
+            <a href="blog.html#post-computer-repairs-and-solution-tips">Computer Repairs</a>
+            <a href="blog.html#post-playstation-ps-games-consoles-and-accessories-solutions">PlayStation & Consoles</a>
+            <a href="blog.html#post-drones-and-installation">Drones</a>
+            <a href="blog.html#post-ict-engineering-tools">ICT Engineering Tools</a>
+            <a href="blog.html#post-kadis-techforce">KADIS TechForce</a>
+            <a href="blog.html#post-digital-transformation-kdts">Digital Transformation</a>
+            <a href="blog.html#post-kadis-equipment-rentals-expansion">Equipment Rentals</a>
+            <a href="blog.html#post-time-attendance-system">Time Attendance Systems</a>
+            <a href="blog.html#post-ac-fridge-and-tv-installation-and-maintenance">AC, Fridge & TV Install</a>
+            <a href="blog.html#post-ac-tv-and-refrigerator-sales-and-delivery">AC, TV & Fridge Sales</a>
+            <a href="blog.html#post-fire-alarm-and-smoke-detectors">Fire Alarms & Smoke Detectors</a>
+            <a href="blog.html#post-fire-extinguisher-sales-installation-training-and-certification">Fire
+              Extinguishers</a>
+            <a href="blog.html#post-fire-safety-technology-guide">Fire Safety Technology</a>
+            <a href="blog.html#post-smoke-extractors">Smoke Extractors</a>
+            <a href="blog.html#post-street-lights-and-poles">Street Lights & Poles</a>
+            <a href="blog.html#post-rope-lights-and-designs">Rope Lights</a>
+          </div>
+        </div>
+
+        <div class="foot-topics">
+          <h5>Tips, Skills, Solutions & Updates</h5>
+          <div class="foot-topics-row">
+            <a href="tips.html#post-smart-door-lock-installation-in-abuja">Smart Door Lock Install</a>
+            <a href="tips.html#post-smart-locks-for-schools-and-offices">Locks for Schools & Offices</a>
+            <a href="tips.html#post-how-smart-locks-work-with-cctv-systems">Smart Locks & CCTV</a>
+            <a href="tips.html#post-future-of-smart-lock-technology">Future of Smart Locks</a>
+            <a href="tips.html#post-smart-secure-schools-abuja">Smart & Secure Schools</a>
+            <a href="tips.html#post-from-manual-records-to-smart-schools">School Management Systems</a>
+            <a href="tips.html#post-transforming-school-management-abuja">School ERP Systems</a>
+            <a href="tips.html#post-smart-lock-installation-mistakes-to-avoid">Lock Install Mistakes</a>
+            <a href="tips.html#post-how-to-secure-your-property-with-smart-locks">Secure Your Property</a>
+            <a href="tips.html#post-smart-access-using-rfid-and-biometrics">RFID & Biometric Access</a>
+            <a href="tips.html#post-best-smart-lock-brands-in-nigeria">Best Smart Lock Brands</a>
+            <a href="tips.html#post-smart-locks-for-gates-and-main-doors">Locks for Gates & Doors</a>
+            <a href="tips.html#post-voice-controlled-smart-locks-explained">Voice-Controlled Locks</a>
+            <a href="tips.html#post-smart-lock-security-features-to-know">Smart Lock Features</a>
+            <a href="tips.html#post-keyless-entry-systems-explained">Keyless Entry Systems</a>
+            <a href="tips.html#post-smart-lock-maintenance-tips">Smart Lock Maintenance</a>
+            <a href="tips.html#post-why-renting-event-ict-equipment-in-abuja-saves-money">Why Rent Event & ICT Gear</a>
+            <a href="tips.html#post-abuja-equipment-rentals">Abuja Equipment Rentals</a>
+            <a href="tips.html#post-smart-locks-with-mobile-app-control">App-Controlled Locks</a>
+          </div>
+        </div>
+
+        <div class="foot-bottom">
+          <span>© 2020–2026 KADIS.COM.NG · All Rights Reserved</span>
+          <div class="social-row">
+            <a href="https://web.facebook.com/kadisdigitals" aria-label="Facebook">f</a>
+            <a href="https://www.instagram.com/kadisdigitals" aria-label="Instagram">ig</a>
+            <a href="https://www.youtube.com/@kadisdigitals" aria-label="YouTube">yt</a>
+            <a href="https://www.tiktok.com/@kadisdigitals" aria-label="TikTok">tt</a>
+          </div>
+          <span>Powered by E-Franky Global Services Limited</span>
+        </div>
+        <a href="https://whatsapp.com/channel/0029VaxUvHk3gvWa5WhtZ03K" class="whatsapp-channel" target="_blank"
+          rel="noopener noreferrer" aria-label="Follow KADIS ICT & Media Solutions on WhatsApp">
+          <span class="whatsapp-icon" aria-hidden="true">
+            <i class="fab fa-whatsapp"></i>
+          </span>
+
+          <span class="whatsapp-content">
+            <strong>Follow KADIS on WhatsApp</strong>
+            <small>Get updates, solutions & tech insights</small>
+          </span>
+
+          <span class="whatsapp-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/2348061379390" aria-label="Chat on WhatsApp">💬</a>
+
+  <script>
+    document.querySelectorAll('.cat-card, .proc-step').forEach(card => {
+      card.style.transformStyle = 'preserve-3d';
+    });
+    document.querySelectorAll('.cat-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = `perspective(800px) rotateY(${x * 3.5}deg) rotateX(${-y * 3.5}deg) translateY(-3px)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+
+    const hv = document.getElementById('heroVisual');
+    hv.addEventListener('mousemove', e => {
+      const r = hv.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      hv.querySelectorAll('.chip').forEach((c, i) => {
+        const depth = (i % 3 + 1) * 5;
+        c.style.transform += ` translate(${x * depth}px, ${y * depth}px)`;
+      });
+    });
+
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-a');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(open => {
+        open.classList.remove('open');
+        open.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    }
+
+    function toggleMega() {
+      document.getElementById('megaMenu').classList.toggle('open');
+      document.getElementById('catTrigger').classList.toggle('active');
+      document.getElementById('megaBackdrop').classList.toggle('show');
+    }
+    function closeMega() {
+      document.getElementById('megaMenu').classList.remove('open');
+      document.getElementById('catTrigger').classList.remove('active');
+      document.getElementById('megaBackdrop').classList.remove('show');
+    }
+    document.addEventListener('click', (e) => {
+      const wrap = document.querySelector('.mega-wrap');
+      if (!wrap.contains(e.target)) { closeMega(); }
+    });
+
+    const SEARCH_INDEX = [
+      { anchor: '#gotv', terms: ['gotv', 'go tv'] },
+      { anchor: '#sltv', terms: ['sltv', 'startimes', 'star times'] },
+      { anchor: '#starlink', terms: ['starlink', 'satellite internet'] },
+      { anchor: '#equipment', terms: ['equipment', 'dish', 'decoder', 'lnb'] },
+      { anchor: '#troubleshooting', terms: ['troubleshoot', 'repair', 'no signal', 'weak signal', 'fix'] },
+      { anchor: '#commercial', terms: ['commercial', 'hotel', 'estate', 'office', 'bulk'] },
+    ];
+
+    function doSearch() {
+      const q = (document.getElementById('siteSearch').value || '').trim().toLowerCase();
+      if (!q) { document.getElementById('siteSearch').focus(); return; }
+      const match = SEARCH_INDEX.find(entry => entry.terms.some(term => term.includes(q) || q.includes(term)));
+      if (match) {
+        document.querySelector(match.anchor).scrollIntoView({ behavior: 'smooth' });
+      } else {
+        document.getElementById('topics').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    document.getElementById('siteSearchBtn').addEventListener('click', doSearch);
+    document.getElementById('siteSearch').addEventListener('keydown', (e) => { if (e.key === 'Enter') doSearch(); });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = Number(entry.target.dataset.idx || 0);
+          entry.target.style.transitionDelay = Math.min(idx, 6) * 70 + 'ms';
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.dataset.idx = i % 6;
+      io.observe(el);
+    });
+  </script>
+
+  <script src="cart.js"></script>
+  <script src="productdetails.js"></script>
+  <script src="Quickview.js"></script>
+  <script src="product-index-data.js"></script>
+  <script src="site-search.js"></script>
+  <script src="request-solution.js"></script>
+  <script src="responsive.js"></script>
+
+  <script>
+    document.querySelectorAll('a[href*="wa.me"], a[href*="instagram.com"], a[href*="facebook.com"], a[href*="tiktok.com"], a[href*="youtube.com"], a[href*="twitter.com"], a[href*="x.com"], a[href*="linkedin.com"]').forEach(function (link) {
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener');
+    });
+  </script>
+
+</body>
+
+</html>

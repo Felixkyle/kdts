@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tips, Skills, Solutions & Updates — KADIS.COM.NG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Space+Mono:wght@400;700&family=Manrope:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0C0B09;
+            --ink-2: #131210;
+            --ink-3: #1B1916;
+            --paper: #EFEAE0;
+            --paper-dim: #A79C89;
+            --paper-dimmer: #6B6255;
+            --rule: rgba(239, 234, 224, 0.10);
+            --rule-strong: rgba(239, 234, 224, 0.20);
+            --amber: #D9772E;
+            --amber-soft: #E8A15E;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--ink);
+            color: var(--paper);
+            font-family: 'Source Serif 4', serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .serif-display {
+            font-family: 'Fraunces', serif;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .sans {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        ::selection {
+            background: var(--amber-soft);
+            color: #161310;
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 24px;
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink-dim);
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 0;
+            white-space: nowrap;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: white;
+            border-bottom: 2px solid var(--amber);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--amber);
+            transition: width .3s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+
+        header.site {
+            border-bottom: 1px solid var(--rule);
+            padding: 22px 0;
+        }
+
+        header.site .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-mark {
+            width: 30px;
+            height: 30px;
+            border-radius: 7px;
+            background: var(--amber);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #171310;
+            font-weight: 800;
+            font-size: 13px;
+            font-family: 'Manrope';
+        }
+
+        .brand-name {
+            font-family: 'Manrope';
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.02em;
+        }
+
+        .brand-sep {
+            width: 1px;
+            height: 16px;
+            background: var(--rule-strong);
+            margin: 0 4px;
+        }
+
+        .brand-sub {
+            font-family: 'Space Mono';
+            font-size: 11px;
+            color: var(--paper-dim);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .back-link {
+            font-family: 'Manrope';
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--paper-dim);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color .2s;
+        }
+
+        .back-link:hover {
+            color: var(--amber-soft);
+        }
+
+        .masthead {
+            padding: 88px 0 60px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .masthead .kicker {
+            font-family: 'Space Mono';
+            font-size: 11.5px;
+            color: var(--amber-soft);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            display: block;
+        }
+
+        .masthead h1 {
+            font-family: 'Fraunces';
+            font-weight: 500;
+            font-size: clamp(42px, 7vw, 84px);
+            line-height: 0.98;
+            letter-spacing: -0.01em;
+            margin-bottom: 24px;
+        }
+
+        .masthead h1 em {
+            font-style: italic;
+            font-weight: 400;
+            color: var(--paper-dim);
+        }
+
+        .masthead .dek {
+            font-size: 17px;
+            color: var(--paper-dim);
+            max-width: 540px;
+            line-height: 1.7;
+            font-family: 'Source Serif 4';
+        }
+
+        .index-section {
+            padding: 10px 0 100px;
+        }
+
+        .index-head {
+            font-family: 'Space Mono';
+            font-size: 11.5px;
+            color: var(--paper-dimmer);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* ---- category filter banner ---- */
+        .filter-banner {
+            margin: 36px 0 0;
+            padding: 16px 20px;
+            border: 1px solid var(--rule-strong);
+            border-radius: 8px;
+            background: var(--ink-2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-family: 'Manrope';
+            font-size: 13.5px;
+            color: var(--paper-dim);
+        }
+
+        .filter-banner strong {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .filter-banner a {
+            font-weight: 700;
+            color: var(--paper);
+            border-bottom: 1px solid var(--rule-strong);
+            padding-bottom: 2px;
+            transition: color .2s, border-color .2s;
+        }
+
+        .filter-banner a:hover {
+            color: var(--amber-soft);
+            border-color: var(--amber-soft);
+        }
+
+        .filter-banner.empty {
+            border-color: rgba(217, 119, 46, 0.3);
+            background: rgba(217, 119, 46, 0.05);
+        }
+
+        .entry {
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .entry-summary {
+            display: grid;
+            grid-template-columns: 64px 1fr auto auto;
+            gap: 22px;
+            align-items: center;
+            padding: 30px 0;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .idx-num {
+            font-family: 'Fraunces';
+            font-weight: 400;
+            font-size: 15px;
+            color: var(--paper-dimmer);
+            font-style: italic;
+        }
+
+        .idx-main .cat {
+            font-family: 'Space Mono';
+            font-size: 10.5px;
+            color: var(--amber-soft);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 9px;
+        }
+
+        .idx-main h3 {
+            font-family: 'Fraunces';
+            font-weight: 500;
+            font-size: 23px;
+            line-height: 1.25;
+            margin-bottom: 8px;
+            transition: color .2s;
+        }
+
+        .entry-summary:hover .idx-main h3 {
+            color: var(--amber-soft);
+        }
+
+        .idx-main p {
+            color: var(--paper-dim);
+            font-size: 14px;
+            line-height: 1.65;
+            max-width: 520px;
+        }
+
+        .idx-meta {
+            font-family: 'Space Mono';
+            font-size: 11px;
+            color: var(--paper-dimmer);
+            white-space: nowrap;
+        }
+
+        .toggle-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid var(--rule-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-family: 'Manrope';
+            font-size: 16px;
+            color: var(--paper-dim);
+            transition: transform .35s cubic-bezier(.16, .8, .24, 1), border-color .3s, color .3s;
+        }
+
+        .entry.open .toggle-icon {
+            transform: rotate(45deg);
+            border-color: var(--amber-soft);
+            color: var(--amber-soft);
+        }
+
+        .entry.open .idx-main h3 {
+            color: var(--amber-soft);
+        }
+
+        .panel-wrap {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows .5s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .entry.open .panel-wrap {
+            grid-template-rows: 1fr;
+        }
+
+        .panel-inner {
+            overflow: hidden;
+        }
+
+        .panel {
+            padding: 6px 0 50px;
+            max-width: 680px;
+        }
+
+        .panel figure {
+            margin: 6px 0 34px;
+            border: 1px solid var(--rule-strong);
+            border-radius: 4px;
+            background: var(--ink-2);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .panel figure img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(15%) contrast(1.02);
+        }
+
+        .panel figcaption {
+            display: none;
+        }
+
+        .panel p {
+            font-size: 17px;
+            line-height: 1.82;
+            color: var(--paper);
+            margin-bottom: 24px;
+        }
+
+        .panel p.lede::first-letter {
+            font-family: 'Fraunces';
+            font-weight: 500;
+            font-size: 64px;
+            float: left;
+            line-height: 0.8;
+            margin: 6px 10px 0 0;
+            color: var(--amber-soft);
+        }
+
+        .panel h4 {
+            font-family: 'Fraunces';
+            font-weight: 500;
+            font-size: 21px;
+            margin: 36px 0 14px;
+            line-height: 1.25;
+        }
+
+        .panel .pull-quote {
+            margin: 38px 0;
+            padding: 4px 0 4px 26px;
+            border-left: 2px solid var(--amber);
+        }
+
+        .panel .pull-quote p {
+            font-family: 'Fraunces';
+            font-style: italic;
+            font-weight: 400;
+            font-size: 22px;
+            line-height: 1.45;
+            color: var(--paper);
+            margin: 0;
+        }
+
+        .panel .pending {
+            font-family: 'Space Mono';
+            font-size: 12px;
+            color: var(--paper-dimmer);
+            border: 1px dashed var(--rule-strong);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin-bottom: 24px;
+        }
+
+        .panel-cta {
+            margin-top: 36px;
+            padding-top: 28px;
+            border-top: 1px solid var(--rule);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .panel-cta p {
+            font-size: 14px;
+            color: var(--paper-dim);
+            max-width: 380px;
+            margin: 0;
+        }
+
+        .cta-link {
+            font-family: 'Manrope';
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--paper);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--rule-strong);
+            padding-bottom: 3px;
+            transition: all .25s;
+            white-space: nowrap;
+        }
+
+        .cta-link:hover {
+            color: var(--amber-soft);
+            border-color: var(--amber-soft);
+            gap: 12px;
+        }
+
+        .permalink {
+            display: inline-block;
+            margin-top: 16px;
+            font-family: 'Space Mono';
+            font-size: 11px;
+            color: var(--paper-dimmer);
+            transition: color .2s;
+        }
+
+        .permalink:hover {
+            color: var(--amber-soft);
+        }
+
+        /* ---- footer category pills (same block as the homepage footer widget) ---- */
+        .foot-topics h5 {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--paper-dimmer);
+            margin-bottom: 20px;
+        }
+
+        .topic-pill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .topic-pill {
+            font-family: 'Manrope', sans-serif;
+            font-size: 13px;
+            color: var(--paper-dim);
+            border: 1px solid var(--rule-strong);
+            border-radius: 999px;
+            padding: 9px 18px;
+            white-space: nowrap;
+            transition: color .2s ease, border-color .2s ease, background .2s ease;
+        }
+
+        .topic-pill:hover {
+            color: var(--amber-soft);
+            border-color: var(--amber-soft);
+            background: rgba(217, 119, 46, 0.08);
+        }
+
+        .topic-pill.active-cat {
+            color: var(--amber-soft);
+            border-color: var(--amber-soft);
+            background: rgba(217, 119, 46, 0.08);
+        }
+
+        .whatsapp-channel {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            width: fit-content;
+            padding: 13px 18px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--ink);
+            transition: all 0.25s ease;
+        }
+
+        .whatsapp-channel:hover {
+            transform: translateY(-2px);
+            border-color: rgba(37, 211, 102, 0.45);
+            background: rgba(37, 211, 102, 0.07);
+        }
+
+        .whatsapp-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #fff;
+            font-size: 21px;
+        }
+
+        .whatsapp-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            color: white;
+        }
+
+        .whatsapp-content strong {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .whatsapp-content small {
+            font-size: 11px;
+            color: var(--ink-dim);
+            line-height: 1.3;
+        }
+
+        .whatsapp-arrow {
+            margin-left: 8px;
+            font-size: 19px;
+            color: var(--amber);
+            transition: transform 0.25s ease;
+        }
+
+        .whatsapp-channel:hover .whatsapp-arrow {
+            transform: translateX(4px);
+        }
+
+        @media (max-width:640px) {
+            .entry-summary {
+                grid-template-columns: 1fr auto;
+                grid-template-areas: "num toggle" "main main" "meta meta";
+                row-gap: 8px;
+            }
+
+            .idx-num {
+                grid-area: num;
+            }
+
+            .toggle-icon {
+                grid-area: toggle;
+                justify-self: end;
+            }
+
+            .idx-main {
+                grid-area: main;
+            }
+
+            .idx-meta {
+                grid-area: meta;
+            }
+
+            .topic-pill {
+                font-size: 12.5px;
+                padding: 8px 14px;
+            }
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            background: var(--bg-2);
+        }
+
+        .foot-promo {
+            background: linear-gradient(115deg, rgba(217, 119, 46, 0.10), rgba(169, 184, 76, 0.04));
+            border-bottom: 1px solid var(--line);
+            padding: 22px 0;
+        }
+
+        .foot-promo .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .foot-promo p {
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            max-width: 760px;
+            line-height: 1.7;
+        }
+
+        .foot-promo b {
+            color: var(--ink);
+        }
+
+        .foot-promo .btn-primary {
+            flex-shrink: 0;
+        }
+
+        .foot-contact {
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-dim);
+            line-height: 1.9;
+        }
+
+        .foot-contact .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: space-between;
+        }
+
+        .foot-contact strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .foot-contact a {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-contact .fc-block {
+            max-width: 520px;
+        }
+
+        .foot-main {
+            padding: 56px 0 40px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.3fr repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 0;
+        }
+
+        .foot-col h5 {
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 18px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-col a {
+            display: block;
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            margin-bottom: 12px;
+            transition: color .2s;
+        }
+
+        .foot-col a:hover {
+            color: var(--amber-soft);
+        }
+
+        /* ---- Blog topics: compact wrapped pill row instead of one giant
+       vertical list crammed into a footer column ---- */
+        .foot-topics {
+            padding: 30px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .foot-topics h5 {
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 16px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-topics-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .foot-topics-row a {
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            border-radius: 100px;
+            padding: 7px 14px;
+            transition: border-color .2s, color .2s;
+            white-space: nowrap;
+        }
+
+        .foot-topics-row a:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+        }
+
+        .foot-links-line {
+            padding: 20px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-dim);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 0;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .foot-links-line a {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-links-line .sep {
+            color: var(--ink-dimmer);
+            margin: 0 10px;
+        }
+
+        .foot-bank {
+            padding: 16px 0;
+            font-size: 12.5px;
+            color: var(--ink-dimmer);
+            border-bottom: 1px solid var(--line);
+            text-align: center;
+        }
+
+        .foot-bank strong {
+            color: var(--amber-soft);
+        }
+
+        .foot-bottom {
+            padding: 22px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            color: var(--ink-dimmer);
+            flex-wrap: wrap;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-row a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: var(--ink-dim);
+            transition: all .2s;
+        }
+
+        .social-row a:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="site">
+
+        <nav>
+            <div class="wrap nav-inner">
+                <a class="logo" href="index.html">
+                    <img src="images/KADISS.png" alt="Kadis" style="height:38px; width:auto; border-radius:8px;">
+                </a>
+                <div class="nav-links">
+                    <a href="index.html#solutions">Digital Solutions</a>
+                    <a href="installation.html">ICT Engineering</a>
+                    <a href="staffing.html">ICT Staffing</a>
+                    <a href="training.html">ICT Training</a>
+                    <a href="join.html">Join our Team</a>
+                    <a href="rental.html">Equipment Rentals</a>
+                    <a href="Allcategory.html">Store</a>
+                    <a href="blog.html">Blog</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="masthead">
+        <div class="wrap">
+            <span class="kicker">Kadis Resource Library</span>
+            <h1 class="serif-display">Tips, Skills, <em>Solutions &amp; Updates.</em></h1>
+            <p class="dek">Practical guides on security, smart schools and equipment rentals from the Kadis engineering
+                floor.
+                Click any topic to read it right here.</p>
+        </div>
+    </section>
+
+    <section class="index-section wrap">
+        <div class="index-head">
+            <span id="indexHeadLabel">All topics</span>
+        </div>
+        <div id="filterBannerSlot"></div>
+        <div id="entryList"></div>
+    </section>
+
+    <footer>
+        <div class="foot-promo">
+            <div class="wrap">
+                <p><b>Shop & order now</b> — or place your order via phone call or WhatsApp message. We also do
+                    door-step
+                    delivery within Abuja and 4 surrounding states.</p>
+                <a class="btn-primary" href="https://wa.me/2348061379390">Order on WhatsApp →</a>
+            </div>
+        </div>
+
+        <div class="foot-contact" id="contact">
+            <div class="wrap">
+                <div class="fc-block">
+                    <strong>Headoffice:</strong> Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama, Abuja,
+                    Nigeria.
+                    <br> <strong>Branch:</strong> Apo Ultra Modern Market, Apo, opposite Apo Shoprite, after
+                    NNPC/Dankogi
+                    Junction,
+                    Shop F1119, Abuja.
+                </div>
+                <div class="fc-block">
+                    <strong>WhatsApp / Hotline:</strong> <a href="tel:08061379390">0806 137 9390</a>, <br>
+                    <a href="tel:08024207231">0802 420 7231</a><br>
+                    <strong>E-mail:</strong> <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="foot-main">
+                <div class="foot-grid">
+                    <div class="foot-col">
+                        <a class="logo" href="index.html" style="margin-bottom:16px;">
+                            <img src="images/KADISS.png" alt="Kadis"
+                                style="height:38px; width:auto; border-radius:8px;">
+                        </a>
+                        <p style="color:var(--ink-dim); font-size:13.5px; line-height:1.7; max-width:280px;">Abuja's No.
+                            1 ICT
+                            Ecosystem — gadgets, security, smart home, satellite & digital solutions, delivered
+                            door-step.</p>
+                    </div>
+                    <div class="foot-col">
+                        <h5>Shop</h5>
+                        <a href="security.html">Security Systems</a>
+                        <a href="category.html?cat=cctv-camera">CCTV Cameras</a>
+                        <a href="smart.html">Smart Home</a>
+                        <a href="wifi.html">Wifi / Mifi / Routers</a>
+                        <a href="satellite.html">Starlink</a>
+                        <a href="gadgets.html">Phone Accessories</a>
+                        <a href="ps.html">Games & Consoles</a>
+                        <a href="solar.html">Solar & Batteries</a>
+                        <a href="cables.html">Cables, Wires & Adapters</a>
+                        <a href="ict_tools.html">ICT Engineering Tools</a>
+                        <a href="electronic_converter.html">Electronic Converters & OTG</a>
+                        <a href="ringlights.html">Ring lights</a>
+                        <a href="satellite.html">Tv Decoders & Satellite Accessories</a>
+                    </div>
+                    <div class="foot-col">
+                        <h5>Services</h5>
+                        <a href="installation.html">ICT Installations & Engineering</a>
+                        <a href="techforce.html">TechForce</a>
+                        <a href="dts.html">Digital Transformation (KDTS)</a>
+                        <a href="rental.html">Equipment Rentals</a>
+                        <a href="security.html">Security Systems</a>
+                        <a href="skillab.html">Tech SkillLab</a>
+                        <a href="satelliteinstall.html">Satellite Solutions</a>
+                        <a href="smartiot.html">Smart Home & IoT</a>
+                        <a href="eventmedia.html">Event & Media</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="delivery.html">Delivery</a>
+                        <a href="installation.html">Starlink Installations</a>
+                        <a href="security.html">Security Systems</a>
+                        <a href="installation.html">AC & Freezer installation</a>
+                        <a href="satelliteinstall.html">Satellite Installation</a>
+                        <a href="source.html">Request Equipment</a>
+                        <a href="training.html">ICT Training</a>
+                        <a href="join.html">Join Our Team</a>
+                    </div>
+                    <div class="foot-col">
+                        <div class="foot-col">
+                            <h5>Contact</h5>
+                            <a href="tel:08061379390">0806 137 9390</a>
+                            <a href="tel:08024207231">0802 420 7231</a>
+                            <a href="#"> Head of Service, Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama,
+                                Abuja, Nigeria.</a>
+                            <a href="#">KADIS SHOP : Apo Ultra Modern Market, Apo, opposite Apo Shoprite, after
+                                NNPC/Dankogi Junction, Shop F1119, Abuja.</a>
+                            <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="foot-topics">
+                    <h5>Blog Categories</h5>
+                    <div class="foot-topics-row">
+                        <a href="blog.html#post-cctv-and-security-gadgets-solution">CCTV & Security</a>
+                        <a href="blog.html#post-electric-fence-solutions">Electric Fencing</a>
+                        <a href="blog.html#post-security-and-surveillance-system-solutions">Surveillance Systems</a>
+                        <a href="blog.html#post-access-control-system">Access Control</a>
+                        <a href="blog.html#post-biometric-devices-and-access-control-system-solutions">Biometric
+                            Devices</a>
+                        <a href="blog.html#post-automatic-or-electronic-gate-solutions">Automated Gates</a>
+                        <a href="blog.html#post-smart-door-locks">Smart Door Locks</a>
+                        <a href="blog.html#post-smart-homes-and-automated-house">Smart Homes</a>
+                        <a href="blog.html#post-smart-switches-hotels-commercial-buildings">Smart Switches</a>
+                        <a href="blog.html#post-smart-lighting-for-estates">Smart Lighting</a>
+                        <a href="blog.html#post-smart-curtains-luxury-apartments">Smart Curtains</a>
+                        <a href="blog.html#post-dstv-free-to-air-sltv-starlink-freetv-gotv-and-startimes-solutions">DSTV,
+                            GOtv &
+                            Starlink</a>
+                        <a href="blog.html#post-starlink-satellite-network-and-installation">Starlink Installation</a>
+                        <a href="blog.html#post-satellite-systems-remote-areas">Satellite for Remote Areas</a>
+                        <a href="blog.html#post-ict-networking-and-troubleshooting">Networking & Troubleshooting</a>
+                        <a href="blog.html#post-network-booster-and-installation">Network Boosters</a>
+                        <a href="blog.html#post-network-jammer-and-installation">Network Jammers</a>
+                        <a href="blog.html#post-pabx-and-intercom-system-solutions">PABX & Intercom</a>
+                        <a href="blog.html#post-solar-and-inverter-system">Solar & Inverters</a>
+                        <a href="blog.html#post-mobile-phone-updates-and-solutions">Mobile Phone Solutions</a>
+                        <a href="blog.html#post-phone-repairs-and-solution-tips">Phone Repairs</a>
+                        <a href="blog.html#post-phone-accessories-support-and-solutions">Phone Accessories</a>
+                        <a href="blog.html#post-computer-gadgets-and-accessories-solutions">Computer Accessories</a>
+                        <a href="blog.html#post-computer-repairs-and-solution-tips">Computer Repairs</a>
+                        <a href="blog.html#post-playstation-ps-games-consoles-and-accessories-solutions">PlayStation &
+                            Consoles</a>
+                        <a href="blog.html#post-drones-and-installation">Drones</a>
+                        <a href="blog.html#post-ict-engineering-tools">ICT Engineering Tools</a>
+                        <a href="blog.html#post-kadis-techforce">KADIS TechForce</a>
+                        <a href="blog.html#post-digital-transformation-kdts">Digital Transformation</a>
+                        <a href="blog.html#post-kadis-equipment-rentals-expansion">Equipment Rentals</a>
+                        <a href="blog.html#post-time-attendance-system">Time Attendance Systems</a>
+                        <a href="blog.html#post-ac-fridge-and-tv-installation-and-maintenance">AC, Fridge & TV
+                            Install</a>
+                        <a href="blog.html#post-ac-tv-and-refrigerator-sales-and-delivery">AC, TV & Fridge Sales</a>
+                        <a href="blog.html#post-fire-alarm-and-smoke-detectors">Fire Alarms & Smoke Detectors</a>
+                        <a href="blog.html#post-fire-extinguisher-sales-installation-training-and-certification">Fire
+                            Extinguishers</a>
+                        <a href="blog.html#post-fire-safety-technology-guide">Fire Safety Technology</a>
+                        <a href="blog.html#post-smoke-extractors">Smoke Extractors</a>
+                        <a href="blog.html#post-street-lights-and-poles">Street Lights & Poles</a>
+                        <a href="blog.html#post-rope-lights-and-designs">Rope Lights</a>
+                    </div>
+                </div>
+
+                <div class="foot-topics">
+                    <h5>Tips, Skills, Solutions & Updates</h5>
+                    <div class="foot-topics-row">
+                        <a href="tips.html#post-smart-door-lock-installation-in-abuja">Smart Door Lock Install</a>
+                        <a href="tips.html#post-smart-locks-for-schools-and-offices">Locks for Schools & Offices</a>
+                        <a href="tips.html#post-how-smart-locks-work-with-cctv-systems">Smart Locks & CCTV</a>
+                        <a href="tips.html#post-future-of-smart-lock-technology">Future of Smart Locks</a>
+                        <a href="tips.html#post-smart-secure-schools-abuja">Smart & Secure Schools</a>
+                        <a href="tips.html#post-from-manual-records-to-smart-schools">School Management Systems</a>
+                        <a href="tips.html#post-transforming-school-management-abuja">School ERP Systems</a>
+                        <a href="tips.html#post-smart-lock-installation-mistakes-to-avoid">Lock Install Mistakes</a>
+                        <a href="tips.html#post-how-to-secure-your-property-with-smart-locks">Secure Your Property</a>
+                        <a href="tips.html#post-smart-access-using-rfid-and-biometrics">RFID & Biometric Access</a>
+                        <a href="tips.html#post-best-smart-lock-brands-in-nigeria">Best Smart Lock Brands</a>
+                        <a href="tips.html#post-smart-locks-for-gates-and-main-doors">Locks for Gates & Doors</a>
+                        <a href="tips.html#post-voice-controlled-smart-locks-explained">Voice-Controlled Locks</a>
+                        <a href="tips.html#post-smart-lock-security-features-to-know">Smart Lock Features</a>
+                        <a href="tips.html#post-keyless-entry-systems-explained">Keyless Entry Systems</a>
+                        <a href="tips.html#post-smart-lock-maintenance-tips">Smart Lock Maintenance</a>
+                        <a href="tips.html#post-why-renting-event-ict-equipment-in-abuja-saves-money">Why Rent Event &
+                            ICT Gear</a>
+                        <a href="tips.html#post-abuja-equipment-rentals">Abuja Equipment Rentals</a>
+                        <a href="tips.html#post-smart-locks-with-mobile-app-control">App-Controlled Locks</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="foot-links-line">
+            Trusted Equipment Rentals for ICT, Events & Security — <a href="rental.html">Click here to rent now</a>
+            <span class="sep">|</span>
+            <a href="index.html#faqs">Frequently Asked Questions</a>
+            <span class="sep">|</span>
+            <a href="index.html#about">About Kadis</a>
+        </div>
+
+        <div class="foot-bank">
+            <strong>NB:</strong> All payments should be made to this bank account only: E-Franky Global Services Limited
+            —
+            GTBank: 0424528897.
+        </div>
+
+        <div class="foot-bottom">
+            <span>© 2020–2026 KADIS.COM.NG · All Rights Reserved</span>
+            <div class="social-row">
+                <a href="https://web.facebook.com/kadisdigitals" aria-label="Facebook">f</a>
+                <a href="https://www.instagram.com/kadisdigitals" aria-label="Instagram">ig</a>
+                <a href="https://www.youtube.com/@kadisdigitals" aria-label="YouTube">yt</a>
+                <a href="https://www.tiktok.com/@kadisdigitals" aria-label="TikTok">tt</a>
+            </div>
+            <span>Powered by E-Franky Global Services Limited</span>
+        </div>
+        <div class="wrap" style="padding: 0 0 26px;">
+            <a href="https://whatsapp.com/channel/0029VaxUvHk3gvWa5WhtZ03K" class="whatsapp-channel" target="_blank"
+                rel="noopener noreferrer" aria-label="Follow KADIS ICT & Media Solutions on WhatsApp">
+                <span class="whatsapp-icon" aria-hidden="true">
+                    <i class="fab fa-whatsapp"></i>
+                </span>
+                <span class="whatsapp-content">
+                    <strong>Follow KADIS on WhatsApp</strong>
+                    <small>Get updates, solutions & tech insights</small>
+                </span>
+                <span class="whatsapp-arrow" aria-hidden="true">→</span>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // NOTE ON IMAGES: each topic below has an `img` field with a placeholder
+        // photo (via picsum.photos, royalty-free placeholder service) sized to
+        // match the theme of that topic. Swap these src values for Kadis's own
+        // installation/product photography whenever it's ready — the `imgHint`
+        // field next to each one is a plain-English note on what real photo
+        // would fit best there.
+
+        const TIPS = [
+            {
+                slug: "smart-door-lock-installation-in-abuja",
+                num: "019",
+                cat: "Smart Door Locks",
+                readMins: 4,
+                title: "Smart Door Lock Installation in Abuja: Upgrade Your Home and Office Security with Keyless Entry, Fingerprint & Digital Door Locks",
+                dek: "What a proper smart lock install actually involves — and why it beats bolting on a gadget yourself.",
+                img: "https://images.pexels.com/photos/6689288/pexels-photo-6689288.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "A hand opening a smart home door using a digital access panel.",
+                cta: { text: "Kadis installs and configures smart locks across Abuja — home, office, rental and commercial properties.", label: "Talk to FixIT about smart locks", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A smart lock only works as well as the door it's fitted to. A proper installation means checking the door thickness, existing lock cut-out, alignment and power setup before choosing the lock — not buying a lock online and hoping it fits.", lede: true },
+                    { h4: "What a proper install includes" },
+                    { p: "Kadis measures the door, checks the frame and existing hardware, installs the lock, configures fingerprints or PINs, connects the mobile app if required, and tests the backup entry method before handing it over." }
+                ]
+            },
+
+            {
+                slug: "smart-locks-for-schools-and-offices",
+                num: "018",
+                cat: "Access Control",
+                readMins: 4,
+                title: "Smart Locks for Schools and Offices",
+                dek: "Why a school or office needs an access system, not just a lock on each door.",
+                img: "https://images.pexels.com/photos/33175809/pexels-photo-33175809.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Modern office entrance with controlled access and security turnstiles.",
+                cta: { text: "Kadis designs access-control setups for offices, schools and other managed spaces.", label: "Talk to FixIT about access control", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "An office with 40 staff doesn't need 40 keys floating around. A school with hundreds of students needs even more control. Smart access lets you decide who can enter, when they can enter, and which doors they can use.", lede: true },
+                    { h4: "The difference is control" },
+                    { p: "Cards, PINs, fingerprints and access schedules can all be managed centrally. When someone leaves the organisation, their access can be removed without changing every physical lock." }
+                ]
+            },
+
+            {
+                slug: "how-smart-locks-work-with-cctv-systems",
+                num: "017",
+                cat: "CCTV & Security",
+                readMins: 4,
+                title: "How Smart Locks Work with CCTV Systems",
+                dek: "A locked door tells you who got in. A camera tells you what happened around it.",
+                img: "https://images.pexels.com/photos/16746378/pexels-photo-16746378.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "CCTV security camera mounted on a building for surveillance.",
+                cta: { text: "Kadis can combine smart access with CCTV so physical entry and video surveillance work together.", label: "Talk to FixIT about CCTV + access control", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A smart lock controls the door. CCTV watches the area around it. Put the two together and you get a much clearer picture of what is happening at important entry points.", lede: true },
+                    { h4: "Why combining both matters" },
+                    { p: "For an office, estate or commercial property, access records can show when a door was opened while CCTV provides the visual context around that event. That makes investigating incidents much easier." }
+                ]
+            },
+
+            {
+                slug: "future-of-smart-lock-technology",
+                num: "016",
+                cat: "Smart Homes",
+                readMins: 4,
+                title: "The Future of Smart Lock Technology",
+                dek: "From fingerprints to phones and connected homes, here's where access technology is heading.",
+                img: "https://images.pexels.com/photos/30170004/pexels-photo-30170004.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Smart home devices connected and controlled through a mobile phone.",
+                cta: { text: "Kadis keeps clients on practical smart-home technology that can actually be supported locally.", label: "Talk to FixIT about smart homes", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Smart locks are becoming less about replacing a key and more about becoming part of a connected property. Phones, cameras, sensors and access systems are increasingly working together as one security ecosystem.", lede: true },
+                    { h4: "What is changing" },
+                    { p: "Mobile access, biometric authentication, remote monitoring and wider smart-home integration are making access more flexible. The useful question is no longer just 'Can this lock open my door?' but 'How well does it work with the rest of my property?'" }
+                ]
+            },
+
+            {
+                slug: "smart-secure-schools-abuja",
+                num: "015",
+                cat: "Digital Transformation",
+                readMins: 4,
+                title: "Building Smart and Secure Schools in Abuja",
+                dek: "Combining physical security with digital administration so a school runs on one system, not ten.",
+                img: "https://images.pexels.com/photos/7742816/pexels-photo-7742816.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Students and a teacher using laptops in a modern technology-enabled classroom.",
+                cta: { text: "Kadis helps schools combine security, connectivity and digital tools into one practical setup.", label: "Talk to FixIT about smart schools", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A smart school isn't just a school with Wi-Fi. It is one where security, administration, communication and learning technology work together instead of living in separate systems.", lede: true },
+                    { h4: "Start with the systems that matter" },
+                    { p: "Digital attendance, controlled access, CCTV, reliable networking and school-management software can reduce manual work while giving management better visibility across the school." }
+                ]
+            },
+
+            {
+                slug: "from-manual-records-to-smart-schools",
+                num: "014",
+                cat: "Digital Transformation",
+                readMins: 4,
+                title: "From Manual Records to Smart Schools",
+                dek: "How schools can replace paper registers, spreadsheets and scattered WhatsApp updates with one digital workflow.",
+                img: "https://images.pexels.com/photos/20432916/pexels-photo-20432916.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Laptop in a modern classroom representing digital school administration.",
+                cta: { text: "Kadis helps schools move everyday administration into practical digital systems.", label: "Talk to FixIT about school digitisation", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Paper records work until the school grows. Then searching for information, reconciling records and keeping everyone updated starts consuming time that staff could spend elsewhere.", lede: true },
+                    { h4: "The goal isn't technology for its own sake" },
+                    { p: "A useful school system should make attendance, records, communication and reporting easier. The technology should reduce work rather than create another complicated process for staff." }
+                ]
+            },
+
+            {
+                slug: "school-erp-systems-abuja",
+                num: "013",
+                cat: "School Management",
+                readMins: 4,
+                title: "School ERP Systems: What They Do and Whether Your Abuja School Needs One",
+                dek: "A plain-English look at school ERP — attendance, fees, results, communication and reporting in one place.",
+                img: "https://images.pexels.com/photos/5212657/pexels-photo-5212657.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Teacher and student using a laptop for digital education and school activities.",
+                cta: { text: "Kadis can help schools assess the right digital management setup before investing.", label: "Talk to FixIT about school ERP", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A school ERP brings multiple administrative functions into one system. Instead of keeping separate records for attendance, fees, results and communication, staff can work from connected information.", lede: true },
+                    { h4: "When an ERP starts making sense" },
+                    { p: "The larger the school becomes, the more useful centralised information becomes. The goal is to give administrators, teachers and management the information they need without forcing everyone to maintain multiple disconnected records." }
+                ]
+            },
+
+            {
+                slug: "smart-lock-installation-mistakes",
+                num: "012",
+                cat: "Smart Door Locks",
+                readMins: 3,
+                title: "Smart Lock Installation Mistakes That Cause Problems Later",
+                dek: "Poor alignment, wrong measurements and weak power planning can turn a good lock into a daily headache.",
+                img: "https://images.pexels.com/photos/7522609/pexels-photo-7522609.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Close-up of a person using fingerprint access on a digital door lock.",
+                cta: { text: "Kadis installs and tests smart locks properly so small installation errors don't become recurring problems.", label: "Talk to FixIT about installation", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Most smart-lock installation problems aren't caused by the electronics. They're caused by poor physical alignment, selecting the wrong lock for the door, or failing to plan for backup power and emergency access.", lede: true },
+                    { h4: "Measure first, install second" },
+                    { p: "Door thickness, lock position, frame alignment and the direction the door opens all matter. A professional installation checks these before the lock is mounted." }
+                ]
+            },
+
+            {
+                slug: "how-to-secure-your-property-with-smart-locks",
+                num: "011",
+                cat: "CCTV & Security",
+                readMins: 3,
+                title: "How to Secure Your Property with Smart Locks",
+                dek: "Securing a property is rarely just the front door — mapping every entry point that matters.",
+                img: "https://images.pexels.com/photos/3205735/pexels-photo-3205735.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Close-up CCTV security camera mounted on a building for property surveillance.",
+                cta: { text: "Kadis assesses entry points and recommends a combination of smart locks and security systems.", label: "Talk to FixIT about property security", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "A secure property needs more than one good lock. Front doors, back doors, gates, staff entrances and other access points all need to be considered.", lede: true },
+                    { h4: "Think about the whole property" },
+                    { p: "Smart locks can control who enters while CCTV helps monitor what happens around the property. Together with good lighting and sensible access rules, they form a much stronger security setup." }
+                ]
+            },
+
+            {
+                slug: "smart-access-using-rfid-and-biometrics",
+                num: "010",
+                cat: "Biometric Devices",
+                readMins: 3,
+                title: "Smart Access Using RFID and Biometrics",
+                dek: "When to use a card, and when to use a fingerprint — most offices end up needing both.",
+                img: "https://images.pexels.com/photos/13657523/pexels-photo-13657523.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Woman using a biometric fingerprint scanner for office access control.",
+                cta: { text: "Kadis installs and configures RFID and biometric access-control systems for offices and estates.", label: "Talk to FixIT about biometric access", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "RFID cards suit staff and visitor access where speed matters most — tap and go. Fingerprint or facial biometrics suit areas where you need certainty about exactly who walked through, since a card can be handed to someone else but a fingerprint can't.", lede: true },
+                    { h4: "Why most offices end up using both" },
+                    { p: "Many offices in Abuja now combine both: a card for everyday entry, and biometric verification for sensitive rooms like server closets or finance offices. Kadis installs and configures both types depending on what each space actually needs." }
+                ]
+            },
+
+            {
+                slug: "best-smart-lock-brands-in-nigeria",
+                num: "009",
+                cat: "Smart Door Locks",
+                readMins: 3,
+                title: "Best Smart Lock Brands in Nigeria",
+                dek: "What to check for before buying, beyond brand names alone.",
+                img: "https://images.pexels.com/photos/6689289/pexels-photo-6689289.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Close-up of a sleek modern smart door lock.",
+                cta: { text: "Kadis only stocks brands with a track record of reliability locally, and parts availability if something needs replacing.", label: "Talk to FixIT about smart locks", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Not every smart lock sold in Nigeria is built for our power and climate conditions — some fail within months of heavy sun exposure or frequent power cuts, regardless of how well-reviewed they are elsewhere.", lede: true },
+                    { h4: "What Kadis screens for" },
+                    { p: "Before stocking any brand, Kadis checks battery life under real use, whether there's a reliable physical backup key, and whether spare parts or replacements are actually available locally — so you're not stranded months later if something needs fixing." }
+                ]
+            },
+
+            {
+                slug: "smart-locks-for-gates-and-main-doors",
+                num: "008",
+                cat: "Automated Gates",
+                readMins: 3,
+                title: "Smart Locks for Gates and Main Doors",
+                dek: "Gates need a heavier-duty lock than an internal bedroom door — here's why.",
+                img: "https://images.pexels.com/photos/35481985/pexels-photo-35481985.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Secure lock fitted to a metal outdoor gate.",
+                cta: { text: "Kadis fits weatherproof, heavy-duty smart locks built for daily gate and main-entrance use.", label: "Talk to FixIT about gate locks", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Gates take more daily punishment than internal doors — sun, dust, rain and far more frequent use — so they need a different grade of smart lock than the one on a bedroom door.", lede: true },
+                    { h4: "Built for the outdoors, not adapted to it" },
+                    { p: "Kadis fits weatherproof, heavy-duty smart locks to gates and main entrances specifically, rated to handle daily outdoor wear rather than an indoor lock repurposed for a job it wasn't designed for." }
+                ]
+            },
+
+            {
+                slug: "voice-controlled-smart-locks-explained",
+                num: "007",
+                cat: "Smart Homes",
+                readMins: 3,
+                title: "Voice-Controlled Smart Locks Explained",
+                dek: "Hands-free unlocking, and where it fits into a wider smart home setup.",
+                img: "https://images.pexels.com/photos/30156624/pexels-photo-30156624.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Smart home technology and mobile control system representing connected home automation.",
+                cta: { text: "Kadis integrates voice-controlled locks into wider smart home setups.", label: "Talk to FixIT about smart locks", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Voice-controlled locks let you unlock a door hands-free through a smart assistant — useful when your arms are full of shopping, or for elderly household members who find keypads fiddly to use.", lede: true },
+                    { h4: "Part of a bigger setup" },
+                    { p: "On their own, voice locks are a convenience feature. Kadis usually pairs them with a fuller smart home setup — lighting, intercom, security — so voice control extends beyond just the front door and becomes part of how the whole house runs." }
+                ]
+            },
+
+            {
+                slug: "smart-lock-security-features-to-know",
+                num: "006",
+                cat: "Smart Door Locks",
+                readMins: 3,
+                title: "Smart Lock Security Features to Know",
+                dek: "The features that separate a genuinely secure lock from one that just looks modern.",
+                img: "https://images.pexels.com/photos/37538043/pexels-photo-37538043.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Modern fingerprint scanner and digital access control system.",
+                cta: { text: "Kadis walks clients through these features so you're buying based on security, not just design.", label: "Talk to FixIT about smart locks", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Before buying a smart lock, check for tamper alerts, an auto-lock timer, a backup key or battery-access option, and an activity log. These are what actually separate a secure lock from one that just looks modern in the showroom.", lede: true },
+                    { h4: "Why this list matters more than the design" },
+                    { p: "A sleek lock without an activity log or backup access can leave you stuck outside with no way in during a power cut, and no record of who used it beforehand. Kadis walks clients through this checklist before any purchase, not after." }
+                ]
+            },
+
+            {
+                slug: "keyless-entry-systems-explained",
+                num: "005",
+                cat: "Access Control",
+                readMins: 3,
+                title: "Keyless Entry Systems Explained",
+                dek: "PIN, card, fob, fingerprint or app — picking the right mix for the space.",
+                img: "https://images.pexels.com/photos/13657415/pexels-photo-13657415.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Employee using a card reader for secure office access.",
+                cta: { text: "Kadis helps you pick the right mix for a home versus an office versus a rental property.", label: "Talk to FixIT about keyless entry", href: "rental.html?s=fixit" },
+                body: [
+                    { p: "Keyless entry covers PIN codes, cards, fobs, fingerprints and app-based unlocking — each with its own trade-off between convenience and security, and none of them is automatically the \"best\" choice for every space.", lede: true },
+                    { h4: "Matching the method to the property" },
+                    { p: "A rental property might favour a PIN code that's easy to reset between tenants. A family home might favour fingerprint access for daily use. Kadis helps pick the right mix per property rather than defaulting to whichever method is trending." }
+                ]
+            },
+
+            {
+                slug: "smart-lock-maintenance-tips",
+                num: "004",
+                cat: "Smart Door Locks",
+                readMins: 3,
+                title: "Smart Lock Maintenance Tips",
+                dek: "The two things that cause most smart lock problems — and how a quick check prevents them.",
+                img: "https://images.pexels.com/photos/7522609/pexels-photo-7522609.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Close-up of a digital fingerprint door lock requiring regular inspection and maintenance.",
+                cta: { text: "Kadis offers maintenance visits so upkeep doesn't fall on you to remember.", label: "Talk to FixIT about maintenance", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "Most smart lock issues trace back to two things: neglected batteries and dust or moisture getting into the mechanism over time — not a fault in the lock itself.", lede: true },
+                    { h4: "A simple routine that prevents most lockouts" },
+                    { p: "A quick quarterly check — battery level, a firmware update if available, and a physical wipe-down — prevents the vast majority of lockouts. Kadis offers maintenance visits so this doesn't fall on you to remember on top of everything else." }
+                ]
+            },
+
+            {
+                slug: "why-renting-event-ict-equipment-in-abuja-saves-money",
+                num: "003",
+                cat: "Equipment Rentals",
+                readMins: 4,
+                title: "Why Renting Event & ICT Equipment in Abuja Saves Money: The Smart Choice for Businesses, Schools, Churches & Event Planners",
+                dek: "Why tying up capital in equipment you'll use once a year rarely makes sense.",
+                img: "https://images.pexels.com/photos/29708245/pexels-photo-29708245.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Professional presentation with projector equipment at a modern conference event.",
+                cta: { text: "Kadis rents out event and ICT equipment by the day, week or project.", label: "See Equipment Rentals", href: "rental.html?s=rentals" },
+                body: [
+                    { p: "Buying a projector, sound system or LED wall for a one-off event ties up capital you likely won't touch again for months. Renting gets you the same event-grade equipment for a fraction of the cost, with setup and pickup handled for you.", lede: true },
+                    { h4: "Who this works best for" },
+                    { p: "Churches, schools and businesses running periodic events — graduations, conferences, product launches — get the most value here, since it lets them budget per event instead of carrying idle equipment and storage costs year-round." }
+                ]
+            },
+
+            {
+                slug: "abuja-equipment-rentals",
+                num: "002",
+                cat: "Equipment Rentals",
+                readMins: 3,
+                title: "Abuja Equipment Rentals – Rent Laptops, Projectors, Projector Screens, Sound Systems, LED Displays & ICT Equipment Anywhere in Abuja",
+                dek: "One laptop for a training, or a full conference setup — what's actually in the rental catalogue.",
+                img: "https://images.pexels.com/photos/8761328/pexels-photo-8761328.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Conference room with projector screen and professional presentation equipment.",
+                cta: { text: "Browse Kadis's rental catalogue for laptops, projectors, sound systems and more.", label: "See Equipment Rentals", href: "rental.html?s=rentals" },
+                body: [
+                    { p: "From a single laptop for a training session to a full sound-and-screen setup for a conference, the Kadis rental catalogue covers laptops, projectors, projector screens, sound systems and LED displays, delivered anywhere in Abuja.", lede: true },
+                    { h4: "Delivered and set up, not just dropped off" },
+                    { p: "Equipment arrives set up on-site rather than left at the door for you to figure out — useful when you're running the event yourself and don't have time to troubleshoot cabling on the day." }
+                ]
+            },
+
+            {
+                slug: "smart-locks-with-mobile-app-control",
+                num: "001",
+                cat: "Smart Homes",
+                readMins: 3,
+                title: "Smart Locks with Mobile App Control",
+                dek: "Granting access, checking logs and locking up remotely, all from your phone.",
+                img: "https://images.pexels.com/photos/30170004/pexels-photo-30170004.jpeg?auto=compress&cs=tinysrgb&w=1200",
+                imgHint: "Smart home devices being controlled through a mobile phone.",
+                cta: { text: "Kadis sets these up fully configured, so the app is ready to use the moment installation is done.", label: "Talk to FixIT about smart locks", href: "installation.html?s=fixit" },
+                body: [
+                    { p: "App-controlled locks let you grant temporary access to a cleaner or guest, check a log of who came and went, and lock up remotely if you forget on your way out — all from your phone.", lede: true },
+                    { h4: "Set up and ready from day one" },
+                    { p: "Kadis configures the app fully as part of installation — accounts, permissions and notifications included — so it's ready to use the moment the job is finished, not something you're left to figure out from a manual." }
+                ]
+            }
+        ];
+
+        // ---------- category filtering via ?cat= ----------
+        const params = new URLSearchParams(location.search);
+        const catParam = params.get('cat');
+        let ACTIVE_TIPS = TIPS;
+        let bannerHtml = '';
+
+        if (catParam) {
+            const norm = s => s.trim().toLowerCase();
+            const matches = TIPS.filter(p => norm(p.cat) === norm(catParam));
+
+            if (matches.length) {
+                ACTIVE_TIPS = matches;
+                document.getElementById('indexHeadLabel').textContent = catParam;
+                bannerHtml = `
+        <div class="filter-banner">
+          <span>Showing topics in <strong>${catParam}</strong> (${matches.length})</span>
+          <a href="tips.html">View all topics →</a>
+        </div>`;
+            } else {
+                // category exists in the shop's taxonomy but nothing published yet —
+                // don't dead-end the visitor, show everything with a clear note instead
+                bannerHtml = `
+        <div class="filter-banner empty">
+          <span>Nothing published under <strong>${catParam}</strong> yet — here's everything we've written so far.</span>
+          <a href="tips.html">Clear</a>
+        </div>`;
+            }
+        }
+
+        document.getElementById('filterBannerSlot').innerHTML = bannerHtml;
+
+        // ---------- render ----------
+        const list = document.getElementById('entryList');
+        ACTIVE_TIPS.forEach((p) => {
+            const entry = document.createElement('div');
+            entry.className = 'entry';
+            entry.id = `post-${p.slug}`;
+
+            const bodyHtml = p.body.map(block => {
+                if (block.h4) return `<h4>${block.h4}</h4>`;
+                if (block.quote) return `<div class="pull-quote"><p>${block.quote}</p></div>`;
+                if (block.p) return `<p class="${block.lede ? 'lede' : ''}">${block.p}</p>`;
+                return '';
+            }).join('');
+
+            entry.innerHTML = `
+      <div class="entry-summary" data-toggle>
+        <div class="idx-num">No. ${p.num}</div>
+        <div class="idx-main">
+          <span class="cat"><a href="tips.html?cat=${encodeURIComponent(p.cat)}" onclick="event.stopPropagation()">${p.cat}</a></span>
+          <h3>${p.title}</h3>
+          <p>${p.dek}</p>
+        </div>
+        <div class="idx-meta">${p.readMins} min read</div>
+        <div class="toggle-icon">+</div>
+      </div>
+      <div class="panel-wrap">
+        <div class="panel-inner">
+          <div class="panel">
+            <figure>
+              <img src="${p.img}" alt="${p.title}" loading="lazy">
+            </figure>
+            ${bodyHtml}
+            <div class="panel-cta">
+              <p>${p.cta.text}</p>
+              <a class="cta-link" href="${p.cta.href}">${p.cta.label} →</a>
+            </div>
+            <a class="permalink" href="#post-${p.slug}">§ link to this topic</a>
+          </div>
+        </div>
+      </div>
+    `;
+            list.appendChild(entry);
+            entry.querySelector('[data-toggle]').addEventListener('click', () => {
+                entry.classList.toggle('open');
+            });
+        });
+
+        const hashSlug = location.hash.replace('#post-', '');
+        const targetId = hashSlug ? `post-${hashSlug}` : null;
+        const target = targetId ? document.getElementById(targetId) : null;
+        if (target) {
+            target.classList.add('open');
+            setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+        }
+    </script>
+
+    <script>
+        document.querySelectorAll('a[href*="wa.me"], a[href*="instagram.com"], a[href*="facebook.com"], a[href*="tiktok.com"], a[href*="youtube.com"], a[href*="twitter.com"], a[href*="x.com"], a[href*="linkedin.com"]').forEach(function (link) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener');
+        });
+    </script>
+    <script src="responsive.js"></script>
+
+</body>
+
+</html>

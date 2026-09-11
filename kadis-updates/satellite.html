@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TV & Satellite Decoders — KADIS.COM.NG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* =========================================================
+     COLOR SYSTEM — identical tokens to kadis.html / categories.html /
+     smart-home-automation.html / starlink-network-system.html.
+     Amber carries the page, moss stays rare (used once: "New" badge).
+     ========================================================= */
+        :root {
+            --bg: #0B0C0F;
+            --bg-2: #131519;
+            --bg-3: #1A1D22;
+            --bg-4: #20232A;
+
+            --ink: #EDEEEC;
+            --ink-dim: #9A9FA8;
+            --ink-dimmer: #5C616A;
+            --line: rgba(255, 255, 255, 0.07);
+            --line-bright: rgba(255, 255, 255, 0.13);
+
+            --amber: #D9772E;
+            --amber-deep: #B85F22;
+            --amber-soft: #E8A15E;
+
+            --moss: #A9B84C;
+
+            --glow: 0 0 60px rgba(217, 119, 46, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        .mono {
+            font-family: 'Space Mono', monospace;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        ::selection {
+            background: var(--amber-soft);
+            color: #111;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 15% 8%, rgba(217, 119, 46, 0.08), transparent 40%),
+                radial-gradient(circle at 85% 25%, rgba(169, 184, 76, 0.045), transparent 35%),
+                radial-gradient(circle at 50% 90%, rgba(217, 119, 46, 0.05), transparent 45%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .wrap {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 32px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity .8s cubic-bezier(.16, .8, .24, 1), transform .8s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+
+            * {
+                animation-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        .topbar {
+            background: var(--bg-2);
+            border-bottom: 1px solid var(--line);
+            font-size: 12.5px;
+            color: var(--ink-dim);
+        }
+
+        .topbar .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 38px;
+            padding-top: 0;
+            padding-bottom: 0;
+            flex-wrap: wrap;
+        }
+
+        .topbar .dot {
+            color: var(--amber-soft);
+            margin-right: 6px;
+        }
+
+        .topbar-right {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .topbar-right span.mono {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .topbar-right a {
+            transition: color .2s;
+        }
+
+        .topbar-right a:hover {
+            color: var(--ink);
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(11, 12, 15, 0.82);
+            backdrop-filter: blur(16px) saturate(140%);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 78px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Sora';
+            font-weight: 800;
+            font-size: 22px;
+            margin-top: 15px;
+        }
+
+        .logo-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            background: linear-gradient(135deg, var(--amber), var(--amber-deep));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0A0B0E;
+            font-weight: 800;
+            font-size: 16px;
+            box-shadow: 0 6px 20px rgba(217, 119, 46, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+
+        .logo span {
+            color: var(--ink-dim);
+            font-weight: 600;
+            font-size: 12px;
+            display: block;
+            letter-spacing: 0.08em;
+            font-family: 'Space Mono';
+        }
+
+        /* ---------- Nav ---------- */
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            height: 78px;
+            gap: 42px;
+        }
+
+        .logo {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 20px;
+            flex: 1;
+            min-width: 0;
+            white-space: nowrap;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink-dim);
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 0;
+            white-space: nowrap;
+            transition: color .2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--ink);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--amber);
+            transition: width .3s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 0 0 auto;
+        }
+
+        .nav-actions .btn-primary {
+            white-space: nowrap;
+            font-size: 12px;
+            padding: 11px 15px;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-dim);
+            transition: all .2s;
+            cursor: pointer;
+            position: relative;
+            background: transparent;
+        }
+
+        .icon-btn:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: var(--amber);
+            color: #0A0B0E;
+            font-size: 10px;
+            font-weight: 800;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Space Mono';
+        }
+
+        .btn-primary {
+            background: var(--amber);
+            color: #0B0C0F;
+            font-weight: 700;
+            font-size: 14px;
+            padding: 11px 22px;
+            border-radius: 10px;
+            box-shadow: 0 8px 22px rgba(217, 119, 46, 0.22);
+            transition: transform .25s cubic-bezier(.16, .8, .24, 1), box-shadow .25s, background .25s;
+            white-space: nowrap;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            background: var(--amber-soft);
+            box-shadow: 0 14px 30px rgba(217, 119, 46, 0.3);
+        }
+
+        .btn-ghost {
+            border: 1px solid var(--line-bright);
+            color: var(--ink);
+            font-weight: 700;
+            font-size: 14px;
+            padding: 13px 24px;
+            border-radius: 10px;
+            transition: all .25s cubic-bezier(.16, .8, .24, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--amber);
+            background: rgba(217, 119, 46, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .search-row {
+            border-bottom: 1px solid var(--line);
+            background: var(--bg);
+            padding: 16px 0;
+            position: sticky;
+            top: 78px;
+            z-index: 45;
+        }
+
+        .search-row .wrap {
+            z-index: 56;
+            display: flex;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .mega-wrap {
+            position: relative;
+        }
+
+        .cat-trigger {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            border-radius: 10px;
+            padding: 13px 18px;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: border-color .2s;
+            color: var(--ink);
+        }
+
+        .cat-trigger:hover,
+        .cat-trigger.active {
+            border-color: var(--amber);
+        }
+
+        .cat-trigger .bars {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .cat-trigger .bars span {
+            width: 14px;
+            height: 2px;
+            background: var(--amber-soft);
+            display: block;
+            border-radius: 1px;
+        }
+
+        .cat-trigger .chev {
+            color: var(--ink-dimmer);
+            font-size: 11px;
+            transition: transform .2s;
+        }
+
+        .cat-trigger.active .chev {
+            transform: rotate(180deg);
+        }
+
+        .search-bar {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            background: var(--bg-2);
+            border: 1px solid var(--line-bright);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: border-color .2s;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--amber);
+        }
+
+        .search-bar input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--ink);
+            padding: 13px 16px;
+            font-size: 14px;
+            font-family: 'Manrope';
+        }
+
+        .search-bar input::placeholder {
+            color: var(--ink-dimmer);
+        }
+
+        .search-bar .go {
+            background: var(--amber);
+            color: #0B0C0F;
+            border: none;
+            padding: 13px 22px;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: background .2s;
+        }
+
+        .search-bar .go:hover {
+            background: var(--amber-soft);
+        }
+
+        .mega-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+            background: rgba(6, 7, 9, 0.6);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity .25s ease;
+        }
+
+        /* Dim the page only on real touch devices (phones/tablets) — hover:none + pointer:coarse
+           is false on any desktop/laptop, even when the window is narrow, so resizing a desktop
+           browser window no longer triggers the mobile-style backdrop. */
+        @media (max-width:900px) and (hover: none) and (pointer: coarse) {
+            .mega-backdrop.show {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+
+        .mega-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            width: min(920px, 92vw);
+            background: var(--bg-2);
+            border: 1px solid var(--line-bright);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.65);
+            display: none;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 26px;
+            z-index: 60;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+
+        .mega-menu.open {
+            display: grid;
+        }
+
+        .mega-col h6 {
+            font-family: 'Space Mono';
+            font-size: 11px;
+            letter-spacing: .05em;
+            color: var(--amber-soft);
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .mega-col a {
+            display: flex;
+            justify-content: space-between;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--ink-dim);
+            padding: 6px 0;
+            transition: color .2s;
+        }
+
+        .mega-col a:hover {
+            color: var(--amber-soft);
+        }
+
+        .mega-col a small {
+            color: var(--ink-dimmer);
+            font-family: 'Space Mono';
+            font-size: 10.5px;
+            flex-shrink: 0;
+        }
+
+        section {
+            padding: 90px 0;
+        }
+
+        .sec-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 44px;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .sec-head h2 {
+            font-size: 34px;
+            font-weight: 800;
+        }
+
+        .sec-head p {
+            color: var(--ink-dim);
+            font-size: 15px;
+            max-width: 420px;
+        }
+
+        .sec-eyebrow {
+            font-family: 'Space Mono';
+            font-size: 12px;
+            color: var(--amber-soft);
+            letter-spacing: .08em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .see-all {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--ink);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            transition: color .2s;
+        }
+
+        .see-all:hover {
+            color: var(--amber-soft);
+        }
+
+        /* =========================================================
+     PAGE-SPECIFIC — TV & Satellite Decoders category page
+     ========================================================= */
+
+        .crumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            color: var(--ink-dimmer);
+            font-family: 'Space Mono';
+            padding-top: 22px;
+            flex-wrap: wrap;
+        }
+
+        .crumb a {
+            color: white;
+            transition: color .2s;
+        }
+
+        .crumb a:hover {
+            color: var(--amber-soft);
+        }
+
+        .crumb .sep {
+            color: var(--ink-dimmer);
+        }
+
+        .crumb .here {
+            color: var(--amber-soft);
+        }
+
+        .cat-banner {
+            padding: 22px 0 46px;
+            position: relative;
+        }
+
+        .cat-banner-glow {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            right: 0;
+            height: 360px;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(217, 119, 46, 0.07), transparent 55%),
+                radial-gradient(circle at 78% 35%, rgba(169, 184, 76, 0.035), transparent 50%);
+        }
+
+        .cat-banner .wrap {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 26px;
+            align-items: center;
+        }
+
+        .cat-banner-ic {
+            width: 74px;
+            height: 74px;
+            border-radius: 20px;
+            flex-shrink: 0;
+            background: linear-gradient(150deg, var(--bg-4), var(--bg-3));
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -8px 14px rgba(0, 0, 0, 0.32), 0 14px 28px rgba(0, 0, 0, 0.4);
+        }
+
+        .cat-banner-ic svg {
+            width: 36px;
+            height: 36px;
+            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.55));
+        }
+
+        .cat-banner h1 {
+            font-size: 38px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .cat-banner p {
+            font-size: 15.5px;
+            color: rgb(210, 203, 203);
+            max-width: 640px;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .cat-banner-meta {
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .cat-banner-meta span {
+            font-family: 'Space Mono';
+            font-size: 12.5px;
+            color: var(--ink-dim);
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .cat-banner-meta b {
+            color: var(--amber-soft);
+        }
+
+        .cat-banner-cta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 22px;
+        }
+
+        @media (max-width: 720px) {
+            .cat-banner .wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .cat-banner h1 {
+                font-size: 30px;
+            }
+        }
+
+        .discover {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .filter-chips {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .chip-btn {
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            color: var(--ink-dim);
+            font-size: 13px;
+            font-weight: 600;
+            padding: 9px 16px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all .2s;
+            white-space: nowrap;
+        }
+
+        .chip-btn:hover {
+            border-color: var(--amber);
+            color: var(--ink);
+        }
+
+        .chip-btn.active {
+            background: var(--amber);
+            border-color: var(--amber);
+            color: #0B0C0F;
+        }
+
+        .discover-count {
+            font-family: 'Space Mono';
+            font-size: 13px;
+            color: var(--ink-dim);
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        .discover-count b {
+            color: var(--amber-soft);
+            font-size: 15px;
+        }
+
+        .discover-sort {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--ink-dim);
+            white-space: nowrap;
+        }
+
+        .discover-sort select {
+            background: var(--bg-3);
+            color: var(--ink);
+            border: 1px solid var(--line-bright);
+            border-radius: 9px;
+            padding: 10px 14px;
+            font-size: 13.5px;
+            font-weight: 600;
+            font-family: 'Manrope';
+            cursor: pointer;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E8A15E' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 14px;
+            padding-right: 34px;
+            transition: border-color .2s;
+        }
+
+        .discover-sort select:focus {
+            border-color: var(--amber);
+        }
+
+        @media (max-width: 760px) {
+            .discover {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .discover-count {
+                margin-left: 0;
+            }
+        }
+
+        .prod-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .prod-card {
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform .3s cubic-bezier(.16, .8, .24, 1), border-color .3s, box-shadow .3s;
+        }
+
+        .prod-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(217, 119, 46, 0.28);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+        }
+
+        .prod-img {
+            height: 180px;
+            background: linear-gradient(150deg, var(--bg-4), var(--bg-3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prod-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 18px;
+        }
+
+        .prod-img .ic-tile {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            background: linear-gradient(150deg, var(--bg-3), var(--bg-2));
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), inset 0 -6px 10px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(0, 0, 0, 0.35);
+        }
+
+        .prod-img .ic-tile svg {
+            width: 30px;
+            height: 30px;
+            filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+        }
+
+        .prod-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--amber);
+            color: #0B0C0F;
+            font-family: 'Space Mono';
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 4px 9px;
+            border-radius: 6px;
+            z-index: 2;
+        }
+
+        .prod-tag.new {
+            background: var(--moss);
+            color: #12140A;
+        }
+
+        .prod-body {
+            padding: 18px;
+        }
+
+        .prod-cat {
+            font-family: 'Space Mono';
+            font-size: 10.5px;
+            color: var(--ink-dimmer);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .prod-body h5 {
+            font-size: 14.5px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.35;
+            min-height: 39px;
+        }
+
+        .prod-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .prod-price b {
+            font-family: 'Sora';
+            font-size: 16.5px;
+            color: var(--amber-soft);
+            font-weight: 800;
+        }
+
+        .prod-price .old {
+            font-size: 11.5px;
+            color: var(--ink-dimmer);
+            text-decoration: line-through;
+            display: block;
+            font-family: 'Space Mono';
+        }
+
+        .add-btn {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: var(--bg-4);
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink);
+            transition: all .2s;
+            cursor: pointer;
+        }
+
+        .add-btn:hover {
+            background: var(--amber);
+            color: #0B0C0F;
+            border-color: transparent;
+        }
+
+        @media (max-width: 980px) {
+            .prod-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 560px) {
+            .prod-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .subcat-scroll {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--amber) transparent;
+        }
+
+        .subcat-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .subcat-scroll::-webkit-scrollbar-thumb {
+            background: var(--amber);
+            border-radius: 10px;
+        }
+
+        .subcat-pill {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-2);
+            border: 1px solid var(--line);
+            border-radius: 100px;
+            padding: 10px 18px 10px 12px;
+            transition: all .25s cubic-bezier(.16, .8, .24, 1);
+            cursor: pointer;
+        }
+
+        .subcat-pill:hover {
+            border-color: rgba(217, 119, 46, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .subcat-pill .ic {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(150deg, var(--bg-4), var(--bg-3));
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .subcat-pill .ic svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        .subcat-pill span {
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .trust {
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 26px 0;
+            background: var(--bg-2);
+        }
+
+        .trust .wrap {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            font-weight: 600;
+        }
+
+        .trust-item .ic {
+            color: var(--amber-soft);
+            font-size: 16px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .related-card {
+            background: linear-gradient(160deg, var(--bg-3), var(--bg-2));
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all .3s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .related-card:hover {
+            border-color: rgba(217, 119, 46, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .related-card .ic {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            flex-shrink: 0;
+            background: linear-gradient(150deg, var(--bg-4), var(--bg-3));
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .related-card .ic svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .related-card h6 {
+            font-size: 13.5px;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .related-card span {
+            font-size: 11.5px;
+            color: var(--ink-dimmer);
+            font-family: 'Space Mono';
+        }
+
+        @media (max-width: 980px) {
+            .related-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .cta-band {
+            background: linear-gradient(120deg, rgba(217, 119, 46, 0.12), rgba(169, 184, 76, 0.05));
+            border: 1px solid rgba(217, 119, 46, 0.22);
+            border-radius: 24px;
+            padding: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-band h2 {
+            font-size: 32px;
+            margin-bottom: 14px;
+        }
+
+        .cta-band p {
+            color: rgb(220, 212, 212);
+            margin-bottom: 30px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            background: var(--bg-2);
+        }
+
+        .foot-topics-row a:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+        }
+
+        .foot-topics {
+            margin-top: 30px;
+            padding: 24px 0 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .foot-topics+.foot-topics {
+            margin-top: 34px;
+        }
+
+        .foot-topics h5 {
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 18px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-topics-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 12px;
+        }
+
+        .foot-topics-row a {
+            font-size: 12.5px;
+            color: rgb(220, 212, 212);
+            background: var(--bg-3);
+            border: 1px solid var(--line-bright);
+            border-radius: 100px;
+            padding: 7px 14px;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .foot-promo {
+            background: linear-gradient(115deg, rgba(217, 119, 46, 0.10), rgba(169, 184, 76, 0.04));
+            border-bottom: 1px solid var(--line);
+            padding: 22px 0;
+        }
+
+        .foot-promo .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .foot-promo p {
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            max-width: 760px;
+            line-height: 1.7;
+        }
+
+        .foot-promo b {
+            color: var(--ink);
+        }
+
+        .foot-promo .btn-primary {
+            flex-shrink: 0;
+        }
+
+        .foot-contact {
+            padding: 26px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-dim);
+            line-height: 1.9;
+        }
+
+        .foot-contact .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            justify-content: space-between;
+        }
+
+        .foot-contact strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .foot-contact a {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-contact .fc-block {
+            max-width: 520px;
+        }
+
+        .foot-main {
+            padding: 56px 0 40px;
+        }
+
+        .foot-grid {
+            display: grid;
+            grid-template-columns: 1.4fr repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 0;
+        }
+
+        .foot-col h5 {
+            font-size: 13px;
+            color: var(--ink);
+            margin-bottom: 18px;
+            font-family: 'Space Mono';
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+
+        .foot-col a {
+            display: block;
+            font-size: 13.5px;
+            color: var(--ink-dim);
+            margin-bottom: 12px;
+            transition: color .2s;
+        }
+
+        .foot-col a:hover {
+            color: var(--amber-soft);
+        }
+
+        .foot-links-line {
+            padding: 20px 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+            color: var(--ink-dim);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 0;
+            align-items: center;
+        }
+
+        .foot-links-line a {
+            color: var(--amber-soft);
+            font-weight: 700;
+        }
+
+        .foot-links-line .sep {
+            color: var(--ink-dimmer);
+            margin: 0 10px;
+        }
+
+        .foot-bank {
+            padding: 16px 0;
+            font-size: 12.5px;
+            color: var(--ink-dimmer);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .foot-bank strong {
+            color: var(--amber-soft);
+        }
+
+        .foot-bottom {
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12.5px;
+            color: rgb(222, 215, 215);
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-row a {
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            border: 1px solid var(--line-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            color: var(--ink-dim);
+            transition: all .2s;
+        }
+
+        .social-row a:hover {
+            border-color: var(--amber);
+            color: var(--amber-soft);
+            transform: translateY(-2px);
+        }
+
+        .wa-float {
+            position: fixed;
+            bottom: 26px;
+            right: 26px;
+            z-index: 70;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25D366, #128C4A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
+            font-size: 26px;
+            color: #fff;
+            transition: transform .25s cubic-bezier(.16, .8, .24, 1);
+        }
+
+        .wa-float:hover {
+            transform: scale(1.08);
+        }
+
+        .whatsapp-channel {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            width: fit-content;
+            padding: 13px 18px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--ink);
+            transition: all 0.25s ease;
+        }
+
+        .whatsapp-channel:hover {
+            transform: translateY(-2px);
+            border-color: rgba(37, 211, 102, 0.45);
+            background: rgba(37, 211, 102, 0.07);
+        }
+
+        .whatsapp-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            flex: 0 0 42px;
+            border-radius: 50%;
+            background: #25D366;
+            color: #fff;
+            font-size: 21px;
+        }
+
+        .whatsapp-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .whatsapp-content strong {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .whatsapp-content small {
+            font-size: 11px;
+            color: var(--ink-dim);
+            line-height: 1.3;
+        }
+
+        .whatsapp-arrow {
+            margin-left: 8px;
+            font-size: 19px;
+            color: var(--amber);
+            transition: transform 0.25s ease;
+        }
+
+        .whatsapp-channel:hover .whatsapp-arrow {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 900px) {
+            .foot-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mega-menu {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .search-row .wrap {
+                flex-wrap: wrap;
+            }
+
+            .search-row {
+                position: static;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="wrap">
+            <div><span class="dot">●</span>Same-day delivery in Abuja for orders before 12 noon</div>
+            <div class="topbar-right">
+                <span>Nasarawa · Niger · Kaduna · Kogi</span>
+                <a class="mono" href="tel:08061379390">📞 0806 137 9390</a>
+            </div>
+        </div>
+    </div>
+
+    <nav>
+        <div class="wrap nav-inner">
+            <a class="logo" href="index.html" style="margin-bottom:16px;">
+                <img src="images/KADISS.png" alt="Kadis" style="height:38px; width:auto; border-radius:8px;">
+            </a>
+            <div class="nav-links">
+                <a href="index.html#solutions">Digital Solutions</a>
+                <a href="installation.html">ICT Engineering</a>
+                <a href="staffing.html">ICT Staffing</a>
+                <a href="training.html">ICT Training</a>
+                <a href="join.html">Join our Team</a>
+                <a href="rental.html">Equipment Rentals</a>
+                <a href="Allcategory.html">Store</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="nav-actions">
+                <a class="icon-btn" href="cart.html">🛒<span class="cart-count">0</span></a>
+                <a class="btn-primary" href="#" data-open-solution>Request a Solution</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="search-row">
+        <div class="wrap">
+            <div class="mega-wrap">
+                <div class="cat-trigger" id="catTrigger" onclick="toggleMega()">
+                    <div class="bars"><span></span><span></span><span></span></div>
+                    All Categories
+                    <span class="chev">▾</span>
+                </div>
+                <div class="mega-menu" id="megaMenu">
+                    <div class="mega-col">
+                        <h6>Security</h6>
+                        <a href="smart.html">Home & Office Security <small>64</small></a>
+                        <a href="security.html">CCTV Camera <small>20</small></a>
+                        <a href="security.html">Electric Fence & Barb Wire <small>46</small></a>
+                        <a href="security.html">Automobile Security <small>27</small></a>
+                        <a href="security.html">Device Security <small>28</small></a>
+                        <a href="security.html">Internet Security <small>26</small></a>
+                    </div>
+                    <div class="mega-col">
+                        <h6>Phones & Computers</h6>
+                        <a href="gadgets.html">Phone Accessories <small>145</small></a>
+                        <a href="computer.html">Computer Accessories <small>224</small></a>
+                        <a href="computer.html">Keyboard & Mouse <small>59</small></a>
+                        <a href="computer.html">Flash Drives & Storage <small>31</small></a>
+                        <a href="computer.html">Printers <small>10</small></a>
+                        <a href="computer.html">Bluetooth & Earbuds <small>59</small></a>
+                    </div>
+                    <div class="mega-col">
+                        <h6>Smart Home & Networking</h6>
+                        <a href="smart.html">Smart Home Automation <small>50</small></a>
+                        <a href="computer.html">Networking Equipment <small>42</small></a>
+                        <a href="wifi.html">Wifi / Mifi / Routers <small>22</small></a>
+                        <a href="satellite.html">Starlink Network System <small>2</small></a>
+                        <a href="security.html">Intercom <small>20</small></a>
+                        <a href="wifi.html">Signal Booster <small>14</small></a>
+                    </div>
+                    <div class="mega-col">
+                        <h6>Games, TV & More</h6>
+                        <a href="ps.html">Games & Consoles <small>53</small></a>
+                        <a href="satellite.html">TV & Satellite Decoders <small>24</small></a>
+                        <a href="solar.html">Solar & Batteries <small>25</small></a>
+                        <a href="cables.html">Cables, Wires & Adapters <small>48</small></a>
+                        <a href="ict_tools.html">ICT Engineering Tools <small>11</small></a>
+                        <a href="ringlights.html">Ring Lights <small>6</small></a>
+                    </div>
+                </div>
+            </div>
+            <div class="search-bar">
+                <input type="text" id="siteSearch" placeholder="Search 530+ products — CCTV, batteries, PS5, routers…">
+                <button class="go" id="siteSearchBtn">Search</button>
+            </div>
+        </div>
+    </div>
+    <div class="mega-backdrop" id="megaBackdrop" onclick="closeMega()"></div>
+
+    <!-- ============ BREADCRUMB ============ -->
+    <div class="wrap">
+        <div class="crumb">
+            <a href="index.html">Home</a>
+            <span class="sep">/</span>
+            <a href="category.html">Categories</a>
+            <span class="sep">/</span>
+            <span class="here">TV & Satellite Decoders</span>
+        </div>
+    </div>
+
+    <!-- ============ CATEGORY BANNER ============ -->
+    <header class="cat-banner">
+        <div class="cat-banner-glow"></div>
+        <div class="wrap">
+            <div class="cat-banner-ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--amber-soft)"
+                    stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="4" width="18" height="12" rx="1.6" />
+                    <path d="M8 20h8M9 16v4M15 16v4" />
+                    <path d="M8 8l2.5 2L14 7l3 2.5" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div>
+                <h1>TV & Satellite <span
+                        style="background:linear-gradient(100deg, var(--amber) 10%, var(--amber-soft) 90%); -webkit-background-clip:text; background-clip:text; color:transparent;">Decoders</span>
+                </h1>
+                <p>Decoders and dishes for local and international channels — subscription and free-to-air options,
+                    satellite dishes, LNBs and mounting accessories, with installation support across Abuja.</p>
+                <div class="cat-banner-meta">
+                    <span><b>24</b> products</span>
+                    <span><b>6</b> sub-categories</span>
+                    <span><b>24hr</b> same-day delivery</span>
+                </div>
+                <div class="cat-banner-cta">
+                    <a class="btn-primary" href="https://wa.me/2348061379390">Chat on WhatsApp →</a>
+                    <a class="btn-ghost" href="installation.html">Book an Installation</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ SUB-CATEGORY STRIP ============ -->
+    <section class="wrap" style="padding-top:0; padding-bottom:36px;">
+        <div class="subcat-scroll reveal">
+            <div class="subcat-pill">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="12" rx="1.6" />
+                        <path d="M8 20h8M12 16v4" />
+                    </svg></div><span>Subscription Decoders</span>
+            </div>
+            <div class="subcat-pill">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="12" rx="1.6" />
+                        <path d="M8 20h8M12 16v4" />
+                        <path d="M9 8h6M9 11h4" />
+                    </svg></div><span>Free-to-Air Decoders</span>
+            </div>
+            <div class="subcat-pill">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M4 11a9 9 0 0 1 9-9" />
+                        <path d="M4 11a5 5 0 0 1 5-5" />
+                        <rect x="3" y="13" width="6" height="6" rx="1" transform="rotate(-30 6 16)" />
+                    </svg></div><span>Satellite Dishes</span>
+            </div>
+            <div class="subcat-pill">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 3v6M8 6l4-3 4 3" />
+                        <rect x="8" y="9" width="8" height="6" rx="1.5" />
+                    </svg></div><span>LNBs & Feeds</span>
+            </div>
+            <div class="subcat-pill">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="9" y="3" width="6" height="18" rx="3" />
+                        <path d="M12 7v.01" />
+                    </svg></div><span>Remote Controls</span>
+            </div>
+            <div class="subcat-pill">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 20V8M7 20h10M9 8l3-5 3 5" />
+                    </svg></div><span>Digital Antennas</span>
+            </div>
+            <div class="subcat-pill">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M4 20 20 4M14 4h6v6" />
+                    </svg></div><span>Mounts & Brackets</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FILTER / SORT BAR ============ -->
+    <section class="wrap" style="padding-top:0; padding-bottom:40px;">
+        <div class="discover reveal">
+            <div class="filter-chips">
+                <button class="chip-btn active">All</button>
+                <button class="chip-btn">Decoders</button>
+                <button class="chip-btn">Dishes & LNBs</button>
+                <button class="chip-btn">Antennas</button>
+                <button class="chip-btn">Accessories</button>
+            </div>
+            <div class="discover-count"><b>24</b> products</div>
+            <div class="discover-sort">
+                <label for="prodSort">Sort by</label>
+                <select id="prodSort">
+                    <option>Most Popular</option>
+                    <option>Price: Low to High</option>
+                    <option>Price: High to Low</option>
+                    <option>Newest</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PRODUCT GRID ============ -->
+    <section class="wrap" style="padding-top:0;">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">TV & SATELLITE DECODERS</span>
+                <h2>8 products in this category</h2>
+            </div>
+            <a class="see-all" href="category.html">← Back to all categories</a>
+        </div>
+
+        <div class="prod-grid">
+
+            <div id="p-satellite-0" class="prod-card reveal">
+                <div class="prod-img">
+                    <div class="prod-tag">SALE</div>
+                    <img src="https://kadis.com.ng/wp-content/uploads/2025/02/1-2.jpg" alt="Metro SLTV Digital Decoder"
+                        loading="lazy">
+                </div>
+                <div class="prod-body">
+                    <span class="prod-cat">Subscription Decoders</span>
+                    <h5>HD Subscription Decoder with Smart Search</h5>
+                    <div class="prod-price">
+                        <div><span class="old">₦45,000</span><b>₦39,000</b></div>
+                        <div class="add-btn">+</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="p-satellite-1" class="prod-card reveal">
+                <div class="prod-img">
+                    <div class="prod-tag new">NEW</div>
+                    <img src="images/sub_decoder.jpg" alt="Explora-Style PVR Decoder with Recording" loading="lazy">
+                </div>
+                <div class="prod-body">
+                    <span class="prod-cat">Subscription Decoders</span>
+                    <h5>Explora-Style PVR Decoder with Recording</h5>
+                    <div class="prod-price">
+                        <div><b>₦95,000</b></div>
+                        <div class="add-btn">+</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="p-satellite-2" class="prod-card reveal">
+                <div class="prod-img">
+                    <img src="https://kadis.com.ng/wp-content/uploads/2025/01/131.jpg"
+                        alt="Free To Air Digital Satellite Channels Tiger Decoder" loading="lazy">
+                </div>
+                <div class="prod-body">
+                    <span class="prod-cat">Free-to-Air Decoders</span>
+                    <h5>Free-to-Air Digital Decoder, No Subscription</h5>
+                    <div class="prod-price">
+                        <div><b>₦18,500</b></div>
+                        <div class="add-btn">+</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="p-satellite-4" class="prod-card reveal">
+                <div class="prod-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaYq0WnoZ9wpl7A6h8tUr6UNlAwZZfcZoRVpPR6bkP3w&s=10"
+                        alt="90cm Satellite Dish for Stronger Signal" loading="lazy">
+                </div>
+                <div class="prod-body">
+                    <span class="prod-cat">Satellite Dishes</span>
+                    <h5>90cm Satellite Dish for Stronger Signal</h5>
+                    <div class="prod-price">
+                        <div><b>₦48,000</b></div>
+                        <div class="add-btn">+</div>
+                    </div>
+                </div>
+            </div>
+            <div id="p-satellite-5" class="prod-card reveal">
+                <div class="prod-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsSgFS5rwbotg5NLaHs4MZIAlRZ69tGyfkjv-4hgrUIA&s=10"
+                        alt="Universal Single LNB, Weatherproof" loading="lazy">
+                </div>
+                <div class="prod-body">
+                    <span class="prod-cat">LNBs & Feeds</span>
+                    <h5>Universal Single LNB, Weatherproof</h5>
+                    <div class="prod-price">
+                        <div><b>₦8,500</b></div>
+                        <div class="add-btn">+</div>
+                    </div>
+                </div>
+            </div>
+            <div id="p-satellite-6" class="prod-card reveal">
+                <div class="prod-img">
+                    <div class="prod-tag new">NEW</div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB-Hl2bltr09urztJzloAS7xENOXz-FbfedJ6PHO7RCA&s"
+                        alt="Indoor/Outdoor HD Digital TV Antenna" loading="lazy">
+                </div>
+                <div class="prod-body">
+                    <span class="prod-cat">Digital Antennas</span>
+                    <h5>Indoor/Outdoor HD Digital TV Antenna</h5>
+                    <div class="prod-price">
+                        <div><b>₦22,000</b></div>
+                        <div class="add-btn">+</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="p-satellite-6" class="prod-card reveal">
+                <div class="prod-img">
+                    <div class="prod-tag new">NEW</div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReYTQ-jswwYmyrTCmKrXGQkWlX8n7_TRmvd4ZvxIfrVQ&s=10"
+                        alt="Indoor/Outdoor HD Digital TV Antenna" loading="lazy">
+                </div>
+                <div class="prod-body">
+                    <span class="prod-cat">Digital Antennas</span>
+                    <h5>Indoor/Outdoor HD Digital TV Antenna</h5>
+                    <div class="prod-price">
+                        <div><b>₦22,000</b></div>
+                        <div class="add-btn">+</div>
+                    </div>
+                </div>
+            </div>
+            <div id="p-satellite-7" class="prod-card reveal">
+                <div class="prod-img">
+                    <img src="https://kadis.com.ng/wp-content/uploads/2025/01/14.jpg"
+                        alt="Startimes Decoder Replacement Remote Control" loading="lazy">
+                </div>
+                <div class="prod-body">
+                    <span class="prod-cat">Remote Controls</span>
+                    <h5>Universal Decoder Remote Control</h5>
+                    <div class="prod-price">
+                        <div><b>₦4,500</b></div>
+                        <div class="add-btn">+</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="trust">
+        <div class="wrap">
+            <div class="trust-item"><span class="ic">✓</span> Genuine decoders & dishes, tested before delivery</div>
+            <div class="trust-item"><span class="ic">✓</span> Dish alignment & installation available</div>
+            <div class="trust-item"><span class="ic">✓</span> Subscription activation support</div>
+            <div class="trust-item"><span class="ic">✓</span> 30-day support on every order</div>
+        </div>
+    </div>
+
+    <!-- ============ RELATED CATEGORIES ============ -->
+    <section class="wrap">
+        <div class="sec-head reveal">
+            <div>
+                <span class="sec-eyebrow">GOES WELL TOGETHER</span>
+                <h2>You might also need</h2>
+            </div>
+        </div>
+        <div class="related-grid">
+            <a class="related-card reveal" href="satellite.html">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M4 11a9 9 0 0 1 9-9" />
+                        <path d="M4 11a5 5 0 0 1 5-5" />
+                        <rect x="3" y="13" width="6" height="6" rx="1" transform="rotate(-30 6 16)" />
+                        <path d="M15 15 21 21" />
+                    </svg></div>
+                <div>
+                    <h6>Starlink Network System</h6><span>2 products</span>
+                </div>
+            </a>
+            <a class="related-card reveal" href="cables.html">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M4 8v3a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V8" />
+                        <path d="M8 14v3M16 14v3M4 5v3M20 5v3" />
+                    </svg></div>
+                <div>
+                    <h6>Cables, Wires & Adapters</h6><span>48 products</span>
+                </div>
+            </a>
+            <a class="related-card reveal" href="ps.html">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="2.5" y="8" width="19" height="9" rx="4.5" />
+                        <path d="M7 10.5v4M5 12.5h4" />
+                        <circle cx="15.5" cy="11.5" r="1" />
+                        <circle cx="17.5" cy="13.5" r="1" />
+                    </svg></div>
+                <div>
+                    <h6>Games & Consoles</h6><span>53 products</span>
+                </div>
+            </a>
+            <a class="related-card reveal" href="electronic_converter.html">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        style="color:var(--amber-soft)" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 21V9" />
+                        <path d="M9 9l3-6 3 6" />
+                        <path d="M6 13a8 8 0 0 1 12 0M4 16a11 11 0 0 1 16 0" />
+                    </svg></div>
+                <div>
+                    <h6>Electronic Converter</h6><span>14 products</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="wrap">
+        <div class="cta-band reveal">
+            <h2>Not sure which decoder fits your setup?</h2>
+            <p>Tell us your TV, dish size and channel package and our team will recommend the right decoder and dish.
+            </p>
+            <div class="cta-buttons">
+                <a class="btn-primary" href="https://wa.me/2348061379390">Chat on WhatsApp →</a>
+                <a class="btn-ghost" href="tel:08061379390">Call 0806 137 9390</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="foot-promo">
+            <div class="wrap">
+                <p><b>Shop & order now</b> — or place your order via phone call or WhatsApp message. We also do
+                    door-step
+                    delivery within Abuja and 4 surrounding states.</p>
+                <a class="btn-primary" href="https://wa.me/2348061379390">Order on WhatsApp →</a>
+            </div>
+        </div>
+
+        <div class="wrap">
+            <div class="foot-main">
+                <div class="foot-grid">
+                    <div class="foot-col">
+                        <a class="logo" href="index.html" style="margin-bottom:16px;">
+                            <img src="images/KADISS.png" alt="Kadis"
+                                style="height:38px; width:auto; border-radius:8px;">
+                        </a>
+                        <p style="color:var(--ink-dim); font-size:13.5px; line-height:1.7; max-width:280px;">Abuja's No.
+                            1 ICT
+                            Ecosystem — gadgets, security, smart home, satellite & digital solutions, delivered
+                            door-step.</p>
+                    </div>
+                    <div class="foot-col">
+                        <h5>Shop</h5>
+                        <a href="security.html">Security Systems</a>
+                        <a href="category.html?cat=cctv-camera">CCTV Cameras</a>
+                        <a href="smart.html">Smart Home</a>
+                        <a href="wifi.html">Wifi / Mifi / Routers</a>
+                        <a href="satellite.html">Starlink</a>
+                        <a href="gadgets.html">Phone Accessories</a>
+                        <a href="ps.html">Games & Consoles</a>
+                        <a href="solar.html">Solar & Batteries</a>
+                        <a href="cables.html">Cables, Wires & Adapters</a>
+                        <a href="ict_tools.html">ICT Engineering Tools</a>
+                        <a href="electronic_converter.html">Electronic Converters & OTG</a>
+                        <a href="ringlights.html">Ring lights</a>
+                        <a href="satellite.html">Tv Decoders & Satellite Accessories</a>
+                    </div>
+                    <div class="foot-col">
+                        <h5>Services</h5>
+                        <a href="installation.html">ICT Installations & Engineering</a>
+                        <a href="techforce.html">TechForce</a>
+                        <a href="dts.html">Digital Transformation (KDTS)</a>
+                        <a href="rental.html">Equipment Rentals</a>
+                        <a href="security.html">Security Systems</a>
+                        <a href="skillab.html">Tech SkillLab</a>
+                        <a href="satelliteinstall.html">Satellite Solutions</a>
+                        <a href="smartiot.html">Smart Home & IoT</a>
+                        <a href="eventmedia.html">Event & Media</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="delivery.html">Delivery</a>
+                        <a href="installation.html">Starlink Installations</a>
+                        <a href="security.html">Security Systems</a>
+                        <a href="installation.html">AC & Freezer installation</a>
+                        <a href="satelliteinstall.html">Satellite Installation</a>
+                        <a href="source.html">Request Equipment</a>
+                        <a href="training.html">ICT Training</a>
+                        <a href="join.html">Join Our Team</a>
+                    </div>
+                    <div class="foot-col">
+                        <div class="foot-col">
+                            <h5>Contact</h5>
+                            <a href="tel:08061379390">0806 137 9390</a>
+                            <a href="tel:08024207231">0802 420 7231</a>
+                            <a href="#"> Head Office : Block B, 8th Floor (Rm 301), Federal Secretariat, CBD/Maitama,
+                                Abuja, Nigeria.</a>
+                            <a href="#">Branch : Apo Urban Market, Apo, opposite Apo Shoprite, after
+                                NNPC/Dankogi Junction, Shop F1119, Abuja.</a>
+                            <a href="mailto:kadisdigitals@gmail.com">kadisdigitals@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="foot-topics">
+                    <h5>Blog Categories</h5>
+                    <div class="foot-topics-row">
+                        <a href="blog.html#post-cctv-and-security-gadgets-solution">CCTV & Security</a>
+                        <a href="blog.html#post-electric-fence-solutions">Electric Fencing</a>
+                        <a href="blog.html#post-security-and-surveillance-system-solutions">Surveillance Systems</a>
+                        <a href="blog.html#post-access-control-system">Access Control</a>
+                        <a href="blog.html#post-biometric-devices-and-access-control-system-solutions">Biometric
+                            Devices</a>
+                        <a href="blog.html#post-automatic-or-electronic-gate-solutions">Automated Gates</a>
+                        <a href="blog.html#post-smart-door-locks">Smart Door Locks</a>
+                        <a href="blog.html#post-smart-homes-and-automated-house">Smart Homes</a>
+                        <a href="blog.html#post-smart-switches-hotels-commercial-buildings">Smart Switches</a>
+                        <a href="blog.html#post-smart-lighting-for-estates">Smart Lighting</a>
+                        <a href="blog.html#post-smart-curtains-luxury-apartments">Smart Curtains</a>
+                        <a href="blog.html#post-dstv-free-to-air-sltv-starlink-freetv-gotv-and-startimes-solutions">DSTV,
+                            GOtv &
+                            Starlink</a>
+                        <a href="blog.html#post-starlink-satellite-network-and-installation">Starlink Installation</a>
+                        <a href="blog.html#post-satellite-systems-remote-areas">Satellite for Remote Areas</a>
+                        <a href="blog.html#post-ict-networking-and-troubleshooting">Networking & Troubleshooting</a>
+                        <a href="blog.html#post-network-booster-and-installation">Network Boosters</a>
+                        <a href="blog.html#post-network-jammer-and-installation">Network Jammers</a>
+                        <a href="blog.html#post-pabx-and-intercom-system-solutions">PABX & Intercom</a>
+                        <a href="blog.html#post-solar-and-inverter-system">Solar & Inverters</a>
+                        <a href="blog.html#post-mobile-phone-updates-and-solutions">Mobile Phone Solutions</a>
+                        <a href="blog.html#post-phone-repairs-and-solution-tips">Phone Repairs</a>
+                        <a href="blog.html#post-phone-accessories-support-and-solutions">Phone Accessories</a>
+                        <a href="blog.html#post-computer-gadgets-and-accessories-solutions">Computer Accessories</a>
+                        <a href="blog.html#post-computer-repairs-and-solution-tips">Computer Repairs</a>
+                        <a href="blog.html#post-playstation-ps-games-consoles-and-accessories-solutions">PlayStation &
+                            Consoles</a>
+                        <a href="blog.html#post-drones-and-installation">Drones</a>
+                        <a href="blog.html#post-ict-engineering-tools">ICT Engineering Tools</a>
+                        <a href="blog.html#post-kadis-techforce">KADIS TechForce</a>
+                        <a href="blog.html#post-digital-transformation-kdts">Digital Transformation</a>
+                        <a href="blog.html#post-kadis-equipment-rentals-expansion">Equipment Rentals</a>
+                        <a href="blog.html#post-time-attendance-system">Time Attendance Systems</a>
+                        <a href="blog.html#post-ac-fridge-and-tv-installation-and-maintenance">AC, Fridge & TV
+                            Install</a>
+                        <a href="blog.html#post-ac-tv-and-refrigerator-sales-and-delivery">AC, TV & Fridge Sales</a>
+                        <a href="blog.html#post-fire-alarm-and-smoke-detectors">Fire Alarms & Smoke Detectors</a>
+                        <a href="blog.html#post-fire-extinguisher-sales-installation-training-and-certification">Fire
+                            Extinguishers</a>
+                        <a href="blog.html#post-fire-safety-technology-guide">Fire Safety Technology</a>
+                        <a href="blog.html#post-smoke-extractors">Smoke Extractors</a>
+                        <a href="blog.html#post-street-lights-and-poles">Street Lights & Poles</a>
+                        <a href="blog.html#post-rope-lights-and-designs">Rope Lights</a>
+                    </div>
+                </div>
+
+                <div class="foot-topics">
+                    <h5>Tips, Skills, Solutions & Updates</h5>
+                    <div class="foot-topics-row">
+                        <a href="tips.html#post-smart-door-lock-installation-in-abuja">Smart Door Lock Install</a>
+                        <a href="tips.html#post-smart-locks-for-schools-and-offices">Locks for Schools & Offices</a>
+                        <a href="tips.html#post-how-smart-locks-work-with-cctv-systems">Smart Locks & CCTV</a>
+                        <a href="tips.html#post-future-of-smart-lock-technology">Future of Smart Locks</a>
+                        <a href="tips.html#post-smart-secure-schools-abuja">Smart & Secure Schools</a>
+                        <a href="tips.html#post-from-manual-records-to-smart-schools">School Management Systems</a>
+                        <a href="tips.html#post-transforming-school-management-abuja">School ERP Systems</a>
+                        <a href="tips.html#post-smart-lock-installation-mistakes-to-avoid">Lock Install Mistakes</a>
+                        <a href="tips.html#post-how-to-secure-your-property-with-smart-locks">Secure Your Property</a>
+                        <a href="tips.html#post-smart-access-using-rfid-and-biometrics">RFID & Biometric Access</a>
+                        <a href="tips.html#post-best-smart-lock-brands-in-nigeria">Best Smart Lock Brands</a>
+                        <a href="tips.html#post-smart-locks-for-gates-and-main-doors">Locks for Gates & Doors</a>
+                        <a href="tips.html#post-voice-controlled-smart-locks-explained">Voice-Controlled Locks</a>
+                        <a href="tips.html#post-smart-lock-security-features-to-know">Smart Lock Features</a>
+                        <a href="tips.html#post-keyless-entry-systems-explained">Keyless Entry Systems</a>
+                        <a href="tips.html#post-smart-lock-maintenance-tips">Smart Lock Maintenance</a>
+                        <a href="tips.html#post-why-renting-event-ict-equipment-in-abuja-saves-money">Why Rent Event &
+                            ICT Gear</a>
+                        <a href="tips.html#post-abuja-equipment-rentals">Abuja Equipment Rentals</a>
+                        <a href="tips.html#post-smart-locks-with-mobile-app-control">App-Controlled Locks</a>
+                    </div>
+                </div>
+
+                <div class="foot-bottom">
+                    <span>© 2020–2026 KADIS.COM.NG · All Rights Reserved</span>
+                    <div class="social-row">
+                        <a href="https://web.facebook.com/kadisdigitals" aria-label="Facebook">f</a>
+                        <a href="https://www.instagram.com/kadisdigitals" aria-label="Instagram">ig</a>
+                        <a href="https://www.youtube.com/@kadisdigitals" aria-label="YouTube">yt</a>
+                        <a href="https://www.tiktok.com/@kadisdigitals" aria-label="TikTok">tt</a>
+                    </div>
+                    <span>Powered by E-Franky Global Services Limited</span>
+                </div>
+                <a href="https://whatsapp.com/channel/0029VaxUvHk3gvWa5WhtZ03K" class="whatsapp-channel" target="_blank"
+                    rel="noopener noreferrer" aria-label="Follow KADIS ICT & Media Solutions on WhatsApp">
+                    <span class="whatsapp-icon" aria-hidden="true">
+                        <i class="fab fa-whatsapp"></i>
+                    </span>
+
+                    <span class="whatsapp-content">
+                        <strong>Follow KADIS on WhatsApp</strong>
+                        <small>Get updates, solutions & tech insights</small>
+                    </span>
+
+                    <span class="whatsapp-arrow" aria-hidden="true">→</span>
+                </a>
+            </div>
+    </footer>
+
+    <a class="wa-float" href="https://wa.me/2348061379390" aria-label="Chat on WhatsApp">💬</a>
+
+    <script>
+        document.querySelectorAll('.prod-card, .related-card, .subcat-pill').forEach(card => {
+            card.style.transformStyle = 'preserve-3d';
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - 0.5;
+                const y = (e.clientY - r.top) / r.height - 0.5;
+                card.style.transform = `perspective(800px) rotateY(${x * 3}deg) rotateX(${-y * 3}deg) translateY(-3px)`;
+            });
+            card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+        });
+
+        function toggleMega() {
+            document.getElementById('megaMenu').classList.toggle('open');
+            document.getElementById('catTrigger').classList.toggle('active');
+            document.getElementById('megaBackdrop').classList.toggle('show');
+        }
+        function closeMega() {
+            document.getElementById('megaMenu').classList.remove('open');
+            document.getElementById('catTrigger').classList.remove('active');
+            document.getElementById('megaBackdrop').classList.remove('show');
+        }
+        document.addEventListener('click', (e) => {
+            const wrap = document.querySelector('.mega-wrap');
+            if (!wrap.contains(e.target)) { closeMega(); }
+        });
+
+        document.querySelectorAll('.chip-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const idx = Number(entry.target.dataset.idx || 0);
+                    entry.target.style.transitionDelay = Math.min(idx, 6) * 60 + 'ms';
+                    entry.target.classList.add('in-view');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach((el, i) => {
+            el.dataset.idx = i % 6;
+            io.observe(el);
+        });
+    </script>
+
+
+    <script src="cart.js"></script>
+    <script src="productdetails.js"></script>
+    <script src="Quickview.js"></script>
+    <script src="product-index-data.js"></script>
+    <script src="site-search.js"></script>
+    <script src="request-solution.js"></script>
+    <script src="responsive.js"></script>
+
+    <script>
+        document.querySelectorAll('a[href*="wa.me"], a[href*="instagram.com"], a[href*="facebook.com"], a[href*="tiktok.com"], a[href*="youtube.com"], a[href*="twitter.com"], a[href*="x.com"], a[href*="linkedin.com"]').forEach(function (link) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+======================================================================
+QUALITY REPORT SUMMARY
+======================================================================
+Total entries parsed: 539
+Entries with at least one issue: 539
+
+Issue counts by type:
+  EMPTY_BRAND                  452
+  FOREIGN_SITE_MARKUP          248
+  EMPTY_FULL                   87
+  VERY_LONG                    15
+  EMPTY_LIST_ITEM              13
+  MANUAL_BULLET_CHARS          11
+  VERY_SHORT                   3
+
+Duplicate description groups found: 6
+  - ['button-phone-0', 'button-phone-1']
+  - ['bluetooth-17', 'button-phone-7']
+  - ['bluetooth-20', 'button-phone-9']
+  - ['phone-accessories-9', 'phone-accessories-10']
+  - ['game-pad-21', 'game-pad-22']
+  - ['smart-home-and-house-automation-44', 'smart-home-and-house-automation-45']
+
+Top 15 flagged entries (see qa_report.json for the full list):
+
+  [accessories-0] 1 LITER DISTILED WATER
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+      - MANUAL_BULLET_CHARS: uses · or • instead of real <li> list
+
+  [cables-0] 10 Inches Ringlight Video LED Selfie Ring Light USB Lamp
+      - VERY_LONG: 8324 chars — check for junk bloat
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+      - FOREIGN_SITE_MARKUP: matches Jiji.ng pattern /-mtm/
+      - FOREIGN_SITE_MARKUP: matches Jumia pattern /-pvs\b/
+      - EMPTY_LIST_ITEM: contains an empty <li></li>
+
+  [computer-accessories-0] 10″ Wireless BT Keyboard Ultra-thin Rechargeable Mixed Light
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+      - FOREIGN_SITE_MARKUP: matches Jiji.ng pattern /-mtm/
+      - FOREIGN_SITE_MARKUP: matches Jumia pattern /-pvs\b/
+
+  [accessories-1] 10KWH 48V CWORTH LITHIUM ION BATTERY
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+      - MANUAL_BULLET_CHARS: uses · or • instead of real <li> list
+
+  [batteries-0] 10KWH FELICITY LITHIUM ION BATTERY
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+
+  [batteries-1] 12.5KWH 48V CWORTH ENERGY LITHIUM ION BATTERY
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+
+  [batteries-2] 12.5KWH VIABLE ENERGY LITHIUM ION BATTERY
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+
+  [accessories-2] 125A BATTERY LOAD TESTER
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+
+  [batteries-3] 12V/200AH INDEX TUBULAR BATTERY
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+
+  [accessories-3] 12V/200AH QUANTA DRY CELL BATTERY
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+
+  [batteries-4] 12V 220AH ADDO TUBULAR BATTERY
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+
+  [batteries-5] 12v 220ah Glow Energy Tubular Battery
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+
+  [accessories-4] 12V/220AH LUMINOUS TUBULAR BATTERY
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+
+  [phone-accessories-0] 14 Inches Selfie Ring Light With Stand 36CM
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+      - FOREIGN_SITE_MARKUP: matches Jiji.ng pattern /-mtm/
+      - FOREIGN_SITE_MARKUP: matches Jumia pattern /-pvs\b/
+      - EMPTY_LIST_ITEM: contains an empty <li></li>
+
+  [accessories-5] 15KWH 48V CWORTH LITHIUM ION BATTERY
+      - EMPTY_BRAND: no brand set (may be legitimate for generics)
+      - MANUAL_BULLET_CHARS: uses · or • instead of real <li> list
